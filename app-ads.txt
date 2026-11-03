@@ -1,0 +1,1 @@
+# Symbol Interactive: authorized sellers of our apps' ad inventory (IAB app-ads.txt). Lines are added with the ad networks.

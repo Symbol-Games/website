@@ -1,0 +1,78 @@
+/* Symbol Interactive — the game's own night: violet sky, gold cork, candy stars. One memorable thing (the jar on the home page);
+   everything else quiet, one column, left aligned. */
+@font-face { font-family: "DynaPuff"; src: url("fonts/DynaPuff-Bold.ttf") format("truetype"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Nunito"; src: url("fonts/Nunito.ttf") format("truetype"); font-weight: 200 1000; font-display: swap; }
+
+:root {
+  color-scheme: dark;
+  --night: #1E1452;
+  --deep: #150F3E;
+  --ink: #F1ECFF;
+  --muted: #BEB2EE;
+  --gold: #FFC93C;
+  --pink: #FF4FA6;
+  --glass: rgba(255, 255, 255, .07);
+  --display: "DynaPuff", ui-rounded, system-ui, sans-serif;
+  --body: "Nunito", ui-rounded, system-ui, -apple-system, sans-serif;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; min-height: 100vh; display: flex; flex-direction: column;
+  background-color: var(--night); color: var(--ink);
+  font: 500 1.0625rem/1.6 var(--body);
+  /* a few far stars, as in the game's sky */
+  background-image:
+    radial-gradient(1.5px 1.5px at 8% 12%, #fff9 50%, transparent 51%), radial-gradient(1px 1px at 22% 64%, #fff7 50%, transparent 51%),
+    radial-gradient(1px 1px at 47% 8%, #fff8 50%, transparent 51%), radial-gradient(1.5px 1.5px at 71% 31%, #fff6 50%, transparent 51%),
+    radial-gradient(1px 1px at 88% 9%, #fff8 50%, transparent 51%), radial-gradient(1px 1px at 93% 72%, #fff6 50%, transparent 51%),
+    radial-gradient(1px 1px at 36% 88%, #fff5 50%, transparent 51%),
+    radial-gradient(120% 70% at 80% -10%, #3B2A9A 0%, transparent 60%);
+  background-attachment: fixed;
+}
+a { color: var(--gold); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+a:hover { color: #FFE08A; }
+a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+
+.top, main, .bottom { width: 100%; max-width: 46rem; margin: 0 auto; padding: 0 1rem; }
+.top { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-items: baseline; justify-content: space-between; padding-top: 1.5rem; }
+.mark { font: 700 1.25rem/1.2 var(--display); color: var(--ink); text-decoration: none; }
+.top nav { display: flex; gap: 1.25rem; font-weight: 800; }
+.top nav a { text-decoration: none; }
+.top nav a:hover { text-decoration: underline; }
+main { flex: 1; padding-top: 3rem; padding-bottom: 4rem; }
+.bottom { padding-top: 1.5rem; padding-bottom: 2rem; color: var(--muted); font-size: .9375rem; border-top: 1px solid rgba(255, 255, 255, .12); }
+.bottom p { margin: .25rem 0; }
+
+h1, h2 { font-family: var(--display); font-weight: 700; text-wrap: balance; }
+h1 { font-size: clamp(2.25rem, 7vw, 3.5rem); line-height: 1.05; margin: 0 0 1rem; letter-spacing: -.01em; }
+h2 { font-size: 1.5rem; line-height: 1.2; margin: 2.25rem 0 .5rem; }
+p, li { max-width: 38em; }
+.lede { font-size: 1.25rem; color: var(--muted); margin: 0; }
+
+/* The home page: the jar is the one loud thing. */
+.hero { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; }
+.hero-jar { width: clamp(9rem, 28vw, 13.5rem); height: auto; overflow: visible; filter: drop-shadow(0 18px 40px rgba(255, 79, 166, .28)); }
+.drop { animation: drop .7s cubic-bezier(.34, 1.4, .64, 1) both; animation-delay: calc(.35s + var(--i) * .16s); transform-box: fill-box; transform-origin: center; }
+@keyframes drop { from { transform: translateY(-150px) rotate(-30deg); opacity: 0; } 60% { opacity: 1; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .drop { animation: none; } }
+
+.game { display: grid; grid-template-columns: auto 1fr; gap: 1.25rem; align-items: start; margin-top: 4rem; padding: 1.5rem;
+  background: var(--glass); border: 1.5px solid rgba(255, 255, 255, .16); border-radius: 28px; }
+.game h2 { margin-top: 0; }
+.game p { margin: 0 0 .75rem; }
+.icon-jar { width: 4.5rem; height: auto; padding: .4rem; background: radial-gradient(circle at 50% 30%, #5B3FD6, var(--deep)); border-radius: 22px; }
+.status { color: var(--gold); font-weight: 800; }
+
+/* The policy pages: a readable column of prose. */
+.prose h1 { font-size: clamp(2rem, 6vw, 2.75rem); }
+.prose ul { padding-left: 1.25rem; }
+.prose li { margin: .35rem 0; }
+.prose strong { color: #fff; }
+.meta { color: var(--muted); }
+
+@media (max-width: 34rem) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-jar { justify-self: center; order: -1; }
+  .game { grid-template-columns: 1fr; }
+}
