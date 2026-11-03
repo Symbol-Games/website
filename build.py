@@ -6,7 +6,7 @@ import math
 import pathlib
 
 ROOT = pathlib.Path(__file__).parent
-MAIL = "destek@symbolinteractive.com.tr"
+MAIL = "symbolinteractive@gmail.com"  # the support address the user set in the release checklist (2026-11-03)
 CONTROLLER = {"tr": "Cem Tezgelen", "en": "Cem Tezgelen"}  # the developer's own name, as the user gave it (2026-11-03)
 UPDATED = {"tr": "3 Kasım 2026", "en": "3 November 2026"}
 
