@@ -7,8 +7,8 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).parent
 MAIL = "destek@symbolinteractive.com.tr"
-CONTROLLER = {"tr": "[VERİ SORUMLUSU]", "en": "[DATA CONTROLLER]"}  # the developer's own name: the user writes it, never guessed
-UPDATED = {"tr": "[TARİH]", "en": "[DATE]"}
+CONTROLLER = {"tr": "Cem Tezgelen", "en": "Cem Tezgelen"}  # the developer's own name, as the user gave it (2026-11-03)
+UPDATED = {"tr": "3 Kasım 2026", "en": "3 November 2026"}
 
 
 def star(cx, cy, r, fill, rot=0.0, inner=0.48):
