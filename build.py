@@ -36,11 +36,13 @@ def jar(size_class="hero-jar", animate=True):
 
 
 def page(lang, path, title, description, body, alt_href):
-    prefix = "/" if path == "404.html" else "../" if lang == "en" else ""
+    prefix = "/" if path == "404.html" else "../" if "/" in path else ""
     nav = {
-        "tr": [("Destek", "destek.html"), ("Gizlilik", "gizlilik.html"), ("English", alt_href)],
+        "tr": [("Destek", prefix + "destek.html" if prefix != "../" else "destek.html"), ("Gizlilik", "gizlilik.html"), ("English", alt_href)],
         "en": [("Support", "support.html"), ("Privacy", "privacy.html"), ("Türkçe", alt_href)],
     }[lang]
+    if lang == "en" and "/" not in path:  # an English page at the root (the App Store's /support and /starjars)
+        nav = [("Support", "en/support.html"), ("Privacy", "en/privacy.html"), ("Türkçe", alt_href)]
     home = "index.html"
     hreflang = {"English": ' lang="en"', "Türkçe": ' lang="tr"'}
     links = "".join(f'<a href="{href}"{hreflang.get(text, "")}>{text}</a>' for text, href in nav)
@@ -206,6 +208,27 @@ page("tr", "destek.html", "Destek · Symbol Interactive", "Symbol Interactive oy
 page("en", "en/support.html", "Support · Symbol Interactive", "Support for Symbol Interactive games.", SUPPORT["en"], "../destek.html")
 page("tr", "gizlilik.html", "Gizlilik politikası · Symbol Interactive", "Symbol Interactive oyunlarının gizlilik politikası.", PRIVACY["tr"], "en/privacy.html")
 page("en", "en/privacy.html", "Privacy policy · Symbol Interactive", "Privacy policy of Symbol Interactive games.", PRIVACY["en"], "../gizlilik.html")
+# The App Store's support and marketing URLs (the user, 2026-11-03): /support and /starjars, in both languages on one page each.
+SUPPORT_BOTH = SUPPORT["en"].replace('href="privacy.html"', 'href="en/privacy.html"') + SUPPORT["tr"].replace("<h1>Destek</h1>", '<h2 class="lang" lang="tr">Türkçe</h2>').replace('<article class="prose">', '<article class="prose" lang="tr">')
+page("en", "support.html", "Support · Symbol Interactive", "Support for Symbol Interactive games.", SUPPORT_BOTH, "destek.html")
+def shots(lang):
+    return "".join(f'<img src="img/{lang}-{n}.jpg" width="270" height="587" alt="" loading="lazy">' for n in ["01-board", "03-galaxy", "04-exo"])
+STARJARS = f'''<section class="hero">
+  <div>
+    <h1>Star Jars Sort Deluxe</h1>
+    <p class="lede">A calm puzzle where you sort colorful stars into jars. Every sealed jar lights a star of a real constellation: 136 levels across 18 constellations, star cards with real facts, and space chapters with their own rules.</p>
+    <p class="status">Coming soon to the App Store and Google Play. In thirteen languages.</p>
+  </div>
+  {{jar()}}
+</section>
+<div class="shots">{{shots("en")}}</div>
+<section class="prose" lang="tr">
+  <h2>Yıldız Kavanozu</h2>
+  <p>Renkli yıldızları kavanozlara ayırdığın sakin bir bulmaca. Her mühürlenen kavanoz gerçek bir takımyıldızının yıldızını yakar: 18 takımyıldızında 136 seviye, gerçek bilgilerle yıldız kartları ve kendi kuralıyla uzay bölümleri.</p>
+  <p class="status">Yakında App Store ve Google Play'de. On üç dilde.</p>
+</section>
+<div class="shots">{{shots("tr")}}</div>'''
+page("en", "starjars.html", "Star Jars Sort Deluxe · Symbol Interactive", "Star Jars Sort Deluxe: sort the stars, light up the constellations.", STARJARS.replace("{jar()}", jar()).replace('{shots("en")}', shots("en")).replace('{shots("tr")}', shots("tr")), "index.html")
 page("tr", "404.html", "Sayfa yok · Symbol Interactive", "Sayfa bulunamadı.", NOT_FOUND, "/en/")
 (ROOT / "favicon.svg").write_text(jar("fav", animate=False).replace('class="fav" ', 'xmlns="http://www.w3.org/2000/svg" '), encoding="utf-8")
 (ROOT / "CNAME").write_text("symbolinteractive.com.tr\n", encoding="utf-8")

@@ -76,3 +76,8 @@ p, li { max-width: 38em; }
   .hero-jar { justify-self: center; order: -1; }
   .game { grid-template-columns: 1fr; }
 }
+
+/* The game's page (the App Store's marketing URL): three screens in a row, scrolling sideways on a phone. */
+.shots { display: flex; gap: 1rem; margin: 2rem 0 3rem; overflow-x: auto; padding-bottom: .5rem; }
+.shots img { flex: none; width: 13.5rem; height: auto; border-radius: 22px; border: 3px solid #fff; box-shadow: 0 14px 34px rgba(10, 4, 40, .5); }
+.lang { margin-top: 3rem; }
