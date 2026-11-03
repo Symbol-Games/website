@@ -4,45 +4,85 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Symbol Interactive</title>
-<meta name="description" content="Küçük, özenli mobil oyunlar: Yıldız Kavanozu.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="site.css">
+<meta name="description" content="Symbol Interactive: Aydın'da kurulmuş bağımsız mobil oyun stüdyosu. Sakin, özenli bulmaca oyunları.">
+<meta name="theme-color" content="#F4F6FA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1328" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://symbolinteractive.com.tr/">
+<link rel="alternate" hreflang="tr" href="https://symbolinteractive.com.tr/">
+<link rel="alternate" hreflang="en" href="https://symbolinteractive.com.tr/en/">
+<link rel="alternate" hreflang="x-default" href="https://symbolinteractive.com.tr/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/Gabarito-latin.woff2" as="font" crossorigin>
+<link rel="stylesheet" href="/site.css">
 </head>
 <body>
-<header class="top">
-  <a class="mark" href="index.html">Symbol Interactive</a>
-  <nav><a href="destek.html">Destek</a><a href="gizlilik.html">Gizlilik</a><a href="en/index.html" lang="en">English</a></nav>
-</header>
-<main>
-<section class="hero">
+<a class="skip" href="#main">İçeriğe geç</a>
+<header class="top"><div class="wrap">
+  <a class="mark" href="/" aria-label="Symbol Interactive ana sayfa"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="17" height="17" rx="5" style="fill:var(--cobalt)"/><rect x="21" y="2" width="17" height="17" rx="5" fill="#FFD23F"/><rect x="2" y="21" width="17" height="17" rx="5" fill="#8FA33A"/><circle cx="29.5" cy="29.5" r="5.6" fill="none" stroke-width="3.6" style="stroke:var(--cobalt)"/></svg><span>Symbol Interactive</span></a>
+  <nav aria-label="Ana menü"><ul><li><a href="/oyunlar.html">Oyunlar</a></li><li><a href="/hakkimizda.html">Hakkımızda</a></li><li><a href="/destek.html">Destek</a></li><li class="lang"><a href="/en/" lang="en" hreflang="en">English</a></li></ul></nav>
+</div></header>
+<main id="main"><div class="wrap">
+<section class="hero" aria-labelledby="hero">
   <div>
-    <h1>Küçük, özenli mobil oyunlar</h1>
-    <p class="lede">Symbol Interactive, telefonda birkaç dakikada açılıp uzun süre akılda kalan bulmaca oyunları yapan küçük bir stüdyo.</p>
+    <h1 id="hero">Her şeyin yerine oturduğu oyunlar</h1>
+    <p class="lede">Symbol Interactive, Aydın'da kurulmuş bağımsız bir mobil oyun stüdyosu. Sakin, özenli ve oynaması keyifli bulmaca oyunları yapıyoruz.</p>
+    <div class="actions"><a class="button" href="/oyunlar.html">Oyunlarımız</a><a class="button quiet" href="mailto:symbolinteractive@gmail.com">Bize yaz</a></div>
   </div>
-  <svg class="hero-jar" viewBox="0 0 200 240" role="img" aria-label="Yıldızlarla dolu cam kavanoz">
-  <rect x="44" y="52" width="112" height="170" rx="40" fill="rgba(255,255,255,.13)" stroke="#fff" stroke-width="6"/>
-  <g class="drop" style="--i:0"><path d="M79.2 171.1L84.0 185.1L98.5 188.3L86.7 197.2L88.1 212.0L75.9 203.5L62.4 209.4L66.7 195.2L56.9 184.1L71.7 183.9Z" fill="#FF4FA6" stroke="#fff" stroke-width="4.0" stroke-linejoin="round"/></g><g class="drop" style="--i:1"><path d="M117.6 169.7L126.9 181.2L141.6 179.2L133.5 191.7L139.9 205.0L125.6 201.2L114.9 211.4L114.1 196.6L101.0 189.6L114.9 184.3Z" fill="#14DCC8" stroke="#fff" stroke-width="4.0" stroke-linejoin="round"/></g><g class="drop" style="--i:2"><path d="M105.5 135.0L107.5 149.7L121.0 155.7L107.6 162.1L106.1 176.8L95.9 166.1L81.4 169.2L88.4 156.1L81.0 143.3L95.6 146.0Z" fill="#FFCC2E" stroke="#fff" stroke-width="4.0" stroke-linejoin="round"/></g><g class="drop" style="--i:3"><path d="M75.0 101.0L80.4 112.6L93.1 114.1L83.7 122.8L86.2 135.4L75.0 129.1L63.8 135.4L66.3 122.8L56.9 114.1L69.6 112.6Z" fill="#A273FF" stroke="#fff" stroke-width="3.4" stroke-linejoin="round"/></g><g class="drop" style="--i:4"><path d="M124.8 99.4L127.7 111.8L139.9 115.8L128.9 122.5L128.9 135.3L119.2 126.9L107.0 130.8L111.9 119.0L104.5 108.7L117.2 109.7Z" fill="#3FDD77" stroke="#fff" stroke-width="3.4" stroke-linejoin="round"/></g>
-  <rect x="58" y="70" width="8" height="34" rx="4" fill="#fff" opacity=".42"/>
-  <rect x="62" y="30" width="76" height="28" rx="9" fill="#FFC93C" stroke="#fff" stroke-width="5"/>
-</svg>
+  <div class="board"><svg viewBox="0 0 312 322" role="img" aria-label="Dört sıra oyun taşı: daireler, karolar, üçgenler ve halkalar yerlerine oturmuş"><rect class="tray-edge" x="0" y="10" width="312" height="312" rx="30"/><rect class="tray" x="1" y="1" width="310" height="310" rx="29"/><rect class="slot" x="18" y="18" width="60" height="60" rx="14"/><rect class="slot" x="90" y="18" width="60" height="60" rx="14"/><rect class="slot" x="162" y="18" width="60" height="60" rx="14"/><rect class="slot" x="234" y="18" width="60" height="60" rx="14"/><rect class="slot" x="18" y="90" width="60" height="60" rx="14"/><rect class="slot" x="90" y="90" width="60" height="60" rx="14"/><rect class="slot" x="162" y="90" width="60" height="60" rx="14"/><rect class="slot" x="234" y="90" width="60" height="60" rx="14"/><rect class="slot" x="18" y="162" width="60" height="60" rx="14"/><rect class="slot" x="90" y="162" width="60" height="60" rx="14"/><rect class="slot" x="162" y="162" width="60" height="60" rx="14"/><rect class="slot" x="234" y="162" width="60" height="60" rx="14"/><rect class="slot" x="18" y="234" width="60" height="60" rx="14"/><rect class="slot" x="90" y="234" width="60" height="60" rx="14"/><rect class="slot" x="162" y="234" width="60" height="60" rx="14"/><rect class="slot" x="234" y="234" width="60" height="60" rx="14"/><rect class="row-done" style="--row:0" x="13" y="13" width="286" height="70" rx="18" fill="none" stroke="#2E4BDB" stroke-width="3"/><g transform="translate(18 18)"><g class="piece" style="--i:0;--dx:-120px;--dy:-150px;--r:-40deg"><circle cx="30" cy="32.76" r="17.5" fill="#1F35A8"/><circle cx="30" cy="30" r="17.5" fill="#2E4BDB"/></g></g><g transform="translate(90 18)"><g class="piece" style="--i:1;--dx:60px;--dy:-190px;--r:25deg"><circle cx="30" cy="32.76" r="17.5" fill="#1F35A8"/><circle cx="30" cy="30" r="17.5" fill="#2E4BDB"/></g></g><g transform="translate(162 18)"><g class="piece" style="--i:2;--dx:150px;--dy:-60px;--r:70deg"><circle cx="30" cy="32.76" r="17.5" fill="#1F35A8"/><circle cx="30" cy="30" r="17.5" fill="#2E4BDB"/></g></g><g transform="translate(234 18)"><g class="piece" style="--i:3;--dx:-40px;--dy:-230px;--r:-15deg"><circle cx="30" cy="32.76" r="17.5" fill="#1F35A8"/><circle cx="30" cy="30" r="17.5" fill="#2E4BDB"/></g></g><rect class="row-done" style="--row:1" x="13" y="85" width="286" height="70" rx="18" fill="none" stroke="#FFD23F" stroke-width="3"/><g transform="translate(18 90)"><g class="piece" style="--i:4;--dx:130px;--dy:-210px;--r:45deg"><polygon points="30,15.3 47.5,32.76 30,50.2 12.5,32.76" fill="#D9A915" stroke="#D9A915" stroke-width="6.4" stroke-linejoin="round"/><polygon points="30,12.5 47.5,30 30,47.5 12.5,30" fill="#FFD23F" stroke="#FFD23F" stroke-width="6.4" stroke-linejoin="round"/></g></g><g transform="translate(90 90)"><g class="piece" style="--i:5;--dx:-150px;--dy:-40px;--r:-70deg"><polygon points="30,15.3 47.5,32.76 30,50.2 12.5,32.76" fill="#D9A915" stroke="#D9A915" stroke-width="6.4" stroke-linejoin="round"/><polygon points="30,12.5 47.5,30 30,47.5 12.5,30" fill="#FFD23F" stroke="#FFD23F" stroke-width="6.4" stroke-linejoin="round"/></g></g><g transform="translate(162 90)"><g class="piece" style="--i:6;--dx:20px;--dy:-120px;--r:90deg"><polygon points="30,15.3 47.5,32.76 30,50.2 12.5,32.76" fill="#D9A915" stroke="#D9A915" stroke-width="6.4" stroke-linejoin="round"/><polygon points="30,12.5 47.5,30 30,47.5 12.5,30" fill="#FFD23F" stroke="#FFD23F" stroke-width="6.4" stroke-linejoin="round"/></g></g><g transform="translate(234 90)"><g class="piece" style="--i:7;--dx:90px;--dy:-260px;--r:-30deg"><polygon points="30,15.3 47.5,32.76 30,50.2 12.5,32.76" fill="#D9A915" stroke="#D9A915" stroke-width="6.4" stroke-linejoin="round"/><polygon points="30,12.5 47.5,30 30,47.5 12.5,30" fill="#FFD23F" stroke="#FFD23F" stroke-width="6.4" stroke-linejoin="round"/></g></g><rect class="row-done" style="--row:2" x="13" y="157" width="286" height="70" rx="18" fill="none" stroke="#8FA33A" stroke-width="3"/><g transform="translate(18 162)"><g class="piece" style="--i:8;--dx:-90px;--dy:-180px;--r:35deg"><polygon points="30.0,17.1 45.9,44.7 14.1,44.7" fill="#6B7C25" stroke="#6B7C25" stroke-width="6.4" stroke-linejoin="round"/><polygon points="30.0,14.4 45.9,42.0 14.1,42.0" fill="#8FA33A" stroke="#8FA33A" stroke-width="6.4" stroke-linejoin="round"/></g></g><g transform="translate(90 162)"><g class="piece" style="--i:9;--dx:170px;--dy:-140px;--r:-55deg"><polygon points="30.0,17.1 45.9,44.7 14.1,44.7" fill="#6B7C25" stroke="#6B7C25" stroke-width="6.4" stroke-linejoin="round"/><polygon points="30.0,14.4 45.9,42.0 14.1,42.0" fill="#8FA33A" stroke="#8FA33A" stroke-width="6.4" stroke-linejoin="round"/></g></g><g transform="translate(162 162)"><g class="piece" style="--i:10;--dx:-60px;--dy:-90px;--r:20deg"><polygon points="30.0,17.1 45.9,44.7 14.1,44.7" fill="#6B7C25" stroke="#6B7C25" stroke-width="6.4" stroke-linejoin="round"/><polygon points="30.0,14.4 45.9,42.0 14.1,42.0" fill="#8FA33A" stroke="#8FA33A" stroke-width="6.4" stroke-linejoin="round"/></g></g><g transform="translate(234 162)"><g class="piece" style="--i:11;--dx:40px;--dy:-240px;--r:-80deg"><polygon points="30.0,17.1 45.9,44.7 14.1,44.7" fill="#6B7C25" stroke="#6B7C25" stroke-width="6.4" stroke-linejoin="round"/><polygon points="30.0,14.4 45.9,42.0 14.1,42.0" fill="#8FA33A" stroke="#8FA33A" stroke-width="6.4" stroke-linejoin="round"/></g></g><rect class="row-done" style="--row:3" x="13" y="229" width="286" height="70" rx="18" fill="none" stroke="#7FB0FF" stroke-width="3"/><g transform="translate(18 234)"><g class="piece" style="--i:12;--dx:110px;--dy:-100px;--r:60deg"><circle cx="30" cy="32.76" r="13.8" fill="none" stroke="#5A8DE6" stroke-width="9.2"/><circle cx="30" cy="30" r="13.8" fill="none" stroke="#7FB0FF" stroke-width="9.2"/></g></g><g transform="translate(90 234)"><g class="piece" style="--i:13;--dx:-170px;--dy:-200px;--r:-25deg"><circle cx="30" cy="32.76" r="13.8" fill="none" stroke="#5A8DE6" stroke-width="9.2"/><circle cx="30" cy="30" r="13.8" fill="none" stroke="#7FB0FF" stroke-width="9.2"/></g></g><g transform="translate(162 234)"><g class="piece" style="--i:14;--dx:-10px;--dy:-170px;--r:50deg"><circle cx="30" cy="32.76" r="13.8" fill="none" stroke="#5A8DE6" stroke-width="9.2"/><circle cx="30" cy="30" r="13.8" fill="none" stroke="#7FB0FF" stroke-width="9.2"/></g></g><g transform="translate(234 234)"><g class="piece" style="--i:15;--dx:70px;--dy:-50px;--r:-45deg"><circle cx="30" cy="32.76" r="13.8" fill="none" stroke="#5A8DE6" stroke-width="9.2"/><circle cx="30" cy="30" r="13.8" fill="none" stroke="#7FB0FF" stroke-width="9.2"/></g></g></svg></div>
 </section>
-<section class="game" aria-labelledby="game">
-  <svg class="icon-jar" viewBox="0 0 200 240" role="img" aria-label="Yıldızlarla dolu cam kavanoz">
+<section class="section" aria-labelledby="games">
+  <h2 id="games">Oyunlarımız</h2>
+  <p>Telefonda birkaç dakikada açılan, uzun süre akılda kalan oyunlar.</p>
+  <div class="games"><a class="window" href="/starjars.html">
+  <svg class="icon" viewBox="0 0 200 240" aria-hidden="true">
   <rect x="44" y="52" width="112" height="170" rx="40" fill="rgba(255,255,255,.13)" stroke="#fff" stroke-width="6"/>
   <path d="M79.2 171.1L84.0 185.1L98.5 188.3L86.7 197.2L88.1 212.0L75.9 203.5L62.4 209.4L66.7 195.2L56.9 184.1L71.7 183.9Z" fill="#FF4FA6" stroke="#fff" stroke-width="4.0" stroke-linejoin="round"/><path d="M117.6 169.7L126.9 181.2L141.6 179.2L133.5 191.7L139.9 205.0L125.6 201.2L114.9 211.4L114.1 196.6L101.0 189.6L114.9 184.3Z" fill="#14DCC8" stroke="#fff" stroke-width="4.0" stroke-linejoin="round"/><path d="M105.5 135.0L107.5 149.7L121.0 155.7L107.6 162.1L106.1 176.8L95.9 166.1L81.4 169.2L88.4 156.1L81.0 143.3L95.6 146.0Z" fill="#FFCC2E" stroke="#fff" stroke-width="4.0" stroke-linejoin="round"/><path d="M75.0 101.0L80.4 112.6L93.1 114.1L83.7 122.8L86.2 135.4L75.0 129.1L63.8 135.4L66.3 122.8L56.9 114.1L69.6 112.6Z" fill="#A273FF" stroke="#fff" stroke-width="3.4" stroke-linejoin="round"/><path d="M124.8 99.4L127.7 111.8L139.9 115.8L128.9 122.5L128.9 135.3L119.2 126.9L107.0 130.8L111.9 119.0L104.5 108.7L117.2 109.7Z" fill="#3FDD77" stroke="#fff" stroke-width="3.4" stroke-linejoin="round"/>
   <rect x="58" y="70" width="8" height="34" rx="4" fill="#fff" opacity=".42"/>
   <rect x="62" y="30" width="76" height="28" rx="9" fill="#FFC93C" stroke="#fff" stroke-width="5"/>
 </svg>
   <div>
-    <h2 id="game">Yıldız Kavanozu</h2>
-    <p>Renkli yıldızları kavanozlara ayırdığın sakin bir bulmaca. Her kavanoz mühürlendiğinde gökyüzünde bir takımyıldızın yıldızı yanar; seviyeler ilerledikçe gerçek takımyıldızları ve hikâyelerini tanırsın.</p>
-    <p class="status">Yakında App Store ve Google Play'de. On üç dilde.</p>
+    <h3>Star Jars Sort Deluxe</h3>
+    <p class="alt">Yıldız Kavanozu</p>
+    <p>Renkli yıldızları kavanozlara ayırdığın sakin bir bulmaca. Her mühürlenen kavanoz gerçek bir takımyıldızın bir yıldızını yakar.</p>
+    <p class="status">Yakında App Store ve Google Play'de. 13 dilde.</p>
+    <span class="go">Oyunun sayfası</span>
+  </div>
+</a><div class="next"><svg viewBox="0 0 60 64" aria-hidden="true"><rect x="3" y="3" width="54" height="54" rx="14" fill="none" stroke="var(--line)" stroke-width="3" stroke-dasharray="7 6"/><circle cx="30" cy="30" r="12" fill="none" stroke="var(--muted)" stroke-width="3" stroke-dasharray="4 5"/></svg><h3>Sıradaki oyunlar</h3><p>Yeni oyunlar üzerinde çalışıyoruz. Hazır olduklarında burada olacaklar.</p></div></div>
+</section>
+<section class="section" aria-labelledby="values">
+  <h2 id="values">Nasıl oyun yapıyoruz</h2>
+  <p>Küçük bir stüdyoyuz; bu yüzden her oyunu uzun süre parlatıp öyle yayımlıyoruz.</p>
+  <ul class="values"><li><svg viewBox="0 0 60 64" aria-hidden="true"><circle cx="30" cy="33.0" r="19.0" fill="#1F35A8"/><circle cx="30" cy="30" r="19.0" fill="#2E4BDB"/></svg><div><h3>Sakin ve tatmin edici</h3><p>Kısa oturumlarda açılıp kapanan, insanı rahatlatan bulmacalar tasarlıyoruz. Her hamlenin görünür bir sonucu, her bölümün güzel bir bitişi var.</p></div></li><li><svg viewBox="0 0 60 64" aria-hidden="true"><polygon points="30.0,16.0 47.3,46.0 12.7,46.0" fill="#6B7C25" stroke="#6B7C25" stroke-width="7.0" stroke-linejoin="round"/><polygon points="30.0,13.0 47.3,43.0 12.7,43.0" fill="#8FA33A" stroke="#8FA33A" stroke-width="7.0" stroke-linejoin="round"/></svg><div><h3>Kendi çizimimiz, kendi sesimiz</h3><p>Oyunlarımızın görsellerini, animasyonlarını ve ses efektlerini kendimiz yapıyoruz. Hazır görsel paketi kullanmıyoruz.</p></div></li><li><svg viewBox="0 0 60 64" aria-hidden="true"><polygon points="30,14.0 49.0,33.0 30,52.0 11.0,33.0" fill="#D9A915" stroke="#D9A915" stroke-width="7.0" stroke-linejoin="round"/><polygon points="30,11.0 49.0,30 30,49.0 11.0,30" fill="#FFD23F" stroke="#FFD23F" stroke-width="7.0" stroke-linejoin="round"/></svg><div><h3>Adil para kazanma</h3><p>Oyunlarımız ücretsiz. Ödüllü reklamı izlemek senin seçimin, banner reklam yok; mağazadaki her paketin ne verdiği açıkça yazar.</p></div></li><li><svg viewBox="0 0 60 64" aria-hidden="true"><circle cx="30" cy="33.0" r="15.0" fill="none" stroke="#5A8DE6" stroke-width="10.0"/><circle cx="30" cy="30" r="15.0" fill="none" stroke="#7FB0FF" stroke-width="10.0"/></svg><div><h3>Gizliliğe saygı</h3><p>Oynamak için adını, e-postanı ya da telefon numaranı istemiyoruz. Neyi neden işlediğimizi gizlilik politikasında açıkça yazıyoruz.</p></div></li></ul>
+</section>
+<section class="section studio" aria-labelledby="studio">
+  <div>
+    <h2 id="studio">Stüdyo</h2>
+    <p>Symbol Interactive'i 2026'da Aydın'da Cem Tezgelen kurdu. Oyunlarımızı tasarlıyor, yazıyor, çiziyor ve yayımlıyoruz; büyük bir ekip değiliz, oyunun her ayrıntısına dokunuyoruz.</p>
+    <p><a href="/hakkimizda.html">Stüdyoyu tanı</a></p>
+  </div>
+  <div class="contact">
+    <h3>Bize yaz</h3>
+    <p>Oyunlarla ilgili bir soru, bir öneri ya da bir iş birliği fikri için:</p>
+    <p class="mail"><a href="mailto:symbolinteractive@gmail.com">symbolinteractive@gmail.com</a></p>
   </div>
 </section>
-</main>
-<footer class="bottom">
-  <p>Bize yaz: <a href="mailto:symbolinteractive@gmail.com">symbolinteractive@gmail.com</a> · <a href="hesap-silme.html">Hesap silme</a></p>
-  <p>© 2026 Symbol Interactive</p>
-</footer>
+</div></main>
+<footer class="bottom"><div class="wrap">
+  <div class="about">
+    <a class="mark" href="/" aria-label="Symbol Interactive ana sayfa"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="17" height="17" rx="5" style="fill:var(--cobalt)"/><rect x="21" y="2" width="17" height="17" rx="5" fill="#FFD23F"/><rect x="2" y="21" width="17" height="17" rx="5" fill="#8FA33A"/><circle cx="29.5" cy="29.5" r="5.6" fill="none" stroke-width="3.6" style="stroke:var(--cobalt)"/></svg><span>Symbol Interactive</span></a>
+    <p>Aydın'da kurulmuş bağımsız bir mobil oyun stüdyosu.</p>
+    <p>Bu site çerez kullanmaz ve ziyaretçileri izlemez.</p>
+    <p>© 2026 Symbol Interactive</p>
+  </div>
+  <div><h2>Stüdyo</h2><ul>
+    <li><a href="/">Ana sayfa</a></li><li><a href="/oyunlar.html">Oyunlar</a></li>
+    <li><a href="/starjars.html">Star Jars</a></li><li><a href="/hakkimizda.html">Hakkımızda</a></li></ul></div>
+  <div><h2>Yardım</h2><ul>
+    <li><a href="/destek.html">Destek</a></li><li><a href="/hesap-silme.html">Hesap silme</a></li>
+    <li><a href="mailto:symbolinteractive@gmail.com">symbolinteractive@gmail.com</a></li></ul></div>
+  <div><h2>Yasal</h2><ul>
+    <li><a href="/gizlilik.html">Gizlilik politikası</a></li><li><a href="/kullanim-kosullari.html">Kullanım koşulları</a></li>
+    <li><a href="/en/" lang="en" hreflang="en">English</a></li></ul></div>
+</div></footer>
 </body>
 </html>
