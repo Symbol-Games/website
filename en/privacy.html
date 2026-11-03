@@ -16,35 +16,75 @@
 <main>
 <article class="prose">
 <h1>Privacy policy</h1>
-<p class="meta">Last updated: 3 November 2026</p>
-<p>This policy explains what information Symbol Interactive's mobile games (Star Jars and those to come) process and why. Data controller: Cem Tezgelen. For any question: <a href="mailto:symbolinteractive@gmail.com">symbolinteractive@gmail.com</a>.</p>
+<p class="meta">Last updated: 4 November 2026</p>
+<p>This policy explains what information Symbol Interactive's mobile game Star Jars Sort Deluxe (Yıldız Kavanozu in Turkish) processes and why, who receives it, how long it is kept, and what your rights are. When we release a new game, we add its details to this page.</p>
+<p><strong>Data controller:</strong> Cem Tezgelen, an individual developer making games as Symbol Interactive, Türkiye. For any question or request: <a href="mailto:symbolinteractive@gmail.com">symbolinteractive@gmail.com</a>.</p>
+<!-- REVIEW: GDPR Art. 27 (and UK GDPR Art. 27): see the Turkish page; add an EU/UK representative here if one is needed. -->
 <h2>In short</h2>
 <ul>
-<li>You don't need an account to play; we never ask for your name, email or phone number.</li>
-<li>Your progress is saved on your phone.</li>
+<li>On first launch the game creates an anonymous account for you; we never ask for your name, email or phone number. Linking an Apple or Google account is optional.</li>
+<li>Your progress is saved on your phone and, as a cloud save, on Google's servers in Europe (Belgium).</li>
 <li>Apple and Google handle purchases; we never see your card details.</li>
-<li>For ads and analytics, some device information is processed by the services named below. Personalised ads are shown only with your consent.</li>
+<li>For ads, analytics and crash reports, some device information is processed by the services named below. Where consent is required, personalised ads are shown only with your consent.</li>
+<li>You can delete your account and cloud save in the game at any time: Settings → Cloud save → Delete account.</li>
 </ul>
 <h2>What information, and why</h2>
-<p><strong>Game progress.</strong> Levels, stars, settings and the items you bought are stored on your phone. Deleting the game deletes them too.</p>
-<p><strong>Purchases.</strong> Payments go through the App Store or Google Play. We receive only the purchase record (which product, the transaction number) and use it to give you the item.</p>
-<p><strong>Ads.</strong> The ads in our games are served by Unity LevelPlay and the ad networks it works with. To show and measure ads and to prevent fraud, these services may process your advertising ID (IDFA on iOS, the advertising ID on Android), your IP address and the approximate location it suggests, your device model, operating system and language, and how you interact with ads. On iOS the advertising ID is used only if you allow app tracking. We ask for your consent to personalised ads; without it you see non-personalised ads. After the purchase that removes ads, no ads are shown.</p>
-<p><strong>Analytics and crash reports.</strong> To improve our games we use Google Firebase Analytics and Crashlytics: which levels are played, session length, device model and crash logs. This information is not matched to your name or email.</p>
-<p><strong>Support emails.</strong> If you write to us, we keep your address and message only to answer you.</p>
-<h2>Sharing and transfers abroad</h2>
-<p>We don't sell information. The service providers above (Apple, Google, Unity and ad partners) may process it on their own servers, including outside Türkiye. Where consent is required, these transfers rely on it. Each service has its own privacy policy: <a href="https://www.apple.com/legal/privacy/">Apple</a>, <a href="https://policies.google.com/privacy">Google</a>, <a href="https://unity.com/legal/privacy-policy">Unity</a>.</p>
-<h2>Children</h2>
-<p>Our games are not directed at children under 13, and we do not knowingly collect information from them.</p>
+<p><strong>Account.</strong> When the game first opens, Google Firebase Authentication creates an anonymous account for you. All it has is a random ID, shown in the game's settings as your player ID. If you like, you can link the account to Sign in with Apple or to your Google account in Settings; Firebase then receives the account ID that Apple or Google gives it and the details you choose to share (such as your email address; Apple lets you hide yours). We use these only to recognise you and to bring your progress to another phone. Firebase Authentication keeps a log of IP addresses for a few weeks to protect accounts from abuse.</p>
+<!-- REVIEW: linked-account scopes: see the Turkish page; drop "such as your email address" if no email is requested. -->
+<p><strong>Cloud save.</strong> So that you don't lose your progress and can take it to a new phone, your save is stored with your account in Google Cloud Firestore, in the europe-west1 region (Belgium, in the European Union). It holds your game progress (levels, stars, stardust and your items), your settings, a progress summary (level, stars and stardust), your device model and when it was saved. Only your own account can read or write it. A copy of your progress also stays on your phone.</p>
+<p><strong>Purchases.</strong> The App Store or Google Play takes the payment; we never see your card details. From the store we receive only the purchase receipt (which product, the transaction ID, the time), and we use it to give you the item and to restore it when needed. The amount and currency of a purchase also go to Firebase Analytics for our revenue reports.</p>
+<p><strong>Ads.</strong> The game shows ads from ironSource Ads, Unity Ads and Google AdMob through Unity LevelPlay: rewarded ads, which you choose to watch for a reward, and interstitial ads, which appear between levels after some wins. There are no banner ads. To choose, show and measure ads and to prevent fraud, these services process your advertising ID (on Android the advertising ID; on iOS the IDFA, only if you allow tracking when the game asks), your IP address and the approximate location it suggests, device information (such as model, operating system and language) and how you interact with ads. For personalised ads, ad partners may combine this with information from other apps and websites to guess your interests. In the European Economic Area, the UK and Switzerland the game asks for your consent with Google's consent message; without it, ads are not chosen by your interests. In US states with privacy laws, you can also opt out of your information being used for personalised ads. The Remove Ads purchase turns interstitial ads off; rewarded ads stay, for whenever you want one. We measure ad revenue (ad network, ad format, amount) in Firebase Analytics.</p>
+<p><strong>Analytics.</strong> To improve the game and balance its difficulty we use Google Firebase Analytics. Analytics processes how you interact with the game (screens opened, levels started, won and lost, session length, purchases, ads watched), device and app information (model, operating system, app version, language), an ID unique to the game's copy on this phone, and the approximate location derived from your IP address (country and city level). In the European Economic Area, the UK and Switzerland, Analytics runs in Google's consent mode and follows the choice you make in the consent message. This information is not matched to your name or email.</p>
+<!-- REVIEW: advertising ID in Firebase Analytics and SetUserId: see the Turkish page. -->
+<p><strong>Crash reports.</strong> To find and fix bugs we use Firebase Crashlytics. When the game crashes or logs an error, Crashlytics receives the error log, diagnostic information (device model, operating system and app version, memory state, time) and a random installation ID.</p>
+<p><strong>Remote settings.</strong> With Firebase Remote Config we change some of the game's settings (how often ads appear, for example) without releasing an update. For this, Firebase uses an ID unique to this installation of the game (the Firebase installation ID).</p>
+<p><strong>Support emails.</strong> If you write to us, we use your address and message only to answer you and carry out your request.</p>
+<h2>Legal bases</h2>
+<ul>
+<li><strong>Entering into and performing our contract with you</strong> (KVKK Art. 5(2)(c), GDPR Art. 6(1)(b)): your account, cloud save, purchases and support. They are part of the service you use in the game.</li>
+<li><strong>Legitimate interests</strong> (KVKK Art. 5(2)(f), GDPR Art. 6(1)(f)): crash reports, remote settings, showing and measuring ads, preventing fraud; and, in countries where no consent message is shown, analytics and ad personalisation. Keeping the game working, balanced and free to play is our legitimate interest. You can object to this processing, and you can turn off ad personalisation in your phone's ad settings.</li>
+<li><strong>Consent</strong> (explicit consent under KVKK Art. 5(1), GDPR Art. 6(1)(a)): personalised ads and analytics in the European Economic Area, the UK and Switzerland, and app tracking on iOS everywhere. You can withdraw your consent at any time.</li>
+</ul>
+<!-- REVIEW: Türkiye/KVKK consent and the ePrivacy basis for Crashlytics, Remote Config and non-personalised ads: see the Turkish page. -->
+<h2>Who receives it</h2>
+<p>We don't sell your information for money. For the purposes above, information goes to the companies below; each has its own privacy policy.</p>
+<ul>
+<li><strong>Google:</strong> Firebase (Analytics, Crashlytics, Remote Config, Authentication, Cloud Firestore), AdMob and Google Play. <a href="https://policies.google.com/privacy">Google Privacy Policy</a>, <a href="https://firebase.google.com/support/privacy">Privacy and security in Firebase</a>, <a href="https://policies.google.com/technologies/partner-sites">How Google uses information from sites or apps that use its services</a>.</li>
+<li><strong>Unity:</strong> LevelPlay, Unity Ads and ironSource Ads (ironSource is a Unity company). <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy">Unity Game Player and App User Privacy Policy</a>.</li>
+<li><strong>Apple:</strong> the App Store and Sign in with Apple. <a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a>.</li>
+</ul>
+<p>In Firebase, Google processes information on our behalf. Ad networks and the stores may also use information for their own purposes under their own policies. Some US state laws count ad partners receiving information for personalised ads as a "sale" or "sharing"; in those states you can opt out in the game's Privacy options row. If the law requires it, we also share information with the competent authorities.</p>
+<!-- REVIEW: processor/controller roles, US state law thresholds and the ironSource Ads policy link: see the Turkish page. -->
+<h2>Transfers abroad</h2>
+<p>Your cloud save is stored in the European Union (Belgium). Google, Unity and Apple also process information outside Türkiye and the European Union, for example in the United States. These transfers rely on the standard contractual clauses these companies use.</p>
+<!-- REVIEW: KVKK Art. 9 standard contract (Law No. 7499) and SCCs vs the EU-US Data Privacy Framework: see the Turkish page. -->
 <h2>How long we keep it</h2>
-<p>Support emails are deleted within a year of the matter being closed. Analytics data is kept for at most 14 months.</p>
+<ul>
+<li><strong>Account and cloud save:</strong> until you delete them. If the game isn't opened with an account for 24 months, we delete that account and its cloud save.</li>
+<li><strong>Analytics:</strong> Analytics event data is deleted after 14 months under our retention setting in Google Analytics. Aggregate figures made from it that identify no one (daily player counts, for example) may be kept longer.</li>
+<li><strong>Crash reports:</strong> for as long as Google sets; Crashlytics keeps crash logs and the IDs attached to them for 90 days.</li>
+<li><strong>Ad partners:</strong> for the periods in their own policies (linked above).</li>
+<li><strong>Purchases:</strong> the items you bought are kept as part of your progress, as above. Apple and Google keep their own purchase records under their own policies.</li>
+<li><strong>Support emails:</strong> deleted within a year of the matter being closed.</li>
+</ul>
 <h2>Your rights</h2>
-<p>Under Article 11 of Türkiye's KVKK and, if you are in Europe, the GDPR, you can ask whether your information is processed, have it corrected or deleted, object to its processing and withdraw your consent. Write to <a href="mailto:symbolinteractive@gmail.com">symbolinteractive@gmail.com</a>; we answer within 30 days. You can also withdraw consent on your phone: app tracking in iOS Settings, the advertising ID in Android's settings.</p>
+<p>Under Article 11 of Türkiye's Personal Data Protection Law No. 6698 (KVKK) you can: learn whether your personal data is processed and, if it is, ask for information about it; learn why it is processed and whether it is used for that purpose; know who receives it in Türkiye or abroad; have it corrected if it is incomplete or wrong, and deleted or destroyed where the law's conditions are met, and have those changes passed on to whoever received it; object to a result against you that comes solely from automated analysis; and claim compensation if unlawful processing has harmed you.</p>
+<p>If you are in the European Economic Area, the UK or Switzerland, the GDPR and similar laws also give you the right to access your information, have it corrected or deleted, restrict its processing, receive it in a portable format, object to processing based on legitimate interests and withdraw your consent.</p>
+<p>To use any of these rights, write to <a href="mailto:symbolinteractive@gmail.com">symbolinteractive@gmail.com</a> with the player ID shown in the game's settings, so we can find your information. We answer within 30 days, free of charge. If you are not satisfied with our answer, you can complain to the Personal Data Protection Board (KVKK) in Türkiye, or to the data protection authority of the country you live in in Europe.</p>
+<!-- REVIEW: KVKK application channels for players with anonymous accounts: see the Turkish page. -->
+<h2>Withdrawing consent</h2>
+<p>Where the consent message is shown (the European Economic Area, the UK, Switzerland and some US states), a <strong>Privacy options</strong> row appears in the game's Settings; you can change your choice there at any time. Everywhere, you can also use your phone's settings: on iOS, turn off tracking for the game in Settings → Privacy &amp; Security → Tracking; on Android, delete or reset your advertising ID in the ads section of your phone's settings. Withdrawing consent does not affect processing that took place before.</p>
+<h2>Deleting your account</h2>
+<p>You can delete your account and cloud save in the game: <strong>Settings → Cloud save → Delete account</strong>. If you can't open the game, you can email us. What is deleted, what remains and how long it takes is on the <a href="delete-account.html">account deletion page</a>.</p>
+<h2>Children</h2>
+<p>Our games are not directed at children under 13, and we do not knowingly collect information from them. If you think a child under 13 has given us information, write to us and we will delete it.</p>
+<!-- REVIEW: GDPR Art. 8 age of digital consent (13-16 by country) and minors under Turkish law: see the Turkish page. -->
 <h2>Changes</h2>
 <p>If we change this policy, we publish the new version on this page with its new date.</p>
 </article>
 </main>
 <footer class="bottom">
-  <p>Write to us: <a href="mailto:symbolinteractive@gmail.com">symbolinteractive@gmail.com</a></p>
+  <p>Write to us: <a href="mailto:symbolinteractive@gmail.com">symbolinteractive@gmail.com</a> · <a href="delete-account.html">Delete account</a></p>
   <p>© 2026 Symbol Interactive</p>
 </footer>
 </body>
