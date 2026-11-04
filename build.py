@@ -561,6 +561,7 @@ PRIVACY = {
 <h3>Uzaktan ayarlar</h3>
 <p>Firebase Remote Config ile oyunun bazı ayarlarını (örneğin geçiş reklamlarının sıklığını) güncelleme yayınlamadan değiştiririz. Ayarlar herkes için aynıdır, kişiye göre seçilmez. Bunun için Firebase, oyunun bu kurulumuna özgü bir kimlik (Firebase kurulum kimliği) kullanır.</p>
 <p><strong>Bildirimler.</strong> Telefonun bildirim iznini verdiysen ve Ayarlar → Bildirimler açıksa, oyundan haber ve etkinlik bildirimleri göndermek için Firebase Cloud Messaging kullanırız. Bunun için Firebase, oyunun bu kurulumuna özgü bir bildirim belirteci oluşturur. Bu belirteci bir oyuncu listesinde tutmayız: bildirimler herkese ve dile göre konulara gider. Bildirimleri Ayarlar'dan kapatınca konulardan çıkarsın ve belirteç silinir. 13 yaşından küçük olduğunu bildiğimiz oyunculara bildirim göndermeyiz.</p>
+<p><strong>Saat kontrolü.</strong> Günlük ödüllerin saatini doğrulamak için oyun, ara sıra bu sitenin sunucusuna, ulaşamazsa Google'ın Firebase sunucusuna kısa bir istek gönderir ve yalnızca yanıttaki saati okur. Bu istekte oyuncu kimliği ya da hesap bilgisi yoktur. İstek sırasında sunucu, her internet bağlantısında olduğu gibi IP adresini görür; bunu oyuncuyla eşleştirmeyiz.</p>
 <h3>İzin tercihlerin</h3>
 <p>Verdiğin ya da vermediğin izinler telefonunda saklanır; böylece her açılışta yeniden sorulmaz ve reklam ortaklarına iletilebilir.</p>
 <h3>Destek yazışmaları</h3>
@@ -669,6 +670,7 @@ PRIVACY = {
 <h3>Remote settings</h3>
 <p>With Firebase Remote Config we change some of the game's settings (how often interstitial ads appear, for example) without releasing an update. The settings are the same for everyone, not chosen per person. For this, Firebase uses an ID unique to this installation of the game (the Firebase installation ID).</p>
 <p><strong>Notifications.</strong> If you allowed notifications on your phone and Settings → Notifications is on, we use Firebase Cloud Messaging to send news and events from the game. For this, Firebase creates a notification token unique to this installation of the game. We do not keep this token in a list of players: notifications go to topics, for everyone and by language. Turning notifications off in Settings takes you off the topics and deletes the token. We do not send notifications to players we know are under 13.</p>
+<p><strong>Clock check.</strong> To check the time for daily rewards, the game now and then sends a short request to this site's server or, if it can't reach it, to Google's Firebase server, and reads only the time in the answer. The request carries no player ID or account details. As with any internet connection, the server sees the IP address during the request; we don't match it to a player.</p>
 <h3>Your consent choices</h3>
 <p>The permissions you give or refuse are stored on your phone, so that you aren't asked at every launch and so that they can be passed on to ad partners.</p>
 <h3>Support emails</h3>

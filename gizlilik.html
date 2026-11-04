@@ -46,6 +46,7 @@
 <h3>Uzaktan ayarlar</h3>
 <p>Firebase Remote Config ile oyunun bazı ayarlarını (örneğin geçiş reklamlarının sıklığını) güncelleme yayınlamadan değiştiririz. Ayarlar herkes için aynıdır, kişiye göre seçilmez. Bunun için Firebase, oyunun bu kurulumuna özgü bir kimlik (Firebase kurulum kimliği) kullanır.</p>
 <p><strong>Bildirimler.</strong> Telefonun bildirim iznini verdiysen ve Ayarlar → Bildirimler açıksa, oyundan haber ve etkinlik bildirimleri göndermek için Firebase Cloud Messaging kullanırız. Bunun için Firebase, oyunun bu kurulumuna özgü bir bildirim belirteci oluşturur. Bu belirteci bir oyuncu listesinde tutmayız: bildirimler herkese ve dile göre konulara gider. Bildirimleri Ayarlar'dan kapatınca konulardan çıkarsın ve belirteç silinir. 13 yaşından küçük olduğunu bildiğimiz oyunculara bildirim göndermeyiz.</p>
+<p><strong>Saat kontrolü.</strong> Günlük ödüllerin saatini doğrulamak için oyun, ara sıra bu sitenin sunucusuna, ulaşamazsa Google'ın Firebase sunucusuna kısa bir istek gönderir ve yalnızca yanıttaki saati okur. Bu istekte oyuncu kimliği ya da hesap bilgisi yoktur. İstek sırasında sunucu, her internet bağlantısında olduğu gibi IP adresini görür; bunu oyuncuyla eşleştirmeyiz.</p>
 <h3>İzin tercihlerin</h3>
 <p>Verdiğin ya da vermediğin izinler telefonunda saklanır; böylece her açılışta yeniden sorulmaz ve reklam ortaklarına iletilebilir.</p>
 <h3>Destek yazışmaları</h3>
