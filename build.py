@@ -547,9 +547,9 @@ PRIVACY = {
 <h3>Yaş sorusu</h3>
 <p>Oyun ilk açıldığında doğum yılını sorar. Telefonunda yalnızca yaş grubun saklanır (13'ten küçük, 16'dan küçük — Türkiye'de 18'den küçük — ya da daha büyük); doğum yılın da yaş grubun da bize ya da başka birine gönderilmez. Yaş grubun, hangi izinlerin sorulacağını ve hangi özelliklerin kapalı kalacağını belirler (<a href="#cocuklar">çocuklar ve gençler</a>).</p>
 <h3>Hesap</h3>
-<p>Oyun ilk açıldığında Google Firebase Authentication senin için anonim bir hesap açar. Bu hesabın yalnızca rastgele bir kimlik numarası vardır; oyunun ayarlarında <strong>oyuncu kimliği</strong> olarak görünür. İstersen hesabını Ayarlar'dan Apple ile Giriş'e ya da Google Play Oyunlar hesabına bağlayabilirsin. O zaman Firebase, Apple'ın ya da Google'ın bu oyun için verdiği hesap kimliğini ve sağlayıcının girişle birlikte gönderdiği temel profil bilgilerini (örneğin Google Play Oyunlar'daki oyuncu adını) alır. Bağlarken senden ad ya da e-posta izni istemeyiz. Bunları yalnızca seni tanımak ve ilerlemeni başka bir telefona taşımak için kullanırız. Firebase Authentication, hesapları kötüye kullanıma karşı korumak için IP adreslerini birkaç hafta kayıtlı tutar.</p>
+<p>Oyun ilk açıldığında Google Firebase Authentication senin için anonim bir hesap açar. Bu hesabın yalnızca rastgele bir kimlik numarası vardır; Ayarlar → Bulut kaydı'nda <strong>oyuncu kimliği</strong> olarak görünür. iPhone'da Game Center'a, Android'de Google Play Oyunlar'a giriş yapmışsan oyun hesabını ona kendiliğinden bağlar; bunu yapmak için hiçbir pencere açmaz. İstersen hesabını Ayarlar → Bulut kaydı'ndan Apple ile Giriş'e de bağlayabilirsin (iPhone'da ve Android'de; iki telefon arasında ilerlemeni böyle taşırsın). O zaman Firebase, Apple'ın, Game Center'ın ya da Google'ın bu oyun için verdiği hesap ya da oyuncu kimliğini ve sağlayıcının girişle birlikte gönderdiği temel profil bilgilerini (örneğin Google Play Oyunlar'daki oyuncu adını) alır. Bağlarken senden ad ya da e-posta izni istemeyiz. Bunları yalnızca seni tanımak ve ilerlemeni başka bir telefona taşımak için kullanırız. Firebase Authentication, hesapları kötüye kullanıma karşı korumak için IP adreslerini birkaç hafta kayıtlı tutar.</p>
 <h3>Bulut kaydı</h3>
-<p>İlerlemeni kaybetmemen ve yeni bir telefona taşıyabilmen için kaydın, hesabına bağlı olarak Google Cloud Firestore'da, Avrupa Birliği'ndeki europe-west1 bölgesinde (Belçika) saklanır. Kayıtta oyun ilerlemen (seviyeler, yıldızlar, yıldız tozu ve öğelerin), ayarların, bir ilerleme özeti (seviye, yıldız ve toz sayısı), cihazının modeli ve kaydın zamanları bulunur. Bu kaydı yalnızca senin hesabın okuyup yazabilir. İlerlemenin bir kopyası telefonunda da durur.</p>
+<p>İlerlemeni kaybetmemen ve yeni bir telefona taşıyabilmen için kaydın, hesabına bağlı olarak Google Cloud Firestore'da, Avrupa Birliği'ndeki europe-west1 bölgesinde (Belçika) saklanır. Kayıtta oyun ilerlemen (seviyeler, yıldızlar, yıldız tozu ve öğelerin), bir ilerleme özeti (seviye, yıldız ve toz sayısı), cihazının türü (iPhone, iPad ya da Android), oyunun sürümü ve kaydın zamanları bulunur. Ayarların, verdiğin izinler ve mağaza kayıtları telefonunda kalır, buluta gitmez. Bu kaydı yalnızca senin hesabın okuyup yazabilir. İlerlemenin bir kopyası telefonunda da durur.</p>
 <h3>Satın almalar</h3>
 <p>Ödemeyi App Store ya da Google Play alır; kart bilgilerini hiç görmeyiz. Mağazadan yalnızca satın alma makbuzunu (hangi ürün, işlem numarası, zaman) alırız; öğeyi vermek ve gerektiğinde geri yüklemek için makbuzu telefonunda doğrularız. Analitik açıksa satın almanın tutarı ve para birimi, gelir raporlarımız için Firebase Analytics'e de gider.</p>
 <h3>Reklamlar</h3>
@@ -630,10 +630,10 @@ PRIVACY = {
         ("hesap", "Hesabını silmek", f'''
 <p>Hesabını ve bulut kaydını oyunun içinden silebilirsin: <strong>Ayarlar → Bulut kaydı → Hesabı sil</strong>. Oyunu açamıyorsan bize e-postayla yazabilirsin. Neyin silinip neyin kaldığı ve ne kadar sürdüğü <a href="{u("delete", "tr")}">hesap silme sayfasında</a>.</p>'''),
         ("cocuklar", "Çocuklar ve gençler", f'''
-<p>Oyunlarımız 13 yaş ve üzeri içindir; 13 yaşından küçük çocuklara yönelik değildir. Oyun ilk açılışta doğum yılını sorar ve buna göre davranır:</p>
+<p>Oyunlarımız 13 yaş ve üzeri içindir; 13 yaşından küçük çocuklara yönelik değildir. Oyun doğum yılını, gerektiği ilk anda (bir izin sormadan önce) sorar ve buna göre davranır; "Söylemek istemiyorum" diyen küçük sayılır:</p>
 <ul>
 <li><strong>16 yaşından küçüksen (Türkiye'de 18):</strong> izin sorulmaz; analitik ve kişiselleştirilmiş reklam kapalı kalır, iOS'ta takip sorusu gösterilmez. AEA'da, Birleşik Krallık'ta ve İsviçre'de çökme raporları da gönderilmez. Reklamlar ilgi alanlarına göre seçilmez.</li>
-<li><strong>13 yaşından küçüksen:</strong> bunlara ek olarak reklam ortaklarına seni çocuk olarak işlemeleri bildirilir ve hesap bağlama (Apple ya da Google) sunulmaz.</li>
+<li><strong>13 yaşından küçüksen:</strong> bunlara ek olarak reklam ortaklarına seni çocuk olarak işlemeleri bildirilir ve hesap bağlama (Game Center, Apple ya da Google) yapılmaz.</li>
 </ul>
 <p>13 yaşından küçük bir çocuğun bilgilerinin bize ulaştığını düşünüyorsan {mailto()} adresine yaz; bilgileri sileriz.</p>'''),
         ("guvenlik", "Güvenlik", '''
@@ -654,9 +654,9 @@ PRIVACY = {
 <h3>Age question</h3>
 <p>When the game first opens it asks for your year of birth. Only your age group is kept on your phone (under 13, under 16 — under 18 in Türkiye — or older); neither your year of birth nor your age group is sent to us or anyone else. Your age group decides which permissions are asked and which features stay off (<a href="#children">children and teenagers</a>).</p>
 <h3>Account</h3>
-<p>When the game first opens, Google Firebase Authentication creates an anonymous account for you. All it has is a random ID, shown in the game's settings as your <strong>player ID</strong>. If you like, you can link the account to Sign in with Apple or to your Google Play Games account in Settings. Firebase then receives the account ID that Apple or Google gives for this game, and the basic profile details the provider sends with the sign-in (such as your Google Play Games gamer name). We don't ask for your name or email when you link. We use these only to recognise you and to bring your progress to another phone. Firebase Authentication keeps a log of IP addresses for a few weeks to protect accounts from abuse.</p>
+<p>When the game first opens, Google Firebase Authentication creates an anonymous account for you. All it has is a random ID, shown in Settings → Cloud save as your <strong>player ID</strong>. If you're signed in to Game Center on iPhone or to Google Play Games on Android, the game links the account to it by itself, without opening any window. If you like, you can also link it to Sign in with Apple in Settings → Cloud save (on iPhone and Android; that's how your progress moves between the two). Firebase then receives the account or player ID that Apple, Game Center or Google gives for this game, and the basic profile details the provider sends with the sign-in (such as your Google Play Games gamer name). We don't ask for your name or email when you link. We use these only to recognise you and to bring your progress to another phone. Firebase Authentication keeps a log of IP addresses for a few weeks to protect accounts from abuse.</p>
 <h3>Cloud save</h3>
-<p>So that you don't lose your progress and can take it to a new phone, your save is stored with your account in Google Cloud Firestore, in the europe-west1 region (Belgium, in the European Union). It holds your game progress (levels, stars, stardust and your items), your settings, a progress summary (level, stars and stardust), your device model and when it was saved. Only your own account can read or write it. A copy of your progress also stays on your phone.</p>
+<p>So that you don't lose your progress and can take it to a new phone, your save is stored with your account in Google Cloud Firestore, in the europe-west1 region (Belgium, in the European Union). It holds your game progress (levels, stars, stardust and your items), a progress summary (level, stars and stardust), your device type (iPhone, iPad or Android), the game's version and when it was saved. Your settings, the permissions you gave and the store's records stay on your phone and never go to the cloud. Only your own account can read or write it. A copy of your progress also stays on your phone.</p>
 <h3>Purchases</h3>
 <p>The App Store or Google Play takes the payment; we never see your card details. From the store we receive only the purchase receipt (which product, the transaction ID, the time), which we check on your phone to give you the item and to restore it when needed. If analytics is on, the amount and currency of a purchase also go to Firebase Analytics for our revenue reports.</p>
 <h3>Ads</h3>
@@ -737,10 +737,10 @@ PRIVACY = {
         ("deleting", "Deleting your account", f'''
 <p>You can delete your account and cloud save in the game: <strong>Settings → Cloud save → Delete account</strong>. If you can't open the game, you can email us. What is deleted, what remains and how long it takes is on the <a href="{u("delete", "en")}">account deletion page</a>.</p>'''),
         ("children", "Children and teenagers", f'''
-<p>Our games are for ages 13 and up; they are not directed at children under 13. When the game first opens it asks for your year of birth and acts on it:</p>
+<p>Our games are for ages 13 and up; they are not directed at children under 13. The game asks for your year of birth the first time it needs it (before asking for a permission) and acts on it; "I'd rather not say" counts as under age:</p>
 <ul>
 <li><strong>Under 16 (under 18 in Türkiye):</strong> no consent is asked; analytics and personalised ads stay off and the iOS tracking prompt is not shown. In the EEA, the UK and Switzerland crash reports are not sent either. Ads are not chosen by your interests.</li>
-<li><strong>Under 13:</strong> in addition, ad partners are told to treat you as a child, and account linking (Apple or Google) is not offered.</li>
+<li><strong>Under 13:</strong> in addition, ad partners are told to treat you as a child, and no account is linked (Game Center, Apple or Google).</li>
 </ul>
 <p>If you think a child under 13 has given us information, write to {mailto()} and we will delete it.</p>'''),
         ("security", "Security", '''
@@ -841,17 +841,17 @@ DELETE = {
 <ol class="steps">
 <li><span>Oyunda <strong>Ayarlar</strong>'ı aç.</span></li>
 <li><span><strong>Bulut kaydı</strong> bölümüne dokun.</span></li>
-<li><span><strong>Hesabı sil</strong>'e dokun ve silmeyi onayla.</span></li>
+<li><span><strong>Hesabı sil</strong>'e (hesap bağlamadıysan <strong>Bulut kaydını sil</strong>'e) dokun ve <strong>Sil</strong> ile onayla.</span></li>
 </ol>
-<p>Hesabın ve bulut kaydın o anda silinir; silme bitince oyun bunu sana gösterir. Apple ile Giriş'i bağladıysan Apple'ın oyuna verdiği yetkiyi de geri çekeriz. Bu telefondaki ilerlemen kalır ve oyun onunla devam eder; bulut kaydı, sen Ayarlar → Bulut kaydı'ndan yeniden açana ya da bir hesap bağlayana kadar kapalı kalır ve buluta hiçbir şey yüklenmez. Bu telefondaki ilerlemeyi de silmek istersen oyunu telefonundan kaldır.</p>'''),
+<p>Hesabın ve bulut kaydın o anda silinir; silme bitince oyun bunu sana gösterir. Apple ile Giriş'i bağladıysan ve iPhone'dan siliyorsan Apple'ın oyuna verdiği yetkiyi de geri çekeriz; Android'den sildiysen bu yetkiyi Apple Kimliği ayarlarındaki "Apple ile Giriş" listesinden kaldırabilirsin. Bu telefondaki ilerlemen kalır ve oyun onunla devam eder; bulut kaydı, sen Ayarlar → Bulut kaydı'ndan yeniden açana ya da bir hesap bağlayana kadar kapalı kalır ve buluta hiçbir şey yüklenmez. Bu telefondaki ilerlemeyi de silmek istersen oyunu telefonundan kaldır.</p>'''),
         ("e-posta", "E-postayla", f'''
-<p>Oyunu açamıyorsan ya da silmeyi bizim yapmamızı istersen, {mailto("Hesap silme")} adresine konusu <strong>Hesap silme</strong> olan bir e-posta gönder ve oyunun Ayarlar ekranında görünen <strong>oyuncu kimliğini</strong> ekle. Hesabını bu kimlikle bulur, en geç 30 gün içinde siler ve bittiğinde sana e-postayla haber veririz.</p>
+<p>Oyunu açamıyorsan ya da silmeyi bizim yapmamızı istersen, {mailto("Hesap silme")} adresine konusu <strong>Hesap silme</strong> olan bir e-posta gönder ve oyunun Ayarlar → Bulut kaydı ekranında görünen <strong>oyuncu kimliğini</strong> ekle. Hesabını bu kimlikle bulur, en geç 30 gün içinde siler ve bittiğinde sana e-postayla haber veririz.</p>
 <p>Oyunu sildiğin için kimliğini göremiyorsan: hesabını Apple ya da Google ile bağladıysan oyunu yeniden yükleyip aynı hesapla giriş yap; kimliğin Ayarlar'da yine görünür ve silmeyi oradan kendin de yapabilirsin. Hesabını hiç bağlamadıysan, anonim hesap yalnızca o telefondaki oyuna bağlıydı ve hangi hesabın senin olduğunu bilemeyiz; böyle bir hesap 24 ay kullanılmadığında kendiliğinden silinir.</p>'''),
         ("silinenler", "Neler silinir", '''
 <ul>
-<li><strong>Bulut kaydın:</strong> Cloud Firestore'daki kayıt belgen; içindeki ilerlemen, ayarların, ilerleme özetin, cihaz modelin ve kayıt zamanları.</li>
+<li><strong>Bulut kaydın:</strong> Cloud Firestore'daki kayıt belgen; içindeki ilerlemen, ilerleme özetin, cihaz türün, oyunun sürümü ve kayıt zamanları.</li>
 <li><strong>Firebase hesabın:</strong> anonim hesap kimliğin ve, bağladıysan, Apple ya da Google hesabınla olan bağlantısı.</li>
-<li><strong>Apple ile Giriş yetkisi:</strong> bağladıysan, Apple'ın oyuna verdiği yetki geri çekilir.</li>
+<li><strong>Apple ile Giriş yetkisi:</strong> bağladıysan ve iPhone'dan siliyorsan, Apple'ın oyuna verdiği yetki geri çekilir.</li>
 </ul>
 <p>Silinen bulut kaydı geri getirilemez. Reklamsız gibi kalıcı satın almalar mağaza hesabına bağlıdır; aynı App Store ya da Google Play hesabıyla geri yükleyebilirsin.</p>'''),
         ("kalanlar", "Neler kalır ve ne kadar", '''
@@ -872,17 +872,17 @@ DELETE = {
 <ol class="steps">
 <li><span>Open <strong>Settings</strong> in the game.</span></li>
 <li><span>Tap <strong>Cloud save</strong>.</span></li>
-<li><span>Tap <strong>Delete account</strong> and confirm.</span></li>
+<li><span>Tap <strong>Delete account</strong> (or <strong>Delete cloud save</strong> if you never linked an account) and confirm with <strong>Delete</strong>.</span></li>
 </ol>
-<p>Your account and cloud save are deleted at once, and the game shows you when it's done. If you linked Sign in with Apple, we also revoke the permission Apple gave the game. The progress on this phone stays and the game carries on with it; the cloud save stays off, and nothing is uploaded, until you turn it back on in Settings → Cloud save or link an account. To remove the progress on this phone too, uninstall the game.</p>'''),
+<p>Your account and cloud save are deleted at once, and the game shows you when it's done. If you linked Sign in with Apple and delete on an iPhone, we also revoke the permission Apple gave the game; if you delete on Android, you can remove it from "Sign in with Apple" in your Apple ID settings. The progress on this phone stays and the game carries on with it; the cloud save stays off, and nothing is uploaded, until you turn it back on in Settings → Cloud save or link an account. To remove the progress on this phone too, uninstall the game.</p>'''),
         ("email", "By email", f'''
-<p>If you can't open the game, or would rather we did it, email {mailto("Account deletion")} with the subject line <strong>Account deletion</strong> and include the <strong>player ID</strong> shown in the game's Settings. We find your account by that ID, delete it within 30 days and email you when it's done.</p>
+<p>If you can't open the game, or would rather we did it, email {mailto("Account deletion")} with the subject line <strong>Account deletion</strong> and include the <strong>player ID</strong> shown in the game's Settings → Cloud save. We find your account by that ID, delete it within 30 days and email you when it's done.</p>
 <p>If you can't see your ID because you deleted the game: if you linked your account to Apple or Google, install the game again and sign in with the same account; your ID appears in Settings again, and you can delete the account there yourself. If you never linked it, the anonymous account belonged only to the game on that phone and we cannot tell which account is yours; such an account is deleted on its own after 24 months without use.</p>'''),
         ("deleted", "What is deleted", '''
 <ul>
-<li><strong>Your cloud save:</strong> your save document in Cloud Firestore, with your progress, settings, progress summary, device model and save times.</li>
+<li><strong>Your cloud save:</strong> your save document in Cloud Firestore, with your progress, progress summary, device type, game version and save times.</li>
 <li><strong>Your Firebase account:</strong> your anonymous account ID and, if you linked one, its link to your Apple or Google account.</li>
-<li><strong>Sign in with Apple permission:</strong> if you linked it, the permission Apple gave the game is revoked.</li>
+<li><strong>Sign in with Apple permission:</strong> if you linked it and delete on an iPhone, the permission Apple gave the game is revoked.</li>
 </ul>
 <p>A deleted cloud save cannot be brought back. Permanent purchases such as Remove Ads belong to your store account; you can restore them with the same App Store or Google Play account.</p>'''),
         ("remains", "What remains, and for how long", '''
