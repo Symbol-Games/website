@@ -1,12 +1,12 @@
 """Builds the Symbol Interactive site (symbolinteractive.com.tr): python3 build.py
 
 Turkish pages at the root, English under en/; every page links its twin (language switch + hreflang).
-Company pages use site.css (Gabarito + Atkinson Hyperlegible Next, self-hosted, OFL); the game's page /starjars uses
-starjars.css (the game's own night sky, DynaPuff + Nunito). No cookies, no analytics, no third-party requests.
+The look is "Oyuncak Kutusu": Zar the die is a toy and the site is his packaging. One stylesheet (site.css), one script (site.js),
+self-hosted OFL fonts. No cookies, no analytics, no third-party requests. Design: game-studio docs/superpowers/specs/2026-11-05-symbol-interactive-site-design.md
 
 The legal texts follow the decisions memo:
 ~/game-studio/docs/superpowers/research/2026-11-04-symbol-interactive-legal-decisions.md
-Never written here: CNAME and app-ads.txt (they are maintained by hand).
+Never written here: CNAME and app-ads.txt (they are maintained by hand). After a build: python3 tools/check_site.py
 """
 import json
 import math
@@ -17,6 +17,9 @@ SITE = "https://symbolinteractive.com.tr"
 MAIL = "symbolinteractive@gmail.com"  # the support address the user set in the release checklist (2026-11-03)
 CONTROLLER = "Cem Tezgelen"  # the developer's own name, as the user gave it (2026-11-03)
 UPDATED = {"tr": "4 Kasım 2026", "en": "4 November 2026"}  # privacy policy, terms and deletion pages
+# Every count on the site reads from here. The "+" follows the store listing (user, 2026-11-04): new constellations never make it false.
+GAME = {"constellations": "20+", "levels": "150+", "languages": "13"}
+PROMO = {"tr": "https://www.youtube.com/watch?v=xBwJEss7ArU", "en": "https://www.youtube.com/watch?v=RyvFsGcgpys"}  # a plain link: never embedded
 
 # Every page and its twin. Paths are the files; URLs are root-absolute so the 404 page works at any depth.
 PAGES = {
@@ -24,6 +27,7 @@ PAGES = {
     "games": {"tr": "oyunlar.html", "en": "en/games.html"},
     "about": {"tr": "hakkimizda.html", "en": "en/about.html"},
     "starjars": {"tr": "starjars.html", "en": "en/starjars.html"},
+    "press": {"tr": "basin.html", "en": "en/press.html"},
     "support": {"tr": "destek.html", "en": "en/support.html"},
     "privacy": {"tr": "gizlilik.html", "en": "en/privacy.html"},
     "terms": {"tr": "kullanim-kosullari.html", "en": "en/terms.html"},
@@ -41,82 +45,57 @@ def mailto(subject=None):
     return f'<a href="mailto:{MAIL}{q}">{MAIL}</a>'
 
 
-# ---------------------------------------------------------------- pieces (the studio's symbols, drawn in code)
+# ---------------------------------------------------------------- Zar, the logo (vectors from studio-core/Tools/art/studio-logo, key "tekgoz")
 
-COLORS = {"cobalt": ("#2E4BDB", "#1F35A8"), "lemon": ("#FFD23F", "#D9A915"), "olive": ("#8FA33A", "#6B7C25"), "sky": ("#7FB0FF", "#5A8DE6")}
-
-
-def shape(kind, fill, cx=30, cy=30, s=1.0):
-    """One game piece centred on (cx, cy) in a 60-unit cell."""
-    if kind == "circle":
-        return f'<circle cx="{cx}" cy="{cy}" r="{19 * s:.1f}" fill="{fill}"/>'
-    if kind == "ring":
-        return f'<circle cx="{cx}" cy="{cy}" r="{15 * s:.1f}" fill="none" stroke="{fill}" stroke-width="{10 * s:.1f}"/>'
-    if kind == "diamond":
-        r = 19 * s
-        pts = f"{cx},{cy - r:.1f} {cx + r:.1f},{cy} {cx},{cy + r:.1f} {cx - r:.1f},{cy}"
-        return f'<polygon points="{pts}" fill="{fill}" stroke="{fill}" stroke-width="{7 * s:.1f}" stroke-linejoin="round"/>'
-    if kind == "triangle":
-        r = 20 * s
-        pts = " ".join(f"{cx + r * math.cos(a):.1f},{cy + 3 * s + r * math.sin(a):.1f}" for a in (-math.pi / 2, math.pi / 6, 5 * math.pi / 6))
-        return f'<polygon points="{pts}" fill="{fill}" stroke="{fill}" stroke-width="{7 * s:.1f}" stroke-linejoin="round"/>'
-    raise ValueError(kind)
+Z = json.loads((ROOT / "brand" / "zar.json").read_text(encoding="utf-8"))
+ZAR_VB = "120 70 790 900"
 
 
-def piece(kind, color, cx=30, cy=30, s=1.0):
-    """A piece with its darker lower edge, so it reads as something you could pick up."""
-    main, edge = COLORS[color]
-    return shape(kind, edge, cx, cy + 3 * s, s) + shape(kind, main, cx, cy, s)
+def zar(cls=""):
+    """The character, inline so his eyes can move. --z-ink and --z-hole set the two colours; the logo's cuts show --z-hole."""
+    return (f'<svg class="zar {cls}" viewBox="{ZAR_VB}" aria-hidden="true" focusable="false"><path class="z-ink" d="{Z["legL"]}"/><path class="z-ink" d="{Z["legR"]}"/><path class="z-ink" d="{Z["body"]}"/>'
+            f'<path class="z-hole" d="{Z["eyeL"]}"/><path class="z-hole" d="{Z["eyeR"]}"/><path class="z-pup" d="{Z["pupL"]}"/><path class="z-pup" d="{Z["pupR"]}"/>'
+            f'<circle class="z-lid" cx="330" cy="300" r="78"/><circle class="z-lid" cx="680" cy="272" r="78"/><path class="z-shut" d="M272 296q58 38 116 0"/><path class="z-shut" d="M622 268q58 38 116 0"/>'
+            f'<path class="z-hole" d="{Z["nose"]}"/><path class="z-hole" d="{Z["cheekL"]}"/><path class="z-hole" d="{Z["cheekR"]}"/><path class="z-hole" d="{Z["smile"]}"/></svg>')
 
 
-def piece_icon(kind, color, label=None):
-    a11y = f'role="img" aria-label="{label}"' if label else 'aria-hidden="true"'
-    return f'<svg viewBox="0 0 60 64" {a11y}>{piece(kind, color)}</svg>'
+def zar_mask(uid):
+    """The mark with real holes, for files shown on any ground."""
+    white = "".join(f'<path d="{Z[k]}" fill="#fff"/>' for k in ("legL", "legR", "body"))
+    black = "".join(f'<path d="{Z[k]}" fill="#000"/>' for k in ("eyeL", "eyeR", "nose", "cheekL", "cheekR", "smile"))
+    pupils = "".join(f'<path d="{Z[k]}" fill="#fff"/>' for k in ("pupL", "pupR"))
+    return f'<mask id="{uid}" maskUnits="userSpaceOnUse" x="120" y="70" width="790" height="900" style="mask-type:luminance"><rect x="120" y="70" width="790" height="900" fill="#000"/>{white}{black}{pupils}</mask>'
 
 
-ROWS = [("circle", "cobalt"), ("diamond", "lemon"), ("triangle", "olive"), ("ring", "sky")]
-# Where each piece starts before it settles (dx, dy, rotation); fixed so the page is the same every build.
-SCATTER = [(-120, -150, -40), (60, -190, 25), (150, -60, 70), (-40, -230, -15), (130, -210, 45), (-150, -40, -70), (20, -120, 90), (90, -260, -30),
-           (-90, -180, 35), (170, -140, -55), (-60, -90, 20), (40, -240, -80), (110, -100, 60), (-170, -200, -25), (-10, -170, 50), (70, -50, -45)]
+def logo_file(colour):
+    """The horizontal lockup: mark, SYMBOL, and INTERACTIVE set to the same width, as on the approved logo."""
+    (x0, y0, x1, y1), (a0, b0, a1, b1) = Z["wordBox"][:4], Z["subBox"][:4]
+    k = (x1 - x0) / (a1 - a0)
+    hw, gap, hs = y1 - y0, 12, (b1 - b0) * k
+    h = hw + gap + hs
+    mh = h * 1.34
+    mw = mh * 790 / 900
+    ox, top = mw + 16, (mh - h) / 2
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {ox + x1 - x0:.1f} {mh:.1f}" width="{ox + x1 - x0:.0f}" height="{mh:.0f}"><title>Symbol Interactive</title>'
+            f'<g transform="scale({mh / 900:.4f}) translate(-120 -70)">{zar_mask("z")}<rect x="120" y="70" width="790" height="900" fill="{colour}" mask="url(#z)"/></g>'
+            f'<path fill="{colour}" transform="translate({ox - x0:.2f} {top - y0:.2f})" d="{Z["word"]}"/>'
+            f'<path fill="{colour}" transform="translate({ox - a0 * k:.2f} {top + hw + gap - b0 * k:.2f}) scale({k:.4f})" d="{Z["sub"]}"/></svg>\n'), round(ox + x1 - x0), round(mh)
 
 
-def board(label):
-    cell, gap, pad = 60, 12, 18
-    size = pad * 2 + 4 * cell + 3 * gap
-    parts = [f'<rect class="tray-edge" x="0" y="10" width="{size}" height="{size}" rx="30"/>',
-             f'<rect class="tray" x="1" y="1" width="{size - 2}" height="{size - 2}" rx="29"/>']
-    for r in range(4):
-        for c in range(4):
-            x, y = pad + c * (cell + gap), pad + r * (cell + gap)
-            parts.append(f'<rect class="slot" x="{x}" y="{y}" width="{cell}" height="{cell}" rx="14"/>')
-    order = 0
-    for r, (kind, color) in enumerate(ROWS):
-        y = pad + r * (cell + gap)
-        parts.append(f'<rect class="row-done" style="--row:{r}" x="{pad - 5}" y="{y - 5}" width="{4 * cell + 3 * gap + 10}" height="{cell + 10}" rx="18" '
-                     f'fill="none" stroke="{COLORS[color][0]}" stroke-width="3"/>')
-        for c in range(4):
-            x = pad + c * (cell + gap)
-            dx, dy, rot = SCATTER[order]
-            parts.append(f'<g transform="translate({x} {y})"><g class="piece" style="--i:{order};--dx:{dx}px;--dy:{dy}px;--r:{rot}deg">'
-                         f'{piece(kind, color, s=.92)}</g></g>')
-            order += 1
-    return f'<div class="board"><svg viewBox="0 0 {size} {size + 10}" role="img" aria-label="{label}">{"".join(parts)}</svg></div>'
+LOGO_W, LOGO_H = logo_file("#111")[1:]
 
 
-def mark(css_vars=True):
-    """The studio's mark: three pieces in place and a ring falling into the fourth slot."""
-    cob = "var(--cobalt)" if css_vars else "#5B74F0"
-    return (f'<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="17" height="17" rx="5" style="fill:{cob}"/>'
-            f'<rect x="21" y="2" width="17" height="17" rx="5" fill="#FFD23F"/><rect x="2" y="21" width="17" height="17" rx="5" fill="#8FA33A"/>'
-            f'<circle cx="29.5" cy="29.5" r="5.6" fill="none" stroke-width="3.6" style="stroke:{cob}"/></svg>')
+def logo(colour="ink"):
+    return f'<img src="/img/logo-{colour}.svg" width="{LOGO_W}" height="{LOGO_H}" alt="">'
 
 
-def empty_slot():
-    return ('<svg viewBox="0 0 60 64" aria-hidden="true"><rect x="3" y="3" width="54" height="54" rx="14" fill="none" stroke="var(--line)" stroke-width="3" '
-            'stroke-dasharray="7 6"/><circle cx="30" cy="30" r="12" fill="none" stroke="var(--muted)" stroke-width="3" stroke-dasharray="4 5"/></svg>')
+def pip_die(n):
+    pos = {1: [(50, 50)], 2: [(28, 28), (72, 72)], 3: [(26, 26), (50, 50), (74, 74)], 4: [(28, 28), (72, 28), (28, 72), (72, 72)]}[n]
+    return ('<svg class="pipdie" viewBox="0 0 100 100" aria-hidden="true"><rect class="pd-b" x="3" y="3" width="94" height="94" rx="24"/>'
+            + "".join(f'<circle class="pd-p" cx="{x}" cy="{y}" r="9.5"/>' for x, y in pos) + "</svg>")
 
 
-# The Star Jars jar: the game's icon, drawn large on its own page; its stars drop in once on load.
+# The Star Jars jar: the favicon the demo and the game's page use.
 def star(cx, cy, r, fill, rot=0.0, inner=0.48):
     d = ""
     for i in range(10):
@@ -129,39 +108,28 @@ def star(cx, cy, r, fill, rot=0.0, inner=0.48):
 JAR_STARS = [(77, 193, 22, "#FF4FA6", .1), (123, 191, 22, "#14DCC8", -.25), (99, 156, 22, "#FFCC2E", .3), (75, 120, 19, "#A273FF", 0), (121, 118, 19, "#3FDD77", .2)]
 
 
-def jar(size_class="hero-jar", animate=True, label="Yıldızlarla dolu cam kavanoz"):
-    stars = "".join(f'<g class="drop" style="--i:{i}">{star(x, y, r, c, rot)}</g>' if animate else star(x, y, r, c, rot)
-                    for i, (x, y, r, c, rot) in enumerate(JAR_STARS))
-    a11y = f'role="img" aria-label="{label}"' if label else 'aria-hidden="true"'
-    return f'''<svg class="{size_class}" viewBox="0 0 200 240" {a11y}>
+def jar_icon():
+    stars = "".join(star(x, y, r, c, rot) for x, y, r, c, rot in JAR_STARS)
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240">
   <rect x="44" y="52" width="112" height="170" rx="40" fill="rgba(255,255,255,.13)" stroke="#fff" stroke-width="6"/>
   {stars}
   <rect x="58" y="70" width="8" height="34" rx="4" fill="#fff" opacity=".42"/>
   <rect x="62" y="30" width="76" height="28" rx="9" fill="#FFC93C" stroke="#fff" stroke-width="5"/>
-</svg>'''
+</svg>
+'''
 
 
-def shots(lang, alt):
-    names = {"01-board": alt[0], "03-galaxy": alt[1], "04-exo": alt[2]}
-    return "".join(f'<img src="/img/{lang}-{n}.jpg" width="270" height="587" alt="{a}" loading="lazy">' for n, a in names.items())
-
-
-SHOT_ALT = {
-    "tr": ["Oyun ekranı: renkli yıldızlar kavanozlarda", "Gökyüzü haritası: takımyıldızlar", "Uzay bölümü"],
-    "en": ["The game board: colourful stars in jars", "The sky map: constellations", "A space chapter"],
-}
-
-# ---------------------------------------------------------------- the frame of every company page
+# ---------------------------------------------------------------- the frame of every page
 
 T = {
-    "tr": {"skip": "İçeriğe geç", "nav": "Ana menü", "games": "Oyunlar", "about": "Hakkımızda", "support": "Destek", "other": "English", "other_lang": "en",
-           "home": "Symbol Interactive ana sayfa", "foot_about": "Aydın'da kurulmuş bağımsız bir mobil oyun stüdyosu.",
-           "no_track": "Bu site çerez kullanmaz ve ziyaretçileri izlemez.", "studio": "Stüdyo", "help": "Yardım", "legal": "Yasal",
+    "tr": {"skip": "İçeriğe geç", "nav": "Ana menü", "games": "Oyunlar", "about": "Hakkımızda", "studio_nav": "Stüdyo", "support": "Destek", "other": "English", "other_lang": "en",
+           "home": "Symbol Interactive ana sayfa", "foot_about": "Türkiye’de kurulmuş bağımsız bir oyun stüdyosu.",
+           "no_track": "Bu site çerez kullanmaz ve ziyaretçileri izlemez.", "studio": "Stüdyo", "help": "Yardım", "legal": "Yasal", "press": "Basın kiti",
            "home_l": "Ana sayfa", "privacy": "Gizlilik politikası", "terms": "Kullanım koşulları", "delete": "Hesap silme", "starjars": "Star Jars",
            "contents": "Bu sayfada"},
-    "en": {"skip": "Skip to content", "nav": "Main menu", "games": "Games", "about": "About", "support": "Support", "other": "Türkçe", "other_lang": "tr",
-           "home": "Symbol Interactive home", "foot_about": "An independent mobile game studio founded in Aydın, Türkiye.",
-           "no_track": "This site uses no cookies and does not track visitors.", "studio": "Studio", "help": "Help", "legal": "Legal",
+    "en": {"skip": "Skip to content", "nav": "Main menu", "games": "Games", "about": "About", "studio_nav": "Studio", "support": "Support", "other": "Türkçe", "other_lang": "tr",
+           "home": "Symbol Interactive home", "foot_about": "An independent game studio founded in Türkiye.",
+           "no_track": "This site uses no cookies and does not track visitors.", "studio": "Studio", "help": "Help", "legal": "Legal", "press": "Press kit",
            "home_l": "Home", "privacy": "Privacy policy", "terms": "Terms of use", "delete": "Delete account", "starjars": "Star Jars",
            "contents": "On this page"},
 }
@@ -169,7 +137,7 @@ T = {
 
 def alternates(key, own_lang, own_path=None):
     if key is None:
-        return ""
+        return '<meta name="robots" content="noindex">'
     canon = SITE + (own_path or u(key, own_lang))
     return (f'<link rel="canonical" href="{canon}">\n'
             f'<link rel="alternate" hreflang="tr" href="{SITE}{u(key, "tr")}">\n'
@@ -177,10 +145,10 @@ def alternates(key, own_lang, own_path=None):
             f'<link rel="alternate" hreflang="x-default" href="{SITE}{u(key, "tr")}">')
 
 
-def head(lang, title, description, key, css, own_path=None, favicon="/favicon.svg", theme=None):
-    theme_meta = (f'<meta name="theme-color" content="{theme}">' if theme else
-                  '<meta name="theme-color" content="#F4F6FA" media="(prefers-color-scheme: light)">\n'
-                  '<meta name="theme-color" content="#0E1328" media="(prefers-color-scheme: dark)">')
+def head(lang, title, description, key, own_path=None, favicon="/favicon.svg", theme="#F4B90B", og=None, ld=None):
+    url = SITE + (own_path or (u(key, lang) if key else "/"))
+    image = SITE + (og or f"/img/og-{lang}.jpg")
+    data = f'\n<script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>' if ld else ""
     return f'''<!doctype html>
 <html lang="{lang}">
 <head>
@@ -188,47 +156,65 @@ def head(lang, title, description, key, css, own_path=None, favicon="/favicon.sv
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{description}">
-{theme_meta}
+<meta name="theme-color" content="{theme}">
 {alternates(key, lang, own_path)}
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Symbol Interactive">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{description}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{image}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="{"tr_TR" if lang == "tr" else "en_US"}">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="{favicon}" type="image/svg+xml">
-<link rel="preload" href="/fonts/{'Gabarito-latin.woff2' if css == '/site.css' else 'DynaPuff-Bold.ttf'}" as="font" crossorigin>
-<link rel="stylesheet" href="{css}">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="preload" href="/fonts/SymbolDisplay.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/site.css">{data}
 </head>'''
 
 
-def header(lang, key, other_href):
+def nav_items(lang, key, other_href):
     t = T[lang]
+    labels = {"games": t["games"], "about": t["studio_nav"], "support": t["support"]}
     items = []
-    for k in ("games", "about", "support"):
+    for k, label in labels.items():
         cur = ' aria-current="page"' if k == key or (k == "games" and key == "starjars") else ""
-        items.append(f'<li><a href="{u(k, lang)}"{cur}>{t[k]}</a></li>')
-    items.append(f'<li class="lang"><a href="{other_href}" lang="{t["other_lang"]}" hreflang="{t["other_lang"]}">{t["other"]}</a></li>')
-    return f'''<a class="skip" href="#main">{t["skip"]}</a>
-<header class="top"><div class="wrap">
-  <a class="mark" href="{u("home", lang)}" aria-label="{t["home"]}">{mark()}<span>Symbol Interactive</span></a>
-  <nav aria-label="{t["nav"]}"><ul>{"".join(items)}</ul></nav>
-</div></header>'''
+        items.append(f'<li><a href="{u(k, lang)}"{cur}>{label}</a></li>')
+    items.append(f'<li><a href="{other_href}" lang="{t["other_lang"]}" hreflang="{t["other_lang"]}">{t["other"]}</a></li>')
+    return f'<nav aria-label="{t["nav"]}"><ul>{"".join(items)}</ul></nav>'
+
+
+def brand(lang, colour="ink"):
+    return f'<a class="brand" href="{u("home", lang)}" aria-label="{T[lang]["home"]}">{logo(colour)}</a>'
+
+
+def sitebar(lang, key, other_href):
+    """The quiet top of every page that is not a packaged card."""
+    return f'<header class="sitebar">{brand(lang)}{nav_items(lang, key, other_href)}</header>'
+
+
+def hero_bar(lang, key, other_href, colour="ink"):
+    """The same menu, printed on the card."""
+    return f'<header class="bar">{brand(lang, colour)}{nav_items(lang, key, other_href)}</header>'
 
 
 def footer(lang, other_href):
     t = T[lang]
-    return f'''<footer class="bottom"><div class="wrap">
-  <div class="about">
-    <a class="mark" href="{u("home", lang)}" aria-label="{t["home"]}">{mark()}<span>Symbol Interactive</span></a>
-    <p>{t["foot_about"]}</p>
-    <p>{t["no_track"]}</p>
-    <p>© 2026 Symbol Interactive</p>
-  </div>
+    return f'''<footer>
+  <div><a class="brand" href="{u("home", lang)}" aria-label="{t["home"]}">{logo("yellow")}</a>
+    <p class="promise">{t["foot_about"]}</p><p class="promise">{t["no_track"]}</p><p class="promise">© 2026 Symbol Interactive</p></div>
   <div><h2>{t["studio"]}</h2><ul>
     <li><a href="{u("home", lang)}">{t["home_l"]}</a></li><li><a href="{u("games", lang)}">{t["games"]}</a></li>
-    <li><a href="{u("starjars", lang)}">{t["starjars"]}</a></li><li><a href="{u("about", lang)}">{t["about"]}</a></li></ul></div>
+    <li><a href="{u("starjars", lang)}">{t["starjars"]}</a></li><li><a href="{u("about", lang)}">{t["about"]}</a></li><li><a href="{u("press", lang)}">{t["press"]}</a></li></ul></div>
   <div><h2>{t["help"]}</h2><ul>
     <li><a href="{u("support", lang)}">{t["support"]}</a></li><li><a href="{u("delete", lang)}">{t["delete"]}</a></li>
     <li><a href="mailto:{MAIL}">{MAIL}</a></li></ul></div>
   <div><h2>{t["legal"]}</h2><ul>
     <li><a href="{u("privacy", lang)}">{t["privacy"]}</a></li><li><a href="{u("terms", lang)}">{t["terms"]}</a></li>
     <li><a href="{other_href}" lang="{t["other_lang"]}" hreflang="{t["other_lang"]}">{t["other"]}</a></li></ul></div>
-</div></footer>'''
+</footer>'''
 
 
 def write(path, html):
@@ -237,20 +223,21 @@ def write(path, html):
     out.write_text(html, encoding="utf-8")
 
 
-def page(lang, key, title, description, body, own_path=None, other_href=None):
+def page(lang, key, title, description, body, own_path=None, other_href=None, plain=False, script=False, og=None, ld=None):
+    """plain: the body brings its own full-width sections; otherwise it is a reading page."""
     path = own_path.lstrip("/") if own_path else PAGES[key][lang]
     other_href = other_href or (u(key, "en" if lang == "tr" else "tr") if key else "/en/")
-    html = f'''{head(lang, title, description, key, "/site.css", own_path)}
+    main = f'<main id="main">\n{body}\n</main>' if plain else f'<main id="main" class="reading"><div class="wrap">\n{body}\n</div></main>'
+    js = '\n<script src="/site.js" defer></script>' if script else ""
+    write(path, f'''{head(lang, title, description, key, own_path, og=og, ld=ld)}
 <body>
-{header(lang, key, other_href)}
-<main id="main"><div class="wrap">
-{body}
-</div></main>
-{footer(lang, other_href)}
+<a class="skip" href="#main">{T[lang]["skip"]}</a>
+{sitebar(lang, key, other_href)}
+{main}
+{footer(lang, other_href)}{js}
 </body>
 </html>
-'''
-    write(path, html)
+''')
 
 
 def doc(lang, title, metas, intro, sections, summary=None, toc=True):
@@ -275,210 +262,366 @@ def table(caption, heads, rows):
     return f'<table class="table"><caption>{caption}</caption><thead><tr>{th}</tr></thead><tbody>{trs}</tbody></table>'
 
 
-# ---------------------------------------------------------------- home
+# ---------------------------------------------------------------- the packaging's parts, used on several pages
 
-VALUES = {
-    "tr": [("circle", "cobalt", "Sakin ve tatmin edici", "Kısa oturumlarda açılıp kapanan, insanı rahatlatan bulmacalar tasarlıyoruz. Her hamlenin görünür bir sonucu, her bölümün güzel bir bitişi var."),
-           ("triangle", "olive", "Kendi çizimimiz, kendi sesimiz", "Oyunlarımızın görsellerini, animasyonlarını ve ses efektlerini kendimiz yapıyoruz. Hazır görsel paketi kullanmıyoruz."),
-           ("diamond", "lemon", "Adil para kazanma", "Oyunlarımız ücretsiz. Ödüllü reklamı izlemek senin seçimin, banner reklam yok; mağazadaki her paketin ne verdiği açıkça yazar."),
-           ("ring", "sky", "Gizliliğe saygı", "Oynamak için adını, e-postanı ya da telefon numaranı istemiyoruz. Neyi neden işlediğimizi gizlilik politikasında açıkça yazıyoruz.")],
-    "en": [("circle", "cobalt", "Calm and satisfying", "We design relaxing puzzles that fit into short sessions. Every move has a visible result, and every chapter a good ending."),
-           ("triangle", "olive", "Our own art and sound", "We make our games' visuals, animation and sound effects ourselves. We don't use ready-made art packs."),
-           ("diamond", "lemon", "Fair monetisation", "Our games are free. Watching a rewarded ad is your choice, there are no banner ads, and every shop pack says plainly what it gives."),
-           ("ring", "sky", "Respect for privacy", "We never ask for your name, email or phone number to play. We say plainly what we process and why in our privacy policy.")],
+PLAY_ICON = '<svg width="16" height="18" viewBox="0 0 16 18" aria-hidden="true"><path fill="currentColor" d="M1 1.800c0-1 1-1.600 1.900-1.100l11.600 7.200c.8.500.8 1.700 0 2.200L2.900 17.300c-.9.500-1.900-.1-1.900-1.100Z"/></svg>'
+APPLE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.700 12.700c0-2.300 1.900-3.400 2-3.500-1.100-1.600-2.800-1.800-3.400-1.800-1.400-.1-2.800.9-3.500.9s-1.900-.9-3.100-.8c-1.600 0-3 .9-3.800 2.300-1.600 2.800-.4 7 1.200 9.300.8 1.100 1.700 2.400 2.900 2.300 1.200 0 1.600-.7 3-.7s1.800.7 3 .7c1.300 0 2.100-1.100 2.800-2.200.9-1.300 1.300-2.500 1.300-2.600-.1 0-2.400-.9-2.400-3.900ZM14.400 5.800c.6-.8 1.100-1.900 1-3-1 0-2.100.6-2.800 1.400-.6.7-1.200 1.800-1 2.900 1.100.1 2.200-.6 2.800-1.300Z"/></svg>'
+PLAY_STORE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 2.600v18.800c0 .4.200.7.500.9L15 12 4.500 1.700c-.3.200-.5.500-.5.900Zm14.300 6.200-3 3.200 3 3.200 3.500-2c.8-.5.800-1.900 0-2.400l-3.500-2ZM5.700 1.100 14.300 11l2.800-2.900L6.700 1.200a1.200 1.200 0 0 0-1-.1Zm0 21.800c.3.100.7.100 1-.1l10.400-6.900-2.800-2.900-8.600 9.900Z"/></svg>'
+
+C = {
+    "tr": {
+        "desc": "Symbol Interactive, Türkiye’den bağımsız bir oyun stüdyosu. Star Jars Sort Deluxe’ü tarayıcında dene.",
+        "h1": "Kutudan oyun çıkar.", "lede": "Symbol Interactive, Türkiye’de kurulmuş bağımsız bir oyun stüdyosu. Oyunlarımızı oyuncak yapar gibi, özenle yapıyoruz.",
+        "our_games": "Oyunlarımız", "play_web": "Tarayıcıda oyna", "game_page": "Oyunun sayfası", "age": "13 yaş ve üstü",
+        "badges": ["Pil gerekmez", "Türkiye’de yapıldı", "Kendi çizimimiz"], "burst": ("Star Jars<br>yakında!", "Star Jars<br>çıktı!"), "say": "Sonunda! Oyunlar aşağıda.",
+        "open": "Ambalajı aç", "shut": "Ambalajı kapat",
+        "shelf": "Raftakiler", "alt": "Yıldız Kavanozu", "box_small": f"Sort Deluxe · {GAME['levels']} seviye · {GAME['languages']} dil",
+        "game_text": "Renkli yıldızları kavanozlar arasında dök, her kavanozda tek renk kalınca mühürle. Her seviye gerçek bir takımyıldızının bir yıldızını yakar.",
+        "soon": ("Yakında App Store ve Google Play’de", "App Store ve Google Play’de"), "soon_short": "Yakında", "store_now": "Şimdi indir",
+        "next": "Yandaki paketin içinde ne olduğunu biz de söylemiyoruz: yeni oyunlar üzerinde çalışıyoruz, hazır olduklarında burada olacaklar.",
+        "film_label": "Tanıtım videosu", "film_h": "Otuz saniyede Star Jars", "film_p": "Sesi aç, kutunun içindekileri izle.", "film_alt": "Star Jars tanıtım videosu", "film_link": "YouTube’da izle",
+        "parts_label": "İçindekiler · Star Jars Sort Deluxe", "parts_h": "Kutudan neler çıkıyor", "parts_p": "Süre yok, acele yok: kendi hızında oyna.",
+        "parts": [
+            ("Gerçek takımyıldızlarını yak", f"{GAME['levels']} seviye, {GAME['constellations']} gerçek takımyıldızı: Büyük Ayı’dan Kartal’a, her yıldız gerçek adıyla.", ["map", "solve"], ["Takımyıldızı haritası", "Yıldızlar kavanoza dökülüyor"]),
+            ("Her yıldızın kartı", "Uzaklığı, rengi, parlaklığı ve adının anlamı. Her yıldızın gerçek bir hikâyesi var.", ["card"], ["Yıldız kartı"]),
+            ("Her takımyıldızına kendi kavanozu", "Bölüm, o takımyıldızına özel çizilmiş bir kavanozla biter. Kartal’ın kanatlı kavanozu gibi.", ["boss"], ["Kartal bölümünün kanatlı kavanozu"]),
+            ("Yol boyunca yeni fikirler", "Buzlu, etiketli ve kilitli kavanozlar, joker yıldız, saatli yıldız, hamle sınırı, bağlı yıldızlar, ters ve tek yönlü kavanozlar.", ["clock"], ["Saatli yıldızlı bir seviye"]),
+            ("Kendi kuralıyla uzay bölümleri", "Bulutsu, Satürn’ün halkası, Betelgeuse süpernovası, Leonid meteorları, Sombrero Gökadası ve Gliese 581.", ["galaxy"], ["Sombrero Gökadası bölümü"]),
+            ("Her gün yeni bir bulmaca", "Günün bulmacası, günlük görevler, seri ödülleri ve kumbara.", ["daily"], ["Günün bulmacası"]),
+            ("Yıldızlarını rafına diz", "Topladığın her gök cismi seninle kalır.", ["mystars"], ["Yıldızlarım rafı"]),
+        ],
+        "all_h": "Herkes oynasın", "all_p": "Renk körü modu: her rengin kendi şekli ve işareti var. Üç yazı boyutu. İnternetsiz oynanır, bulut kaydı isteğe bağlı.", "langs": f"{GAME['languages']} dil",
+        "try_label": "Hemen dene", "try_h": "Kutuyu açmadan oyna", "try_p": "Dök, ayır, mühürle. İki bölümü tarayıcında oyna: oyunun gerçek kuralları ve görselleri. İndirme yok, hesap yok.", "try_note": "Süpernova bölümü oyunun ilerleyen kısmından.",
+        "play": "Oyna", "demo_alt": "Demonun ilk bölümü: kavanozlarda renkli yıldızlar", "demo_title": "Star Jars demosu", "demo_close": "Kapat",
+        "facts_h": "Oyun Değerleri", "facts_for": "Star Jars Sort Deluxe, bir kutu için", "facts": [("Takımyıldızı", GAME["constellations"]), ("Seviye", GAME["levels"]), ("Dil", GAME["languages"]), ("Fiyat", "Ücretsiz*")],
+        "facts2": [("Banner reklam", "0"), ("Hazır görsel paketi", "0"), ("Oynamak için istenen ad, e-posta, telefon", "0")],
+        "facts_note": "* Reklam ve uygulama içi satın alma içerir. 13 yaş ve üstü içindir. Neyi neden işlediğimiz gizlilik politikasında yazar.",
+        "rules_h": "Nasıl oyun yapıyoruz",
+        "rules": [("Dokununca tatmin eden", "Her hamlenin görünür bir sonucu, her bölümün güzel bir bitişi var."),
+                  ("Kendi çizimimiz, kendi sesimiz", "Oyunlarımızın görsellerini, animasyonlarını ve ses efektlerini kendimiz yapıyoruz. Hazır görsel paketi kullanmıyoruz."),
+                  ("Adil para kazanma", "Oyunlarımız ücretsiz. Ödüllü reklamı izlemek senin seçimin, banner reklam yok; mağazadaki her paketin ne verdiği açıkça yazar."),
+                  ("Gizliliğe saygı", "Oynamak için adını, e-postanı ya da telefon numaranı istemiyoruz. Neyi neden işlediğimizi gizlilik politikasında açıkça yazıyoruz.")],
+        "maker_h": "Üretici", "maker_p": "Symbol Interactive’i 2026’da Cem Tezgelen kurdu. Oyunlarımızı tasarlıyor, yazıyor, çiziyor ve yayımlıyoruz; büyük bir ekip değiliz, oyunun her ayrıntısına dokunuyoruz.",
+        "maker_more": "Stüdyoyu tanı", "maker_rows": [("Üretici", "Symbol Interactive"), ("Adres", "Aydın, Türkiye")], "write": "Bize yaz",
+    },
+    "en": {
+        "desc": "Symbol Interactive is an independent game studio from Türkiye. Play Star Jars Sort Deluxe in your browser.",
+        "h1": "There’s a game in this box.", "lede": "Symbol Interactive is an independent game studio founded in Türkiye. We make games the way you’d make a good toy: with care.",
+        "our_games": "Our games", "play_web": "Play in your browser", "game_page": "The game’s page", "age": "Ages 13 and up",
+        "badges": ["No batteries needed", "Made in Türkiye", "Our own art"], "burst": ("Star Jars<br>soon!", "Star Jars<br>is out!"), "say": "At last! The games are below.",
+        "open": "Open the packaging", "shut": "Close the packaging",
+        "shelf": "On the shelf", "alt": "A calm sorting puzzle", "box_small": f"Sort Deluxe · {GAME['levels']} levels · {GAME['languages']} languages",
+        "game_text": "Pour colourful stars between jars until every jar holds a single colour, then seal it. Every level lights a star of a real constellation.",
+        "soon": ("Coming soon to the App Store and Google Play", "On the App Store and Google Play"), "soon_short": "Coming soon", "store_now": "Download now",
+        "next": "We’re not saying what’s in the other box either: more games are in development, and they’ll appear here when they’re ready.",
+        "film_label": "The trailer", "film_h": "Star Jars in thirty seconds", "film_p": "Turn the sound on and see what’s in the box.", "film_alt": "Star Jars trailer", "film_link": "Watch on YouTube",
+        "parts_label": "Contents · Star Jars Sort Deluxe", "parts_h": "What’s in the box", "parts_p": "No timers, no rush: play at your own pace.",
+        "parts": [
+            ("Light up real constellations", f"{GAME['levels']} levels across {GAME['constellations']} real constellations, from the Great Bear to the Eagle, every star by its real name.", ["map", "solve"], ["The constellation map", "Stars pouring into a jar"]),
+            ("A card for every star", "Its distance, colour, brightness and what its name means. Every star has a true story.", ["card"], ["A star card"]),
+            ("A jar for every constellation", "Each chapter ends with a jar drawn for its constellation, like the Eagle’s winged jar.", ["boss"], ["The Eagle chapter’s winged jar"]),
+            ("New ideas along the way", "Icy, labelled and locked jars, joker stars, clock stars, move limits, bound stars, upside-down and one-way jars.", ["clock"], ["A level with a clock star"]),
+            ("Space chapters with their own rules", "A nebula, Saturn’s ring, the Betelgeuse supernova, the Leonid meteors, the Sombrero Galaxy and Gliese 581.", ["galaxy"], ["The Sombrero Galaxy chapter"]),
+            ("A new puzzle every day", "A daily puzzle, daily quests, streak rewards and a piggy bank.", ["daily"], ["The daily puzzle"]),
+            ("Fill your shelf of stars", "Every sky object you win stays with you.", ["mystars"], ["The shelf of stars"]),
+        ],
+        "all_h": "Everyone plays", "all_p": "Colour-blind mode: every colour has its own shape and mark. Three text sizes. Plays offline; cloud save is optional.", "langs": f"{GAME['languages']} languages",
+        "try_label": "Try it now", "try_h": "Play before you open it", "try_p": "Pour, sort, seal. Play two boards in your browser, with the game’s real rules and art. No download, no account.", "try_note": "The supernova chapter comes from later in the game.",
+        "play": "Play", "demo_alt": "The demo’s first board: colourful stars in jars", "demo_title": "Star Jars demo", "demo_close": "Close",
+        "facts_h": "Game Facts", "facts_for": "Star Jars Sort Deluxe, per box", "facts": [("Constellations", GAME["constellations"]), ("Levels", GAME["levels"]), ("Languages", GAME["languages"]), ("Price", "Free*")],
+        "facts2": [("Banner ads", "0"), ("Ready-made art packs", "0"), ("Name, email or phone asked to play", "0")],
+        "facts_note": "* Contains ads and in-app purchases. For ages 13 and up. What we process and why is in the privacy policy.",
+        "rules_h": "How we make games",
+        "rules": [("Satisfying to touch", "Every move has a visible result, and every chapter a good ending."),
+                  ("Our own art and sound", "We make our games’ visuals, animation and sound effects ourselves. We don’t use ready-made art packs."),
+                  ("Fair monetisation", "Our games are free. Watching a rewarded ad is your choice, there are no banner ads, and every shop pack says plainly what it gives."),
+                  ("Respect for privacy", "We never ask for your name, email or phone number to play. We say plainly what we process and why in our privacy policy.")],
+        "maker_h": "Made by", "maker_p": "Cem Tezgelen founded Symbol Interactive in 2026. We design, write, draw and publish our games ourselves; we are not a big team, and we touch every detail of every game.",
+        "maker_more": "About the studio", "maker_rows": [("Made by", "Symbol Interactive"), ("Address", "Aydın, Türkiye")], "write": "Write to us",
+    },
 }
+LANGS = [("tr", "Türkçe"), ("en", "English"), ("es", "Español"), ("pt", "Português"), ("de", "Deutsch"), ("fr", "Français"), ("it", "Italiano"), ("ru", "Русский"), ("id", "Bahasa Indonesia"), ("ja", "日本語"), ("ko", "한국어"), ("zh-Hans", "简体中文"), ("ar", "العربية")]
 
 
-def values(lang):
-    return "".join(f'<li>{piece_icon(k, c)}<div><h3>{h}</h3><p>{p}</p></div></li>' for k, c, h, p in VALUES[lang])
+def live_i(lang):
+    return 1 if STORES["live"] else 0
 
 
-def star_window(lang):
-    if lang == "tr":
-        return f'''<a class="window" href="{u("starjars", "tr")}">
-  {jar("icon", animate=False, label=None)}
-  <div>
-    <h3>Star Jars Sort Deluxe</h3>
-    <p class="alt">Yıldız Kavanozu</p>
-    <p>Renkli yıldızları kavanozlara ayırdığın sakin bir bulmaca. Her mühürlenen kavanoz gerçek bir takımyıldızın bir yıldızını yakar.</p>
-    <p class="status">Yakında App Store ve Google Play'de. 13 dilde.</p>
-    <span class="go">Oyunun sayfası</span>
+def store_buttons(lang):
+    """Pills until launch day; real links once STORES["live"] is set."""
+    c = C[lang]
+    small = c["store_now"] if STORES["live"] else c["soon_short"]
+    def one(icon, name, url):
+        inner = f'{icon}<span><small>{small}</small>{name}</span>'
+        return f'<a class="store" href="{url}">{inner}</a>' if STORES["live"] else f'<div class="store">{inner}</div>'
+    return one(APPLE, "App Store", STORES["ios"]) + one(PLAY_STORE, "Google Play", STORES["android"])
+
+
+def blister(lang, inside, say_style=""):
+    c = C[lang]
+    return (f'<button class="blister" id="blister" type="button" aria-label="{c["open"]}" aria-pressed="false" data-open="{c["open"]}" data-shut="{c["shut"]}">{inside}<span class="bubble"></span></button>'
+            f'<div class="say" aria-hidden="true"{say_style}>{c["say"]}</div>')
+
+
+def shelf(lang, tag="h2", title=None, lede="", play=None):
+    c = C[lang]
+    play = play or u("starjars", lang) + "#dene"
+    intro = f'<p class="lede">{lede}</p>' if lede else ""
+    return f'''<section class="shelf" id="oyunlar" aria-labelledby="shelf-h">
+  <{tag} id="shelf-h">{title or c["shelf"]}</{tag}>{intro}
+  <div class="onshelf">
+    <div class="box3d" aria-hidden="true"><div class="box">
+      <div class="bt"></div>
+      <div class="bs"><span>STAR JARS · SYMBOL INTERACTIVE</span></div>
+      <div class="bf"><div class="bfh">{logo()}<b>13+</b></div><div class="bft"><p class="bftitle">Star Jars</p><small>{c["box_small"]}</small></div><img src="/img/sj/{lang}-board.jpg" width="560" height="1213" alt="" loading="lazy"></div>
+    </div></div>
+    <div class="box3d small wrapped" aria-hidden="true"><div class="box">
+      <div class="bt"></div><div class="bs"><span>?</span></div>
+      <div class="bf"><b>?</b></div>
+    </div></div>
+    <article class="info" aria-labelledby="sj">
+      <span class="label">{c["alt"]}</span>
+      <h3 id="sj">Star Jars Sort Deluxe</h3>
+      <p>{c["game_text"]}</p>
+      <p class="soon">{c["soon"][live_i(lang)]}</p>
+      <div class="actions"><a class="btn" href="{play}">{c["play_web"]}</a><a class="btn line" href="{u("starjars", lang)}">{c["game_page"]}</a></div>
+      <p class="nextgame">{c["next"]}</p>
+    </article>
   </div>
-</a>'''
-    return f'''<a class="window" href="{u("starjars", "en")}">
-  {jar("icon", animate=False, label=None)}
+  <div class="plank" aria-hidden="true"></div>
+</section>'''
+
+
+def media(lang, name, alt, cls=""):
+    """Clips play only while on screen (site.js); stills are lazy."""
+    posters = {"map": "map", "solve": "clip-solve", "card": "clip-card"}
+    if name in posters:
+        return f'<div class="shot {cls}"><video class="auto" src="/media/{lang}-{name}.mp4" poster="/img/sj/{lang}-{posters[name]}.jpg" width="460" height="996" muted loop playsinline preload="none" aria-label="{alt}"></video></div>'
+    return f'<div class="shot {cls}"><img src="/img/sj/{lang}-{name}.jpg" width="560" height="1100" alt="{alt}" loading="lazy"></div>'
+
+
+def parts(lang, night=False):
+    c = C[lang]
+    tiles = ""
+    for i, (title, text, names, alts) in enumerate(c["parts"]):
+        letter = "ABCDEFG"[i]
+        wide = " wide" if i == 0 else ""
+        shots = "".join(media(lang, n, a, "s2" if j else "") for j, (n, a) in enumerate(zip(names, alts)))
+        tiles += f'<article class="part{wide}"><div class="tx"><b class="let" aria-hidden="true">{letter}</b><h3>{title}</h3><p>{text}</p></div>{shots}</article>'
+    names = "".join(f'<li lang="{code}"{" dir=" + chr(34) + "rtl" + chr(34) if code == "ar" else ""}>{n}</li>' for code, n in LANGS)
+    tiles += f'<article class="part all"><div class="tx"><b class="let" aria-hidden="true">H</b><h3>{c["all_h"]}</h3><p>{c["all_p"]}</p><ul class="langs" aria-label="{c["langs"]}">{names}</ul></div></article>'
+    return f'''<section class="inbox{" night" if night else ""}" id="ozellikler" aria-labelledby="parts-h">
+  <div class="sec-head"><div><span class="label">{c["parts_label"]}</span><h2 id="parts-h">{c["parts_h"]}</h2></div><p>{c["parts_p"]}</p></div>
+  <div class="parts">{tiles}</div>
+</section>'''
+
+
+def facts_label(lang):
+    c = C[lang]
+    rows = "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in c["facts"][:-1])
+    k, v = c["facts"][-1]
+    rows += f'<dt class="gap">{k}</dt><dd class="gap">{v}</dd>' + "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in c["facts2"])
+    return f'<aside class="facts" aria-labelledby="facts-h"><h3 id="facts-h">{c["facts_h"]}</h3><p class="for">{c["facts_for"]}</p><dl>{rows}</dl><p>{c["facts_note"]}</p></aside>'
+
+
+def demo_dialog(lang):
+    c = C[lang]
+    return f'<dialog class="demo-box" id="demo-box" aria-label="{c["demo_title"]}"><div class="demo-bar"><span>{c["demo_title"]}</span><button type="button" id="demo-close">{c["demo_close"]}</button></div><div class="demo-frame" id="demo-frame"></div></dialog>'
+
+
+def demo_block(lang, gold=False):
+    """The real demo. Nothing loads until asked; without JavaScript the button is a plain link to it."""
+    c = C[lang]
+    return f'''<section class="back{" gold" if gold else ""}" id="dene" aria-labelledby="try-h">
   <div>
-    <h3>Star Jars Sort Deluxe</h3>
-    <p class="alt">A calm sorting puzzle</p>
-    <p>Sort colourful stars into jars. Every sealed jar lights a star of a real constellation.</p>
-    <p class="status">Coming soon to the App Store and Google Play. In 13 languages.</p>
-    <span class="go">The game's page</span>
+    <span class="label">{c["try_label"]}</span>
+    <h2 id="try-h">{c["try_h"]}</h2>
+    <p class="say2">{c["try_p"]}</p>
+    <small>{c["try_note"]}</small>
   </div>
-</a>'''
+  <div class="device" id="device"><img src="/img/{lang}-demo.jpg" width="488" height="1055" alt="{c["demo_alt"]}" loading="lazy"><a class="btn gold go" href="/demo/starjars.html#web-{lang}" data-demo data-title="{c["demo_title"]}">{PLAY_ICON}{c["play"]}</a></div>
+  {facts_label(lang)}
+</section>'''
 
 
-def next_slot(lang):
-    h, p = {"tr": ("Sıradaki oyunlar", "Yeni oyunlar üzerinde çalışıyoruz. Hazır olduklarında burada olacaklar."),
-            "en": ("What's next", "More games are in development. They'll appear here when they're ready.")}[lang]
-    return f'<div class="next">{empty_slot()}<h3>{h}</h3><p>{p}</p></div>'
-
-
-HOME = {
-    "tr": f'''<section class="hero" aria-labelledby="hero">
+def film(lang, dark=False):
+    """The trailer comes from our own server: the privacy policy promises nothing loads from elsewhere. Nothing downloads until play is pressed."""
+    c = C[lang]
+    return f'''<section class="film{" dark" if dark else ""}" id="tanitim" aria-labelledby="film-h">
   <div>
-    <h1 id="hero">Her şeyin yerine oturduğu oyunlar</h1>
-    <p class="lede">Symbol Interactive, Aydın'da kurulmuş bağımsız bir mobil oyun stüdyosu. Sakin, özenli ve oynaması keyifli bulmaca oyunları yapıyoruz.</p>
-    <div class="actions"><a class="button" href="{u("games", "tr")}">Oyunlarımız</a><a class="button quiet" href="mailto:{MAIL}">Bize yaz</a></div>
+    <span class="label">{c["film_label"]}</span>
+    <h2 id="film-h">{c["film_h"]}</h2>
+    <p>{c["film_p"]}</p>
+    <p class="filmlink"><a href="{PROMO[lang]}" rel="noopener">{c["film_link"]}</a></p>
   </div>
-  {board("Dört sıra oyun taşı: daireler, karolar, üçgenler ve halkalar yerlerine oturmuş")}
+  <div class="device film-d"><video controls playsinline preload="none" poster="/img/sj/{lang}-promo.jpg" width="720" height="1280" aria-label="{c["film_alt"]}"><source src="/media/{lang}-promo.mp4" type="video/mp4"></video></div>
+</section>'''
+
+
+def rules(lang):
+    c = C[lang]
+    items = "".join(f"<li>{pip_die(i + 1)}<h3>{h}</h3><p>{p}</p></li>" for i, (h, p) in enumerate(c["rules"]))
+    return f'<section class="howto" id="kurallar" aria-labelledby="rules-h"><h2 id="rules-h">{c["rules_h"]}</h2><ol>{items}</ol></section>'
+
+
+def maker(lang):
+    c = C[lang]
+    rows = "".join(f"<span>{k}: {v}</span>" for k, v in c["maker_rows"])
+    return f'''<section class="maker" id="studyo" aria-labelledby="maker-h">
+  <div><h2 id="maker-h">{c["maker_h"]}</h2><p>{c["maker_p"]}</p><p class="more-link"><a href="{u("about", lang)}">{c["maker_more"]}</a></p></div>
+  <div class="spec">{rows}<span>{c["write"]}: <a href="mailto:{MAIL}">{MAIL}</a></span></div>
+</section>'''
+
+
+ORG = {"@context": "https://schema.org", "@type": "Organization", "name": "Symbol Interactive", "url": SITE + "/", "logo": SITE + "/img/apple-touch-icon.png", "email": MAIL,
+       "founder": {"@type": "Person", "name": CONTROLLER}, "foundingDate": "2026", "address": {"@type": "PostalAddress", "addressLocality": "Aydın", "addressCountry": "TR"}}
+
+
+def home_page(lang):
+    c = C[lang]
+    other = u("home", "en" if lang == "tr" else "tr")
+    badges = "".join(f'<span class="note">{b}</span>' for b in c["badges"])
+    html = f'''{head(lang, "Symbol Interactive", c["desc"], "home", ld=ORG)}
+<body>
+<a class="skip" href="#main">{T[lang]["skip"]}</a>
+<main id="main">
+<section class="peg" aria-labelledby="h">
+  <div class="pack">
+    <div class="hook" aria-hidden="true"></div>
+    <div class="tab" aria-hidden="true"><div class="slot"></div></div>
+    <div class="card">
+      {hero_bar(lang, "home", other)}
+      <div class="front">
+        <div>
+          <h1 id="h">{c["h1"]}</h1>
+          <p class="lede">{c["lede"]}</p>
+          <div class="actions"><a class="btn" href="#oyunlar">{c["our_games"]}</a><a class="btn line" href="#dene">{c["play_web"]}</a></div>
+          <div class="badges"><span class="age" aria-label="{c["age"]}">13+</span>{badges}</div>
+        </div>
+        <div class="blisterwrap">
+          <div class="burst" aria-hidden="true"><span>{c["burst"][live_i(lang)]}</span></div>
+          {blister(lang, zar())}
+        </div>
+      </div>
+      <div class="code" aria-hidden="true"><i></i><span>TÜRKİYE · 2026</span></div>
+    </div>
+  </div>
 </section>
-<section class="section" aria-labelledby="games">
-  <h2 id="games">Oyunlarımız</h2>
-  <p>Telefonda birkaç dakikada açılan, uzun süre akılda kalan oyunlar.</p>
-  <div class="games">{star_window("tr")}{next_slot("tr")}</div>
-</section>
-<section class="section" aria-labelledby="values">
-  <h2 id="values">Nasıl oyun yapıyoruz</h2>
-  <p>Küçük bir stüdyoyuz; bu yüzden her oyunu uzun süre parlatıp öyle yayımlıyoruz.</p>
-  <ul class="values">{values("tr")}</ul>
-</section>
-<section class="section studio" aria-labelledby="studio">
-  <div>
-    <h2 id="studio">Stüdyo</h2>
-    <p>Symbol Interactive'i 2026'da Aydın'da Cem Tezgelen kurdu. Oyunlarımızı tasarlıyor, yazıyor, çiziyor ve yayımlıyoruz; büyük bir ekip değiliz, oyunun her ayrıntısına dokunuyoruz.</p>
-    <p><a href="{u("about", "tr")}">Stüdyoyu tanı</a></p>
-  </div>
-  <div class="contact">
-    <h3>Bize yaz</h3>
-    <p>Oyunlarla ilgili bir soru, bir öneri ya da bir iş birliği fikri için:</p>
-    <p class="mail"><a href="mailto:{MAIL}">{MAIL}</a></p>
-  </div>
-</section>''',
-    "en": f'''<section class="hero" aria-labelledby="hero">
-  <div>
-    <h1 id="hero">Games where everything falls into place</h1>
-    <p class="lede">Symbol Interactive is an independent mobile game studio founded in Aydın, Türkiye. We make calm, carefully made puzzle games that are a pleasure to play.</p>
-    <div class="actions"><a class="button" href="{u("games", "en")}">Our games</a><a class="button quiet" href="mailto:{MAIL}">Write to us</a></div>
-  </div>
-  {board("Four rows of game pieces, circles, diamonds, triangles and rings, all in place")}
-</section>
-<section class="section" aria-labelledby="games">
-  <h2 id="games">Our games</h2>
-  <p>Games that open in a few minutes on your phone and stay with you much longer.</p>
-  <div class="games">{star_window("en")}{next_slot("en")}</div>
-</section>
-<section class="section" aria-labelledby="values">
-  <h2 id="values">How we make games</h2>
-  <p>We are a small studio, so we polish each game for a long time before we release it.</p>
-  <ul class="values">{values("en")}</ul>
-</section>
-<section class="section studio" aria-labelledby="studio">
-  <div>
-    <h2 id="studio">The studio</h2>
-    <p>Cem Tezgelen founded Symbol Interactive in Aydın in 2026. We design, write, draw and publish our games ourselves; we are not a big team, and we touch every detail of every game.</p>
-    <p><a href="{u("about", "en")}">About the studio</a></p>
-  </div>
-  <div class="contact">
-    <h3>Write to us</h3>
-    <p>For a question about our games, an idea, or a partnership:</p>
-    <p class="mail"><a href="mailto:{MAIL}">{MAIL}</a></p>
-  </div>
-</section>''',
-}
+{shelf(lang, play="#dene")}
+{film(lang)}
+{parts(lang)}
+{demo_block(lang)}
+{rules(lang)}
+{maker(lang)}
+</main>
+{demo_dialog(lang)}
+{footer(lang, other)}
+<script src="/site.js" defer></script>
+</body>
+</html>
+'''
+    write(PAGES["home"][lang], html)
 
-# ---------------------------------------------------------------- games
 
-GAMES = {
-    "tr": f'''<h1>Oyunlar</h1>
-<p class="lede">Şu an yayına hazırlanan bir oyunumuz var; yenileri üzerinde çalışıyoruz.</p>
-<section class="feature" aria-labelledby="sj">
-  <div>
-    <div class="games" style="grid-template-columns:1fr;margin-top:0">{star_window("tr").replace("<h3>", '<h3 id="sj">', 1)}</div>
-  </div>
-  <div>
-    <dl class="facts">
-      <dt>Tür</dt><dd>Sıralama bulmacası</dd>
-      <dt>Platformlar</dt><dd>iOS ve Android</dd>
-      <dt>Diller</dt><dd>13 dil</dd>
-      <dt>Hedef kitle</dt><dd>13 yaş ve üzeri</dd>
-      <dt>Durum</dt><dd>Yakında App Store ve Google Play'de</dd>
-    </dl>
-    <p style="margin-top:1rem"><a href="{u("support", "tr")}">Destek</a>, <a href="{u("privacy", "tr")}">gizlilik politikası</a> ve <a href="{u("delete", "tr")}">hesap silme</a>.</p>
-  </div>
-</section>
-<div class="shots">{shots("tr", SHOT_ALT["tr"])}</div>
-<section class="section" aria-labelledby="next"><h2 id="next">Geliştirilen oyunlar</h2>
-  <div class="games" style="grid-template-columns:minmax(0,1fr)">{next_slot("tr")}</div>
-</section>''',
-    "en": f'''<h1>Games</h1>
-<p class="lede">One game is getting ready for release; more are in development.</p>
-<section class="feature" aria-labelledby="sj">
-  <div>
-    <div class="games" style="grid-template-columns:1fr;margin-top:0">{star_window("en").replace("<h3>", '<h3 id="sj">', 1)}</div>
-  </div>
-  <div>
-    <dl class="facts">
-      <dt>Genre</dt><dd>Sorting puzzle</dd>
-      <dt>Platforms</dt><dd>iOS and Android</dd>
-      <dt>Languages</dt><dd>13</dd>
-      <dt>Audience</dt><dd>Ages 13 and up</dd>
-      <dt>Status</dt><dd>Coming soon to the App Store and Google Play</dd>
-    </dl>
-    <p style="margin-top:1rem"><a href="{u("support", "en")}">Support</a>, <a href="{u("privacy", "en")}">privacy policy</a> and <a href="{u("delete", "en")}">account deletion</a>.</p>
-  </div>
-</section>
-<div class="shots">{shots("en", SHOT_ALT["en"])}</div>
-<section class="section" aria-labelledby="next"><h2 id="next">In development</h2>
-  <div class="games" style="grid-template-columns:minmax(0,1fr)">{next_slot("en")}</div>
-</section>''',
-}
+# ---------------------------------------------------------------- games, about, press
 
-# ---------------------------------------------------------------- about
+GAMES_TOP = {"tr": ("Oyunlar", "Şu an yayına hazırlanan bir oyunumuz var; yenileri üzerinde çalışıyoruz."),
+             "en": ("Games", "One game is getting ready for release; more are in development.")}
+GAME_ROWS = {"tr": [("Tür", "Sıralama bulmacası"), ("Platformlar", "iOS ve Android"), ("Diller", f"{GAME['languages']} dil"), ("Hedef kitle", "13 yaş ve üzeri")],
+             "en": [("Genre", "Sorting puzzle"), ("Platforms", "iOS and Android"), ("Languages", GAME["languages"]), ("Audience", "Ages 13 and up")]}
+HELP_LINKS = {"tr": ("Yardım ve yasal", [("support", "Destek"), ("privacy", "Gizlilik politikası"), ("terms", "Kullanım koşulları"), ("delete", "Hesap silme")]),
+              "en": ("Help and legal", [("support", "Support"), ("privacy", "Privacy policy"), ("terms", "Terms of use"), ("delete", "Delete account")])}
+
+
+def more_links(lang):
+    title, links = HELP_LINKS[lang]
+    items = "".join(f'<li><a href="{u(k, lang)}">{label}</a></li>' for k, label in links)
+    return f'<section class="more" aria-labelledby="more-h"><h2 id="more-h">{title}</h2><ul>{items}</ul></section>'
+
+
+def games_body(lang):
+    h, lede = GAMES_TOP[lang]
+    rows = "".join(f"<span>{k}: {v}</span>" for k, v in GAME_ROWS[lang])
+    return f'''{shelf(lang, "h1", h, lede)}
+<div class="gamespec"><div class="spec">{rows}<span>{C[lang]["soon"][live_i(lang)]}</span></div></div>
+{more_links(lang)}'''
+
 
 ABOUT = {
-    "tr": f'''<div class="studio">
-<div class="prose">
-<h1>Hakkımızda</h1>
-<p class="lede">Symbol Interactive, telefonda birkaç dakikada açılan ama özenle yapılmış, oynayanın kendini iyi hissettiği oyunlar yapan bağımsız bir stüdyo.</p>
-<h2>Vizyonumuz</h2>
-<p>Mobil oyunların çoğu dikkatini çekmek için bağırıyor. Biz tersini deniyoruz: sakin, anlaşılır, dokununca tatmin eden oyunlar; adil bir ekonomi ve oyuncunun bilgilerine saygı. Büyük bir katalog yerine, her biri uzun süre parlatılmış birkaç oyun.</p>
-<h2>Nasıl çalışıyoruz</h2>
-<ul class="values" style="grid-template-columns:1fr">{values("tr")}</ul>
-<h2>Kim</h2>
-<p>Symbol Interactive'i 2026'da Aydın'da Cem Tezgelen kurdu. Symbol Interactive bir şirket unvanı değil; Cem Tezgelen'in oyunlarını yayımladığı addır. Oyunlarımızdaki kişisel verilerin sorumlusu da odur (<a href="{u("privacy", "tr")}">gizlilik politikası</a>).</p>
-</div>
-<div>
-<dl class="facts" style="margin-top:.5rem">
-  <dt>Kuruluş</dt><dd>2026</dd>
-  <dt>Yer</dt><dd>Aydın, Türkiye</dd>
-  <dt>Kurucu</dt><dd>Cem Tezgelen</dd>
-  <dt>Oyunlar</dt><dd><a href="{u("starjars", "tr")}">Star Jars Sort Deluxe</a> (iOS, Android); yenileri geliştiriliyor</dd>
-  <dt>İletişim</dt><dd><a href="mailto:{MAIL}">{MAIL}</a></dd>
-</dl>
-</div>
-</div>''',
-    "en": f'''<div class="studio">
-<div class="prose">
-<h1>About</h1>
-<p class="lede">Symbol Interactive is an independent studio making games that open in a few minutes on your phone, are made with care, and leave you feeling good.</p>
-<h2>Our vision</h2>
-<p>Most mobile games shout for your attention. We try the opposite: calm, clear games that feel satisfying to touch, a fair economy, and respect for players' information. A few games, each polished for a long time, rather than a big catalogue.</p>
-<h2>How we work</h2>
-<ul class="values" style="grid-template-columns:1fr">{values("en")}</ul>
-<h2>Who</h2>
-<p>Cem Tezgelen founded Symbol Interactive in Aydın, Türkiye, in 2026. Symbol Interactive is not a company name but the name under which Cem Tezgelen publishes his games; he is also the controller of the personal data in our games (<a href="{u("privacy", "en")}">privacy policy</a>).</p>
-</div>
-<div>
-<dl class="facts" style="margin-top:.5rem">
-  <dt>Founded</dt><dd>2026</dd>
-  <dt>Based in</dt><dd>Aydın, Türkiye</dd>
-  <dt>Founder</dt><dd>Cem Tezgelen</dd>
-  <dt>Games</dt><dd><a href="{u("starjars", "en")}">Star Jars Sort Deluxe</a> (iOS, Android); more in development</dd>
-  <dt>Contact</dt><dd><a href="mailto:{MAIL}">{MAIL}</a></dd>
-</dl>
-</div>
-</div>''',
+    "tr": {"h1": "Hakkımızda", "lede": "Symbol Interactive, özenle yapılmış, oynayanın kendini iyi hissettiği oyunlar yapan bağımsız bir oyun stüdyosu.",
+           "vision_h": "Vizyonumuz", "vision": "Çoğu oyun dikkatini çekmek için bağırıyor. Biz tersini deniyoruz: anlaşılır, dokununca tatmin eden oyunlar; adil bir ekonomi ve oyuncunun bilgilerine saygı. Büyük bir katalog yerine, her biri uzun süre parlatılmış birkaç oyun.",
+           "who_h": "Kim", "who": f"Symbol Interactive’i 2026’da Cem Tezgelen kurdu. Symbol Interactive bir şirket unvanı değil; Cem Tezgelen’in oyunlarını yayımladığı addır. Oyunlarımızdaki kişisel verilerin sorumlusu da odur (<a href=\"{u('privacy', 'tr')}\">gizlilik politikası</a>).",
+           "rows": [("Kuruluş", "2026"), ("Adres", "Aydın, Türkiye"), ("Kurucu", "Cem Tezgelen")], "games": "Oyunlar", "more": "yenileri geliştiriliyor", "contact": "İletişim"},
+    "en": {"h1": "About", "lede": "Symbol Interactive is an independent game studio making games with care, games that leave you feeling good.",
+           "vision_h": "Our vision", "vision": "Most games shout for your attention. We try the opposite: clear games that feel satisfying to touch, a fair economy, and respect for players’ information. A few games, each polished for a long time, rather than a big catalogue.",
+           "who_h": "Who", "who": f"Cem Tezgelen founded Symbol Interactive in 2026. Symbol Interactive is not a company name but the name under which Cem Tezgelen publishes games. Cem Tezgelen is also the controller of the personal data in our games (<a href=\"{u('privacy', 'en')}\">privacy policy</a>).",
+           "rows": [("Founded", "2026"), ("Address", "Aydın, Türkiye"), ("Founder", "Cem Tezgelen")], "games": "Games", "more": "more in development", "contact": "Contact"},
 }
+
+
+def about_body(lang):
+    a = ABOUT[lang]
+    rows = "".join(f"<span>{k}: {v}</span>" for k, v in a["rows"])
+    return f'''<div class="reading"><div class="wrap studio-grid">
+<article class="prose">
+<h1>{a["h1"]}</h1>
+<p class="lede">{a["lede"]}</p>
+<h2>{a["vision_h"]}</h2>
+<p>{a["vision"]}</p>
+<h2>{a["who_h"]}</h2>
+<p>{a["who"]}</p>
+</article>
+<aside class="studio-side">{zar()}
+<div class="spec">{rows}<span>{a["games"]}: <a href="{u("starjars", lang)}">Star Jars Sort Deluxe</a> (iOS, Android); {a["more"]}</span><span>{a["contact"]}: <a href="mailto:{MAIL}">{MAIL}</a></span></div>
+</aside>
+</div></div>
+{rules(lang)}'''
+
+
+PRESS = {
+    "tr": {"h1": "Basın kiti", "lede": "Oyunlarımız hakkında yazacaksan ihtiyacın olan her şey burada. Haber ve inceleme yazılarında bu görselleri kullanabilirsin.",
+           "zip": "Hepsini indir", "zip_note": "logolar, ikon, ekran görüntüleri", "logos": "Logo", "logo_y": "Sarı zeminde", "logo_k": "Siyah zeminde", "logo_svg": "Vektör (SVG)", "icon": "Star Jars ikonu",
+           "video": "Tanıtım videosu", "video_tr": "Türkçe", "video_en": "İngilizce", "yt": "YouTube", "mp4": "MP4 dosyası",
+           "sheet": "Oyun bilgileri", "desc_h": "Kısa tanıtım", "desc": "Star Jars Sort Deluxe, sakin bir renk sıralama bulmacası: renkli yıldızları kavanozlar arasında dök, her kavanozda tek renk kalınca mühürle. Her seviye gerçek bir takımyıldızının bir yıldızını yakar.",
+           "rows": [("Oyun", "Star Jars Sort Deluxe (Yıldız Kavanozu)"), ("Geliştirici", "Symbol Interactive (Cem Tezgelen)"), ("Adres", "Aydın, Türkiye"), ("Tür", "Sıralama bulmacası"), ("Platformlar", "iOS ve Android"),
+                    ("İçerik", f"{GAME['levels']} seviye, {GAME['constellations']} gerçek takımyıldızı"), ("Diller", f"{GAME['languages']} dil"), ("Fiyat", "Ücretsiz; reklam ve uygulama içi satın alma içerir")],
+           "status": "Durum", "write": "Basın için yaz"},
+    "en": {"h1": "Press kit", "lede": "Writing about our games? Everything you need is here. You can use these images in news and reviews.",
+           "zip": "Download everything", "zip_note": "logos, icon, screenshots", "logos": "Logo", "logo_y": "On yellow", "logo_k": "On black", "logo_svg": "Vector (SVG)", "icon": "Star Jars icon",
+           "video": "Trailer", "video_tr": "Turkish", "video_en": "English", "yt": "YouTube", "mp4": "MP4 file",
+           "sheet": "Game facts", "desc_h": "Short description", "desc": "Star Jars Sort Deluxe is a calm colour sort puzzle: pour colourful stars between jars until every jar holds a single colour, then seal it. Every level lights a star of a real constellation.",
+           "rows": [("Game", "Star Jars Sort Deluxe"), ("Developer", "Symbol Interactive (Cem Tezgelen)"), ("Address", "Aydın, Türkiye"), ("Genre", "Sorting puzzle"), ("Platforms", "iOS and Android"),
+                    ("Content", f"{GAME['levels']} levels across {GAME['constellations']} real constellations"), ("Languages", GAME["languages"]), ("Price", "Free; contains ads and in-app purchases")],
+           "status": "Status", "write": "Press contact"},
+}
+
+
+def press_body(lang):
+    p = PRESS[lang]
+    zip_path = ROOT / "press" / "symbol-interactive-press-kit.zip"
+    size = f" · {zip_path.stat().st_size / 1048576:.0f} MB" if zip_path.exists() else ""
+    rows = "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in p["rows"]) + f'<dt>{p["status"]}</dt><dd>{C[lang]["soon"][live_i(lang)]}</dd>' + f'<dt>{p["write"]}</dt><dd><a href="mailto:{MAIL}">{MAIL}</a></dd>'
+    return f'''<div class="doc single press">
+<article class="prose">
+<h1>{p["h1"]}</h1>
+<p class="lede">{p["lede"]}</p>
+<p><a class="btn" href="/press/symbol-interactive-press-kit.zip">{p["zip"]}</a><span class="zipnote">{p["zip_note"]}{size}</span></p>
+<h2>{p["logos"]}</h2>
+<div class="kit">
+  <a class="tile y" href="/press/symbol-interactive-yellow.png"><img src="/img/logo-ink.svg" width="{LOGO_W}" height="{LOGO_H}" alt=""><span>{p["logo_y"]} (PNG)</span></a>
+  <a class="tile k" href="/press/symbol-interactive-black.png"><img src="/img/logo-white.svg" width="{LOGO_W}" height="{LOGO_H}" alt=""><span>{p["logo_k"]} (PNG)</span></a>
+  <a class="tile" href="/img/logo-ink.svg"><img src="/img/logo-ink.svg" width="{LOGO_W}" height="{LOGO_H}" alt=""><span>{p["logo_svg"]}</span></a>
+  <a class="tile sj" href="/press/star-jars-icon.png"><img class="ic" src="/img/sj/icon.jpg" width="256" height="256" alt=""><span>{p["icon"]} (PNG)</span></a>
+</div>
+<h2>{p["video"]}</h2>
+<ul class="vids"><li><strong>{p["video_tr"]}:</strong> <a href="/media/tr-promo.mp4">{p["mp4"]}</a> · <a href="{PROMO["tr"]}" rel="noopener">{p["yt"]}</a></li><li><strong>{p["video_en"]}:</strong> <a href="/media/en-promo.mp4">{p["mp4"]}</a> · <a href="{PROMO["en"]}" rel="noopener">{p["yt"]}</a></li></ul>
+<h2>{p["desc_h"]}</h2>
+<p>{p["desc"]}</p>
+<h2>{p["sheet"]}</h2>
+<dl class="sheet">{rows}</dl>
+</article>
+</div>'''
+
 
 # ---------------------------------------------------------------- support
 
@@ -932,95 +1075,87 @@ DELETE_INTRO = {
     "en": '<p class="lede">How to delete your Star Jars Sort Deluxe account and cloud save, and what is deleted and what remains.</p><p>The account and cloud save arrive with version 1.0.0 of the game. Earlier test versions have no account; your progress is only on your phone and goes when you uninstall the game.</p>',
 }
 
-# ---------------------------------------------------------------- the game's own page (night sky)
-
 # Launch day: set "live" to True, run build.py, push. /starjars and the demo's end screen (via /demo/stores.js) then show the store links.
 # The demo itself (demo/starjars.html) is built by ~/.cache/star-jars-tools/ads/playable2/build_web.py and only reads this.
 STORES = {"live": False, "ios": "https://apps.apple.com/app/id6830266206", "android": "https://play.google.com/store/apps/details?id=com.symbolinteractive.starjars"}
 
+# ---------------------------------------------------------------- the game's own box
+
 STARJARS = {
-    "tr": {"title": "Star Jars Sort Deluxe · Yıldız Kavanozu", "desc": "Star Jars Sort Deluxe (Yıldız Kavanozu): yıldızları ayır, takımyıldızlarını yak. Symbol Interactive'in sakin bulmaca oyunu.",
-           "alt": "Yıldız Kavanozu", "studio": "Symbol Interactive", "other": "English",
-           "lede": "Renkli yıldızları kavanozlara ayırdığın sakin bir bulmaca. Her mühürlenen kavanoz gerçek bir takımyıldızın bir yıldızını yakar.",
-           "status": "Yakında App Store ve Google Play'de.", "inside": "Oyunda neler var", "get_ios": "App Store'dan indir", "get_android": "Google Play'den indir",
-           "demo": "Hemen dene", "demo_lede": "İki bölümü tarayıcında oyna: oyunun gerçek kuralları ve görselleri. İndirme yok, hesap yok.", "demo_note": "Süpernova bölümü oyunun ilerleyen kısmından.",
-           "demo_play": "Oyna", "demo_alt": "Demonun ilk bölümü: kavanozlarda renkli yıldızlar", "demo_title": "Star Jars demosu", "demo_close": "Kapat",
-           "features": [("20 takımyıldızı, 150 seviye", "Gökyüzünü yıldız yıldız yakarak ilerlersin; her bölüm gerçek bir takımyıldızı."),
-                        ("Gerçek bilgilerle yıldız kartları", "Yaktığın her yıldızın adı, türü ve bize uzaklığı kartında."),
-                        ("Kendi kuralıyla uzay bölümleri", "Bulutsular, kümeler ve gökadalar; her birinin kendi kuralı var."),
-                        ("13 dilde", "Türkçe ve İngilizce başta olmak üzere on üç dilde oynanır.")],
-           "more": "Yardım ve yasal", "links": [("support", "Destek"), ("privacy", "Gizlilik politikası"), ("terms", "Kullanım koşulları"), ("delete", "Hesap silme")],
-           "by": "Bir Symbol Interactive oyunu.", "jar": "Yıldızlarla dolu cam kavanoz", "skip": "İçeriğe geç"},
+    "tr": {"title": "Star Jars Sort Deluxe · Yıldız Kavanozu", "desc": "Star Jars Sort Deluxe (Yıldız Kavanozu): yıldızları ayır, takımyıldızlarını yak. Symbol Interactive’in sakin bulmaca oyunu.",
+           "alt": "Yıldız Kavanozu", "lede": "Gece göğünün altında sakin bir renk sıralama bulmacası. Yıldızları sırala, kavanozları mühürle, gerçek takımyıldızlarını yak.",
+           "burst": ("Yakında!", "Çıktı!"), "say": "Bir yıldız daha!", "notes": ["Süre yok, acele yok", "İnternetsiz oynanır"], "by": "Bir Symbol Interactive oyunu", "jar": "Yıldızlarla dolu cam kavanozlar",
+           "code": f"{GAME['levels']} SEVİYE · {GAME['languages']} DİL"},
     "en": {"title": "Star Jars Sort Deluxe", "desc": "Star Jars Sort Deluxe: sort the stars, light up the constellations. A calm puzzle game by Symbol Interactive.",
-           "alt": "A calm sorting puzzle", "studio": "Symbol Interactive", "other": "Türkçe",
-           "lede": "A calm puzzle where you sort colourful stars into jars. Every sealed jar lights a star of a real constellation.",
-           "status": "Coming soon to the App Store and Google Play.", "inside": "What's inside", "get_ios": "Get it on the App Store", "get_android": "Get it on Google Play",
-           "demo": "Try it now", "demo_lede": "Play two boards in your browser, with the game's real rules and art. No download, no account.", "demo_note": "The supernova chapter comes from later in the game.",
-           "demo_play": "Play", "demo_alt": "The demo's first board: colourful stars in jars", "demo_title": "Star Jars demo", "demo_close": "Close",
-           "features": [("20 constellations, 150 levels", "Light up the sky star by star; every chapter is a real constellation."),
-                        ("Star cards with real facts", "The name, type and distance of every star you light, on its card."),
-                        ("Space chapters with their own rules", "Nebulae, clusters and galaxies, each with a rule of its own."),
-                        ("In 13 languages", "Play in English, Turkish and eleven more languages.")],
-           "more": "Help and legal", "links": [("support", "Support"), ("privacy", "Privacy policy"), ("terms", "Terms of use"), ("delete", "Delete account")],
-           "by": "A Symbol Interactive game.", "jar": "A glass jar full of stars", "skip": "Skip to content"},
+           "alt": "A calm sorting puzzle", "lede": "A calm colour sort puzzle under the night sky. Sort stars, seal jars and light up real constellations.",
+           "burst": ("Coming<br>soon!", "Out<br>now!"), "say": "One more star!", "notes": ["No timers, no rush", "Plays offline"], "by": "A Symbol Interactive game", "jar": "Glass jars full of stars",
+           "code": f"{GAME['levels']} LEVELS · {GAME['languages']} LANGUAGES"},
 }
 
 
 def starjars_page(lang):
-    t = STARJARS[lang]
-    other = "en" if lang == "tr" else "tr"
-    feats = "".join(f"<li><strong>{h}</strong>{p}</li>" for h, p in t["features"])
-    links = "".join(f'<li><a href="{u(k, lang)}">{label}</a></li>' for k, label in t["links"])
-    status = (f'''<p class="stores"><a href="{STORES["ios"]}">{t["get_ios"]}</a> <a href="{STORES["android"]}">{t["get_android"]}</a></p>'''
-              if STORES["live"] else f'<p class="status">{t["status"]}</p>')
-    demo = f"/demo/starjars.html#web-{lang}"
-    html = f'''{head(lang, t["title"], t["desc"], "starjars", "/starjars.css", favicon="/img/starjars-icon.svg", theme="#1E1452")}
+    t, c = STARJARS[lang], C[lang]
+    other = u("starjars", "en" if lang == "tr" else "tr")
+    notes = "".join(f'<span class="note">{n}</span>' for n in t["notes"])
+    ld = {"@context": "https://schema.org", "@type": "MobileApplication", "name": "Star Jars Sort Deluxe", "operatingSystem": "iOS, Android", "applicationCategory": "GameApplication",
+          "description": t["desc"], "url": SITE + u("starjars", lang), "image": SITE + "/img/sj/icon.jpg", "author": {"@type": "Organization", "name": "Symbol Interactive", "url": SITE + "/"},
+          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}
+    inside = f'<img class="inside" src="/img/sj/jar.png" width="512" height="512" alt="{t["jar"]}">'
+    say = c["say"]
+    c_say = blister(lang, inside, ' style="color:#111"').replace(say, t["say"])
+    html = f'''{head(lang, t["title"], t["desc"], "starjars", favicon="/img/starjars-icon.svg", theme="#2A1A78", og=f"/img/og-starjars-{lang}.jpg", ld=ld)}
 <body>
-<a class="skip" href="#main">{t["skip"]}</a>
-<header class="top"><div class="wrap">
-  <a class="studio-link" href="{u("home", lang)}">{t["studio"]}</a>
-  <nav><a class="lang" href="{u("starjars", other)}" lang="{other}" hreflang="{other}">{t["other"]}</a></nav>
-</div></header>
-<main id="main"><div class="wrap">
-<section class="hero" aria-labelledby="title">
-  <div>
-    <h1 id="title">Star Jars Sort Deluxe</h1>
-    <p class="alt">{t["alt"]}</p>
-    <p class="lede">{t["lede"]}</p>
-    {status}
+<a class="skip" href="#main">{T[lang]["skip"]}</a>
+<main id="main">
+<section class="peg" aria-labelledby="title">
+  <div class="pack">
+    <div class="hook" aria-hidden="true"></div>
+    <div class="tab sjt" aria-hidden="true"><div class="slot"></div></div>
+    <div class="card sjc">
+      {hero_bar(lang, "starjars", other, "yellow")}
+      <div class="front">
+        <div>
+          <span class="label">{t["alt"]}</span>
+          <h1 id="title">Star Jars</h1>
+          <div class="subt">Sort Deluxe</div>
+          <p class="lede">{t["lede"]}</p>
+          <div class="actions"><a class="btn gold" href="#dene">{PLAY_ICON}{c["play_web"]}</a>{store_buttons(lang)}</div>
+          <div class="badges"><span class="age" aria-label="{c["age"]}">13+</span>{notes}<a class="maker-stamp" href="{u("home", lang)}">{zar()}{t["by"]}</a></div>
+        </div>
+        <div class="blisterwrap">
+          <div class="burst" aria-hidden="true"><span>{t["burst"][live_i(lang)]}</span></div>
+          {c_say}
+        </div>
+      </div>
+      <div class="code" aria-hidden="true"><i></i><span>{t["code"]}</span></div>
+    </div>
   </div>
-  {jar(label=t["jar"])}
 </section>
-<section class="demo" aria-labelledby="try">
-  <a class="demo-poster" href="{demo}" data-demo aria-label="{t["demo_play"]}: {t["demo_title"]}"><img src="/img/{lang}-demo.jpg" width="488" height="1055" alt="{t["demo_alt"]}" loading="lazy"><span class="demo-go">{t["demo_play"]}</span></a>
-  <div>
-    <h2 id="try">{t["demo"]}</h2>
-    <p class="lede">{t["demo_lede"]}</p>
-    <p><a class="demo-btn" href="{demo}" data-demo>{t["demo_play"]}</a></p>
-    <p class="demo-note">{t["demo_note"]}</p>
-  </div>
-</section>
-<dialog class="demo-box" id="demo-box" aria-label="{t["demo_title"]}"><div class="demo-bar"><span>{t["demo_title"]}</span><button type="button" id="demo-close">{t["demo_close"]}</button></div><div class="demo-frame" id="demo-frame"></div></dialog>
-<div class="shots">{shots(lang, SHOT_ALT[lang])}</div>
-<section aria-labelledby="inside"><h2 id="inside">{t["inside"]}</h2><ul class="features">{feats}</ul></section>
-<section aria-labelledby="more"><h2 id="more">{t["more"]}</h2><ul class="links">{links}</ul></section>
-</div></main>
-<footer class="bottom"><div class="wrap"><p>{t["by"]} <a href="mailto:{MAIL}">{MAIL}</a></p><p>© 2026 Symbol Interactive</p></div></footer>
-<script src="/starjars.js" defer></script>
+{demo_block(lang, gold=True)}
+{film(lang, dark=True)}
+{parts(lang, night=True)}
+{more_links(lang)}
+</main>
+{demo_dialog(lang)}
+{footer(lang, other)}
+<script src="/site.js" defer></script>
 </body>
 </html>
 '''
     write(PAGES["starjars"][lang], html)
 
 
-NOT_FOUND = '''<div class="prose">
-<h1>Bu sayfa yok</h1>
+NOT_FOUND = f'''<div class="empty">
+{zar("asleep")}
+<div>
+<h1>Bu kutu boş</h1>
 <p class="lede">Adres yanlış yazılmış ya da sayfa taşınmış olabilir.</p>
-<div class="actions"><a class="button" href="/">Ana sayfaya dön</a><a class="button quiet" href="/destek.html">Destek</a></div>
+<div class="actions"><a class="btn" href="/">Ana sayfaya dön</a><a class="btn line" href="/destek.html">Destek</a></div>
 <div lang="en" class="lang-block">
-<h2>This page doesn't exist</h2>
+<h2>This box is empty</h2>
 <p>The address may be mistyped, or the page may have moved.</p>
-<div class="actions"><a class="button" href="/en/">Go to the home page</a><a class="button quiet" href="/en/support.html">Support</a></div>
+<div class="actions"><a class="btn" href="/en/">Go to the home page</a><a class="btn line" href="/en/support.html">Support</a></div>
+</div>
 </div>
 </div>'''
 
@@ -1039,12 +1174,13 @@ TERMS_INTRO = {
 for lang in ("tr", "en"):
     l = L[lang]
     tag = " · Symbol Interactive"
-    page(lang, "home", "Symbol Interactive", {"tr": "Symbol Interactive: Aydın'da kurulmuş bağımsız mobil oyun stüdyosu. Sakin, özenli bulmaca oyunları.",
-                                              "en": "Symbol Interactive: an independent mobile game studio from Aydın, Türkiye. Calm, carefully made puzzle games."}[lang], HOME[lang])
-    page(lang, "games", {"tr": "Oyunlar", "en": "Games"}[lang] + tag, {"tr": "Symbol Interactive'in oyunları: Star Jars Sort Deluxe ve geliştirilenler.",
-                                                                      "en": "Games by Symbol Interactive: Star Jars Sort Deluxe and more in development."}[lang], GAMES[lang])
-    page(lang, "about", {"tr": "Hakkımızda", "en": "About"}[lang] + tag, {"tr": "Symbol Interactive'in vizyonu, nasıl çalıştığı ve kim olduğu.",
-                                                                        "en": "Symbol Interactive's vision, how we work, and who we are."}[lang], ABOUT[lang])
+    home_page(lang)
+    page(lang, "games", {"tr": "Oyunlar", "en": "Games"}[lang] + tag, {"tr": "Symbol Interactive’in oyunları: Star Jars Sort Deluxe ve geliştirilenler.",
+                                                                      "en": "Games by Symbol Interactive: Star Jars Sort Deluxe and more in development."}[lang], games_body(lang), plain=True, script=True)
+    page(lang, "about", {"tr": "Hakkımızda", "en": "About"}[lang] + tag, {"tr": "Symbol Interactive’in vizyonu, nasıl çalıştığı ve kim olduğu.",
+                                                                        "en": "Symbol Interactive's vision, how we work, and who we are."}[lang], about_body(lang), plain=True, script=True)
+    page(lang, "press", PRESS[lang]["h1"] + tag, {"tr": "Symbol Interactive basın kiti: logolar, ekran görüntüleri, tanıtım videosu ve oyun bilgileri.",
+                                                  "en": "Symbol Interactive press kit: logos, screenshots, the trailer and game facts."}[lang], press_body(lang))
     page(lang, "support", {"tr": "Destek", "en": "Support"}[lang] + tag, {"tr": "Symbol Interactive oyunları için destek.", "en": "Support for Symbol Interactive games."}[lang],
          f'<div class="doc single"><article class="prose">{SUPPORT[lang]}</article></div>')
     page(lang, "privacy", l["privacy"] + tag, {"tr": "Symbol Interactive oyunlarının gizlilik politikası (KVKK aydınlatma metni ve GDPR bilgilendirmesi).",
@@ -1119,10 +1255,23 @@ page("tr", None, "Yıldız Kodu · Star Jars", "Star Jars'ta arkadaş olmak içi
 </script>''', own_path="/arkadas.html", other_href="/en/")
 page("tr", None, "Sayfa yok · Symbol Interactive", "Sayfa bulunamadı. This page doesn't exist.", NOT_FOUND, own_path="/404.html", other_href="/en/")
 
+# Files made from Zar and the jar.
+(ROOT / "img" / "logo-ink.svg").write_text(logo_file("#111")[0], encoding="utf-8")
+(ROOT / "img" / "logo-yellow.svg").write_text(logo_file("#F4B90B")[0], encoding="utf-8")
+(ROOT / "img" / "logo-white.svg").write_text(logo_file("#fff")[0], encoding="utf-8")
 (ROOT / "favicon.svg").write_text(
-    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" rx="9" fill="#161C33"/>'
-    + mark(css_vars=False).replace('<svg viewBox="0 0 40 40" aria-hidden="true">', '<g transform="translate(4 4) scale(.8)">').replace("</svg>", "</g>") + "</svg>\n", encoding="utf-8")
-(ROOT / "img" / "starjars-icon.svg").write_text(jar("fav", animate=False, label=None).replace('<svg class="fav"', '<svg xmlns="http://www.w3.org/2000/svg"').replace(' aria-hidden="true"', "") + "\n", encoding="utf-8")
+    f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><rect width="1000" height="1000" rx="220" fill="#F4B90B"/>'
+    f'<g transform="translate(58 26) scale(.9)">{zar_mask("z")}<rect x="120" y="70" width="790" height="900" fill="#111" mask="url(#z)"/></g></svg>\n', encoding="utf-8")
+(ROOT / "img" / "starjars-icon.svg").write_text(jar_icon(), encoding="utf-8")
+
+# Search engines: every page and its twin.
+urls = ""
+for key, paths in PAGES.items():
+    for lang in paths:
+        alts = "".join(f'<xhtml:link rel="alternate" hreflang="{a}" href="{SITE}{u(key, a)}"/>' for a in paths)
+        urls += f"<url><loc>{SITE}{u(key, lang)}</loc>{alts}</url>\n"
+write("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n{urls}</urlset>\n')
+write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
 
 # Guards: no review notes, every page has its twin, and the two hand-kept files are untouched by this script.
 pages = [*ROOT.glob("*.html"), *ROOT.glob("en/*.html")]
