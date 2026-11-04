@@ -8,6 +8,7 @@ The legal texts follow the decisions memo:
 ~/game-studio/docs/superpowers/research/2026-11-04-symbol-interactive-legal-decisions.md
 Never written here: CNAME and app-ads.txt (they are maintained by hand).
 """
+import json
 import math
 import pathlib
 
@@ -913,12 +914,18 @@ DELETE_INTRO = {
 
 # ---------------------------------------------------------------- the game's own page (night sky)
 
+# Launch day: set "live" to True, run build.py, push. /starjars and the demo's end screen (via /demo/stores.js) then show the store links.
+# The demo itself (demo/starjars.html) is built by ~/.cache/star-jars-tools/ads/playable2/build_web.py and only reads this.
+STORES = {"live": False, "ios": "https://apps.apple.com/app/id6830266206", "android": "https://play.google.com/store/apps/details?id=com.symbolinteractive.starjars"}
+
 STARJARS = {
     "tr": {"title": "Star Jars Sort Deluxe · Yıldız Kavanozu", "desc": "Star Jars Sort Deluxe (Yıldız Kavanozu): yıldızları ayır, takımyıldızlarını yak. Symbol Interactive'in sakin bulmaca oyunu.",
            "alt": "Yıldız Kavanozu", "studio": "Symbol Interactive", "other": "English",
            "lede": "Renkli yıldızları kavanozlara ayırdığın sakin bir bulmaca. Her mühürlenen kavanoz gerçek bir takımyıldızın bir yıldızını yakar.",
-           "status": "Yakında App Store ve Google Play'de.", "inside": "Oyunda neler var",
-           "features": [("18 takımyıldızı, 136 seviye", "Gökyüzünü yıldız yıldız yakarak ilerlersin; her bölüm gerçek bir takımyıldızı."),
+           "status": "Yakında App Store ve Google Play'de.", "inside": "Oyunda neler var", "get_ios": "App Store'dan indir", "get_android": "Google Play'den indir",
+           "demo": "Hemen dene", "demo_lede": "İki bölümü tarayıcında oyna: oyunun gerçek kuralları ve görselleri. İndirme yok, hesap yok.", "demo_note": "Süpernova bölümü oyunun ilerleyen kısmından.",
+           "demo_play": "Oyna", "demo_alt": "Demonun ilk bölümü: kavanozlarda renkli yıldızlar", "demo_title": "Star Jars demosu", "demo_close": "Kapat",
+           "features": [("20 takımyıldızı, 150 seviye", "Gökyüzünü yıldız yıldız yakarak ilerlersin; her bölüm gerçek bir takımyıldızı."),
                         ("Gerçek bilgilerle yıldız kartları", "Yaktığın her yıldızın adı, türü ve bize uzaklığı kartında."),
                         ("Kendi kuralıyla uzay bölümleri", "Bulutsular, kümeler ve gökadalar; her birinin kendi kuralı var."),
                         ("13 dilde", "Türkçe ve İngilizce başta olmak üzere on üç dilde oynanır.")],
@@ -927,8 +934,10 @@ STARJARS = {
     "en": {"title": "Star Jars Sort Deluxe", "desc": "Star Jars Sort Deluxe: sort the stars, light up the constellations. A calm puzzle game by Symbol Interactive.",
            "alt": "A calm sorting puzzle", "studio": "Symbol Interactive", "other": "Türkçe",
            "lede": "A calm puzzle where you sort colourful stars into jars. Every sealed jar lights a star of a real constellation.",
-           "status": "Coming soon to the App Store and Google Play.", "inside": "What's inside",
-           "features": [("18 constellations, 136 levels", "Light up the sky star by star; every chapter is a real constellation."),
+           "status": "Coming soon to the App Store and Google Play.", "inside": "What's inside", "get_ios": "Get it on the App Store", "get_android": "Get it on Google Play",
+           "demo": "Try it now", "demo_lede": "Play two boards in your browser, with the game's real rules and art. No download, no account.", "demo_note": "The supernova chapter comes from later in the game.",
+           "demo_play": "Play", "demo_alt": "The demo's first board: colourful stars in jars", "demo_title": "Star Jars demo", "demo_close": "Close",
+           "features": [("20 constellations, 150 levels", "Light up the sky star by star; every chapter is a real constellation."),
                         ("Star cards with real facts", "The name, type and distance of every star you light, on its card."),
                         ("Space chapters with their own rules", "Nebulae, clusters and galaxies, each with a rule of its own."),
                         ("In 13 languages", "Play in English, Turkish and eleven more languages.")],
@@ -942,6 +951,9 @@ def starjars_page(lang):
     other = "en" if lang == "tr" else "tr"
     feats = "".join(f"<li><strong>{h}</strong>{p}</li>" for h, p in t["features"])
     links = "".join(f'<li><a href="{u(k, lang)}">{label}</a></li>' for k, label in t["links"])
+    status = (f'''<p class="stores"><a href="{STORES["ios"]}">{t["get_ios"]}</a> <a href="{STORES["android"]}">{t["get_android"]}</a></p>'''
+              if STORES["live"] else f'<p class="status">{t["status"]}</p>')
+    demo = f"/demo/starjars.html#web-{lang}"
     html = f'''{head(lang, t["title"], t["desc"], "starjars", "/starjars.css", favicon="/img/starjars-icon.svg", theme="#1E1452")}
 <body>
 <a class="skip" href="#main">{t["skip"]}</a>
@@ -955,15 +967,26 @@ def starjars_page(lang):
     <h1 id="title">Star Jars Sort Deluxe</h1>
     <p class="alt">{t["alt"]}</p>
     <p class="lede">{t["lede"]}</p>
-    <p class="status">{t["status"]}</p>
+    {status}
   </div>
   {jar(label=t["jar"])}
 </section>
+<section class="demo" aria-labelledby="try">
+  <a class="demo-poster" href="{demo}" data-demo aria-label="{t["demo_play"]}: {t["demo_title"]}"><img src="/img/{lang}-demo.jpg" width="488" height="1055" alt="{t["demo_alt"]}" loading="lazy"><span class="demo-go">{t["demo_play"]}</span></a>
+  <div>
+    <h2 id="try">{t["demo"]}</h2>
+    <p class="lede">{t["demo_lede"]}</p>
+    <p><a class="demo-btn" href="{demo}" data-demo>{t["demo_play"]}</a></p>
+    <p class="demo-note">{t["demo_note"]}</p>
+  </div>
+</section>
+<dialog class="demo-box" id="demo-box" aria-label="{t["demo_title"]}"><div class="demo-bar"><span>{t["demo_title"]}</span><button type="button" id="demo-close">{t["demo_close"]}</button></div><div class="demo-frame" id="demo-frame"></div></dialog>
 <div class="shots">{shots(lang, SHOT_ALT[lang])}</div>
 <section aria-labelledby="inside"><h2 id="inside">{t["inside"]}</h2><ul class="features">{feats}</ul></section>
 <section aria-labelledby="more"><h2 id="more">{t["more"]}</h2><ul class="links">{links}</ul></section>
 </div></main>
 <footer class="bottom"><div class="wrap"><p>{t["by"]} <a href="mailto:{MAIL}">{MAIL}</a></p><p>© 2026 Symbol Interactive</p></div></footer>
+<script src="/starjars.js" defer></script>
 </body>
 </html>
 '''
@@ -1014,6 +1037,7 @@ for lang in ("tr", "en"):
                                              "en": "Delete your Star Jars Sort Deluxe account and cloud save: steps, what is deleted and kept, and how long it takes."}[lang],
          doc(lang, {"tr": "Hesap silme", "en": "Deleting your account"}[lang], [l["game"], f'{l["updated"]}: {UPDATED[lang]}'], DELETE_INTRO[lang], DELETE[lang]))
     starjars_page(lang)
+write("demo/stores.js", "window.SJ_STORES=" + json.dumps(STORES) + ";\n")
 
 # The App Store's support URL (the user, 2026-11-03): /support, English first and Turkish below, on one page.
 page("en", "support", "Support · Symbol Interactive", "Support for Symbol Interactive games, in English and Turkish.",
