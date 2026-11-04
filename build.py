@@ -564,12 +564,17 @@ PRIVACY = {
 <p><strong>İlk adım sayacı.</strong> Oyunun ilk dakikalarını nasıl geçirdiğini anlamak için, her kurulumdan birkaç adımı (oyunun açılması, tanıtımın bitmesi, ilk seviyelerin kazanılması gibi) birer kez sayarız. Giden bilgi yalnızca adımın adı, işletim sistemi ve oyun sürümüdür; kimlik, reklam kimliği ya da hesap bilgisi gitmez. Saklanan tek şey her gün ve her adım için toplam sayıdır, kim olduğunu gösteren bir kayıt tutulmaz. İsteğin ulaşması için IP adresin Google'ın sunucusuna ulaşır ve sunucu günlüklerinde en çok 30 gün kalabilir; bunu ayrıca kapatmak için çalışıyoruz. Hukuki sebep meşru menfaattir (KVKK m. 5/2-f). AEA, Birleşik Krallık ve İsviçre'de sayaç yalnızca analitik iznini verdikten sonra çalışır; 13 yaşından küçük olduğunu bildirdiysen çalışmaz.</p>
 <p><strong>Bildirimler.</strong> Telefonun bildirim iznini verdiysen ve Ayarlar → Bildirimler açıksa, oyundan haber ve etkinlik bildirimleri göndermek için Firebase Cloud Messaging kullanırız. Bunun için Firebase, oyunun bu kurulumuna özgü bir bildirim belirteci oluşturur. Bu belirteci bir oyuncu listesinde tutmayız: bildirimler herkese ve dile göre konulara gider. Bildirimleri Ayarlar'dan kapatınca konulardan çıkarsın ve belirteç silinir. 13 yaşından küçük olduğunu bildiğimiz oyunculara bildirim göndermeyiz.</p>
 <p><strong>Saat kontrolü.</strong> Günlük ödüllerin saatini doğrulamak için oyun, ara sıra bu sitenin sunucusuna, ulaşamazsa Google'ın Firebase sunucusuna kısa bir istek gönderir ve yalnızca yanıttaki saati okur. Bu istekte oyuncu kimliği ya da hesap bilgisi yoktur. İstek sırasında sunucu, her internet bağlantısında olduğu gibi IP adresini görür; bunu oyuncuyla eşleştirmeyiz.</p>
+<h3>Arkadaşlar ve sıralama</h3>
+<p>Arkadaşlar'ı ya da günün bulmacasının sıralamasını açmadıkça bu bölümdeki hiçbir bilgi gönderilmez. İlk açtığında hesabına bağlı bir arkadaş profili oluştururuz. Profilde Yıldız Kodun, hazır listeden seçtiğin takma adın, avatarın, seviyen, yıldız sayın, seviye başına en iyi hamle sayıların, en son oynadığın gün, arkadaş listen, gönderdiğin ve aldığın canlar, engellediğin oyuncular ve günün bulmacasındaki hamle ve deneme sayın bulunur. Kayıt, bulut kaydınla aynı yerde (europe-west1) saklanır.</p>
+<p>Arkadaşların takma adını, avatarını, seviyeni, yıldızlarını, seviye başına en iyi hamlelerini, en son oynadığın günü ve günün bulmacası sonucunu görür. Bir arkadaş eklemek için Yıldız Kodunu bilmek gerekir ve eklenen oyuncu isteği kabul etmedikçe arkadaş olunmaz. Görünür ol'u kapatırsan arkadaşların yalnızca takma adını ve avatarını görür, sen de dünya sıralamasında görünmezsin. Dünya sıralamasında oyuncular birbirinin takma adını, avatarını, hamle ve deneme sayısını görür. Serbest yazılan ad, sohbet ya da mesaj yoktur. İstediğin zaman bir arkadaşını çıkarabilir ya da engelleyebilir, Ayarlar'dan Arkadaşlar'ı kapatabilirsin.</p>
+<p>13 yaşından küçük olduğunu bildiğimiz ya da yaşını söylemek istemeyen oyuncular için bu özellikler kapalıdır ve bu bilgiler hiç oluşmaz.</p>
 <h3>İzin tercihlerin</h3>
 <p>Verdiğin ya da vermediğin izinler telefonunda saklanır; böylece her açılışta yeniden sorulmaz ve reklam ortaklarına iletilebilir.</p>
 <h3>Destek yazışmaları</h3>
 <p>Bize e-posta yazarsan, adresini ve mesajını yalnızca cevap vermek ve isteğini yerine getirmek için kullanırız.</p>'''),
         ("hukuki-sebepler", "Hangi hukuki sebeple", table("Her amacın hukuki sebebi", ["Amaç", "KVKK", "GDPR (AEA, Birleşik Krallık, İsviçre)"], [
             ("Hesap, bulut kaydı, satın almalar ve geri yükleme", "Sözleşmenin kurulması ve ifası (m. 5/2-c)", "Sözleşme (m. 6/1-b)"),
+            ("Arkadaşlar ve günün bulmacasının sıralaması", "Sözleşmenin ifası (m. 5/2-c)", "Sözleşme (m. 6/1-b)"),
             ("Destek yazışmaları ve hak başvuruları", "Sözleşmenin ifası; hukuki yükümlülük (m. 5/2-c, ç)", "Sözleşme; hukuki yükümlülük (m. 6/1-b, c)"),
             ("Analitik", "Açık rıza (m. 5/1)", "Rıza (m. 6/1-a)"),
             ("Kişiselleştirilmiş reklam", "Açık rıza (m. 5/1)", "Rıza (m. 6/1-a), Google'ın rıza mesajıyla"),
@@ -598,6 +603,7 @@ PRIVACY = {
 <li><strong>Unity</strong> (Unity Technologies ve bağlı şirketleri; ironSource bir Unity şirketidir): LevelPlay, Unity Ads ve ironSource Ads. Unity, reklam verilerinin ayrı bir veri sorumlusudur. <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy">Unity'nin oyuncu ve uygulama kullanıcısı gizlilik politikası</a>.</li>
 <li><strong>Apple</strong> (Apple Inc. ve bağlı şirketleri): App Store, satın almalar ve Apple ile Giriş; Apple ayrı bir veri sorumlusudur. <a href="https://www.apple.com/legal/privacy/">Apple Gizlilik Politikası</a>.</li>
 </ul>
+<p><strong>Diğer oyuncular.</strong> Arkadaşlar'ı ya da sıralamayı kullanırsan, yukarıdaki "Arkadaşlar ve sıralama" bölümünde yazılı bilgilerini arkadaşların ve sıralamadaki oyuncular görür. Bu bilgilerle gerçek adın, e-postan ya da oyuncu kimliğin onlara gitmez.</p>
 <p>Bir yasa ya da yetkili bir makamın kararı gerektirirse bilgileri yetkili kurum ve kuruluşlarla da paylaşırız.</p>'''),
         ("yurt-disi", "Yurt dışına aktarım", '''
 <p>Bilgilerin Türkiye dışında işlenir: bulut kaydın Avrupa Birliği'nde (Belçika), hesap kaydın (Firebase Authentication) Amerika Birleşik Devletleri'nde; analitik, çökme raporları, uzaktan ayarlar ve reklam verileri Google'ın ve Unity'nin başta ABD olmak üzere çeşitli ülkelerdeki sunucularında. Bu aktarımlar yukarıda yazılan amaçlarla ve yalnızca yukarıdaki şirketlere yapılır. Türkiye'den yurt dışına aktarım KVKK'nın 9. maddesine tabidir.</p>
@@ -605,6 +611,8 @@ PRIVACY = {
         ("saklama", "Ne kadar saklıyoruz", '''
 <ul>
 <li><strong>Hesap ve bulut kaydı:</strong> sen silene kadar. Oyun bir hesapla 24 ay boyunca hiç açılmazsa o hesabı ve bulut kaydını biz sileriz.</li>
+<li><strong>Arkadaş profili:</strong> hesabınla birlikte silinir. Gelen canlar 7 gün sonra silinir.</li>
+<li><strong>Günün bulmacası sıralaması:</strong> 7 gün.</li>
 <li><strong>Hesapların IP kayıtları:</strong> birkaç hafta.</li>
 <li><strong>Analitik:</strong> olay verileri 14 ay sonra silinir. Bunlardan üretilen, kimseyi tanıtmayan toplu sayılar (örneğin günlük oyuncu sayısı) daha uzun kalabilir.</li>
 <li><strong>Çökme raporları:</strong> 90 gün.</li>
@@ -674,12 +682,17 @@ PRIVACY = {
 <p><strong>First-steps counter.</strong> To understand how the game's first minutes go, we count a few steps once per installation (the game opening, the tour ending, the first levels being won). Only the step's name, the operating system and the game version are sent, with no ID, advertising ID or account details. All we keep is a total per day and step, with no record of who anyone is. For the request to arrive, your IP address reaches Google's server and may stay in its server logs for up to 30 days; we are working on switching this off as well. The legal basis is legitimate interest. In the EEA, the UK and Switzerland the counter only runs after you allow analytics, and it does not run if you told us you are under 13.</p>
 <p><strong>Notifications.</strong> If you allowed notifications on your phone and Settings → Notifications is on, we use Firebase Cloud Messaging to send news and events from the game. For this, Firebase creates a notification token unique to this installation of the game. We do not keep this token in a list of players: notifications go to topics, for everyone and by language. Turning notifications off in Settings takes you off the topics and deletes the token. We do not send notifications to players we know are under 13.</p>
 <p><strong>Clock check.</strong> To check the time for daily rewards, the game now and then sends a short request to this site's server or, if it can't reach it, to Google's Firebase server, and reads only the time in the answer. The request carries no player ID or account details. As with any internet connection, the server sees the IP address during the request; we don't match it to a player.</p>
+<h3>Friends and the ranking</h3>
+<p>Nothing in this section is sent unless you open Friends or the daily puzzle's ranking. The first time you do, we create a friends profile tied to your account. It holds your star code, the nickname you picked from a preset list, your avatar, your level, your star count, your best move count per level, the last day you played, your friends list, the lives you sent and received, the players you blocked, and your moves and tries in the daily puzzle. It is stored in the same place as your cloud save (europe-west1).</p>
+<p>Your friends see your nickname, avatar, level, stars, best moves per level, the last day you played and your daily puzzle result. Adding a friend takes your star code, and nobody becomes a friend until the other player accepts. If you turn off Visible to others, friends see only your nickname and avatar, and you don't appear on the world ranking. On the world ranking, players see each other's nickname, avatar, moves and tries. There are no typed names, no chat and no messages. You can remove or block a friend at any time, and turn Friends off in Settings.</p>
+<p>These features are off for players we know are under 13 and for players who prefer not to give their age, and none of this information is created for them.</p>
 <h3>Your consent choices</h3>
 <p>The permissions you give or refuse are stored on your phone, so that you aren't asked at every launch and so that they can be passed on to ad partners.</p>
 <h3>Support emails</h3>
 <p>If you write to us, we use your address and message only to answer you and carry out your request.</p>'''),
         ("legal-bases", "Legal bases", table("The legal basis for each purpose", ["Purpose", "KVKK", "GDPR (EEA, UK, Switzerland)"], [
             ("Account, cloud save, purchases and restoring them", "Entering into and performing a contract (Art. 5(2)(c))", "Contract (Art. 6(1)(b))"),
+            ("Friends and the daily puzzle's ranking", "Performing a contract (Art. 5(2)(c))", "Contract (Art. 6(1)(b))"),
             ("Support emails and rights requests", "Performing a contract; legal obligation (Art. 5(2)(c), (ç))", "Contract; legal obligation (Art. 6(1)(b), (c))"),
             ("Analytics", "Explicit consent (Art. 5(1))", "Consent (Art. 6(1)(a))"),
             ("Personalised ads", "Explicit consent (Art. 5(1))", "Consent (Art. 6(1)(a)), through Google's consent message"),
@@ -708,6 +721,7 @@ PRIVACY = {
 <li><strong>Unity</strong> (Unity Technologies and its affiliates; ironSource is a Unity company): LevelPlay, Unity Ads and ironSource Ads. Unity is a separate controller of ad data. <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy">Unity Game Player and App User Privacy Policy</a>.</li>
 <li><strong>Apple</strong> (Apple Inc. and its affiliates): the App Store, purchases and Sign in with Apple; Apple is a separate controller. <a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a>.</li>
 </ul>
+<p><strong>Other players.</strong> If you use Friends or the ranking, your friends and the players on the ranking see the information listed under "Friends and the ranking" above. Your real name, email and player ID do not go to them.</p>
 <p>If a law or a decision of a competent authority requires it, we also share information with the competent authorities.</p>'''),
         ("transfers", "Transfers abroad", '''
 <p>Your information is processed outside Türkiye: your cloud save in the European Union (Belgium), your account record (Firebase Authentication) in the United States, and analytics, crash reports, remote settings and ad data on Google's and Unity's servers in several countries, mainly the United States. These transfers are made for the purposes above and only to the companies above. Transfers from Türkiye are subject to Article 9 of the KVKK.</p>
@@ -715,6 +729,8 @@ PRIVACY = {
         ("retention", "How long we keep it", '''
 <ul>
 <li><strong>Account and cloud save:</strong> until you delete them. If the game isn't opened with an account for 24 months, we delete that account and its cloud save.</li>
+<li><strong>Friends profile:</strong> deleted with your account. Lives waiting for you are deleted after 7 days.</li>
+<li><strong>Daily puzzle ranking:</strong> 7 days.</li>
 <li><strong>Account IP logs:</strong> a few weeks.</li>
 <li><strong>Analytics:</strong> event data is deleted after 14 months. Aggregate figures made from it that identify no one (daily player counts, for example) may be kept longer.</li>
 <li><strong>Crash reports:</strong> 90 days.</li>
@@ -858,6 +874,7 @@ DELETE = {
 <ul>
 <li><strong>Bulut kaydın:</strong> Cloud Firestore'daki kayıt belgen; içindeki ilerlemen, ilerleme özetin, cihaz türün, oyunun sürümü ve kayıt zamanları.</li>
 <li><strong>Firebase hesabın:</strong> anonim hesap kimliğin ve, bağladıysan, Apple ya da Google hesabınla olan bağlantısı.</li>
+<li><strong>Arkadaş profilin:</strong> Yıldız Kodun, takma adın, arkadaş listen, gelen canların ve engellediğin oyuncular; arkadaşlarının listesinden de çıkarsın. Bugünün sıralamasındaki satırın da silinir; eski günlerin satırları en geç 7 gün içinde kalkar.</li>
 <li><strong>Apple ile Giriş yetkisi:</strong> bağladıysan ve iPhone'dan siliyorsan, Apple'ın oyuna verdiği yetki geri çekilir.</li>
 </ul>
 <p>Silinen bulut kaydı geri getirilemez. Reklamsız gibi kalıcı satın almalar mağaza hesabına bağlıdır; aynı App Store ya da Google Play hesabıyla geri yükleyebilirsin.</p>'''),
@@ -889,6 +906,7 @@ DELETE = {
 <ul>
 <li><strong>Your cloud save:</strong> your save document in Cloud Firestore, with your progress, progress summary, device type, game version and save times.</li>
 <li><strong>Your Firebase account:</strong> your anonymous account ID and, if you linked one, its link to your Apple or Google account.</li>
+<li><strong>Your friends profile:</strong> your star code, nickname, friends list, waiting lives and blocked players; you also leave your friends' lists. Your line on today's ranking goes too, and lines from earlier days go within 7 days.</li>
 <li><strong>Sign in with Apple permission:</strong> if you linked it and delete on an iPhone, the permission Apple gave the game is revoked.</li>
 </ul>
 <p>A deleted cloud save cannot be brought back. Permanent purchases such as Remove Ads belong to your store account; you can restore them with the same App Store or Google Play account.</p>'''),
@@ -1044,6 +1062,59 @@ page("en", "support", "Support · Symbol Interactive", "Support for Symbol Inter
      f'<div class="doc single"><article class="prose">{SUPPORT["en"]}<div class="lang-block" lang="tr">'
      + SUPPORT["tr"].replace("<h1>Destek</h1>", '<h2 style="font-size:clamp(1.8rem,4vw,2.4rem)">Destek (Türkçe)</h2>', 1) + "</div></article></div>",
      own_path="/support.html", other_href=u("support", "tr"))
+# Plan 6h: where a shared star code lands. One page for every language: English unless the browser says Turkish.
+FRIEND_LINK = {
+    "tr": ("Yıldız Kodu", "Bir arkadaşın seni Star Jars'ta arkadaş olmaya çağırıyor.", "Kopyala", "Kopyalandı", "Oyunda Arkadaşlar → Arkadaş ekle'ye dokun, kodu yapıştır.", "Bu bağlantıda geçerli bir kod yok. Arkadaşından kodunu yeniden iste.", "Yakında App Store ve Google Play'de."),
+    "en": ("Star code", "A friend is inviting you to be friends in Star Jars.", "Copy", "Copied", "In the game, tap Friends → Add friend and paste the code.", "This link has no valid code. Ask your friend to send it again.", "Coming soon to the App Store and Google Play."),
+}
+page("tr", None, "Yıldız Kodu · Star Jars", "Star Jars'ta arkadaş olmak için Yıldız Kodu. A star code to be friends in Star Jars.", f'''<div class="doc single"><article class="prose" id="friend" style="text-align:center">
+<h1 id="f-title">{FRIEND_LINK["tr"][0]}</h1>
+<p id="f-line">{FRIEND_LINK["tr"][1]}</p>
+<p id="f-code" style="font-size:clamp(2rem,9vw,3.2rem);font-weight:700;letter-spacing:.04em;margin:.6em 0;overflow-wrap:anywhere"></p>
+<p><button id="f-copy" type="button" style="font:inherit;padding:.7em 1.6em;border-radius:999px;border:0;background:var(--ink);color:var(--paper);cursor:pointer">{FRIEND_LINK["tr"][2]}</button></p>
+<p id="f-how">{FRIEND_LINK["tr"][4]}</p>
+<p id="f-stores">{FRIEND_LINK["tr"][6]}</p>
+</article></div>
+<script src="/demo/stores.js"></script>
+<script>
+(function () {{
+  var words = {json.dumps(FRIEND_LINK, ensure_ascii=False)};
+  var lang = (navigator.language || "en").toLowerCase().indexOf("tr") === 0 ? "tr" : "en";
+  var t = words[lang];
+  document.documentElement.lang = lang;
+  var by = function (id) {{ return document.getElementById(id); }};
+  by("f-title").textContent = t[0];
+  by("f-line").textContent = t[1];
+  by("f-how").textContent = t[4];
+  var code = (new URLSearchParams(location.search).get("k") || "").toUpperCase();
+  var copy = by("f-copy");
+  if (/^[A-Z]{{2,8}}-[0-9]{{4}}$/.test(code)) {{
+    by("f-code").textContent = code;
+    copy.textContent = t[2];
+    copy.addEventListener("click", function () {{
+      navigator.clipboard.writeText(code).then(function () {{ copy.textContent = t[3]; }});
+    }});
+  }} else {{
+    by("f-line").textContent = t[5];
+    by("f-how").hidden = true;
+    copy.hidden = true;
+  }}
+  var stores = by("f-stores");
+  var s = window.SJ_STORES || {{}};
+  if (s.live) {{
+    stores.textContent = "";
+    [["App Store", s.ios], ["Google Play", s.android]].forEach(function (store, i) {{
+      var a = document.createElement("a");
+      a.href = store[1];
+      a.textContent = store[0];
+      if (i) stores.appendChild(document.createTextNode(" · "));
+      stores.appendChild(a);
+    }});
+  }} else {{
+    stores.textContent = t[6];
+  }}
+}})();
+</script>''', own_path="/arkadas.html", other_href="/en/")
 page("tr", None, "Sayfa yok · Symbol Interactive", "Sayfa bulunamadı. This page doesn't exist.", NOT_FOUND, own_path="/404.html", other_href="/en/")
 
 (ROOT / "favicon.svg").write_text(

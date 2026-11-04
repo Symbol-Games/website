@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yıldız Kodu · Star Jars</title>
+<meta name="description" content="Star Jars'ta arkadaş olmak için Yıldız Kodu. A star code to be friends in Star Jars.">
+<meta name="theme-color" content="#F4F6FA" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1328" media="(prefers-color-scheme: dark)">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/Gabarito-latin.woff2" as="font" crossorigin>
+<link rel="stylesheet" href="/site.css">
+</head>
+<body>
+<a class="skip" href="#main">İçeriğe geç</a>
+<header class="top"><div class="wrap">
+  <a class="mark" href="/" aria-label="Symbol Interactive ana sayfa"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="17" height="17" rx="5" style="fill:var(--cobalt)"/><rect x="21" y="2" width="17" height="17" rx="5" fill="#FFD23F"/><rect x="2" y="21" width="17" height="17" rx="5" fill="#8FA33A"/><circle cx="29.5" cy="29.5" r="5.6" fill="none" stroke-width="3.6" style="stroke:var(--cobalt)"/></svg><span>Symbol Interactive</span></a>
+  <nav aria-label="Ana menü"><ul><li><a href="/oyunlar.html">Oyunlar</a></li><li><a href="/hakkimizda.html">Hakkımızda</a></li><li><a href="/destek.html">Destek</a></li><li class="lang"><a href="/en/" lang="en" hreflang="en">English</a></li></ul></nav>
+</div></header>
+<main id="main"><div class="wrap">
+<div class="doc single"><article class="prose" id="friend" style="text-align:center">
+<h1 id="f-title">Yıldız Kodu</h1>
+<p id="f-line">Bir arkadaşın seni Star Jars'ta arkadaş olmaya çağırıyor.</p>
+<p id="f-code" style="font-size:clamp(2rem,9vw,3.2rem);font-weight:700;letter-spacing:.04em;margin:.6em 0;overflow-wrap:anywhere"></p>
+<p><button id="f-copy" type="button" style="font:inherit;padding:.7em 1.6em;border-radius:999px;border:0;background:var(--ink);color:var(--paper);cursor:pointer">Kopyala</button></p>
+<p id="f-how">Oyunda Arkadaşlar → Arkadaş ekle'ye dokun, kodu yapıştır.</p>
+<p id="f-stores">Yakında App Store ve Google Play'de.</p>
+</article></div>
+<script src="/demo/stores.js"></script>
+<script>
+(function () {
+  var words = {"tr": ["Yıldız Kodu", "Bir arkadaşın seni Star Jars'ta arkadaş olmaya çağırıyor.", "Kopyala", "Kopyalandı", "Oyunda Arkadaşlar → Arkadaş ekle'ye dokun, kodu yapıştır.", "Bu bağlantıda geçerli bir kod yok. Arkadaşından kodunu yeniden iste.", "Yakında App Store ve Google Play'de."], "en": ["Star code", "A friend is inviting you to be friends in Star Jars.", "Copy", "Copied", "In the game, tap Friends → Add friend and paste the code.", "This link has no valid code. Ask your friend to send it again.", "Coming soon to the App Store and Google Play."]};
+  var lang = (navigator.language || "en").toLowerCase().indexOf("tr") === 0 ? "tr" : "en";
+  var t = words[lang];
+  document.documentElement.lang = lang;
+  var by = function (id) { return document.getElementById(id); };
+  by("f-title").textContent = t[0];
+  by("f-line").textContent = t[1];
+  by("f-how").textContent = t[4];
+  var code = (new URLSearchParams(location.search).get("k") || "").toUpperCase();
+  var copy = by("f-copy");
+  if (/^[A-Z]{2,8}-[0-9]{4}$/.test(code)) {
+    by("f-code").textContent = code;
+    copy.textContent = t[2];
+    copy.addEventListener("click", function () {
+      navigator.clipboard.writeText(code).then(function () { copy.textContent = t[3]; });
+    });
+  } else {
+    by("f-line").textContent = t[5];
+    by("f-how").hidden = true;
+    copy.hidden = true;
+  }
+  var stores = by("f-stores");
+  var s = window.SJ_STORES || {};
+  if (s.live) {
+    stores.textContent = "";
+    [["App Store", s.ios], ["Google Play", s.android]].forEach(function (store, i) {
+      var a = document.createElement("a");
+      a.href = store[1];
+      a.textContent = store[0];
+      if (i) stores.appendChild(document.createTextNode(" · "));
+      stores.appendChild(a);
+    });
+  } else {
+    stores.textContent = t[6];
+  }
+})();
+</script>
+</div></main>
+<footer class="bottom"><div class="wrap">
+  <div class="about">
+    <a class="mark" href="/" aria-label="Symbol Interactive ana sayfa"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="17" height="17" rx="5" style="fill:var(--cobalt)"/><rect x="21" y="2" width="17" height="17" rx="5" fill="#FFD23F"/><rect x="2" y="21" width="17" height="17" rx="5" fill="#8FA33A"/><circle cx="29.5" cy="29.5" r="5.6" fill="none" stroke-width="3.6" style="stroke:var(--cobalt)"/></svg><span>Symbol Interactive</span></a>
+    <p>Aydın'da kurulmuş bağımsız bir mobil oyun stüdyosu.</p>
+    <p>Bu site çerez kullanmaz ve ziyaretçileri izlemez.</p>
+    <p>© 2026 Symbol Interactive</p>
+  </div>
+  <div><h2>Stüdyo</h2><ul>
+    <li><a href="/">Ana sayfa</a></li><li><a href="/oyunlar.html">Oyunlar</a></li>
+    <li><a href="/starjars.html">Star Jars</a></li><li><a href="/hakkimizda.html">Hakkımızda</a></li></ul></div>
+  <div><h2>Yardım</h2><ul>
+    <li><a href="/destek.html">Destek</a></li><li><a href="/hesap-silme.html">Hesap silme</a></li>
+    <li><a href="mailto:symbolinteractive@gmail.com">symbolinteractive@gmail.com</a></li></ul></div>
+  <div><h2>Yasal</h2><ul>
+    <li><a href="/gizlilik.html">Gizlilik politikası</a></li><li><a href="/kullanim-kosullari.html">Kullanım koşulları</a></li>
+    <li><a href="/en/" lang="en" hreflang="en">English</a></li></ul></div>
+</div></footer>
+</body>
+</html>
