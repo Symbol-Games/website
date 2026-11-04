@@ -43,24 +43,34 @@
   var pack = document.getElementById("blister");
   if (pack) pack.addEventListener("click", function () {
     var open = pack.classList.toggle("open");
-    pack.setAttribute("aria-pressed", String(open));
     pack.setAttribute("aria-label", open ? pack.dataset.shut : pack.dataset.open);
   });
 
-  // Short clips play only while they are on screen, and never under reduced motion. The trailer has its own controls.
-  var clips = document.querySelectorAll("video.auto");
+  // Short clips play only while they are on screen, and never under reduced motion. One button pauses them all. The trailer has its own controls.
+  var clips = Array.prototype.slice.call(document.querySelectorAll("video.auto")), toggle = document.getElementById("clips-toggle");
   if (clips.length && !still && "IntersectionObserver" in window) {
+    var held = false, inView = new Set();
+    var run = function (v) { var p = v.play(); if (p) p.catch(function () {}); };
     var seen = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        if (e.isIntersecting) { var p = e.target.play(); if (p) p.catch(function () {}); } else e.target.pause();
+        if (e.isIntersecting) { inView.add(e.target); if (!held) run(e.target); } else { inView.delete(e.target); e.target.pause(); }
       });
     }, { threshold: .25 });
-    Array.prototype.forEach.call(clips, function (v) { v.muted = true; seen.observe(v); });
+    clips.forEach(function (v) { v.muted = true; seen.observe(v); });
+    if (toggle) {
+      toggle.hidden = false;
+      toggle.addEventListener("click", function () {
+        held = !held;
+        toggle.textContent = held ? toggle.dataset.play : toggle.dataset.pause;
+        if (held) clips.forEach(function (v) { v.pause(); }); else inView.forEach(run);
+      });
+    }
   }
 
-  // The demo: in the phone on the page on a wide screen, full screen in a dialog on a small one. No request until asked; without this script the button is a plain link.
-  var device = document.getElementById("device"), box = document.getElementById("demo-box"), inBox = document.getElementById("demo-frame"), close = document.getElementById("demo-close");
-  var resting = null;
+  // The demo: in the phone on the page when the phone is big enough to play in and fits the window, otherwise full screen in a dialog.
+  // No request until asked; without this script the button is a plain link. The demo has music, so it ends with its button or when scrolled away.
+  var device = document.getElementById("device"), box = document.getElementById("demo-box"), inBox = document.getElementById("demo-frame"), close = document.getElementById("demo-close"), stop = document.getElementById("demo-stop");
+  var resting = null, away = null;
   var makeFrame = function (a) {
     var f = document.createElement("iframe");
     f.src = a.getAttribute("href"); f.title = a.dataset.title || ""; f.allow = "autoplay";
@@ -71,14 +81,25 @@
     if (box && box.open) box.close();
     document.documentElement.style.overflow = "";
     if (resting) { device.replaceChildren.apply(device, resting); resting = null; }
+    if (stop) stop.hidden = true;
+    if (away) { away.disconnect(); away = null; }
   };
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest("[data-demo]");
     if (!a) return;
-    if (innerWidth > 760 && device) {
+    if (device && device.clientWidth >= 280 && device.offsetHeight <= innerHeight - 16) {
       e.preventDefault();
       resting = Array.prototype.slice.call(device.childNodes);
       device.replaceChildren(makeFrame(a));
+      if (stop) stop.hidden = false;
+      device.scrollIntoView({ block: "nearest" });
+      if ("IntersectionObserver" in window) {
+        var seenOnce = false;  // the first report can arrive before the scroll lands
+        away = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) seenOnce = true; else if (seenOnce) endDemo();
+        });
+        away.observe(device);
+      }
     } else if (box && box.showModal) {
       e.preventDefault();
       inBox.textContent = "";
@@ -88,6 +109,7 @@
     }
   });
   if (close) close.addEventListener("click", endDemo);
+  if (stop) stop.addEventListener("click", endDemo);
   if (box) box.addEventListener("close", endDemo);
   addEventListener("message", function (e) { if (e.origin === location.origin && e.data === "sj-demo-close") endDemo(); });
 })();

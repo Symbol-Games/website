@@ -270,7 +270,7 @@ PLAY_STORE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentCol
 
 C = {
     "tr": {
-        "desc": "Symbol Interactive, Türkiye’den bağımsız bir oyun stüdyosu. Star Jars Sort Deluxe’ü tarayıcında dene.",
+        "desc": "Symbol Interactive, Türkiye’de kurulmuş bağımsız bir oyun stüdyosu. Star Jars Sort Deluxe’ü tarayıcında dene.",
         "h1": "Kutudan oyun çıkar.", "lede": "Symbol Interactive, Türkiye’de kurulmuş bağımsız bir oyun stüdyosu. Oyunlarımızı oyuncak yapar gibi, özenle yapıyoruz.",
         "our_games": "Oyunlarımız", "play_web": "Tarayıcıda oyna", "game_page": "Oyunun sayfası", "age": "13 yaş ve üstü",
         "badges": ["Pil gerekmez", "Türkiye’de yapıldı", "Kendi çizimimiz"], "burst": ("Star Jars<br>yakında!", "Star Jars<br>çıktı!"), "say": "Sonunda! Oyunlar aşağıda.",
@@ -280,7 +280,7 @@ C = {
         "soon": ("Yakında App Store ve Google Play’de", "App Store ve Google Play’de"), "soon_short": "Yakında", "store_now": "Şimdi indir",
         "next": "Yandaki paketin içinde ne olduğunu biz de söylemiyoruz: yeni oyunlar üzerinde çalışıyoruz, hazır olduklarında burada olacaklar.",
         "film_label": "Tanıtım videosu", "film_h": "Otuz saniyede Star Jars", "film_p": "Sesi aç, kutunun içindekileri izle.", "film_alt": "Star Jars tanıtım videosu", "film_link": "YouTube’da izle",
-        "parts_label": "İçindekiler · Star Jars Sort Deluxe", "parts_h": "Kutudan neler çıkıyor", "parts_p": "Süre yok, acele yok: kendi hızında oyna.",
+        "clips_pause": "Videoları durdur", "clips_play": "Videoları oynat", "parts_label": "İçindekiler · Star Jars Sort Deluxe", "parts_h": "Kutudan neler çıkıyor", "parts_p": "Süre yok, acele yok: kendi hızında oyna.",
         "parts": [
             ("Gerçek takımyıldızlarını yak", f"{GAME['levels']} seviye, {GAME['constellations']} gerçek takımyıldızı: Büyük Ayı’dan Kartal’a, her yıldız gerçek adıyla.", ["map", "solve"], ["Takımyıldızı haritası", "Yıldızlar kavanoza dökülüyor"]),
             ("Her yıldızın kartı", "Uzaklığı, rengi, parlaklığı ve adının anlamı. Her yıldızın gerçek bir hikâyesi var.", ["card"], ["Yıldız kartı"]),
@@ -315,7 +315,7 @@ C = {
         "soon": ("Coming soon to the App Store and Google Play", "On the App Store and Google Play"), "soon_short": "Coming soon", "store_now": "Download now",
         "next": "We’re not saying what’s in the other box either: more games are in development, and they’ll appear here when they’re ready.",
         "film_label": "The trailer", "film_h": "Star Jars in thirty seconds", "film_p": "Turn the sound on and see what’s in the box.", "film_alt": "Star Jars trailer", "film_link": "Watch on YouTube",
-        "parts_label": "Contents · Star Jars Sort Deluxe", "parts_h": "What’s in the box", "parts_p": "No timers, no rush: play at your own pace.",
+        "clips_pause": "Pause the clips", "clips_play": "Play the clips", "parts_label": "Contents · Star Jars Sort Deluxe", "parts_h": "What’s in the box", "parts_p": "No timers, no rush: play at your own pace.",
         "parts": [
             ("Light up real constellations", f"{GAME['levels']} levels across {GAME['constellations']} real constellations, from the Great Bear to the Eagle, every star by its real name.", ["map", "solve"], ["The constellation map", "Stars pouring into a jar"]),
             ("A card for every star", "Its distance, colour, brightness and what its name means. Every star has a true story.", ["card"], ["A star card"]),
@@ -359,7 +359,7 @@ def store_buttons(lang):
 
 def blister(lang, inside, say_style=""):
     c = C[lang]
-    return (f'<button class="blister" id="blister" type="button" aria-label="{c["open"]}" aria-pressed="false" data-open="{c["open"]}" data-shut="{c["shut"]}">{inside}<span class="bubble"></span></button>'
+    return (f'<button class="blister" id="blister" type="button" aria-label="{c["open"]}" data-open="{c["open"]}" data-shut="{c["shut"]}">{inside}<span class="bubble"></span></button>'
             f'<div class="say" aria-hidden="true"{say_style}>{c["say"]}</div>')
 
 
@@ -367,6 +367,7 @@ def shelf(lang, tag="h2", title=None, lede="", play=None):
     c = C[lang]
     play = play or u("starjars", lang) + "#dene"
     intro = f'<p class="lede">{lede}</p>' if lede else ""
+    sub = "h2" if tag == "h1" else "h3"
     return f'''<section class="shelf" id="oyunlar" aria-labelledby="shelf-h">
   <{tag} id="shelf-h">{title or c["shelf"]}</{tag}>{intro}
   <div class="onshelf">
@@ -381,7 +382,7 @@ def shelf(lang, tag="h2", title=None, lede="", play=None):
     </div></div>
     <article class="info" aria-labelledby="sj">
       <span class="label">{c["alt"]}</span>
-      <h3 id="sj">Star Jars Sort Deluxe</h3>
+      <{sub} id="sj">Star Jars Sort Deluxe</{sub}>
       <p>{c["game_text"]}</p>
       <p class="soon">{c["soon"][live_i(lang)]}</p>
       <div class="actions"><a class="btn" href="{play}">{c["play_web"]}</a><a class="btn line" href="{u("starjars", lang)}">{c["game_page"]}</a></div>
@@ -411,7 +412,7 @@ def parts(lang, night=False):
     names = "".join(f'<li lang="{code}"{" dir=" + chr(34) + "rtl" + chr(34) if code == "ar" else ""}>{n}</li>' for code, n in LANGS)
     tiles += f'<article class="part all"><div class="tx"><b class="let" aria-hidden="true">H</b><h3>{c["all_h"]}</h3><p>{c["all_p"]}</p><ul class="langs" aria-label="{c["langs"]}">{names}</ul></div></article>'
     return f'''<section class="inbox{" night" if night else ""}" id="ozellikler" aria-labelledby="parts-h">
-  <div class="sec-head"><div><span class="label">{c["parts_label"]}</span><h2 id="parts-h">{c["parts_h"]}</h2></div><p>{c["parts_p"]}</p></div>
+  <div class="sec-head"><div><span class="label">{c["parts_label"]}</span><h2 id="parts-h">{c["parts_h"]}</h2></div><div class="sec-side"><p>{c["parts_p"]}</p><button class="clips-toggle" id="clips-toggle" type="button" hidden data-pause="{c["clips_pause"]}" data-play="{c["clips_play"]}">{c["clips_pause"]}</button></div></div>
   <div class="parts">{tiles}</div>
 </section>'''
 
@@ -439,7 +440,7 @@ def demo_block(lang, gold=False):
     <p class="say2">{c["try_p"]}</p>
     <small>{c["try_note"]}</small>
   </div>
-  <div class="device" id="device"><img src="/img/{lang}-demo.jpg" width="488" height="1055" alt="{c["demo_alt"]}" loading="lazy"><a class="btn gold go" href="/demo/starjars.html#web-{lang}" data-demo data-title="{c["demo_title"]}">{PLAY_ICON}{c["play"]}</a></div>
+  <div class="devwrap"><div class="device" id="device"><img src="/img/{lang}-demo.jpg" width="488" height="1055" alt="{c["demo_alt"]}" loading="lazy"><a class="btn gold go" href="/demo/starjars.html#web-{lang}" data-demo data-title="{c["demo_title"]}">{PLAY_ICON}{c["play"]}</a></div><button class="demo-stop" id="demo-stop" type="button" hidden>{c["demo_close"]}</button></div>
   {facts_label(lang)}
 </section>'''
 
@@ -483,7 +484,7 @@ def home_page(lang):
     badges = "".join(f'<span class="note">{b}</span>' for b in c["badges"])
     html = f'''{head(lang, "Symbol Interactive", c["desc"], "home", ld=ORG)}
 <body>
-<a class="skip" href="#main">{T[lang]["skip"]}</a>
+<a class="skip" href="#h">{T[lang]["skip"]}</a>
 <main id="main">
 <section class="peg" aria-labelledby="h">
   <div class="pack">
@@ -493,7 +494,7 @@ def home_page(lang):
       {hero_bar(lang, "home", other)}
       <div class="front">
         <div>
-          <h1 id="h">{c["h1"]}</h1>
+          <h1 id="h" tabindex="-1">{c["h1"]}</h1>
           <p class="lede">{c["lede"]}</p>
           <div class="actions"><a class="btn" href="#oyunlar">{c["our_games"]}</a><a class="btn line" href="#dene">{c["play_web"]}</a></div>
           <div class="badges"><span class="age" aria-label="{c["age"]}">13+</span>{badges}</div>
@@ -525,8 +526,8 @@ def home_page(lang):
 
 # ---------------------------------------------------------------- games, about, press
 
-GAMES_TOP = {"tr": ("Oyunlar", "Şu an yayına hazırlanan bir oyunumuz var; yenileri üzerinde çalışıyoruz."),
-             "en": ("Games", "One game is getting ready for release; more are in development.")}
+GAMES_TOP = {"tr": ("Oyunlar", ("Şu an yayına hazırlanan bir oyunumuz var; yenileri üzerinde çalışıyoruz.", "Bir oyunumuz yayında; yenileri üzerinde çalışıyoruz.")),
+             "en": ("Games", ("One game is getting ready for release; more are in development.", "One game is out; more are in development."))}
 GAME_ROWS = {"tr": [("Tür", "Sıralama bulmacası"), ("Platformlar", "iOS ve Android"), ("Diller", f"{GAME['languages']} dil"), ("Hedef kitle", "13 yaş ve üzeri")],
              "en": [("Genre", "Sorting puzzle"), ("Platforms", "iOS and Android"), ("Languages", GAME["languages"]), ("Audience", "Ages 13 and up")]}
 HELP_LINKS = {"tr": ("Yardım ve yasal", [("support", "Destek"), ("privacy", "Gizlilik politikası"), ("terms", "Kullanım koşulları"), ("delete", "Hesap silme")]),
@@ -542,7 +543,7 @@ def more_links(lang):
 def games_body(lang):
     h, lede = GAMES_TOP[lang]
     rows = "".join(f"<span>{k}: {v}</span>" for k, v in GAME_ROWS[lang])
-    return f'''{shelf(lang, "h1", h, lede)}
+    return f'''{shelf(lang, "h1", h, lede[live_i(lang)])}
 <div class="gamespec"><div class="spec">{rows}<span>{C[lang]["soon"][live_i(lang)]}</span></div></div>
 {more_links(lang)}'''
 
@@ -1105,7 +1106,7 @@ def starjars_page(lang):
     c_say = blister(lang, inside, ' style="color:#111"').replace(say, t["say"])
     html = f'''{head(lang, t["title"], t["desc"], "starjars", favicon="/img/starjars-icon.svg", theme="#2A1A78", og=f"/img/og-starjars-{lang}.jpg", ld=ld)}
 <body>
-<a class="skip" href="#main">{T[lang]["skip"]}</a>
+<a class="skip" href="#title">{T[lang]["skip"]}</a>
 <main id="main">
 <section class="peg" aria-labelledby="title">
   <div class="pack">
@@ -1116,7 +1117,7 @@ def starjars_page(lang):
       <div class="front">
         <div>
           <span class="label">{t["alt"]}</span>
-          <h1 id="title">Star Jars</h1>
+          <h1 id="title" tabindex="-1">Star Jars</h1>
           <div class="subt">Sort Deluxe</div>
           <p class="lede">{t["lede"]}</p>
           <div class="actions"><a class="btn gold" href="#dene">{PLAY_ICON}{c["play_web"]}</a>{store_buttons(lang)}</div>

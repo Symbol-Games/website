@@ -51,13 +51,21 @@ for p in base_pages:
 for p in KEEP:
     if not (ROOT / p).exists():
         errors.append(f"file gone: {p}")
-for p in SAME_TEXT:
-    if (ROOT / p).exists() and main_text((ROOT / p).read_text(encoding="utf-8")) != main_text(git("show", f"{BASE}:{p}")):
-        errors.append(f"text changed: {p}")
+def main_markup(markup):
+    m = re.search(r'<main[^>]*>(.*)</main>', markup, re.S)
+    return m.group(1) if m else markup
+
+
+for p in SAME_TEXT:  # every word, link and id: the stores and the law rely on these pages
+    if (ROOT / p).exists() and main_markup((ROOT / p).read_text(encoding="utf-8")) != main_markup(git("show", f"{BASE}:{p}")):
+        errors.append(f"legal or support markup changed: {p}")
+for p in ("CNAME", "app-ads.txt"):  # hand-kept files
+    if (ROOT / p).read_text(encoding="utf-8") != git("show", f"{BASE}:{p}"):
+        errors.append(f"hand-kept file changed: {p}")
 
 pages = [*ROOT.glob("*.html"), *ROOT.glob("en/*.html")]
 css = (ROOT / "site.css").read_text(encoding="utf-8")
-sources = [(p.relative_to(ROOT).as_posix(), p.read_text(encoding="utf-8")) for p in pages] + [("site.css", css)]
+sources = [(p.relative_to(ROOT).as_posix(), p.read_text(encoding="utf-8")) for p in pages] + [("site.css", css), ("site.js", (ROOT / "site.js").read_text(encoding="utf-8"))]
 for name, text in sources:
     if "%%" in text or "REVIEW" in text:
         errors.append(f"leftover marker: {name}")
@@ -86,6 +94,10 @@ for name, text in sources:
                 errors.append(f"place name outside an address in {name}: {around!r}")
         if re.search(r"mobil oyun stüdyosu|mobile game studio", visible):
             errors.append(f"old studio line in {name}")
+        if re.search(r"Papers (&|&amp;|and) Dungeons|One Million Dominoes|Dayfall|Tilt Pop", text):
+            errors.append(f"an unreleased game is named in {name}")
+        if "Ücretsiz*" in visible and "uygulama içi satın alma" not in visible or "Free*" in visible and "in-app purchases" not in visible:
+            errors.append(f"free without the ads and purchases note in {name}")
 for fg, bg in PAIRS:
     if contrast(fg, bg) < 4.5:
         errors.append(f"contrast {fg} on {bg}: {contrast(fg, bg):.2f}")
