@@ -486,7 +486,7 @@ SUPPORT = {
 <p class="lede">Bir sorun mu var, bir önerin mi? {mailto()} adresine yaz.</p>
 <p>Oyunun adını, telefonunun modelini, oyunun Ayarlar ekranında görünen sürüm numarasını ve ne olduğunu kısaca anlatırsan daha çabuk yardım edebiliriz.</p>
 <h2>İlerlemem nerede saklanıyor?</h2>
-<p>Telefonunda. 1.0.0 sürümünden itibaren ayrıca bulut kaydında: oyun ilk açılışta senin için anonim bir hesap açar ve ilerlemeni ona kaydeder. Ayarlar → Bulut kaydı'ndan Apple ya da Google hesabını bağlarsan ilerlemen yeni telefonuna da gelir. Test sürümlerinde bulut kaydı yoktur; oyunu silersen ilerlemen de silinir.</p>
+<p>Telefonunda. 0.63.0 sürümünden itibaren (test sürümleri dahil) ayrıca bulut kaydında: oyun ilk açılışta senin için anonim bir hesap açar ve ilerlemeni ona kaydeder. Ayarlar → Bulut kaydı'ndan Apple ya da Google hesabını bağlarsan ilerlemen yeni telefonuna da gelir. Daha eski sürümlerde bulut kaydı yoktur; oyunu silersen ilerlemen de silinir.</p>
 <h2>Satın aldığım bir şey görünmüyor</h2>
 <p>Reklamsız gibi kalıcı satın almalar, aynı App Store ya da Google Play hesabıyla Ayarlar'daki <strong>Satın alımları geri yükle</strong>'ye dokununca geri gelir. Gelmezse bize yaz; satın alma tarihini ve mağazanın gönderdiği makbuzu eklemen yeterli.</p>
 <h2>Para iadesi</h2>
@@ -501,7 +501,7 @@ SUPPORT = {
 <p class="lede">Something wrong, or an idea to share? Write to {mailto()}.</p>
 <p>Telling us the game, your phone model, the version number shown in the game's Settings and what happened helps us help you sooner.</p>
 <h2>Where is my progress saved?</h2>
-<p>On your phone. From version 1.0.0 also in your cloud save: on first launch the game creates an anonymous account for you and saves your progress to it. Link your Apple or Google account in Settings → Cloud save, and your progress comes with you to a new phone. Test versions have no cloud save; deleting the game deletes your progress.</p>
+<p>On your phone. From version 0.63.0 (test versions included) also in your cloud save: on first launch the game creates an anonymous account for you and saves your progress to it. Link your Apple or Google account in Settings → Cloud save, and your progress comes with you to a new phone. Earlier versions have no cloud save; deleting the game deletes your progress.</p>
 <h2>Something I bought is missing</h2>
 <p>Permanent purchases, such as Remove Ads, come back when you tap <strong>Restore purchases</strong> in Settings with the same App Store or Google Play account. If one doesn't, write to us with the purchase date and the receipt the store sent you.</p>
 <h2>Refunds</h2>
@@ -523,21 +523,21 @@ PRIVACY_SUMMARY = {
         "Türkiye'de, Avrupa Ekonomik Alanı'nda, Birleşik Krallık'ta ve İsviçre'de analitik ve kişiselleştirilmiş reklam yalnızca izin verirsen çalışır.",
         "16 yaşından küçüksen (Türkiye'de 18) izin sorulmaz; analitik ve kişiselleştirilmiş reklam kapalı kalır.",
         "Satın almaları Apple ve Google yönetir; kart bilgilerini hiç görmeyiz. Bilgilerini para karşılığında satmayız.",
-        "1.0.0'dan önceki test sürümleri hiçbir kişisel veri toplamaz."]),
+        "0.56.0 ve önceki test sürümleri hiçbir kişisel veri toplamaz; 0.62.0'dan itibaren test sürümleri de bu politikaya tabidir."]),
     "en": ("In short", [
         "We never ask for your name, email or phone number to play; the game creates an anonymous account for you.",
         "Your progress is kept on your phone and in a cloud save in Europe (Belgium). You can delete your account in the game at any time.",
         "In Türkiye, the European Economic Area, the UK and Switzerland, analytics and personalised ads run only if you allow them.",
         "If you are under 16 (under 18 in Türkiye), you are not asked for consent; analytics and personalised ads stay off.",
         "Apple and Google handle purchases; we never see your card details. We don't sell your information for money.",
-        "Test versions before 1.0.0 collect no personal data."]),
+        "Test versions 0.56.0 and earlier collect no personal data; from 0.62.0, test versions follow this policy too."]),
 }
 
 PRIVACY = {
     "tr": [
         ("kapsam", "Bu politika neyi kapsar", f'''
-<p>Bu politika, Symbol Interactive'in mobil oyunu <strong>Star Jars Sort Deluxe</strong>'ı (Türkçede Yıldız Kavanozu) iOS ve Android'de <strong>1.0.0 sürümünden itibaren</strong> kapsar: hangi bilgileri neden işlediğimizi, kimlerin aldığını, ne kadar saklandığını ve haklarını anlatır. 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamındaki aydınlatma metnimiz ve Avrupa'daki oyuncular için GDPR'ın istediği bilgilendirme budur. Yeni bir oyun yayımladığımızda onun bilgilerini de bu sayfaya ekleriz.</p>
-<p><strong>Test sürümleri.</strong> 1.0.0'dan önceki test sürümleri (şu an TestFlight'ta ve Google Play testinde olan 0.56.0 gibi) analitik, reklam, hesap ya da bulut kaydı içermez ve bizim için hiçbir kişisel veri toplamaz; ilerleme yalnızca telefonda kalır. Bir teste katılırsan seni davet etmek için e-posta adresini kullanırız. Apple ve Google, TestFlight ya da Google Play üzerinden gönderdiğin geri bildirimleri ve test sürümünün çökme raporlarını bize iletebilir; bunları yalnızca hataları düzeltmek için kullanırız.</p>
+<p>Bu politika, Symbol Interactive'in mobil oyunu <strong>Star Jars Sort Deluxe</strong>'ı (Türkçede Yıldız Kavanozu) iOS ve Android'de <strong>0.62.0 sürümünden itibaren (test sürümleri dahil)</strong> kapsar: hangi bilgileri neden işlediğimizi, kimlerin aldığını, ne kadar saklandığını ve haklarını anlatır. 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamındaki aydınlatma metnimiz ve Avrupa'daki oyuncular için GDPR'ın istediği bilgilendirme budur. Yeni bir oyun yayımladığımızda onun bilgilerini de bu sayfaya ekleriz.</p>
+<p><strong>Test sürümleri.</strong> 0.56.0 ve önceki test sürümleri analitik, reklam, hesap ya da bulut kaydı içermez ve bizim için hiçbir kişisel veri toplamaz; ilerleme yalnızca telefonda kalır. 0.62.0'dan itibaren test sürümleri bu politikada anlatılan analitiği (iznine bağlı), çökme raporlarını ve reklamları içerir; bulut kaydı ve hesap bağlama 0.63.0 ile gelir. Bir teste katılırsan seni davet etmek için e-posta adresini kullanırız. Apple ve Google, TestFlight ya da Google Play üzerinden gönderdiğin geri bildirimleri ve test sürümünün çökme raporlarını bize iletebilir; bunları yalnızca hataları düzeltmek için kullanırız.</p>
 <p><strong>Bu site.</strong> symbolinteractive.com.tr çerez kullanmaz, ziyaretçileri izlemez ve başka sitelerden yazı tipi ya da betik yüklemez. Site GitHub Pages'te barındırılır; GitHub, sayfaları sunarken IP adresini kendi kayıtlarında işleyebilir (<a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Gizlilik Bildirimi</a>).</p>'''),
         ("sorumlu", "Veri sorumlusu ve iletişim", f'''
 <p>Veri sorumlusu <strong>{CONTROLLER}</strong>'dir: Symbol Interactive adıyla oyun geliştiren bireysel geliştirici, Aydın, Türkiye.</p>
@@ -643,8 +643,8 @@ PRIVACY = {
     ],
     "en": [
         ("scope", "What this policy covers", f'''
-<p>This policy covers Symbol Interactive's mobile game <strong>Star Jars Sort Deluxe</strong> (Yıldız Kavanozu in Turkish) on iOS and Android <strong>from version 1.0.0</strong>: what information it processes and why, who receives it, how long it is kept and what your rights are. It is our privacy notice under Türkiye's Personal Data Protection Law No. 6698 (KVKK) and the information the GDPR requires for players in Europe. When we release a new game, we add its details to this page.</p>
-<p><strong>Test versions.</strong> Test versions before 1.0.0 (such as 0.56.0, now in TestFlight and Google Play testing) have no analytics, ads, account or cloud save and collect no personal data for us; progress stays on the phone. If you join a test, we use your email address to invite you. Apple and Google may pass on feedback you send through TestFlight or Google Play and crash reports from test versions; we use them only to fix bugs.</p>
+<p>This policy covers Symbol Interactive's mobile game <strong>Star Jars Sort Deluxe</strong> (Yıldız Kavanozu in Turkish) on iOS and Android <strong>from version 0.62.0 (test versions included)</strong>: what information it processes and why, who receives it, how long it is kept and what your rights are. It is our privacy notice under Türkiye's Personal Data Protection Law No. 6698 (KVKK) and the information the GDPR requires for players in Europe. When we release a new game, we add its details to this page.</p>
+<p><strong>Test versions.</strong> Test versions 0.56.0 and earlier have no analytics, ads, account or cloud save and collect no personal data for us; progress stays on the phone. From 0.62.0, test versions include the analytics (with your consent), crash reports and ads described in this policy; cloud save and account linking arrive with 0.63.0. If you join a test, we use your email address to invite you. Apple and Google may pass on feedback you send through TestFlight or Google Play and crash reports from test versions; we use them only to fix bugs.</p>
 <p><strong>This website.</strong> symbolinteractive.com.tr uses no cookies, does not track visitors and loads no fonts or scripts from other sites. It is hosted on GitHub Pages; GitHub may process your IP address in its own logs when serving the pages (<a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>).</p>'''),
         ("controller", "Data controller and contact", f'''
 <p>The data controller is <strong>{CONTROLLER}</strong>, an individual developer making games as Symbol Interactive, Aydın, Türkiye.</p>
