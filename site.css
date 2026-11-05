@@ -10,7 +10,7 @@
   --y:#F4B90B;--y2:#F9C93A;--k:#111;--r:#E8421C;--w:#FFFDF5;--c:#FFF3CE;--peg:#1A1A1A;--peg2:#2E2E2E;--kraft:#C9A36A;
   --sj:#2A1A78;--sj2:#35228F;--gold:#FFD76A;--pink:#FF6FB5;--mute:#454238;
   --display:"Symbol Display","Arial Black",sans-serif;--label:"Archivo Black","Arial Black",sans-serif;--narrow:"Archivo Narrow","Arial Narrow",sans-serif;--body:"Archivo","Segoe UI",sans-serif;
-  --gut:clamp(18px,4vw,64px);color-scheme:light;
+  --gut:clamp(18px,4vw,64px);--barh:62px;color-scheme:light;
   --ink:var(--k);--paper:var(--w);--line:#D9D3BE;--muted:var(--mute);--cobalt:var(--k);
 }
 *{box-sizing:border-box}
@@ -200,7 +200,7 @@ footer .promise{max-width:25em;font-size:15.5px;line-height:1.45;color:#D8D8D8}
 .more a:hover{background:var(--k);color:var(--y)}
 
 /* reading pages: quiet, wide margins, the logo's type, nothing in the way */
-.sitebar{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;background:var(--y);padding:14px var(--gut);border-bottom:4px solid var(--k)}
+.sitebar{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;background:var(--y);padding:4px var(--gut);position:sticky;top:0;z-index:15;border-bottom:4px solid var(--k)}
 .sitebar .brand{width:158px}
 .sitebar nav ul{display:flex;gap:2px 24px;flex-wrap:wrap}
 .sitebar nav a{font:400 14px/1.2 var(--label);letter-spacing:.05em;text-decoration:none;display:block;padding:11px 0}
@@ -221,7 +221,7 @@ footer .promise{max-width:25em;font-size:15.5px;line-height:1.45;color:#D8D8D8}
 .prose a:hover{background:var(--y)}
 .meta{color:var(--mute);margin:.15rem 0!important;font-size:16.5px}
 .metas{margin-bottom:1.3rem}
-.toc{grid-area:toc;position:sticky;top:18px;font-size:15.5px;line-height:1.3}
+.toc{grid-area:toc;position:sticky;top:calc(var(--barh) + 16px);font-size:15.5px;line-height:1.3}
 .toc-title{font:400 12.5px/1.2 var(--label);letter-spacing:.12em;text-transform:uppercase;margin:0 0 9px}
 .toc ol,.toc-fold ol{list-style:none;margin:0;padding:0}
 .toc li,.toc-fold li{margin:0;border-top:1.5px solid #E6E0CC}
@@ -259,7 +259,7 @@ footer .promise{max-width:25em;font-size:15.5px;line-height:1.45;color:#D8D8D8}
 .film-d video{display:block;width:100%;height:100%;object-fit:contain}
 
 /* the frame */
-html{scroll-padding-top:12px}
+html{scroll-padding-top:calc(var(--barh) + 12px)}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 body{min-height:100vh;display:flex;flex-direction:column;overflow-x:clip}
 main{flex:1 0 auto;background:var(--w)}
@@ -309,6 +309,12 @@ footer a{overflow-wrap:anywhere}
 .empty .lede{font-size:clamp(19px,1.6vw,23px);font-weight:600;line-height:1.36}
 .empty h2{font:400 clamp(24px,2.6vw,36px)/1.1 var(--display);margin:0 0 6px}
 .empty .lang-block p{font-weight:400}
+
+/* the menu stays in reach: pages with a printed card get this bar once the card has scrolled away */
+.floatbar{position:fixed;left:0;right:0;transform:translateY(-110%);visibility:hidden;transition:transform .2s,visibility .2s}
+.floatbar.show{transform:none;visibility:visible}
+.sitebar.sj{background:var(--sj);color:#fff;border-bottom-color:#07051C}
+.sitebar.sj :focus-visible{outline-color:#fff}
 
 /* the guides: a yellow head like the card, then the game's own night */
 .pagehead{background:repeating-conic-gradient(from 0deg at 84% 44%,var(--y) 0 9deg,var(--y2) 9deg 18deg);padding:clamp(30px,4vw,58px) var(--gut);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(16px,3vw,48px);align-items:center;border-bottom:4px solid var(--k)}
@@ -502,7 +508,10 @@ dialog.demo-box::backdrop{background:#000}
   .scard{grid-template-columns:96px minmax(0,1fr)}
 }
 @media (max-width:520px){
+  :root{--barh:50px}
   .brand{width:138px}.bar nav{gap:0 15px}
+  .sitebar{flex-wrap:nowrap;gap:10px;padding:2px var(--gut)}.sitebar .brand{width:92px}
+  .sitebar nav ul{flex-wrap:nowrap;gap:0 11px}.sitebar nav a{font-size:12px;letter-spacing:.02em;padding:13px 0;white-space:nowrap}
   .howto ol{grid-template-columns:minmax(0,1fr)}
   .skynav{grid-template-columns:minmax(0,1fr)}
   .gcards{grid-template-columns:repeat(2,minmax(0,1fr))}.gcard h3{font-size:19px;margin:11px 11px 5px}.gcard p{font-size:15px;line-height:1.36;margin:0 11px 13px}

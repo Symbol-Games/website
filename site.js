@@ -39,6 +39,12 @@
     blink();
   }
 
+  // The menu printed on the hero card scrolls away with the card; the bar at the top of the window takes over until the card is back.
+  var floatBar = document.getElementById("floatbar"), cardBar = document.querySelector(".bar");
+  if (floatBar && cardBar && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) { floatBar.classList.toggle("show", !entries[0].isIntersecting); }).observe(cardBar);
+  }
+
   // The sky guide's calendar marks this month.
   var month = document.querySelector('[data-month="' + (new Date().getMonth() + 1) + '"]');
   if (month) month.classList.add("now");
@@ -91,7 +97,7 @@
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest("[data-demo]");
     if (!a) return;
-    if (device && device.clientWidth >= 280 && device.offsetHeight <= innerHeight - 16) {
+    if (device && device.clientWidth >= 280 && device.offsetHeight <= innerHeight - 16 - (floatBar ? floatBar.offsetHeight : 0)) {
       e.preventDefault();
       resting = Array.prototype.slice.call(device.childNodes);
       device.replaceChildren(makeFrame(a));

@@ -209,6 +209,11 @@ def sitebar(lang, key, other_href):
     return f'<header class="sitebar">{brand(lang)}{nav_items(lang, key, other_href)}</header>'
 
 
+def float_bar(lang, key, other_href, colour="ink", cls=""):
+    """The pages with a printed card: their menu scrolls away with the card, so this one takes over until the card is back (site.js)."""
+    return f'<header class="sitebar floatbar {cls}" id="floatbar">{brand(lang, colour)}{nav_items(lang, key, other_href)}</header>'
+
+
 def hero_bar(lang, key, other_href, colour="ink"):
     """The same menu, printed on the card."""
     return f'<header class="bar">{brand(lang, colour)}{nav_items(lang, key, other_href)}</header>'
@@ -516,6 +521,7 @@ def home_page(lang):
     html = f'''{head(lang, "Symbol Interactive", c["desc"], "home", ld=ORG)}
 <body>
 <a class="skip" href="#h">{T[lang]["skip"]}</a>
+{float_bar(lang, "home", other)}
 <main id="main">
 <section class="peg" aria-labelledby="h">
   <div class="pack">
@@ -1153,6 +1159,7 @@ def starjars_page(lang):
     html = f'''{head(lang, t["title"], t["desc"], "starjars", favicon="/img/starjars-icon.svg", theme="#2A1A78", og=f"/img/og-starjars-{lang}.jpg", ld=ld)}
 <body>
 <a class="skip" href="#title">{T[lang]["skip"]}</a>
+{float_bar(lang, "starjars", other, "yellow", "sj")}
 <main id="main">
 <section class="peg" aria-labelledby="title">
   <div class="pack">
