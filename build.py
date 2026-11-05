@@ -1387,7 +1387,7 @@ def sky_index_body(lang):
     for region in ("north", "equator", "zodiac"):
         cards = ""
         for c in (x for x in SKY if x["region"] == region):
-            cards += (f'<a class="skycard" href="{u("sky:" + c["id"], lang)}">{sky_map(c)}<span class="name">{esc(c["name"][lang])}</span><span class="latin">{esc(c["latin"])}</span>'
+            cards += (f'<a class="skycard" href="{u("sky:" + c["id"], lang)}">{sky_map(c)}<span class="name">{esc(c["name"][lang])}</span><span class="latin" lang="la">{esc(c["latin"])}</span>'
                       f'<span class="when">{t["best_short"].format(t["months"][c["month"] - 1])}</span></a>')
         groups += f'<h2 id="{region}-h">{t["regions"][region]}</h2><div class="chartgrid">{cards}</div>'
     months = ""
@@ -1418,7 +1418,7 @@ def sky_page_body(lang, i):
                   f'<dl><dt>{t["type"]}</dt><dd>{kind}</dd><dt>{t["distance"]}</dt><dd>{t["ly"].format(num(lang, s["ly"], 0))}</dd><dt>{t["mag"]}</dt><dd>{t["mag_v"].format(num(lang, s["mag"]))}</dd><dt>{t["name_m"]}</dt><dd>{esc(s["meaning"][lang])}</dd></dl>'
                   f'<p>{esc(s["note"][lang])}</p></article>')
     before, after = SKY[i - 1], SKY[(i + 1) % len(SKY)]
-    latin = f'<p class="latin">{esc(c["latin"])}</p>' if c["latin"] != c["name"][lang] else ""
+    latin = f'<p class="latin" lang="la">{esc(c["latin"])}</p>' if c["latin"] != c["name"][lang] else ""
     return f'''<nav class="crumbs" aria-label="{t["crumb"]}"><a href="{u("sky", lang)}">{t["title"]}</a><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>
 <section class="skyhero one"><div><span class="label">{t["regions"][c["region"]]}</span><h1>{name}</h1>{latin}<p class="lede">{esc(c["fact"][lang])}</p><div class="skyspec">{spec}</div></div>
 <div class="mapwrap">{sky_map(c, lang)}<p class="mapnote">{t["note"]}</p></div></section>
