@@ -47,7 +47,7 @@
   by("f-how").textContent = t[4];
   var code = (new URLSearchParams(location.search).get("k") || "").toUpperCase();
   var copy = by("f-copy");
-  if (/^[A-Z]{2,8}-[0-9]{4}$/.test(code)) {
+  if (/^[A-Z]{2,8}-[0-9]{6}$/.test(code)) {
     by("f-code").textContent = code;
     copy.textContent = t[2];
     copy.addEventListener("click", function () {

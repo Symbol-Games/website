@@ -711,8 +711,8 @@ PRIVACY = {
 <p><strong>Saat kontrolü.</strong> Günlük ödüllerin saatini doğrulamak için oyun, ara sıra bu sitenin sunucusuna, ulaşamazsa Google'ın Firebase sunucusuna kısa bir istek gönderir ve yalnızca yanıttaki saati okur. Bu istekte oyuncu kimliği ya da hesap bilgisi yoktur. İstek sırasında sunucu, her internet bağlantısında olduğu gibi IP adresini görür; bunu oyuncuyla eşleştirmeyiz.</p>
 <p><strong>Yeni bölümler.</strong> Oyun, yeni takımyıldızı bölümlerini indirmek için ara sıra (en çok 6 saatte bir) Google'ın Firebase Hosting sunucusuna kısa bir istek gönderir. İndirilen yalnızca oyun içeriğidir: seviyeler, yazılar ve resimler. Bu istekte oyuncu kimliği ya da hesap bilgisi yoktur. İstek sırasında sunucu, her internet bağlantısında olduğu gibi IP adresini görür; bunu oyuncuyla eşleştirmeyiz.</p>
 <h3>Arkadaşlar ve sıralama</h3>
-<p>Arkadaşlar'ı ya da günün bulmacasının sıralamasını açmadıkça bu bölümdeki hiçbir bilgi gönderilmez. İlk açtığında hesabına bağlı bir arkadaş profili oluştururuz. Profilde Yıldız Kodun, hazır listeden seçtiğin takma adın, avatarın, seviyen, yıldız sayın, seviye başına en iyi hamle sayıların, en son oynadığın gün, arkadaş listen, gönderdiğin ve aldığın canlar, engellediğin oyuncular ve günün bulmacasındaki hamle ve deneme sayın bulunur. Kayıt, bulut kaydınla aynı yerde (europe-west1) saklanır.</p>
-<p>Arkadaşların takma adını, avatarını, seviyeni, yıldızlarını, seviye başına en iyi hamlelerini, en son oynadığın günü ve günün bulmacası sonucunu görür. Bir arkadaş eklemek için Yıldız Kodunu bilmek gerekir ve eklenen oyuncu isteği kabul etmedikçe arkadaş olunmaz. Görünür ol'u kapatırsan arkadaşların yalnızca takma adını ve avatarını görür, sen de dünya sıralamasında görünmezsin. Dünya sıralamasında oyuncular birbirinin takma adını, avatarını, hamle ve deneme sayısını görür. Serbest yazılan ad, sohbet ya da mesaj yoktur. İstediğin zaman bir arkadaşını çıkarabilir ya da engelleyebilir, Ayarlar'dan Arkadaşlar'ı kapatabilirsin.</p>
+<p>Arkadaşlar'ı ya da günün bulmacasının sıralamasını açmadıkça bu bölümdeki hiçbir bilgi gönderilmez. İlk açtığında hesabına bağlı bir arkadaş profili oluştururuz. Profilde Yıldız Kodun, hazır listeden seçtiğin takma adın, avatarın, seviyen, yıldız sayın, seviye başına en iyi hamle sayıların, en son oynadığın gün, arkadaş listen, gönderdiğin ve aldığın arkadaşlık istekleri, gönderdiğin ve aldığın canlar, engellediğin oyuncular, seni davet eden oyuncu, davet ödülün ve son günlerde günün bulmacasındaki hamle ve deneme sayıların bulunur. Kayıt, bulut kaydınla aynı yerde (europe-west1) saklanır.</p>
+<p>Arkadaşların takma adını, avatarını, seviyeni, yıldızlarını, seviye başına en iyi hamlelerini, en son oynadığın günü ve günün bulmacası sonucunu görür. Bir arkadaş eklemek için Yıldız Kodunu bilmek gerekir ve eklenen oyuncu isteği kabul etmedikçe arkadaş olunmaz. Görünür ol'u kapatırsan arkadaşların yalnızca takma adını ve avatarını görür, kodunla seni kimse ekleyemez ve dünya sıralamasında görünmezsin: bugünün sıralamasındaki satırın hemen silinir, eski günlerin satırları en geç 7 gün içinde kalkar. Dünya sıralamasında oyuncular birbirinin takma adını, avatarını, hamle ve deneme sayısını görür. Serbest yazılan ad, sohbet ya da mesaj yoktur. İstediğin zaman bir arkadaşını çıkarabilir ya da engelleyebilir, Ayarlar'dan Arkadaşlar'ı kapatabilirsin.</p>
 <p>13 yaşından küçük olduğunu söyleyen oyuncular için bu özellikler kapalıdır ve bu bilgiler hiç oluşmaz.</p>
 <h3>İzin tercihlerin</h3>
 <p>Verdiğin ya da vermediğin izinler telefonunda saklanır; böylece her açılışta yeniden sorulmaz ve reklam ortaklarına iletilebilir.</p>
@@ -727,6 +727,7 @@ PRIVACY = {
             ("Reklamların gösterilmesi, sayılması, dolandırıcılığın önlenmesi", "Meşru menfaat (m. 5/2-f)", "Meşru menfaat (m. 6/1-f); telefona bilgi yazılması ve okunması rıza mesajındaki seçimine göre"),
             ("Çökme raporları", "Meşru menfaat (m. 5/2-f)", "Rıza (m. 6/1-a)"),
             ("Uzaktan ayarlar", "Meşru menfaat (m. 5/2-f)", "Meşru menfaat (m. 6/1-f)"),
+            ("Sunucu istek kayıtları: hataları ve kötüye kullanımı incelemek", "Meşru menfaat (m. 5/2-f)", "Meşru menfaat (m. 6/1-f)"),
             ("Yetkili makamların yasal talepleri", "Kanunlarda öngörülme; hukuki yükümlülük (m. 5/2-a, ç)", "Hukuki yükümlülük (m. 6/1-c)"),
         ]) + '''
 <p>Meşru menfaatimiz, oyunu çalışır, güvenli, dengeli ve ücretsiz tutmaktır. Bu işlemeye itiraz edebilirsin.</p>
@@ -757,9 +758,10 @@ PRIVACY = {
         ("saklama", "Ne kadar saklıyoruz", '''
 <ul>
 <li><strong>Hesap ve bulut kaydı:</strong> sen silene kadar. Oyun bir hesapla 24 ay boyunca hiç açılmazsa o hesabı ve bulut kaydını biz sileriz.</li>
-<li><strong>Arkadaş profili:</strong> hesabınla birlikte silinir. Gelen canlar 7 gün sonra silinir.</li>
+<li><strong>Arkadaş profili:</strong> hesabınla birlikte silinir. Gelen canlar 7 gün sonra geçersiz olur; yanıtlanmayan arkadaşlık istekleri 30 gün, reddedilenler 7 gün sonra. Kayıtları, oyunu bir sonraki açışında silinir.</li>
 <li><strong>Günün bulmacası sıralaması:</strong> 7 gün.</li>
 <li><strong>Hesapların IP kayıtları:</strong> birkaç hafta.</li>
+<li><strong>Sunucu istek kayıtları:</strong> oyunun sunucumuza gönderdiği isteklerde (ilk adım sayacı, arkadaşlar ve sıralama, hesap silme) IP adresin, cihaz ve uygulama bilgisini gösteren user agent satırı ve isteğin zamanı Google'ın sunucu günlüklerinde en çok 30 gün kalabilir. Bu kayıtlara isteğin içeriğini ve hesap kimliğini yazmayız; onları yalnızca hataları ve kötüye kullanımı incelemek için kullanırız.</li>
 <li><strong>Analitik:</strong> olay verileri 14 ay sonra silinir. Bunlardan üretilen, kimseyi tanıtmayan toplu sayılar (örneğin günlük oyuncu sayısı) daha uzun kalabilir.</li>
 <li><strong>Çökme raporları:</strong> 90 gün.</li>
 <li><strong>Firebase kurulum kimliği:</strong> 270 gün kullanılmazsa Firebase tarafından silinir.</li>
@@ -831,8 +833,8 @@ PRIVACY = {
 <p><strong>Clock check.</strong> To check the time for daily rewards, the game now and then sends a short request to this site's server or, if it can't reach it, to Google's Firebase server, and reads only the time in the answer. The request carries no player ID or account details. As with any internet connection, the server sees the IP address during the request; we don't match it to a player.</p>
 <p><strong>New chapters.</strong> To download new constellation chapters, the game now and then (at most every 6 hours) sends a short request to Google's Firebase Hosting server. What it downloads is game content only: levels, words and pictures. The request carries no player ID or account details. As with any internet connection, the server sees your IP address during the request; we don't match it to a player.</p>
 <h3>Friends and the ranking</h3>
-<p>Nothing in this section is sent unless you open Friends or the daily puzzle's ranking. The first time you do, we create a friends profile tied to your account. It holds your star code, the nickname you picked from a preset list, your avatar, your level, your star count, your best move count per level, the last day you played, your friends list, the lives you sent and received, the players you blocked, and your moves and tries in the daily puzzle. It is stored in the same place as your cloud save (europe-west1).</p>
-<p>Your friends see your nickname, avatar, level, stars, best moves per level, the last day you played and your daily puzzle result. Adding a friend takes your star code, and nobody becomes a friend until the other player accepts. If you turn off Visible to others, friends see only your nickname and avatar, and you don't appear on the world ranking. On the world ranking, players see each other's nickname, avatar, moves and tries. There are no typed names, no chat and no messages. You can remove or block a friend at any time, and turn Friends off in Settings.</p>
+<p>Nothing in this section is sent unless you open Friends or the daily puzzle's ranking. The first time you do, we create a friends profile tied to your account. It holds your star code, the nickname you picked from a preset list, your avatar, your level, your star count, your best move count per level, the last day you played, your friends list, the friend requests you sent and received, the lives you sent and received, the players you blocked, the player who invited you and your invite reward, and your moves and tries in the daily puzzle over the last few days. It is stored in the same place as your cloud save (europe-west1).</p>
+<p>Your friends see your nickname, avatar, level, stars, best moves per level, the last day you played and your daily puzzle result. Adding a friend takes your star code, and nobody becomes a friend until the other player accepts. If you turn off Visible to others, friends see only your nickname and avatar, nobody can add you by your code, and you don't appear on the world ranking: your line on today's ranking is deleted at once, and lines on earlier days go within 7 days. On the world ranking, players see each other's nickname, avatar, moves and tries. There are no typed names, no chat and no messages. You can remove or block a friend at any time, and turn Friends off in Settings.</p>
 <p>These features are off for players who say they are under 13, and none of this information is created for them.</p>
 <h3>Your consent choices</h3>
 <p>The permissions you give or refuse are stored on your phone, so that you aren't asked at every launch and so that they can be passed on to ad partners.</p>
@@ -847,6 +849,7 @@ PRIVACY = {
             ("Showing and counting ads, preventing fraud", "Legitimate interests (Art. 5(2)(f))", "Legitimate interests (Art. 6(1)(f)); storing and reading information on the phone follows your choice in the consent message"),
             ("Crash reports", "Legitimate interests (Art. 5(2)(f))", "Consent (Art. 6(1)(a))"),
             ("Remote settings", "Legitimate interests (Art. 5(2)(f))", "Legitimate interests (Art. 6(1)(f))"),
+            ("Server request logs: looking into errors and abuse", "Legitimate interests (Art. 5(2)(f))", "Legitimate interests (Art. 6(1)(f))"),
             ("Lawful requests from authorities", "Required by law; legal obligation (Art. 5(2)(a), (ç))", "Legal obligation (Art. 6(1)(c))"),
         ]) + '''
 <p>Our legitimate interest is keeping the game working, safe, balanced and free to play. You can object to this processing.</p>
@@ -877,9 +880,10 @@ PRIVACY = {
         ("retention", "How long we keep it", '''
 <ul>
 <li><strong>Account and cloud save:</strong> until you delete them. If the game isn't opened with an account for 24 months, we delete that account and its cloud save.</li>
-<li><strong>Friends profile:</strong> deleted with your account. Lives waiting for you are deleted after 7 days.</li>
+<li><strong>Friends profile:</strong> deleted with your account. Lives waiting for you stop being valid after 7 days, unanswered friend requests after 30 days and declined ones after 7. Their records are deleted the next time you open the game.</li>
 <li><strong>Daily puzzle ranking:</strong> 7 days.</li>
 <li><strong>Account IP logs:</strong> a few weeks.</li>
+<li><strong>Server request logs:</strong> for the requests the game sends to our server (the first-steps counter, friends and the ranking, deleting an account), your IP address, a user agent line showing device and app details, and the time of the request may stay in Google's server logs for up to 30 days. We don't write the request's content or your account ID to these logs, and we use them only to look into errors and abuse.</li>
 <li><strong>Analytics:</strong> event data is deleted after 14 months. Aggregate figures made from it that identify no one (daily player counts, for example) may be kept longer.</li>
 <li><strong>Crash reports:</strong> 90 days.</li>
 <li><strong>Firebase installation ID:</strong> deleted by Firebase after 270 days without use.</li>
@@ -1229,7 +1233,7 @@ page("tr", None, "Yıldız Kodu · Star Jars", "Star Jars'ta arkadaş olmak içi
   by("f-how").textContent = t[4];
   var code = (new URLSearchParams(location.search).get("k") || "").toUpperCase();
   var copy = by("f-copy");
-  if (/^[A-Z]{{2,8}}-[0-9]{{4}}$/.test(code)) {{
+  if (/^[A-Z]{{2,8}}-[0-9]{{6}}$/.test(code)) {{
     by("f-code").textContent = code;
     copy.textContent = t[2];
     copy.addEventListener("click", function () {{
