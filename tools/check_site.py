@@ -88,6 +88,8 @@ for name, text in sources:
     outside += re.findall(r'url\("?(https?:[^")]+)', text)
     for x in outside:
         errors.append(f"loads from another host in {name}: {x}")
+    if "Tezgelen" in text and name not in ("gizlilik.html", "en/privacy.html"):  # the user is named only where the law requires it
+        errors.append(f"the owner's name appears in {name}")
     if name not in LEGAL and name.endswith(".html"):
         visible = html.unescape(re.sub(r"<[^>]+>", " ", re.sub(r"<script.*?</script>", " ", text, flags=re.S)))
         meta = " ".join(re.findall(r'<(?:meta|title)[^>]*>[^<]*', text))

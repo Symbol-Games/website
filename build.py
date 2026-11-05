@@ -16,7 +16,8 @@ from html import escape as esc
 ROOT = pathlib.Path(__file__).parent
 SITE = "https://symbolinteractive.com.tr"
 MAIL = "symbolinteractive@gmail.com"  # the support address the user set in the release checklist (2026-11-03)
-CONTROLLER = "Cem Tezgelen"  # the developer's own name, as the user gave it (2026-11-03)
+CONTROLLER = "Cem Tezgelen"  # The law needs it in the privacy policy (KVKK Art. 10, GDPR Art. 13) and nowhere else: the user is not to be named on the site (2026-11-05). That page stays out of search.
+NOINDEX = {"privacy"}
 UPDATED = {"tr": "5 Kasım 2026", "en": "5 November 2026"}  # privacy policy, terms and deletion pages
 # What the guides show comes from the game itself: tools/export_game.py writes this file.
 GAMEDATA = json.loads((ROOT / "data" / "game.json").read_text(encoding="utf-8"))
@@ -147,7 +148,8 @@ def alternates(key, own_lang, own_path=None):
     if key is None:
         return '<meta name="robots" content="noindex">'
     canon = SITE + (own_path or u(key, own_lang))
-    return (f'<link rel="canonical" href="{canon}">\n'
+    robots = '<meta name="robots" content="noindex">\n' if key in NOINDEX else ""
+    return (f'{robots}<link rel="canonical" href="{canon}">\n'
             f'<link rel="alternate" hreflang="tr" href="{SITE}{u(key, "tr")}">\n'
             f'<link rel="alternate" hreflang="en" href="{SITE}{u(key, "en")}">\n'
             f'<link rel="alternate" hreflang="x-default" href="{SITE}{u(key, "tr")}">')
@@ -313,7 +315,7 @@ C = {
                   ("Her oyun kendine benzer", "Her oyunun görünüşü, sesi ve kuralları o oyun için yapılır. İki oyunumuz yan yana geldiğinde kardeş gibi durmaz."),
                   ("Ayrıntıdan vazgeçmeyiz", "Bir dokunuşun hissini, bir animasyonun süresini, bir bilginin doğruluğunu, kimse fark etmeyecek olsa da düzeltiriz."),
                   ("Çıkınca bitmez", "Yayın başlangıçtır. Oyunlarımıza düzenli olarak yeni bölüm ve yeni kural eklemeyi sürdürürüz.")],
-        "maker_h": "Üretici", "maker_p": "Symbol Interactive’i 2026’da Cem Tezgelen kurdu. Oyunlarımızı tasarlıyor, yazıyor, çiziyor ve yayımlıyoruz; büyük bir ekip değiliz, oyunun her ayrıntısına dokunuyoruz.",
+        "maker_h": "Üretici", "maker_p": "Symbol Interactive 2026’da kuruldu. Oyunlarımızı tasarlıyor, yazıyor, çiziyor ve yayımlıyoruz; büyük bir ekip değiliz, oyunun her ayrıntısına dokunuyoruz.",
         "maker_more": "Stüdyoyu tanı", "maker_rows": [("Üretici", "Symbol Interactive"), ("Adres", "Aydın, Türkiye")], "write": "Bize yaz",
     },
     "en": {
@@ -348,7 +350,7 @@ C = {
                   ("Every game looks like itself", "Each game’s look, sound and rules are made for that game. Put two of our games side by side and they won’t look like siblings."),
                   ("We don’t give up on details", "The feel of a tap, the length of an animation, the accuracy of a fact: we fix them even when nobody would notice."),
                   ("Release isn’t the end", "Release is the start. We keep adding new chapters and new rules to our games.")],
-        "maker_h": "Made by", "maker_p": "Cem Tezgelen founded Symbol Interactive in 2026. We design, write, draw and publish our games ourselves; we are not a big team, and we touch every detail of every game.",
+        "maker_h": "Made by", "maker_p": "Symbol Interactive was founded in 2026. We design, write, draw and publish our games ourselves; we are not a big team, and we touch every detail of every game.",
         "maker_more": "About the studio", "maker_rows": [("Made by", "Symbol Interactive"), ("Address", "Aydın, Türkiye")], "write": "Write to us",
     },
 }
@@ -501,7 +503,7 @@ def maker(lang):
 
 
 ORG = {"@context": "https://schema.org", "@type": "Organization", "name": "Symbol Interactive", "url": SITE + "/", "logo": SITE + "/img/apple-touch-icon.png", "email": MAIL,
-       "founder": {"@type": "Person", "name": CONTROLLER}, "foundingDate": "2026", "address": {"@type": "PostalAddress", "addressLocality": "Aydın", "addressCountry": "TR"}}
+       "foundingDate": "2026", "address": {"@type": "PostalAddress", "addressLocality": "Aydın", "addressCountry": "TR"}}
 
 
 def home_page(lang):
@@ -577,12 +579,12 @@ def games_body(lang):
 ABOUT = {
     "tr": {"h1": "Hakkımızda", "lede": "Symbol Interactive, özenle yapılmış, oynayanın kendini iyi hissettiği oyunlar yapan bağımsız bir oyun stüdyosu.",
            "vision_h": "Vizyonumuz", "vision": "Çoğu oyun dikkatini çekmek için bağırıyor. Biz tersini deniyoruz: ilk dokunuşta anlaşılan, her yeni bölümde yeni bir fikir getiren oyunlar. Büyük bir katalog yerine, üzerinde çalışmayı sürdürdüğümüz birkaç oyun.",
-           "who_h": "Kim", "who": f"Symbol Interactive’i 2026’da Cem Tezgelen kurdu. Symbol Interactive bir şirket unvanı değil; Cem Tezgelen’in oyunlarını yayımladığı addır. Oyunlarımızdaki kişisel verilerin sorumlusu da odur (<a href=\"{u('privacy', 'tr')}\">gizlilik politikası</a>).",
-           "rows": [("Kuruluş", "2026"), ("Adres", "Aydın, Türkiye"), ("Kurucu", "Cem Tezgelen")], "games": "Oyunlar", "more": "yenileri geliştiriliyor", "contact": "İletişim"},
+           "who_h": "Kim", "who": f"Symbol Interactive 2026’da Türkiye’de kuruldu. Bir şirket unvanı değil, oyunlarımızı yayımladığımız addır. Oyunlarımızdaki kişisel verilerin sorumlusu <a href=\"{u('privacy', 'tr')}\">gizlilik politikasında</a> yazar.",
+           "rows": [("Kuruluş", "2026"), ("Adres", "Aydın, Türkiye")], "games": "Oyunlar", "more": "yenileri geliştiriliyor", "contact": "İletişim"},
     "en": {"h1": "About", "lede": "Symbol Interactive is an independent game studio making games with care, games that leave you feeling good.",
            "vision_h": "Our vision", "vision": "Most games shout for your attention. We try the opposite: games you understand at the first touch, with a new idea in every new chapter. A few games we keep working on, rather than a big catalogue.",
-           "who_h": "Who", "who": f"Cem Tezgelen founded Symbol Interactive in 2026. Symbol Interactive is not a company name but the name under which Cem Tezgelen publishes games. Cem Tezgelen is also the controller of the personal data in our games (<a href=\"{u('privacy', 'en')}\">privacy policy</a>).",
-           "rows": [("Founded", "2026"), ("Address", "Aydın, Türkiye"), ("Founder", "Cem Tezgelen")], "games": "Games", "more": "more in development", "contact": "Contact"},
+           "who_h": "Who", "who": f"Symbol Interactive was founded in Türkiye in 2026. It is not a company name but the name under which our games are published. The controller of the personal data in our games is named in the <a href=\"{u('privacy', 'en')}\">privacy policy</a>.",
+           "rows": [("Founded", "2026"), ("Address", "Aydın, Türkiye")], "games": "Games", "more": "more in development", "contact": "Contact"},
 }
 
 
@@ -611,14 +613,14 @@ PRESS = {
            "zip": "Hepsini indir", "zip_note": "logolar, ikon, ekran görüntüleri", "logos": "Logo", "logo_y": "Sarı zeminde", "logo_k": "Siyah zeminde", "logo_svg": "Vektör (SVG)", "icon": "Star Jars ikonu",
            "video": "Tanıtım videosu", "video_tr": "Türkçe", "video_en": "İngilizce", "yt": "YouTube", "mp4": "MP4 dosyası",
            "sheet": "Oyun bilgileri", "desc_h": "Kısa tanıtım", "desc": "Star Jars Sort Deluxe, sakin bir renk sıralama bulmacası: renkli yıldızları kavanozlar arasında dök, her kavanozda tek renk kalınca mühürle. Her seviye gerçek bir takımyıldızının bir yıldızını yakar.",
-           "rows": [("Oyun", "Star Jars Sort Deluxe (Yıldız Kavanozu)"), ("Geliştirici", "Symbol Interactive (Cem Tezgelen)"), ("Adres", "Aydın, Türkiye"), ("Tür", "Sıralama bulmacası"), ("Platformlar", "iOS ve Android"),
+           "rows": [("Oyun", "Star Jars Sort Deluxe (Yıldız Kavanozu)"), ("Geliştirici", "Symbol Interactive"), ("Adres", "Aydın, Türkiye"), ("Tür", "Sıralama bulmacası"), ("Platformlar", "iOS ve Android"),
                     ("İçerik", f"{GAME['levels']} seviye, {GAME['constellations']} gerçek takımyıldızı"), ("Diller", f"{GAME['languages']} dil"), ("Fiyat", "Ücretsiz; reklam ve uygulama içi satın alma içerir")],
            "status": "Durum", "write": "Basın için yaz"},
     "en": {"h1": "Press kit", "lede": "Writing about our games? Everything you need is here. You can use these images in news and reviews.",
            "zip": "Download everything", "zip_note": "logos, icon, screenshots", "logos": "Logo", "logo_y": "On yellow", "logo_k": "On black", "logo_svg": "Vector (SVG)", "icon": "Star Jars icon",
            "video": "Trailer", "video_tr": "Turkish", "video_en": "English", "yt": "YouTube", "mp4": "MP4 file",
            "sheet": "Game facts", "desc_h": "Short description", "desc": "Star Jars Sort Deluxe is a calm colour sort puzzle: pour colourful stars between jars until every jar holds a single colour, then seal it. Every level lights a star of a real constellation.",
-           "rows": [("Game", "Star Jars Sort Deluxe"), ("Developer", "Symbol Interactive (Cem Tezgelen)"), ("Address", "Aydın, Türkiye"), ("Genre", "Sorting puzzle"), ("Platforms", "iOS and Android"),
+           "rows": [("Game", "Star Jars Sort Deluxe"), ("Developer", "Symbol Interactive"), ("Address", "Aydın, Türkiye"), ("Genre", "Sorting puzzle"), ("Platforms", "iOS and Android"),
                     ("Content", f"{GAME['levels']} levels across {GAME['constellations']} real constellations"), ("Languages", GAME["languages"]), ("Price", "Free; contains ads and in-app purchases")],
            "status": "Status", "write": "Press contact"},
 }
@@ -957,7 +959,7 @@ PRIVACY = {
 TERMS = {
     "tr": [
         ("biz", "Biz kimiz", f'''
-<p>Oyunları Symbol Interactive adıyla {CONTROLLER} geliştirir ve yayımlar (bireysel geliştirici, Aydın, Türkiye; {mailto()}). Bu koşullarda "biz" bunu anlatır.</p>
+<p>Oyunları Symbol Interactive adıyla bireysel bir geliştirici geliştirir ve yayımlar (Aydın, Türkiye; {mailto()}); kimliği <a href="{u("privacy", "tr")}">gizlilik politikasında</a> yazar. Bu koşullarda "biz" bu geliştiriciyi anlatır.</p>
 <p>Oyunu App Store'dan indirdiysen Apple'ın standart <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Lisanslı Uygulama Son Kullanıcı Lisans Sözleşmesi</a> da geçerlidir; oyunu kullanma lisansı konusunda bu koşullarla farklılık olursa Apple'ın sözleşmesi esas alınır. Google Play'den indirdiysen Google Play'in hizmet şartları da geçerlidir.</p>'''),
         ("yas", "Yaş", '''
 <p>Oyunlarımız 13 yaş ve üzeri içindir. 18 yaşından küçüksen satın alma yapmadan önce anne, baba ya da vasinden izin al.</p>'''),
@@ -996,7 +998,7 @@ TERMS = {
     ],
     "en": [
         ("us", "Who we are", f'''
-<p>The games are made and published as Symbol Interactive by {CONTROLLER} (an individual developer, Aydın, Türkiye; {mailto()}). "We" in these terms means him.</p>
+<p>The games are made and published as Symbol Interactive by an individual developer (Aydın, Türkiye; {mailto()}), identified in the <a href="{u("privacy", "en")}">privacy policy</a>. "We" in these terms means that developer.</p>
 <p>If you downloaded the game from the App Store, Apple's standard <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Licensed Application End User License Agreement</a> also applies; where it and these terms differ about the licence to use the game, Apple's agreement prevails. If you downloaded it from Google Play, Google Play's terms of service also apply.</p>'''),
         ("age", "Age", '''
 <p>Our games are for ages 13 and up. If you are under 18, ask a parent or guardian before you buy anything.</p>'''),
@@ -1499,9 +1501,9 @@ def learn(lang):
 # ---------------------------------------------------------------- write everything
 
 L = {"tr": {"privacy": "Gizlilik politikası", "terms": "Kullanım koşulları", "delete": "Hesap silme", "updated": "Son güncelleme",
-            "applies": "Star Jars Sort Deluxe 1.0.0 ve sonraki sürümler için geçerlidir.", "game": "Oyun: Star Jars Sort Deluxe (Yıldız Kavanozu). Geliştirici: Symbol Interactive (Cem Tezgelen)."},
+            "applies": "Star Jars Sort Deluxe 1.0.0 ve sonraki sürümler için geçerlidir.", "game": "Oyun: Star Jars Sort Deluxe (Yıldız Kavanozu). Geliştirici: Symbol Interactive."},
      "en": {"privacy": "Privacy policy", "terms": "Terms of use", "delete": "Deleting your account", "updated": "Last updated",
-            "applies": "Applies to Star Jars Sort Deluxe 1.0.0 and later.", "game": "Game: Star Jars Sort Deluxe. Developer: Symbol Interactive (Cem Tezgelen)."}}
+            "applies": "Applies to Star Jars Sort Deluxe 1.0.0 and later.", "game": "Game: Star Jars Sort Deluxe. Developer: Symbol Interactive."}}
 
 TERMS_INTRO = {
     "tr": "<p>Bu koşullar, Symbol Interactive'in oyunlarını (şu an Star Jars Sort Deluxe) oynarken seninle aramızdaki kuralları anlatır. Oyunu indirerek ya da oynayarak bu koşulları kabul etmiş olursun. Kısa ve anlaşılır tutmaya çalıştık; bir sorun olursa önce bize yaz.</p>",
@@ -1613,6 +1615,8 @@ page("tr", None, "Sayfa yok · Symbol Interactive", "Sayfa bulunamadı. This pag
 # Search engines: every page and its twin.
 urls = ""
 for key, paths in PAGES.items():
+    if key in NOINDEX:
+        continue
     for lang in paths:
         alts = "".join(f'<xhtml:link rel="alternate" hreflang="{a}" href="{SITE}{u(key, a)}"/>' for a in paths)
         urls += f"<url><loc>{SITE}{u(key, lang)}</loc>{alts}</url>\n"
