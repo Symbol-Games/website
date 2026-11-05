@@ -15,7 +15,10 @@ from html import escape as esc
 
 ROOT = pathlib.Path(__file__).parent
 SITE = "https://symbolinteractive.com.tr"
-MAIL = "symbolinteractive@gmail.com"  # the support address the user set in the release checklist (2026-11-03)
+# The studio's mailboxes at Yöncü (the user, 2026-11-05). Personal mailboxes on the same domain never go on the site.
+MAIL = "support@symbolinteractive.com.tr"
+PRESS_MAIL = "press@symbolinteractive.com.tr"
+PRIVACY_MAIL = "privacy@symbolinteractive.com.tr"  # privacy policy and account deletion
 CONTROLLER = "Cem Tezgelen"  # The law needs it in the privacy policy (KVKK Art. 10, GDPR Art. 13) and nowhere else: the user is not to be named on the site (2026-11-05). That page stays out of search.
 NOINDEX = {"privacy"}
 UPDATED = {"tr": "5 Kasım 2026", "en": "5 November 2026"}  # privacy policy, terms and deletion pages
@@ -49,9 +52,9 @@ def u(key, lang):
     return "/" + PAGES[key][lang].removesuffix("index.html")
 
 
-def mailto(subject=None):
+def mailto(subject=None, to=MAIL):
     q = f"?subject={subject.replace(' ', '%20')}" if subject else ""
-    return f'<a href="mailto:{MAIL}{q}">{MAIL}</a>'
+    return f'<a href="mailto:{to}{q}">{to}</a>'
 
 
 # ---------------------------------------------------------------- Zar, the logo (vectors from studio-core/Tools/art/studio-logo, key "tekgoz")
@@ -224,7 +227,7 @@ def footer(lang, other_href):
     <li><a href="{u("sky", lang)}">{t["sky"]}</a></li><li><a href="{u("news", lang)}">{t["news"]}</a></li></ul></div>
   <div><h2>{t["help"]}</h2><ul>
     <li><a href="{u("support", lang)}">{t["support"]}</a></li><li><a href="{u("delete", lang)}">{t["delete"]}</a></li>
-    <li><a href="mailto:{MAIL}">{MAIL.replace("@", "<wbr>@")}</a></li></ul></div>
+    <li><a href="mailto:{MAIL}">{MAIL.replace("@", "<wbr>@").replace(".com", "<wbr>.com")}</a></li></ul></div>
   <div><h2>{t["legal"]}</h2><ul>
     <li><a href="{u("privacy", lang)}">{t["privacy"]}</a></li><li><a href="{u("terms", lang)}">{t["terms"]}</a></li>
     <li><a href="{other_href}" lang="{t["other_lang"]}" hreflang="{t["other_lang"]}">{t["other"]}</a></li></ul></div>
@@ -630,7 +633,7 @@ def press_body(lang):
     p = PRESS[lang]
     zip_path = ROOT / "press" / "symbol-interactive-press-kit.zip"
     size = f" · {zip_path.stat().st_size / 1048576:.0f} MB" if zip_path.exists() else ""
-    rows = "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in p["rows"]) + f'<dt>{p["status"]}</dt><dd>{C[lang]["soon"][live_i(lang)]}</dd>' + f'<dt>{p["write"]}</dt><dd><a href="mailto:{MAIL}">{MAIL}</a></dd>'
+    rows = "".join(f"<dt>{k}</dt><dd>{v}</dd>" for k, v in p["rows"]) + f'<dt>{p["status"]}</dt><dd>{C[lang]["soon"][live_i(lang)]}</dd>' + f'<dt>{p["write"]}</dt><dd><a href="mailto:{PRESS_MAIL}">{PRESS_MAIL}</a></dd>'
     return f'''<div class="doc single press">
 <article class="prose">
 <h1>{p["h1"]}</h1>
@@ -715,7 +718,7 @@ PRIVACY = {
 <p><strong>Bu site.</strong> symbolinteractive.com.tr çerez kullanmaz, ziyaretçileri izlemez ve başka sitelerden yazı tipi ya da betik yüklemez. Site GitHub Pages'te barındırılır; GitHub, sayfaları sunarken IP adresini kendi kayıtlarında işleyebilir (<a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Gizlilik Bildirimi</a>).</p>'''),
         ("sorumlu", "Veri sorumlusu ve iletişim", f'''
 <p>Veri sorumlusu <strong>{CONTROLLER}</strong>'dir: Symbol Interactive adıyla oyun geliştiren bireysel geliştirici, Aydın, Türkiye.</p>
-<p>Her soru ve istek için: {mailto()}. Yazılı başvuru yapmak istersen posta adresimizi e-postayla isteyebilirsin.</p>'''),
+<p>Her soru ve istek için: {mailto(to=PRIVACY_MAIL)}. Yazılı başvuru yapmak istersen posta adresimizi e-postayla isteyebilirsin.</p>'''),
         ("bilgiler", "Hangi bilgileri, neden işliyoruz", f'''
 <p>Bilgiler oyun çalışırken, oyunun ve içindeki hizmet sağlayıcı kütüphanelerinin (SDK) yardımıyla otomatik olarak toplanır; bize e-posta yazarsan e-postayla. Hangi bilginin hangi ülkede hangi izinle işlendiği <a href="#hukuki-sebepler">hukuki sebepler</a> ve <a href="#izinler">izinler</a> bölümlerinde.</p>
 <h3>Yaş sorusu</h3>
@@ -778,6 +781,7 @@ PRIVACY = {
 <li><strong>Google</strong> (Google LLC ve bağlı şirketleri). Firebase Authentication, Cloud Firestore, Cloud Messaging, Crashlytics, Remote Config ve Analytics'te Google, bilgileri bizim adımıza ve talimatımızla işleyen <strong>veri işleyendir</strong>. AdMob'da ve Google Play'de Google, bilgileri kendi amaçları için de kullanan ayrı bir <strong>veri sorumlusudur</strong>. <a href="https://policies.google.com/privacy">Google Gizlilik Politikası</a>, <a href="https://firebase.google.com/support/privacy">Firebase'de gizlilik</a>, <a href="https://policies.google.com/technologies/partner-sites">Google'ın, hizmetlerini kullanan uygulamalardan gelen bilgileri nasıl kullandığı</a>.</li>
 <li><strong>Unity</strong> (Unity Technologies ve bağlı şirketleri; ironSource bir Unity şirketidir): LevelPlay, Unity Ads ve ironSource Ads. Unity, reklam verilerinin ayrı bir veri sorumlusudur. <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy">Unity'nin oyuncu ve uygulama kullanıcısı gizlilik politikası</a>.</li>
 <li><strong>Apple</strong> (Apple Inc. ve bağlı şirketleri): App Store, satın almalar ve Apple ile Giriş; Apple ayrı bir veri sorumlusudur. <a href="https://www.apple.com/legal/privacy/">Apple Gizlilik Politikası</a>.</li>
+<li><strong>Yöncü Bilişim Çözümleri</strong> (Türkiye): bize yazdığın e-postaları barındıran posta hizmeti. Bizim adımıza işleyen <strong>veri işleyendir</strong>.</li>
 </ul>
 <p><strong>Diğer oyuncular.</strong> Arkadaşlar'ı ya da sıralamayı kullanırsan, yukarıdaki "Arkadaşlar ve sıralama" bölümünde yazılı bilgilerini arkadaşların ve sıralamadaki oyuncular görür. Bu bilgilerle gerçek adın, e-postan ya da oyuncu kimliğin onlara gitmez.</p>
 <p>Bir yasa ya da yetkili bir makamın kararı gerektirirse bilgileri yetkili kurum ve kuruluşlarla da paylaşırız.</p>'''),
@@ -807,7 +811,7 @@ PRIVACY = {
 <h3>Nasıl başvurursun</h3>
 <ul>
 <li><strong>Oyunun içinden:</strong> hesabını ve bulut kaydını Ayarlar → Bulut kaydı → Hesabı sil ile kendin silebilirsin.</li>
-<li><strong>E-postayla:</strong> {mailto()} adresine yaz ve oyunun Ayarlar ekranında görünen oyuncu kimliğini ekle; bilgilerini bu kimlikle buluruz.</li>
+<li><strong>E-postayla:</strong> {mailto(to=PRIVACY_MAIL)} adresine yaz ve oyunun Ayarlar ekranında görünen oyuncu kimliğini ekle; bilgilerini bu kimlikle buluruz.</li>
 <li><strong>Yazılı olarak:</strong> posta adresimizi e-postayla isteyebilirsin.</li>
 </ul>
 <p>Başvurunu en geç 30 gün içinde, ücretsiz ve yazılı olarak (e-postayla) cevaplarız. Kimliğinden emin olmamız gerekirse ek bilgi isteyebiliriz.</p>
@@ -824,7 +828,7 @@ PRIVACY = {
 <li><strong>16 yaşından küçüksen (Türkiye'de 18):</strong> izin sorulmaz; analitik ve kişiselleştirilmiş reklam kapalı kalır, iOS'ta takip sorusu gösterilmez. AEA'da, Birleşik Krallık'ta ve İsviçre'de çökme raporları da gönderilmez. Reklamlar ilgi alanlarına göre seçilmez.</li>
 <li><strong>13 yaşından küçüksen:</strong> bunlara ek olarak reklam ortaklarına seni çocuk olarak işlemeleri bildirilir ve hesap bağlama (Game Center, Apple ya da Google) yapılmaz.</li>
 </ul>
-<p>13 yaşından küçük bir çocuğun bilgilerinin bize ulaştığını düşünüyorsan {mailto()} adresine yaz; bilgileri sileriz.</p>'''),
+<p>13 yaşından küçük bir çocuğun bilgilerinin bize ulaştığını düşünüyorsan {mailto(to=PRIVACY_MAIL)} adresine yaz; bilgileri sileriz.</p>'''),
         ("guvenlik", "Güvenlik", '''
 <p>Bilgiler telefonunla sunucular arasında şifreli bağlantıyla (HTTPS/TLS) gider. Bulut kaydını yalnızca senin hesabın okuyup yazabilir. Kart bilgilerini hiç görmeyiz. Bir veri ihlali olursa yasaların istediği şekilde Kurul'a ve gerekirse sana haber veririz.</p>'''),
         ("degisiklikler", "Değişiklikler", '''
@@ -837,7 +841,7 @@ PRIVACY = {
 <p><strong>This website.</strong> symbolinteractive.com.tr uses no cookies, does not track visitors and loads no fonts or scripts from other sites. It is hosted on GitHub Pages; GitHub may process your IP address in its own logs when serving the pages (<a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>).</p>'''),
         ("controller", "Data controller and contact", f'''
 <p>The data controller is <strong>{CONTROLLER}</strong>, an individual developer making games as Symbol Interactive, Aydın, Türkiye.</p>
-<p>For any question or request: {mailto()}. If you want to apply in writing by post, ask us for our postal address by email.</p>'''),
+<p>For any question or request: {mailto(to=PRIVACY_MAIL)}. If you want to apply in writing by post, ask us for our postal address by email.</p>'''),
         ("information", "What information we process, and why", f'''
 <p>Information is collected automatically while the game runs, through the game and the service providers' libraries (SDKs) inside it; and by email if you write to us. Which information is processed where and on what basis is in <a href="#legal-bases">legal bases</a> and <a href="#consent">consent</a>.</p>
 <h3>Age question</h3>
@@ -900,6 +904,7 @@ PRIVACY = {
 <li><strong>Google</strong> (Google LLC and its affiliates). For Firebase Authentication, Cloud Firestore, Cloud Messaging, Crashlytics, Remote Config and Analytics, Google is our <strong>processor</strong>, acting on our behalf and instructions. For AdMob and Google Play, Google is a separate <strong>controller</strong> that also uses information for its own purposes. <a href="https://policies.google.com/privacy">Google Privacy Policy</a>, <a href="https://firebase.google.com/support/privacy">Privacy and security in Firebase</a>, <a href="https://policies.google.com/technologies/partner-sites">How Google uses information from sites or apps that use its services</a>.</li>
 <li><strong>Unity</strong> (Unity Technologies and its affiliates; ironSource is a Unity company): LevelPlay, Unity Ads and ironSource Ads. Unity is a separate controller of ad data. <a href="https://unity.com/legal/game-player-and-app-user-privacy-policy">Unity Game Player and App User Privacy Policy</a>.</li>
 <li><strong>Apple</strong> (Apple Inc. and its affiliates): the App Store, purchases and Sign in with Apple; Apple is a separate controller. <a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a>.</li>
+<li><strong>Yöncü Bilişim Çözümleri</strong> (Türkiye): the mail service that hosts the emails you send us. It is our <strong>processor</strong>, acting on our behalf.</li>
 </ul>
 <p><strong>Other players.</strong> If you use Friends or the ranking, your friends and the players on the ranking see the information listed under "Friends and the ranking" above. Your real name, email and player ID do not go to them.</p>
 <p>If a law or a decision of a competent authority requires it, we also share information with the competent authorities.</p>'''),
@@ -929,7 +934,7 @@ PRIVACY = {
 <h3>How to apply</h3>
 <ul>
 <li><strong>In the game:</strong> delete your account and cloud save yourself in Settings → Cloud save → Delete account.</li>
-<li><strong>By email:</strong> write to {mailto()} with the player ID shown in the game's Settings; we find your information by that ID.</li>
+<li><strong>By email:</strong> write to {mailto(to=PRIVACY_MAIL)} with the player ID shown in the game's Settings; we find your information by that ID.</li>
 <li><strong>In writing:</strong> ask us for our postal address by email.</li>
 </ul>
 <p>We answer within 30 days, free of charge, in writing (by email). If we need to be sure who you are, we may ask for more information.</p>
@@ -946,7 +951,7 @@ PRIVACY = {
 <li><strong>Under 16 (under 18 in Türkiye):</strong> no consent is asked; analytics and personalised ads stay off and the iOS tracking prompt is not shown. In the EEA, the UK and Switzerland crash reports are not sent either. Ads are not chosen by your interests.</li>
 <li><strong>Under 13:</strong> in addition, ad partners are told to treat you as a child, and no account is linked (Game Center, Apple or Google).</li>
 </ul>
-<p>If you think a child under 13 has given us information, write to {mailto()} and we will delete it.</p>'''),
+<p>If you think a child under 13 has given us information, write to {mailto(to=PRIVACY_MAIL)} and we will delete it.</p>'''),
         ("security", "Security", '''
 <p>Information travels between your phone and the servers over encrypted connections (HTTPS/TLS). Only your own account can read or write your cloud save. We never see your card details. If a data breach happens, we notify the authorities and, where needed, you, as the law requires.</p>'''),
         ("changes", "Changes", '''
@@ -1049,7 +1054,7 @@ DELETE = {
 </ol>
 <p>Hesabın ve bulut kaydın o anda silinir; silme bitince oyun bunu sana gösterir. Apple ile Giriş'i bağladıysan ve iPhone'dan siliyorsan Apple'ın oyuna verdiği yetkiyi de geri çekeriz; Android'den sildiysen bu yetkiyi Apple Kimliği ayarlarındaki "Apple ile Giriş" listesinden kaldırabilirsin. Bu telefondaki ilerlemen kalır ve oyun onunla devam eder; bulut kaydı, sen Ayarlar → Bulut kaydı'ndan yeniden açana ya da bir hesap bağlayana kadar kapalı kalır ve buluta hiçbir şey yüklenmez. Bu telefondaki ilerlemeyi de silmek istersen oyunu telefonundan kaldır.</p>'''),
         ("e-posta", "E-postayla", f'''
-<p>Oyunu açamıyorsan ya da silmeyi bizim yapmamızı istersen, {mailto("Hesap silme")} adresine konusu <strong>Hesap silme</strong> olan bir e-posta gönder ve oyunun Ayarlar → Bulut kaydı ekranında görünen <strong>oyuncu kimliğini</strong> ekle. Hesabını bu kimlikle bulur, en geç 30 gün içinde siler ve bittiğinde sana e-postayla haber veririz.</p>
+<p>Oyunu açamıyorsan ya da silmeyi bizim yapmamızı istersen, {mailto("Hesap silme", PRIVACY_MAIL)} adresine konusu <strong>Hesap silme</strong> olan bir e-posta gönder ve oyunun Ayarlar → Bulut kaydı ekranında görünen <strong>oyuncu kimliğini</strong> ekle. Hesabını bu kimlikle bulur, en geç 30 gün içinde siler ve bittiğinde sana e-postayla haber veririz.</p>
 <p>Oyunu sildiğin için kimliğini göremiyorsan: hesabını Apple ya da Google ile bağladıysan oyunu yeniden yükleyip aynı hesapla giriş yap; kimliğin Ayarlar'da yine görünür ve silmeyi oradan kendin de yapabilirsin. Hesabını hiç bağlamadıysan, anonim hesap yalnızca o telefondaki oyuna bağlıydı ve hangi hesabın senin olduğunu bilemeyiz; böyle bir hesap 24 ay kullanılmadığında kendiliğinden silinir.</p>'''),
         ("silinenler", "Neler silinir", '''
 <ul>
@@ -1070,7 +1075,7 @@ DELETE = {
 </ul>'''),
         ("sure", "Ne kadar sürer", f'''
 <p>Oyunun içinden istediğinde hemen; e-postayla istediğinde en geç 30 gün içinde. Google'ın yedeklerinden temizlenmesi en geç 180 gün sürer.</p>
-<p>Bilgilerinin nasıl işlendiği <a href="{u("privacy", "tr")}">gizlilik politikasında</a>. Soruların için: {mailto()}.</p>'''),
+<p>Bilgilerinin nasıl işlendiği <a href="{u("privacy", "tr")}">gizlilik politikasında</a>. Soruların için: {mailto(to=PRIVACY_MAIL)}.</p>'''),
     ],
     "en": [
         ("in-game", "In the game", '''
@@ -1081,7 +1086,7 @@ DELETE = {
 </ol>
 <p>Your account and cloud save are deleted at once, and the game shows you when it's done. If you linked Sign in with Apple and delete on an iPhone, we also revoke the permission Apple gave the game; if you delete on Android, you can remove it from "Sign in with Apple" in your Apple ID settings. The progress on this phone stays and the game carries on with it; the cloud save stays off, and nothing is uploaded, until you turn it back on in Settings → Cloud save or link an account. To remove the progress on this phone too, uninstall the game.</p>'''),
         ("email", "By email", f'''
-<p>If you can't open the game, or would rather we did it, email {mailto("Account deletion")} with the subject line <strong>Account deletion</strong> and include the <strong>player ID</strong> shown in the game's Settings → Cloud save. We find your account by that ID, delete it within 30 days and email you when it's done.</p>
+<p>If you can't open the game, or would rather we did it, email {mailto("Account deletion", PRIVACY_MAIL)} with the subject line <strong>Account deletion</strong> and include the <strong>player ID</strong> shown in the game's Settings → Cloud save. We find your account by that ID, delete it within 30 days and email you when it's done.</p>
 <p>If you can't see your ID because you deleted the game: if you linked your account to Apple or Google, install the game again and sign in with the same account; your ID appears in Settings again, and you can delete the account there yourself. If you never linked it, the anonymous account belonged only to the game on that phone and we cannot tell which account is yours; such an account is deleted on its own after 24 months without use.</p>'''),
         ("deleted", "What is deleted", '''
 <ul>
@@ -1102,7 +1107,7 @@ DELETE = {
 </ul>'''),
         ("time", "How long it takes", f'''
 <p>In the game, at once; by email, within 30 days. Clearing Google's backups takes up to 180 days.</p>
-<p>How your information is processed is in the <a href="{u("privacy", "en")}">privacy policy</a>. Questions: {mailto()}.</p>'''),
+<p>How your information is processed is in the <a href="{u("privacy", "en")}">privacy policy</a>. Questions: {mailto(to=PRIVACY_MAIL)}.</p>'''),
     ],
 }
 

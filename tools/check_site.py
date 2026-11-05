@@ -88,6 +88,8 @@ for name, text in sources:
     outside += re.findall(r'url\("?(https?:[^")]+)', text)
     for x in outside:
         errors.append(f"loads from another host in {name}: {x}")
+    if re.search(r"[cs]\.tezgelen@|symbolinteractive@gmail", text):  # personal mailboxes and the old address stay off the site
+        errors.append(f"a private or old address appears in {name}")
     if "Tezgelen" in text and name not in ("gizlilik.html", "en/privacy.html"):  # the user is named only where the law requires it
         errors.append(f"the owner's name appears in {name}")
     if name not in LEGAL and name.endswith(".html"):
