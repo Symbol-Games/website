@@ -16,10 +16,11 @@ BASE = sys.argv[1] if len(sys.argv) > 1 else "origin/main"
 SAME_TEXT = ["gizlilik.html", "kullanim-kosullari.html", "hesap-silme.html", "destek.html", "support.html",
              "en/privacy.html", "en/terms.html", "en/delete-account.html", "en/support.html"]
 LEGAL = set(SAME_TEXT)
-KEEP = ["CNAME", "app-ads.txt", "demo/starjars.html", "demo/stores.js", "img/starjars-icon.svg"]
+KEEP = ["CNAME", "app-ads.txt", "demo/starjars.html", "demo/stores.js", "img/starjars-icon.svg", "googleef85ed6ca004e003.html", "BingSiteAuth.xml"]  # the last two prove ownership to search engines
 # foreground, background: the pairs body text and controls actually use
 PAIRS = [("#111111", "#F4B90B"), ("#111111", "#FFFDF5"), ("#111111", "#FFF3CE"), ("#F4B90B", "#111111"), ("#FFFDF5", "#111111"),
-         ("#FFFFFF", "#2A1A78"), ("#FFD76A", "#2A1A78"), ("#F4B90B", "#2A1A78"), ("#D6CEFF", "#2A1A78"), ("#A62D10", "#FFF3CE"), ("#454238", "#FFFDF5"), ("#C9C6B8", "#111111")]
+         ("#FFFFFF", "#2A1A78"), ("#FFD76A", "#2A1A78"), ("#F4B90B", "#2A1A78"), ("#D6CEFF", "#2A1A78"), ("#A62D10", "#FFF3CE"), ("#454238", "#FFFDF5"), ("#C9C6B8", "#111111"),
+         ("#EFEBFF", "#2A1A78"), ("#A62D10", "#FFF3CE")]
 errors = []
 
 
@@ -63,7 +64,7 @@ for p in ("CNAME", "app-ads.txt"):  # hand-kept files
     if (ROOT / p).read_text(encoding="utf-8") != git("show", f"{BASE}:{p}"):
         errors.append(f"hand-kept file changed: {p}")
 
-pages = [*ROOT.glob("*.html"), *ROOT.glob("en/*.html")]
+pages = [*ROOT.glob("*.html"), *ROOT.glob("en/*.html"), *ROOT.glob("gokyuzu/*.html"), *ROOT.glob("en/sky/*.html")]
 css = (ROOT / "site.css").read_text(encoding="utf-8")
 sources = [(p.relative_to(ROOT).as_posix(), p.read_text(encoding="utf-8")) for p in pages] + [("site.css", css), ("site.js", (ROOT / "site.js").read_text(encoding="utf-8"))]
 for name, text in sources:
@@ -71,12 +72,14 @@ for name, text in sources:
         errors.append(f"leftover marker: {name}")
     refs = re.findall(r'\b(?:href|src|poster)="(/[^"]*)"', text) + re.findall(r'url\("?(/[^")]+)"?\)', text)
     for ref in refs:
-        path = ref.split("#")[0].split("?")[0]
+        path, _, anchor = ref.split("?")[0].partition("#")
         target = ROOT / path.lstrip("/")
-        if path in ("/", "/en/"):
+        if path.endswith("/"):
             target = target / "index.html"
         if not target.exists():
             errors.append(f"broken link in {name}: {ref}")
+        elif anchor and target.suffix == ".html" and not path.startswith("/demo/") and f'id="{anchor}"' not in target.read_text(encoding="utf-8"):
+            errors.append(f"broken anchor in {name}: {ref}")
     for anchor in re.findall(r'href="#([^"]+)"', text):
         if f'id="{anchor}"' not in text:
             errors.append(f"broken anchor in {name}: #{anchor}")

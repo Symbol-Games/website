@@ -1,0 +1,5874 @@
+{
+ "gameVersion": "0.81.0",
+ "constellations": [
+  {
+   "id": "ursa-major",
+   "slug": "buyuk-ayi",
+   "name": {
+    "tr": "Büyük Ayı",
+    "en": "Great Bear"
+   },
+   "latin": "Ursa Major",
+   "region": "north",
+   "rank": 3,
+   "brightest": "Alioth",
+   "month": 4,
+   "fact": {
+    "tr": "Büyük Kepçe: kuzeyi gösteren yedi yıldız.",
+    "en": "The Big Dipper: seven stars that point north."
+   },
+   "legend": {
+    "tr": "Zeus, Artemis’in perisi Kallisto’ya âşık olur; ondan Arkas adında bir oğlu olunca Hera, Kallisto’yu bir ayıya çevirir. Zeus sonunda anneyle oğlunu göğe taşır: Kallisto Büyük Ayı, Arkas Çoban takımyıldızı olur.",
+    "en": "Zeus falls for Callisto, a nymph of Artemis; when she bears him a son, Arcas, Hera turns her into a bear. Zeus at last lifts mother and son into the sky: Callisto as the Great Bear, Arcas as Boötes."
+   },
+   "find": {
+    "tr": "Büyük Kepçe’nin kasesindeki Merak’tan Dubhe’ye bir çizgi çek ve bu aralığın beş katı kadar uzat: Kutup Yıldızı’na varırsın. Türkiye’den yıl boyu görünür.",
+    "en": "Draw a line from Merak to Dubhe at the end of the Dipper’s bowl and go on five times as far: you reach the Pole Star. Seen all year from mid-northern latitudes."
+   },
+   "sign": null,
+   "sun": null,
+   "stars": [
+    {
+     "name": "Dubhe",
+     "slug": "dubhe",
+     "x": 0.93,
+     "y": 0.549,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Ursae Majoris",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 123,
+     "mag": 1.79,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“Ayı” (Arapça)",
+      "en": "“Bear” (Arabic)"
+     },
+     "note": {
+      "tr": "Merak’la birlikte işaretçidir: ikisini birleştirip uzatınca Kutup Yıldızı’nı bulursun.",
+      "en": "With Merak it is a pointer: join the two and carry on to find the North Star."
+     }
+    },
+    {
+     "name": "Merak",
+     "slug": "merak",
+     "x": 0.891,
+     "y": 0.295,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Ursae Majoris",
+     "colour": "White",
+     "size": "Star",
+     "ly": 79,
+     "mag": 2.37,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "“Böğür” (Arapça)",
+      "en": "“Loins” (Arabic)"
+     },
+     "note": {
+      "tr": "Dubhe’yle birlikte Kutup Yıldızı’nı gösterir. Çevresinde ılık bir toz diski var.",
+      "en": "Points to the North Star with Dubhe. A warm disc of dust circles it."
+     }
+    },
+    {
+     "name": "Phecda",
+     "slug": "phecda",
+     "x": 0.617,
+     "y": 0.334,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Ursae Majoris",
+     "colour": "White",
+     "size": "Star",
+     "ly": 83,
+     "mag": 2.44,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "“Uyluk” (Arapça)",
+      "en": "“Thigh” (Arabic)"
+     },
+     "note": {
+      "tr": "Kepçenin ortadaki beş yıldızından biri: birlikte doğup birlikte gezen bir yıldız ailesinin üyesi.",
+      "en": "One of the Dipper’s middle five, a family of stars born and moving together."
+     }
+    },
+    {
+     "name": "Megrez",
+     "slug": "megrez",
+     "x": 0.578,
+     "y": 0.549,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Ursae Majoris",
+     "colour": "White",
+     "size": "Star",
+     "ly": 81,
+     "mag": 3.31,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Kuyruğun dibi” (Arapça)",
+      "en": "“Root of the tail” (Arabic)"
+     },
+     "note": {
+      "tr": "Büyük Kepçe’nin en sönük yıldızı; kepçenin sapla birleştiği köşede durur.",
+      "en": "The faintest of the Big Dipper’s seven, where the bowl meets the handle."
+     }
+    },
+    {
+     "name": "Alioth",
+     "slug": "alioth",
+     "x": 0.422,
+     "y": 0.588,
+     "letter": "epsilon",
+     "sup": "",
+     "genitive": "Ursae Majoris",
+     "colour": "White",
+     "size": "Star",
+     "ly": 83,
+     "mag": 1.77,
+     "greek": {
+      "tr": "Epsilon",
+      "en": "Epsilon"
+     },
+     "meaning": {
+      "tr": "“Koyun kuyruğu” (Arapça; kesin değil)",
+      "en": "“Sheep’s tail” (Arabic; uncertain)"
+     },
+     "note": {
+      "tr": "Büyük Ayı’nın en parlak yıldızı; kepçenin sapındaki ilk yıldız.",
+      "en": "The Great Bear’s brightest star, the first in the Dipper’s handle."
+     }
+    },
+    {
+     "name": "Mizar",
+     "slug": "mizar",
+     "x": 0.265,
+     "y": 0.666,
+     "letter": "zeta",
+     "sup": "",
+     "genitive": "Ursae Majoris",
+     "colour": "White",
+     "size": "Star",
+     "ly": 83,
+     "mag": 2.23,
+     "greek": {
+      "tr": "Zeta",
+      "en": "Zeta"
+     },
+     "meaning": {
+      "tr": "“Peştamal” (Arapça)",
+      "en": "“Apron” (Arabic)"
+     },
+     "note": {
+      "tr": "Yanındaki sönük Alcor’la eskiden göz testi sayılırdı. Fotoğrafı çekilen ilk çift yıldızdır.",
+      "en": "With faint Alcor beside it, it was an old eyesight test. The first double star ever photographed."
+     }
+    },
+    {
+     "name": "Alkaid",
+     "slug": "alkaid",
+     "x": 0.07,
+     "y": 0.705,
+     "letter": "eta",
+     "sup": "",
+     "genitive": "Ursae Majoris",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 104,
+     "mag": 1.86,
+     "greek": {
+      "tr": "Eta",
+      "en": "Eta"
+     },
+     "meaning": {
+      "tr": "“Önder” (Arapça)",
+      "en": "“The leader” (Arabic)"
+     },
+     "note": {
+      "tr": "Kepçe sapının ucu ve en sıcak yıldızı; ortadaki beşin ailesinden değil.",
+      "en": "The tip of the handle and the Dipper’s hottest star; not of the middle five’s family."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     6
+    ]
+   ]
+  },
+  {
+   "id": "cassiopeia",
+   "slug": "kralice",
+   "name": {
+    "tr": "Kraliçe",
+    "en": "Cassiopeia"
+   },
+   "latin": "Cassiopeia",
+   "region": "north",
+   "rank": 25,
+   "brightest": "Schedar",
+   "month": 11,
+   "fact": {
+    "tr": "Kuzey göğünde bir W harfi.",
+    "en": "A W in the northern sky."
+   },
+   "legend": {
+    "tr": "Etiyopya kraliçesi Kassiopeia, kızı Andromeda’nın deniz perilerinden güzel olduğunu söyleyip Poseidon’u kızdırır. Ceza olarak tahtıyla göğe konur ve Kutup Yıldızı’nın çevresinde döner; yılın yarısında düşmemek için tahtına tutunur.",
+    "en": "Cassiopeia, queen of Aethiopia, boasts that her daughter Andromeda is fairer than the sea nymphs and angers Poseidon. She is set in the sky on her throne, wheeling round the Pole Star and clinging on half the year so as not to fall."
+   },
+   "find": {
+    "tr": "Kutup Yıldızı’nın Büyük Kepçe’ye göre öbür yanında, beş parlak yıldızın çizdiği bir W. Türkiye’den yıl boyu görünür.",
+    "en": "Across the Pole Star from the Big Dipper: five bright stars drawing a W. Seen all year from mid-northern latitudes."
+   },
+   "sign": null,
+   "sun": null,
+   "stars": [
+    {
+     "name": "Caph",
+     "slug": "caph",
+     "x": 0.07,
+     "y": 0.652,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Cassiopeiae",
+     "colour": "YellowWhite",
+     "size": "Giant",
+     "ly": 55,
+     "mag": 2.28,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "“Avuç” (Arapça; kınalı el)",
+      "en": "“Palm” (Arabic; the hennaed hand)"
+     },
+     "note": {
+      "tr": "W’nun bir ucu. Çok hızlı döner; ışığı iki buçuk saatte bir azıcık titreşir.",
+      "en": "One end of the W. It spins fast, and its light flickers slightly every two and a half hours."
+     }
+    },
+    {
+     "name": "Schedar",
+     "slug": "schedar",
+     "x": 0.267,
+     "y": 0.384,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Cassiopeiae",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 228,
+     "mag": 2.24,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“Göğüs” (Arapça)",
+      "en": "“Breast” (Arabic)"
+     },
+     "note": {
+      "tr": "Kraliçe, Kutup Yıldızı’nın çevresinde döner; Türkiye’den bütün yıl görünür.",
+      "en": "The Queen circles the North Star and never sets for most northern skywatchers."
+     }
+    },
+    {
+     "name": "Navi",
+     "slug": "navi",
+     "x": 0.482,
+     "y": 0.581,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Cassiopeiae",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 550,
+     "mag": 2.39,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "“Ivan” tersten: astronot Gus Grissom’un göbek adı",
+      "en": "“Ivan” backwards: astronaut Gus Grissom’s middle name"
+     },
+     "note": {
+      "tr": "Apollo astronotlarının seyir yıldızıydı. Parlaklığı öngörülemez biçimde değişir; türünün ilk örneği.",
+      "en": "Apollo astronauts steered by it. Its brightness changes unpredictably; the first known star of its kind."
+     }
+    },
+    {
+     "name": "Ruchbah",
+     "slug": "ruchbah",
+     "x": 0.697,
+     "y": 0.348,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Cassiopeiae",
+     "colour": "White",
+     "size": "Star",
+     "ly": 99,
+     "mag": 2.68,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Diz” (Arapça)",
+      "en": "“Knee” (Arabic)"
+     },
+     "note": {
+      "tr": "Bir çift yıldız: yoldaşı önünden geçince 759 günde bir azıcık sönükleşir.",
+      "en": "A pair: every 759 days its partner passes in front and it dims a little."
+     }
+    },
+    {
+     "name": "Segin",
+     "slug": "segin",
+     "x": 0.93,
+     "y": 0.616,
+     "letter": "epsilon",
+     "sup": "",
+     "genitive": "Cassiopeiae",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 470,
+     "mag": 3.37,
+     "greek": {
+      "tr": "Epsilon",
+      "en": "Epsilon"
+     },
+     "meaning": {
+      "tr": "Kökeni belirsiz; başka bir yıldızın adından yanlış aktarılmış olabilir",
+      "en": "Unclear; perhaps miscopied from another star’s name"
+     },
+     "note": {
+      "tr": "W’nun öbür ucu: Güneş’ten yaklaşık 3.000 kat parlak, sıcak mavi bir yıldız.",
+      "en": "The other end of the W: a hot blue star about 3,000 times brighter than the Sun."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ]
+   ]
+  },
+  {
+   "id": "orion",
+   "slug": "avci",
+   "name": {
+    "tr": "Avcı",
+    "en": "Orion"
+   },
+   "latin": "Orion",
+   "region": "equator",
+   "rank": 26,
+   "brightest": "Rigel",
+   "month": 1,
+   "fact": {
+    "tr": "Kemerindeki üç yıldız kışın en kolay bulunan şekil.",
+    "en": "His three-star belt is winter’s easiest find."
+   },
+   "legend": {
+    "tr": "Dev avcı Orion yeryüzündeki bütün hayvanları öldüreceğini söyleyince onu sokması için bir akrep gönderilir. Bu yüzden Avcı ile Akrep gökte hiç birlikte görünmez: biri doğarken öteki batar.",
+    "en": "When the giant hunter Orion boasts he will kill every animal on Earth, a scorpion is sent to sting him. So Orion and Scorpius never share the sky: as one rises, the other sets."
+   },
+   "find": {
+    "tr": "Kemerindeki yan yana üç yıldız: Alnitak, Alnilam, Mintaka. Kemer güneydoğuda Sirius’u, kuzeybatıda Aldebaran’ı gösterir. Kış akşamlarının takımyıldızı.",
+    "en": "The three stars of its Belt in a row: Alnitak, Alnilam, Mintaka. The Belt points southeast to Sirius and northwest to Aldebaran. The constellation of winter evenings."
+   },
+   "sign": null,
+   "sun": null,
+   "stars": [
+    {
+     "name": "Saiph",
+     "slug": "saiph",
+     "x": 0.25,
+     "y": 0.07,
+     "letter": "kappa",
+     "sup": "",
+     "genitive": "Orionis",
+     "colour": "Blue",
+     "size": "Supergiant",
+     "ly": 650,
+     "mag": 2.09,
+     "greek": {
+      "tr": "Kappa",
+      "en": "Kappa"
+     },
+     "meaning": {
+      "tr": "“Kılıç” (Arapça)",
+      "en": "“Sword” (Arabic)"
+     },
+     "note": {
+      "tr": "Gözümüze sönük görünür ama çok sıcak bir süperdevdir: ışığının çoğu gözün göremediği morötesinde.",
+      "en": "It looks dim to us, yet it is a very hot supergiant: most of its light is ultraviolet our eyes can’t see."
+     }
+    },
+    {
+     "name": "Rigel",
+     "slug": "rigel",
+     "x": 0.831,
+     "y": 0.116,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Orionis",
+     "colour": "Blue",
+     "size": "Supergiant",
+     "ly": 860,
+     "mag": 0.13,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "“Ayak” (Arapça)",
+      "en": "“Foot” (Arabic)"
+     },
+     "note": {
+      "tr": "Gökyüzünün en parlak yedinci yıldızı; Güneş’ten yüz bin kattan fazla ışık saçar.",
+      "en": "The seventh brightest star in the sky, over 100,000 times as bright as the Sun."
+     }
+    },
+    {
+     "name": "Alnitak",
+     "slug": "alnitak",
+     "x": 0.343,
+     "y": 0.5,
+     "letter": "zeta",
+     "sup": "",
+     "genitive": "Orionis",
+     "colour": "Blue",
+     "size": "Supergiant",
+     "ly": 1260,
+     "mag": 1.77,
+     "greek": {
+      "tr": "Zeta",
+      "en": "Zeta"
+     },
+     "meaning": {
+      "tr": "“Kuşak” (Arapça)",
+      "en": "“The girdle” (Arabic)"
+     },
+     "note": {
+      "tr": "Avcı’nın kuşağının doğu ucu; hemen yanında At Başı ve Alev bulutsuları var.",
+      "en": "The east end of Orion’s Belt, right beside the Horsehead and Flame nebulae."
+     }
+    },
+    {
+     "name": "Alnilam",
+     "slug": "alnilam",
+     "x": 0.471,
+     "y": 0.535,
+     "letter": "epsilon",
+     "sup": "",
+     "genitive": "Orionis",
+     "colour": "Blue",
+     "size": "Supergiant",
+     "ly": 2000,
+     "mag": 1.69,
+     "greek": {
+      "tr": "Epsilon",
+      "en": "Epsilon"
+     },
+     "meaning": {
+      "tr": "“İnci dizisi” (Arapça)",
+      "en": "“String of pearls” (Arabic)"
+     },
+     "note": {
+      "tr": "Kuşağın ortasındaki yıldız; çıplak gözle görülen en ışıklı yıldızlardan biri.",
+      "en": "The Belt’s middle star, one of the most luminous stars the naked eye can see."
+     }
+    },
+    {
+     "name": "Mintaka",
+     "slug": "mintaka",
+     "x": 0.599,
+     "y": 0.57,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Orionis",
+     "colour": "Blue",
+     "size": "BrightGiant",
+     "ly": 1200,
+     "mag": 2.23,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Kemer” (Arapça)",
+      "en": "“Belt” (Arabic)"
+     },
+     "note": {
+      "tr": "Gök ekvatorunun neredeyse tam üstünde; bu yüzden tam doğudan doğar, tam batıdan batar.",
+      "en": "It sits almost on the celestial equator, so it rises due east and sets due west."
+     }
+    },
+    {
+     "name": "Bellatrix",
+     "slug": "bellatrix",
+     "x": 0.761,
+     "y": 0.86,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Orionis",
+     "colour": "Blue",
+     "size": "Giant",
+     "ly": 250,
+     "mag": 1.64,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "“Kadın savaşçı” (Latince)",
+      "en": "“Female warrior” (Latin)"
+     },
+     "note": {
+      "tr": "Avcı’nın omzu: Güneş’ten çok daha sıcak, mavi bir dev.",
+      "en": "Orion’s shoulder: a blue giant far hotter than the Sun."
+     }
+    },
+    {
+     "name": "Betelgeuse",
+     "slug": "betelgeuse",
+     "x": 0.169,
+     "y": 0.93,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Orionis",
+     "colour": "Red",
+     "size": "Supergiant",
+     "ly": 550,
+     "mag": 0.5,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“El” (Arapça; yanlış okunarak bugünkü adını aldı)",
+      "en": "“Hand” (Arabic; a misreading gave today’s name)"
+     },
+     "note": {
+      "tr": "Güneş’in yerinde olsa asteroit kuşağına uzanırdı. 2019’da birden sönükleşti; bir gün süpernova olacak.",
+      "en": "In the Sun’s place it would reach the asteroid belt. It dimmed sharply in 2019 and will one day explode."
+     }
+    }
+   ],
+   "lines": [
+    [
+     6,
+     5
+    ],
+    [
+     6,
+     2
+    ],
+    [
+     5,
+     4
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     4,
+     1
+    ]
+   ]
+  },
+  {
+   "id": "leo",
+   "slug": "aslan",
+   "name": {
+    "tr": "Aslan",
+    "en": "Leo"
+   },
+   "latin": "Leo",
+   "region": "zodiac",
+   "rank": 12,
+   "brightest": "Regulus",
+   "month": 4,
+   "fact": {
+    "tr": "Burç kuşağının ilk durağı: orak biçimli yelesi.",
+    "en": "First stop on the zodiac: a sickle-shaped mane."
+   },
+   "legend": {
+    "tr": "Herakles’in on iki görevinin ilki Nemea aslanıdır. Hiçbir silahın işlemediği aslanı Herakles çıplak elleriyle yener; Zeus da aslanı göğe yerleştirir.",
+    "en": "The first of Heracles’ twelve labours is the Nemean lion. No weapon can pierce its hide, so he overcomes it with his bare hands, and Zeus sets the lion in the sky."
+   },
+   "find": {
+    "tr": "Yelesi ters bir soru işareti gibi kıvrılan Orak; dibinde parlak Regulus.",
+    "en": "The Sickle, a backwards question mark for its mane, with bright Regulus at its foot."
+   },
+   "sign": {
+    "tr": "23 Temmuz ile 22 Ağustos arası",
+    "en": "23 July to 22 August"
+   },
+   "sun": {
+    "tr": "Gökyüzünde ise Güneş yaklaşık 10 Ağustos ile 16 Eylül arasında Aslan’ın önünden geçer.",
+    "en": "In the real sky the Sun passes in front of Leo from about 10 August to 16 September."
+   },
+   "stars": [
+    {
+     "name": "Regulus",
+     "slug": "regulus",
+     "x": 0.07,
+     "y": 0.266,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Leonis",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 79,
+     "mag": 1.35,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“Küçük kral” (Latince)",
+      "en": "“Little king” (Latin)"
+     },
+     "note": {
+      "tr": "Güneş’in yoluna en yakın parlak yıldız: Güneş her yıl 23 Ağustos’ta önünden geçer. Çok hızlı döndüğü için ekvatoru şişkin.",
+      "en": "The bright star closest to the Sun’s path: the Sun passes it every 23 August. It spins so fast its equator bulges."
+     }
+    },
+    {
+     "name": "Al Jabhah",
+     "slug": "al-jabhah",
+     "x": 0.107,
+     "y": 0.435,
+     "letter": "eta",
+     "sup": "",
+     "genitive": "Leonis",
+     "colour": "White",
+     "size": "Supergiant",
+     "ly": 1270,
+     "mag": 3.48,
+     "greek": {
+      "tr": "Eta",
+      "en": "Eta"
+     },
+     "meaning": {
+      "tr": "“Alın” (Arapça)",
+      "en": "“Forehead” (Arabic)"
+     },
+     "note": {
+      "tr": "Regulus’tan 16 kat uzak olduğu için sönük görünür; gerçekte ondan çok daha ışıklı bir süperdev.",
+      "en": "It looks faint because it is 16 times farther than Regulus; it is really a far brighter supergiant."
+     }
+    },
+    {
+     "name": "Algieba",
+     "slug": "algieba",
+     "x": 0.201,
+     "y": 0.565,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Leonis",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 130,
+     "mag": 2.01,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "“Alın” (Arapça; aslında yelede durur)",
+      "en": "“Forehead” (Arabic; though it sits in the mane)"
+     },
+     "note": {
+      "tr": "Küçük bir teleskop onu turuncu ve sarı iki deve ayırır; birbirlerinin çevresinde 500 yılda dolanırlar.",
+      "en": "A small telescope splits it into an orange and a yellow giant that circle each other every 500 years."
+     }
+    },
+    {
+     "name": "Adhafera",
+     "slug": "adhafera",
+     "x": 0.276,
+     "y": 0.696,
+     "letter": "zeta",
+     "sup": "",
+     "genitive": "Leonis",
+     "colour": "YellowWhite",
+     "size": "Giant",
+     "ly": 270,
+     "mag": 3.43,
+     "greek": {
+      "tr": "Zeta",
+      "en": "Zeta"
+     },
+     "meaning": {
+      "tr": "“Bukle” (Arapça; aslanın yelesinde)",
+      "en": "“The curl” (Arabic; in the lion’s mane)"
+     },
+     "note": {
+      "tr": "Aslan’ın başını çizen Orak’ın bir yıldızı; Orak ters bir soru işaretine benzer.",
+      "en": "A star of the Sickle that draws the lion’s head, a backwards question mark."
+     }
+    },
+    {
+     "name": "Rasalas",
+     "slug": "rasalas",
+     "x": 0.407,
+     "y": 0.734,
+     "letter": "mu",
+     "sup": "",
+     "genitive": "Leonis",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 124,
+     "mag": 3.88,
+     "greek": {
+      "tr": "Mü",
+      "en": "Mu"
+     },
+     "meaning": {
+      "tr": "“Aslanın başı” (Arapça)",
+      "en": "“The lion’s head” (Arabic)"
+     },
+     "note": {
+      "tr": "Turuncu bir dev; çevresinde 2014’te bir gezegen bulundu.",
+      "en": "An orange giant; a planet was found circling it in 2014."
+     }
+    },
+    {
+     "name": "Algenubi",
+     "slug": "algenubi",
+     "x": 0.463,
+     "y": 0.64,
+     "letter": "epsilon",
+     "sup": "",
+     "genitive": "Leonis",
+     "colour": "Yellow",
+     "size": "BrightGiant",
+     "ly": 250,
+     "mag": 2.98,
+     "greek": {
+      "tr": "Epsilon",
+      "en": "Epsilon"
+     },
+     "meaning": {
+      "tr": "“Güneydeki” (Arapça; aslanın başının)",
+      "en": "“The southern one” (Arabic; of the lion’s head)"
+     },
+     "note": {
+      "tr": "Orak’ın bir ucu: Güneş’ten yüzlerce kat ışıklı, sarı bir dev.",
+      "en": "One end of the Sickle: a yellow giant hundreds of times brighter than the Sun."
+     }
+    },
+    {
+     "name": "Zosma",
+     "slug": "zosma",
+     "x": 0.668,
+     "y": 0.565,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Leonis",
+     "colour": "White",
+     "size": "Star",
+     "ly": 58,
+     "mag": 2.56,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Kuşak” (Yunanca)",
+      "en": "“Girdle” (Greek)"
+     },
+     "note": {
+      "tr": "Aslan’ın kalçası: Güneş’ten iki kat ağır, çok hızlı dönen beyaz bir yıldız.",
+      "en": "The lion’s hip: a fast-spinning white star twice the Sun’s mass."
+     }
+    },
+    {
+     "name": "Chertan",
+     "slug": "chertan",
+     "x": 0.631,
+     "y": 0.378,
+     "letter": "theta",
+     "sup": "",
+     "genitive": "Leonis",
+     "colour": "White",
+     "size": "Star",
+     "ly": 165,
+     "mag": 3.33,
+     "greek": {
+      "tr": "Teta",
+      "en": "Theta"
+     },
+     "meaning": {
+      "tr": "“İki küçük kaburga” (Arapça)",
+      "en": "“Two little ribs” (Arabic)"
+     },
+     "note": {
+      "tr": "Aslan’ın arka bacağı; Zosma ve Denebola’yla bir üçgen kurar.",
+      "en": "The lion’s hind leg; it makes a triangle with Zosma and Denebola."
+     }
+    },
+    {
+     "name": "Denebola",
+     "slug": "denebola",
+     "x": 0.93,
+     "y": 0.416,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Leonis",
+     "colour": "White",
+     "size": "Star",
+     "ly": 36,
+     "mag": 2.13,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "“Aslanın kuyruğu” (Arapça)",
+      "en": "“The lion’s tail” (Arabic)"
+     },
+     "note": {
+      "tr": "Arktürüs ve Spika’yla Bahar Üçgeni’ni kurar; çevresinde bir toz diski var.",
+      "en": "With Arcturus and Spica it makes the Spring Triangle; a disc of dust circles it."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     6,
+     8
+    ],
+    [
+     8,
+     7
+    ],
+    [
+     7,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "virgo",
+   "slug": "basak",
+   "name": {
+    "tr": "Başak",
+    "en": "Virgo"
+   },
+   "latin": "Virgo",
+   "region": "zodiac",
+   "rank": 2,
+   "brightest": "Spica",
+   "month": 5,
+   "fact": {
+    "tr": "Başak: Spika burada, sıcak mavi bir yıldız.",
+    "en": "Virgo: home of Spica, a hot blue star."
+   },
+   "legend": {
+    "tr": "Çoğu anlatıda Başak, adalet tanrıçası Astraia’dır: insanlar kötüleşince yeryüzünü en son o terk etmiştir. Elindeki başak (Spica) hasadı anlatır; kimi anlatı onu Demeter ile kızı Persephone’ye bağlar.",
+    "en": "Most often Virgo is Astraea, goddess of justice, the last to leave the Earth when people grew wicked. The ear of wheat in her hand, Spica, stands for the harvest; some tales tie her to Demeter and her daughter Persephone."
+   },
+   "find": {
+    "tr": "Büyük Kepçe’nin sapının yayını izle: önce Arcturus’a, oradan Spica’ya varırsın.",
+    "en": "Follow the arc of the Dipper’s handle to Arcturus, and speed on to Spica."
+   },
+   "sign": {
+    "tr": "23 Ağustos ile 22 Eylül arası",
+    "en": "23 August to 22 September"
+   },
+   "sun": {
+    "tr": "Gökyüzünde ise Güneş yaklaşık 16 Eylül ile 30 Ekim arasında Başak’ın önünden geçer: 44 günle burç kuşağı takımyıldızlarının en uzunu.",
+    "en": "In the real sky the Sun passes in front of Virgo from about 16 September to 30 October: at 44 days, the longest of the zodiac constellations."
+   },
+   "stars": [
+    {
+     "name": "Zavijava",
+     "slug": "zavijava",
+     "x": 0.93,
+     "y": 0.544,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Virginis",
+     "colour": "YellowWhite",
+     "size": "Star",
+     "ly": 36,
+     "mag": 3.61,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "“Havlayanın köşesi” (Arapça)",
+      "en": "“Corner of the barker” (Arabic)"
+     },
+     "note": {
+      "tr": "Güneş’e benzeyen, ondan biraz büyük bir yıldız. Ay sık sık önünden geçer.",
+      "en": "A Sun-like star, a little bigger. The Moon often passes in front of it."
+     }
+    },
+    {
+     "name": "Zaniah",
+     "slug": "zaniah",
+     "x": 0.757,
+     "y": 0.487,
+     "letter": "eta",
+     "sup": "",
+     "genitive": "Virginis",
+     "colour": "White",
+     "size": "Star",
+     "ly": 250,
+     "mag": 3.89,
+     "greek": {
+      "tr": "Eta",
+      "en": "Eta"
+     },
+     "meaning": {
+      "tr": "“Köşe” (Arapça)",
+      "en": "“Corner” (Arabic)"
+     },
+     "note": {
+      "tr": "Üç yıldızlı bir sistem; Güneş’in yoluna yakın olduğu için Ay sık sık onu örter.",
+      "en": "A triple star near the Sun’s path, so the Moon often hides it."
+     }
+    },
+    {
+     "name": "Porrima",
+     "slug": "porrima",
+     "x": 0.629,
+     "y": 0.468,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Virginis",
+     "colour": "YellowWhite",
+     "size": "Star",
+     "ly": 38,
+     "mag": 2.74,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "Romalıların kehanet tanrıçası",
+      "en": "A Roman goddess of prophecy"
+     },
+     "note": {
+      "tr": "Neredeyse ikiz iki yıldız 169 yılda bir dolanır; 2005’te onları ancak en büyük teleskoplar ayırabildi.",
+      "en": "Two near-twin stars circling every 169 years; in 2005 only the largest telescopes could split them."
+     }
+    },
+    {
+     "name": "Minelauva",
+     "slug": "minelauva",
+     "x": 0.546,
+     "y": 0.583,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Virginis",
+     "colour": "Red",
+     "size": "Giant",
+     "ly": 200,
+     "mag": 3.38,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Havlayan” (Arapça)",
+      "en": "“The barker” (Arabic)"
+     },
+     "note": {
+      "tr": "Güneş’ten yaklaşık 50 kat geniş, kırmızı bir dev.",
+      "en": "A red giant about 50 times wider than the Sun."
+     }
+    },
+    {
+     "name": "Vindemiatrix",
+     "slug": "vindemiatrix",
+     "x": 0.507,
+     "y": 0.762,
+     "letter": "epsilon",
+     "sup": "",
+     "genitive": "Virginis",
+     "colour": "Yellow",
+     "size": "Giant",
+     "ly": 110,
+     "mag": 2.85,
+     "greek": {
+      "tr": "Epsilon",
+      "en": "Epsilon"
+     },
+     "meaning": {
+      "tr": "“Bağbozumcu kadın” (Latince)",
+      "en": "“The grape-gatherer” (Latin)"
+     },
+     "note": {
+      "tr": "Antik çağda şafakta doğuşu, bağbozumunun başlama işareti sayılırdı.",
+      "en": "In antiquity its rising at dawn was the sign to start the grape harvest."
+     }
+    },
+    {
+     "name": "Heze",
+     "slug": "heze",
+     "x": 0.315,
+     "y": 0.488,
+     "letter": "zeta",
+     "sup": "",
+     "genitive": "Virginis",
+     "colour": "White",
+     "size": "Star",
+     "ly": 73,
+     "mag": 3.37,
+     "greek": {
+      "tr": "Zeta",
+      "en": "Zeta"
+     },
+     "meaning": {
+      "tr": "Kökeni bilinmiyor",
+      "en": "Origin unknown"
+     },
+     "note": {
+      "tr": "Gök ekvatorunun hemen güneyinde; Dünya’nın her yerinden görülebilir.",
+      "en": "Just south of the celestial equator, so it can be seen from everywhere on Earth."
+     }
+    },
+    {
+     "name": "Syrma",
+     "slug": "syrma",
+     "x": 0.07,
+     "y": 0.36,
+     "letter": "iota",
+     "sup": "",
+     "genitive": "Virginis",
+     "colour": "YellowWhite",
+     "size": "Giant",
+     "ly": 70,
+     "mag": 4.08,
+     "greek": {
+      "tr": "Yota",
+      "en": "Iota"
+     },
+     "meaning": {
+      "tr": "“Etek kuyruğu” (Yunanca)",
+      "en": "“Train of a robe” (Greek)"
+     },
+     "note": {
+      "tr": "Başak’ın eteğinin ucunda: Güneş’ten biraz sıcak, sarımsı beyaz bir yıldız.",
+      "en": "At the hem of Virgo’s robe: a yellow-white star a little hotter than the Sun."
+     }
+    },
+    {
+     "name": "Spica",
+     "slug": "spica",
+     "x": 0.371,
+     "y": 0.238,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Virginis",
+     "colour": "Blue",
+     "size": "Giant",
+     "ly": 250,
+     "mag": 0.97,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“Başak” (Latince)",
+      "en": "“Ear of wheat” (Latin)"
+     },
+     "note": {
+      "tr": "Hipparkos, Spika’yı eski kayıtlarla karşılaştırıp Dünya’nın yalpalamasını buldu. İki yıldızı 4 günde bir dolanır.",
+      "en": "Comparing Spica with old records, Hipparchus found Earth’s slow wobble. Its two stars circle every 4 days."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     3,
+     5
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     2,
+     7
+    ]
+   ]
+  },
+  {
+   "id": "libra",
+   "slug": "terazi",
+   "name": {
+    "tr": "Terazi",
+    "en": "Libra"
+   },
+   "latin": "Libra",
+   "region": "zodiac",
+   "rank": 29,
+   "brightest": "Zubeneschamali",
+   "month": 6,
+   "fact": {
+    "tr": "Terazi: yıldız adları Akrep’in kıskaçlarından.",
+    "en": "Libra: its stars were once the Scorpion’s claws."
+   },
+   "legend": {
+    "tr": "Eski Yunan’da Terazi’nin yıldızları Akrep’in kıskaçlarıydı. Romalılar onları adalet tanrıçası Astraia’nın terazisi olarak gördü; terazi, yanındaki Başak’ın elindedir.",
+    "en": "In ancient Greece Libra’s stars were the Scorpion’s claws. The Romans saw them as the scales of Astraea, goddess of justice, held by her neighbour Virgo."
+   },
+   "find": {
+    "tr": "Başak ile Akrep arasında dört yıldızın çizdiği bir dörtgen: terazinin kolu ve kefeleri.",
+    "en": "Between Virgo and Scorpius, four stars drawing a quadrangle: the beam and pans of the scales."
+   },
+   "sign": {
+    "tr": "23 Eylül ile 22 Ekim arası",
+    "en": "23 September to 22 October"
+   },
+   "sun": {
+    "tr": "Gökyüzünde ise Güneş yaklaşık 31 Ekim ile 22 Kasım arasında Terazi’nin önünden geçer.",
+    "en": "In the real sky the Sun passes in front of Libra from about 31 October to 22 November."
+   },
+   "stars": [
+    {
+     "name": "Brachium",
+     "slug": "brachium",
+     "x": 0.613,
+     "y": 0.07,
+     "letter": "sigma",
+     "sup": "",
+     "genitive": "Librae",
+     "colour": "Red",
+     "size": "Giant",
+     "ly": 290,
+     "mag": 3.25,
+     "greek": {
+      "tr": "Sigma",
+      "en": "Sigma"
+     },
+     "meaning": {
+      "tr": "“Kol” (Latince)",
+      "en": "“Arm” (Latin)"
+     },
+     "note": {
+      "tr": "Eskiden Akrep’ten sayılır, Gama Scorpii diye anılırdı. Kırmızı bir dev.",
+      "en": "It once counted as part of Scorpius, as Gamma Scorpii. A red giant."
+     }
+    },
+    {
+     "name": "Zubenelgenubi",
+     "slug": "zubenelgenubi",
+     "x": 0.777,
+     "y": 0.544,
+     "letter": "alpha",
+     "sup": "²",
+     "genitive": "Librae",
+     "colour": "White",
+     "size": "Star",
+     "ly": 75,
+     "mag": 2.75,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“Güney kıskacı” (Arapça; akrebin)",
+      "en": "“Southern claw” (Arabic; of the scorpion)"
+     },
+     "note": {
+      "tr": "Terazi bir zamanlar Akrep’in kıskaçlarıydı. Dürbün bu yıldızı ikiye ayırır.",
+      "en": "Libra was once the scorpion’s claws. Binoculars split this star in two."
+     }
+    },
+    {
+     "name": "Zuben Elakribi",
+     "slug": "zuben-elakribi",
+     "x": 0.652,
+     "y": 0.93,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Librae",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 300,
+     "mag": 4.91,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Akrebin kıskacı” (Arapça)",
+      "en": "“Claw of the scorpion” (Arabic)"
+     },
+     "note": {
+      "tr": "Örten bir çift: yoldaşı önünden geçince 2,3 günde bir sönükleşir.",
+      "en": "An eclipsing pair: every 2.3 days its partner passes in front and it dims."
+     }
+    },
+    {
+     "name": "Zubeneschamali",
+     "slug": "zubeneschamali",
+     "x": 0.453,
+     "y": 0.886,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Librae",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 185,
+     "mag": 2.61,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "“Kuzey kıskacı” (Arapça)",
+      "en": "“Northern claw” (Arabic)"
+     },
+     "note": {
+      "tr": "Bazı gözlemciler onu yeşilimsi görür; çıplak gözle yeşil görünen tek yıldız diye anılır.",
+      "en": "Some observers see it greenish; it is called the only naked-eye star that looks green."
+     }
+    },
+    {
+     "name": "Zubenelhakrabi",
+     "slug": "zubenelhakrabi",
+     "x": 0.223,
+     "y": 0.608,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Librae",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 150,
+     "mag": 3.91,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "“Akrebin kıskacı” (Arapça; başka bir yazılış)",
+      "en": "“Claw of the scorpion” (Arabic; another spelling)"
+     },
+     "note": {
+      "tr": "Turuncu bir dev; çevresinde 2018’de iki gezegen bulundu.",
+      "en": "An orange giant; two planets were found around it in 2018."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     4,
+     1
+    ]
+   ]
+  },
+  {
+   "id": "scorpius",
+   "slug": "akrep",
+   "name": {
+    "tr": "Akrep",
+    "en": "Scorpius"
+   },
+   "latin": "Scorpius",
+   "region": "zodiac",
+   "rank": 33,
+   "brightest": "Antares",
+   "month": 7,
+   "fact": {
+    "tr": "Akrep: kalbinde kırmızı süperdev Antares atar.",
+    "en": "Scorpius: red supergiant Antares is its heart."
+   },
+   "legend": {
+    "tr": "Avcı Orion bütün hayvanları öldürmekle övününce Artemis ile Leto onu öldürmesi için dev bir akrep gönderir. Zeus ikisini de göğe yerleştirir: insanlara aşırı kibrin bedelini hatırlatsın diye.",
+    "en": "When Orion boasts he will kill every animal, Artemis and Leto send a giant scorpion to kill him. Zeus sets both in the sky, a reminder to mortals to curb their pride."
+   },
+   "find": {
+    "tr": "Kancaya benzeyen kıvrık bir kuyruk, kalbinde kırmızı Antares; kuyruğun ucunu Shaula ile Lesath işaretler. Yaz akşamları güney ufkunda alçakta.",
+    "en": "A hooked tail with red Antares at its heart; Shaula and Lesath mark the tail’s tip. Low in the south on summer evenings."
+   },
+   "sign": {
+    "tr": "23 Ekim ile 21 Kasım arası",
+    "en": "23 October to 21 November"
+   },
+   "sun": {
+    "tr": "Gökyüzünde ise Güneş Akrep’in önünden yalnızca bir hafta kadar, yaklaşık 23 ile 29 Kasım arasında geçer; sonra 17 Aralık’a dek Yılancı’nın (Ophiuchus) önündedir.",
+    "en": "In the real sky the Sun crosses Scorpius for only about a week, 23 to 29 November; then until 17 December it is in front of Ophiuchus, the Serpent Bearer."
+   },
+   "stars": [
+    {
+     "name": "Acrab",
+     "slug": "acrab",
+     "x": 0.858,
+     "y": 0.93,
+     "letter": "beta",
+     "sup": "¹",
+     "genitive": "Scorpii",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 470,
+     "mag": 2.62,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "“Akrep” (Arapça)",
+      "en": "“The scorpion” (Arabic)"
+     },
+     "note": {
+      "tr": "Altı yıldızlı bir aile; küçük bir teleskop bile onu ikiye ayırır.",
+      "en": "A family of six stars; even a small telescope splits it in two."
+     }
+    },
+    {
+     "name": "Dschubba",
+     "slug": "dschubba",
+     "x": 0.898,
+     "y": 0.826,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Scorpii",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 440,
+     "mag": 2.32,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Akrebin alnı” (Arapça)",
+      "en": "“The scorpion’s forehead” (Arabic)"
+     },
+     "note": {
+      "tr": "2000 yılında birden parlaklaştı; o günden beri parlaklığı inip çıkıyor.",
+      "en": "It suddenly brightened in 2000 and has been rising and falling ever since."
+     }
+    },
+    {
+     "name": "Fang",
+     "slug": "fang",
+     "x": 0.91,
+     "y": 0.696,
+     "letter": "pi",
+     "sup": "",
+     "genitive": "Scorpii",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 590,
+     "mag": 2.89,
+     "greek": {
+      "tr": "Pi",
+      "en": "Pi"
+     },
+     "meaning": {
+      "tr": "“Oda” (Çince; eski bir ay konağı)",
+      "en": "“Room” (Chinese; an old lunar mansion)"
+     },
+     "note": {
+      "tr": "İki sıcak yıldız birbirinin çevresinde 1,6 günde bir dolanır.",
+      "en": "Two hot stars circle each other every 1.6 days."
+     }
+    },
+    {
+     "name": "Antares",
+     "slug": "antares",
+     "x": 0.668,
+     "y": 0.684,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Scorpii",
+     "colour": "Red",
+     "size": "Supergiant",
+     "ly": 550,
+     "mag": 1.06,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“Mars’ın rakibi” (Yunanca)",
+      "en": "“Rival of Mars” (Greek)"
+     },
+     "note": {
+      "tr": "Kızıl rengiyle Mars’la yarışır. Güneş’in yerinde olsa Mars’ın yörüngesini aşardı.",
+      "en": "Its red glow rivals Mars. In the Sun’s place it would reach past Mars’s orbit."
+     }
+    },
+    {
+     "name": "Paikauhale",
+     "slug": "paikauhale",
+     "x": 0.617,
+     "y": 0.618,
+     "letter": "tau",
+     "sup": "",
+     "genitive": "Scorpii",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 470,
+     "mag": 2.82,
+     "greek": {
+      "tr": "Tau",
+      "en": "Tau"
+     },
+     "meaning": {
+      "tr": "“Evden eve gezen” (Hawaii dili)",
+      "en": "“House-to-house wanderer” (Hawaiian)"
+     },
+     "note": {
+      "tr": "Çıplak gözle görülen en sıcak yıldızlardan biri; yüzeyindeki manyetik alanın haritası çıkarıldı.",
+      "en": "One of the hottest naked-eye stars; its magnetic field has been mapped."
+     }
+    },
+    {
+     "name": "Larawag",
+     "slug": "larawag",
+     "x": 0.504,
+     "y": 0.393,
+     "letter": "epsilon",
+     "sup": "",
+     "genitive": "Scorpii",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 64,
+     "mag": 2.29,
+     "greek": {
+      "tr": "Epsilon",
+      "en": "Epsilon"
+     },
+     "meaning": {
+      "tr": "Avustralya’nın Wardaman halkının dilinden",
+      "en": "From the Wardaman people of Australia"
+     },
+     "note": {
+      "tr": "Akrep’in bize en yakın parlak yıldızı; turuncu bir dev.",
+      "en": "Scorpius’s nearest bright star, an orange giant."
+     }
+    },
+    {
+     "name": "Xamidimura",
+     "slug": "xamidimura",
+     "x": 0.491,
+     "y": 0.254,
+     "letter": "mu",
+     "sup": "¹",
+     "genitive": "Scorpii",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 500,
+     "mag": 3.0,
+     "greek": {
+      "tr": "Mü",
+      "en": "Mu"
+     },
+     "meaning": {
+      "tr": "“Aslanın iki gözü” (Khoekhoe dili)",
+      "en": "“The lion’s two eyes” (Khoekhoe)"
+     },
+     "note": {
+      "tr": "İki yıldız o kadar yakın ki 1,4 günde bir dolanır; biri öbürünü örttükçe sönükleşir.",
+      "en": "Two stars so close they circle in 1.4 days, dimming as one hides the other."
+     }
+    },
+    {
+     "name": "Sargas",
+     "slug": "sargas",
+     "x": 0.131,
+     "y": 0.07,
+     "letter": "theta",
+     "sup": "",
+     "genitive": "Scorpii",
+     "colour": "YellowWhite",
+     "size": "Giant",
+     "ly": 330,
+     "mag": 1.86,
+     "greek": {
+      "tr": "Teta",
+      "en": "Theta"
+     },
+     "meaning": {
+      "tr": "Sümerce kökenli bir ad",
+      "en": "A name of Sumerian origin"
+     },
+     "note": {
+      "tr": "O kadar hızlı döner ki ekvatoru kutuplarından üçte bir daha geniştir.",
+      "en": "It spins so fast that its equator is a third wider than its poles."
+     }
+    },
+    {
+     "name": "Girtab",
+     "slug": "girtab",
+     "x": 0.09,
+     "y": 0.217,
+     "letter": "kappa",
+     "sup": "",
+     "genitive": "Scorpii",
+     "colour": "Blue",
+     "size": "Giant",
+     "ly": 480,
+     "mag": 2.39,
+     "greek": {
+      "tr": "Kappa",
+      "en": "Kappa"
+     },
+     "meaning": {
+      "tr": "“Akrep” (Sümerce)",
+      "en": "“Scorpion” (Sumerian)"
+     },
+     "note": {
+      "tr": "Brezilya bayrağındaki yıldızlardan biri: Paraíba eyaletini temsil eder.",
+      "en": "One of the stars on Brazil’s flag, standing for the state of Paraíba."
+     }
+    },
+    {
+     "name": "Shaula",
+     "slug": "shaula",
+     "x": 0.161,
+     "y": 0.289,
+     "letter": "lambda",
+     "sup": "",
+     "genitive": "Scorpii",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 570,
+     "mag": 1.63,
+     "greek": {
+      "tr": "Lambda",
+      "en": "Lambda"
+     },
+     "meaning": {
+      "tr": "“Kalkık kuyruk” (Arapça)",
+      "en": "“The raised tail” (Arabic)"
+     },
+     "note": {
+      "tr": "Akrep’in iğnesi ve gökyüzünün en parlak yıldızlarından biri; üç yıldızlı bir sistem.",
+      "en": "The scorpion’s sting and one of the sky’s brightest stars; a triple system."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     6,
+     7
+    ],
+    [
+     7,
+     8
+    ],
+    [
+     8,
+     9
+    ]
+   ]
+  },
+  {
+   "id": "sagittarius",
+   "slug": "yay",
+   "name": {
+    "tr": "Yay",
+    "en": "Sagittarius"
+   },
+   "latin": "Sagittarius",
+   "region": "zodiac",
+   "rank": 15,
+   "brightest": "Kaus Australis",
+   "month": 8,
+   "fact": {
+    "tr": "Yay: yıldızları bir çaydanlık çizer.",
+    "en": "Sagittarius: its stars draw a teapot."
+   },
+   "legend": {
+    "tr": "Yay, okunu germiş bir kentaur ya da satir olarak çizilir. Eratosthenes’e göre o, okçuluğu icat ettiği anlatılan Krotos’tur; esin perileri isteyince göğe konmuştur.",
+    "en": "Sagittarius is drawn as a centaur or a satyr with his bow drawn. Eratosthenes held him to be Crotus, said to have invented archery, set in the sky at the Muses’ wish."
+   },
+   "find": {
+    "tr": "Parlak yıldızları bir çaydanlık çizer; ağzının hemen ötesinde Samanyolu’nun merkezi var. Yaz akşamları güney ufkunda alçakta.",
+    "en": "Its bright stars draw a teapot; just off its spout lies the centre of the Milky Way. Low in the south on summer evenings."
+   },
+   "sign": {
+    "tr": "22 Kasım ile 21 Aralık arası",
+    "en": "22 November to 21 December"
+   },
+   "sun": {
+    "tr": "Gökyüzünde ise Güneş yaklaşık 18 Aralık ile 18 Ocak arasında Yay’ın önünden geçer; kış gündönümünde oradadır.",
+    "en": "In the real sky the Sun passes in front of Sagittarius from about 18 December to 18 January; it is there at the December solstice."
+   },
+   "stars": [
+    {
+     "name": "Alnasl",
+     "slug": "alnasl",
+     "x": 0.93,
+     "y": 0.335,
+     "letter": "gamma",
+     "sup": "²",
+     "genitive": "Sagittarii",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 97,
+     "mag": 2.98,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "“Okun ucu” (Arapça)",
+      "en": "“Arrowhead” (Arabic)"
+     },
+     "note": {
+      "tr": "Okun ucu, birkaç derece ötedeki Samanyolu’nun merkezine doğru bakar.",
+      "en": "The arrowhead points toward the centre of the Milky Way, a few degrees away."
+     }
+    },
+    {
+     "name": "Kaus Media",
+     "slug": "kaus-media",
+     "x": 0.726,
+     "y": 0.371,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Sagittarii",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 350,
+     "mag": 2.7,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Yayın ortası” (Arapça ve Latince)",
+      "en": "“Middle of the bow” (Arabic and Latin)"
+     },
+     "note": {
+      "tr": "Yay’ın ortasında, Güneş’ten çok daha büyük turuncu bir dev.",
+      "en": "In the middle of the bow, an orange giant far bigger than the Sun."
+     }
+    },
+    {
+     "name": "Kaus Borealis",
+     "slug": "kaus-borealis",
+     "x": 0.632,
+     "y": 0.638,
+     "letter": "lambda",
+     "sup": "",
+     "genitive": "Sagittarii",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 78,
+     "mag": 2.81,
+     "greek": {
+      "tr": "Lambda",
+      "en": "Lambda"
+     },
+     "meaning": {
+      "tr": "“Yayın kuzeyi” (Arapça ve Latince)",
+      "en": "“North of the bow” (Arabic and Latin)"
+     },
+     "note": {
+      "tr": "Güneş’in yoluna çok yakın: Ay sık sık, gezegenler ara sıra önünden geçer.",
+      "en": "So close to the Sun’s path that the Moon often, and planets sometimes, pass in front."
+     }
+    },
+    {
+     "name": "Kaus Australis",
+     "slug": "kaus-australis",
+     "x": 0.683,
+     "y": 0.096,
+     "letter": "epsilon",
+     "sup": "",
+     "genitive": "Sagittarii",
+     "colour": "BlueWhite",
+     "size": "Giant",
+     "ly": 143,
+     "mag": 1.85,
+     "greek": {
+      "tr": "Epsilon",
+      "en": "Epsilon"
+     },
+     "meaning": {
+      "tr": "“Yayın güneyi” (Arapça ve Latince)",
+      "en": "“South of the bow” (Arabic and Latin)"
+     },
+     "note": {
+      "tr": "Yay’ın en parlak yıldızı ve Çaydanlık biçiminin bir köşesi.",
+      "en": "Sagittarius’s brightest star and a corner of the Teapot."
+     }
+    },
+    {
+     "name": "Ascella",
+     "slug": "ascella",
+     "x": 0.166,
+     "y": 0.368,
+     "letter": "zeta",
+     "sup": "",
+     "genitive": "Sagittarii",
+     "colour": "White",
+     "size": "Giant",
+     "ly": 88,
+     "mag": 2.6,
+     "greek": {
+      "tr": "Zeta",
+      "en": "Zeta"
+     },
+     "meaning": {
+      "tr": "“Koltuk altı” (Latince)",
+      "en": "“Armpit” (Latin)"
+     },
+     "note": {
+      "tr": "İki yıldızlı bir sistem; yıldızlar 21 yılda bir dolanır.",
+      "en": "A pair of stars that circle each other every 21 years."
+     }
+    },
+    {
+     "name": "Nunki",
+     "slug": "nunki",
+     "x": 0.265,
+     "y": 0.585,
+     "letter": "sigma",
+     "sup": "",
+     "genitive": "Sagittarii",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 228,
+     "mag": 2.05,
+     "greek": {
+      "tr": "Sigma",
+      "en": "Sigma"
+     },
+     "meaning": {
+      "tr": "Babil’de kutsal Eridu şehrinin adı",
+      "en": "The Babylonian name of the holy city of Eridu"
+     },
+     "note": {
+      "tr": "Bilinen en eski yıldız adlarından biri. Güneş’in yoluna yakın; Ay onu örtebilir.",
+      "en": "One of the oldest star names known. Near the Sun’s path, the Moon can hide it."
+     }
+    },
+    {
+     "name": "Albaldah",
+     "slug": "albaldah",
+     "x": 0.07,
+     "y": 0.904,
+     "letter": "pi",
+     "sup": "",
+     "genitive": "Sagittarii",
+     "colour": "YellowWhite",
+     "size": "BrightGiant",
+     "ly": 510,
+     "mag": 2.89,
+     "greek": {
+      "tr": "Pi",
+      "en": "Pi"
+     },
+     "meaning": {
+      "tr": "“Kasaba” (Arapça)",
+      "en": "“The town” (Arabic)"
+     },
+     "note": {
+      "tr": "Üç yıldızlı bir sistem; en parlağı Güneş’ten çok daha büyük bir parlak dev.",
+      "en": "A triple system led by a bright giant much larger than the Sun."
+     }
+    },
+    {
+     "name": "Polis",
+     "slug": "polis",
+     "x": 0.824,
+     "y": 0.902,
+     "letter": "mu",
+     "sup": "",
+     "genitive": "Sagittarii",
+     "colour": "Blue",
+     "size": "Supergiant",
+     "ly": 5000,
+     "mag": 3.84,
+     "greek": {
+      "tr": "Mü",
+      "en": "Mu"
+     },
+     "meaning": {
+      "tr": "“Şehir” (Yunanca)",
+      "en": "“City” (Greek)"
+     },
+     "note": {
+      "tr": "Güneş’ten yaklaşık 180.000 kat ışıklı bir süperdev; ömrünü bir süpernovayla bitirecek.",
+      "en": "A supergiant about 180,000 times brighter than the Sun; it will end as a supernova."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     2
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     2,
+     7
+    ]
+   ]
+  },
+  {
+   "id": "capricornus",
+   "slug": "oglak",
+   "name": {
+    "tr": "Oğlak",
+    "en": "Capricornus"
+   },
+   "latin": "Capricornus",
+   "region": "zodiac",
+   "rank": 40,
+   "brightest": "Deneb Algedi",
+   "month": 9,
+   "fact": {
+    "tr": "Oğlak: Neptün 1846’da en parlak yıldızının yanında bulundu.",
+    "en": "Capricornus: Neptune was found by its brightest star in 1846."
+   },
+   "legend": {
+    "tr": "Yarısı keçi, yarısı balık bir deniz keçisi; Babilliler onu “Keçi-Balık” diye tanır, tanrıları Ea’nın simgesi sayardı. Yunan anlatısında Pan’dır: canavar Tayfun saldırınca kendine bir balık kuyruğu verip bir nehre atlar. Kimi anlatıda bebek Zeus’u emziren keçi Amaltheia’dır; kırılan boynuzu bereket boynuzu olur.",
+    "en": "A sea-goat, half goat and half fish; the Babylonians knew it as “the Goat-Fish”, the sign of their god Ea. In the Greek tale it is Pan, who gave himself a fish’s tail and dived into a river when the monster Typhon attacked. In others it is Amalthea, the goat that nursed baby Zeus; her broken horn became the horn of plenty."
+   },
+   "find": {
+    "tr": "Burç kuşağının en küçük takımyıldızı: parlak yıldızları bir üçgen çizer (Algedi, Deneb Algedi ve Omega). Yay ile Kova arasında, eylül akşamları güneyde alçakta.",
+    "en": "The smallest of the zodiac: its brighter stars draw a triangle (Algedi, Deneb Algedi and Omega). Between Sagittarius and Aquarius, low in the south on September evenings."
+   },
+   "sign": {
+    "tr": "22 Aralık ile 19 Ocak arası",
+    "en": "22 December to 19 January"
+   },
+   "sun": {
+    "tr": "Gökyüzünde ise Güneş yaklaşık 19 Ocak ile 16 Şubat arasında Oğlak’ın önünden geçer.",
+    "en": "In the real sky the Sun passes in front of Capricornus from about 19 January to 16 February."
+   },
+   "stars": [
+    {
+     "name": "Algedi",
+     "slug": "algedi",
+     "x": 0.93,
+     "y": 0.792,
+     "letter": "alpha",
+     "sup": "²",
+     "genitive": "Capricorni",
+     "colour": "Yellow",
+     "size": "Giant",
+     "ly": 102,
+     "mag": 3.57,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“Keçi” (Arapça)",
+      "en": "“The goat” (Arabic)"
+     },
+     "note": {
+      "tr": "Güneş’in iki katı kütleli, sekiz katından büyük sarı bir dev; üçlü bir yıldız sistemi.",
+      "en": "A yellow giant of about twice the Sun’s mass and over eight times its size; a triple star system."
+     }
+    },
+    {
+     "name": "Dabih",
+     "slug": "dabih",
+     "x": 0.901,
+     "y": 0.701,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Capricorni",
+     "colour": "Orange",
+     "size": "BrightGiant",
+     "ly": 390,
+     "mag": 3.05,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "“Kasap” (Arapça)",
+      "en": "“The butcher” (Arabic)"
+     },
+     "note": {
+      "tr": "Dürbünle ya da küçük bir teleskopla iki yıldıza ayrılır.",
+      "en": "Binoculars or a small telescope split it into two stars."
+     }
+    },
+    {
+     "name": "Omega Capricorni",
+     "slug": "omega-capricorni",
+     "x": 0.604,
+     "y": 0.208,
+     "letter": "omega",
+     "sup": "",
+     "genitive": "Capricorni",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 550,
+     "mag": 4.11,
+     "greek": {
+      "tr": "Omega",
+      "en": "Omega"
+     },
+     "meaning": {
+      "tr": "Resmî adı yok; Yunan harfi omega ile anılır",
+      "en": "No official name; known by the Greek letter omega"
+     },
+     "note": {
+      "tr": "Güneş’in yaklaşık 93 katı büyüklüğe şişmiş turuncu bir dev.",
+      "en": "An orange giant swollen to about 93 times the Sun’s size."
+     }
+    },
+    {
+     "name": "Udang",
+     "slug": "udang",
+     "x": 0.467,
+     "y": 0.602,
+     "letter": "theta",
+     "sup": "",
+     "genitive": "Capricorni",
+     "colour": "White",
+     "size": "Star",
+     "ly": 162,
+     "mag": 4.07,
+     "greek": {
+      "tr": "Teta",
+      "en": "Theta"
+     },
+     "meaning": {
+      "tr": "“Karides”: Bali’de (Endonezya) bu yıldızların takımyıldızı",
+      "en": "“The Shrimp”: the constellation of these stars in Bali (Indonesia)"
+     },
+     "note": {
+      "tr": "Güneş’in yaklaşık 2,5 katı kütleli, sıcak ve beyaz bir yıldız.",
+      "en": "A hot white star of about 2.5 times the Sun’s mass."
+     }
+    },
+    {
+     "name": "Iota Capricorni",
+     "slug": "iota-capricorni",
+     "x": 0.31,
+     "y": 0.618,
+     "letter": "iota",
+     "sup": "",
+     "genitive": "Capricorni",
+     "colour": "Yellow",
+     "size": "Giant",
+     "ly": 201,
+     "mag": 4.3,
+     "greek": {
+      "tr": "Yota",
+      "en": "Iota"
+     },
+     "meaning": {
+      "tr": "Resmî adı yok; Yunan harfi iota ile anılır",
+      "en": "No official name; known by the Greek letter iota"
+     },
+     "note": {
+      "tr": "Güneş’in yaklaşık 3 katı kütleli, 11 katı büyüklükte sarı bir dev.",
+      "en": "A yellow giant of about three times the Sun’s mass and eleven times its size."
+     }
+    },
+    {
+     "name": "Zeta Capricorni",
+     "slug": "zeta-capricorni",
+     "x": 0.267,
+     "y": 0.391,
+     "letter": "zeta",
+     "sup": "",
+     "genitive": "Capricorni",
+     "colour": "Yellow",
+     "size": "Supergiant",
+     "ly": 386,
+     "mag": 3.77,
+     "greek": {
+      "tr": "Zeta",
+      "en": "Zeta"
+     },
+     "meaning": {
+      "tr": "Resmî adı yok; Yunan harfi zeta ile anılır",
+      "en": "No official name; known by the Greek letter zeta"
+     },
+     "note": {
+      "tr": "Sarı bir süperdev; çevresinde küçük ve yoğun bir beyaz cüce dolanır.",
+      "en": "A yellow supergiant with a small, dense white dwarf circling it."
+     }
+    },
+    {
+     "name": "Nashira",
+     "slug": "nashira",
+     "x": 0.137,
+     "y": 0.625,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Capricorni",
+     "colour": "YellowWhite",
+     "size": "Star",
+     "ly": 171,
+     "mag": 3.67,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "“Şanslı olan” ya da “müjdeci” (Arapça)",
+      "en": "“The lucky one” or “bearer of good news” (Arabic)"
+     },
+     "note": {
+      "tr": "Güneş’in yaklaşık 2,4 katı kütleli sarımsı beyaz bir yıldız; parlaklığı hafifçe değişir.",
+      "en": "A yellowish-white star of about 2.4 times the Sun’s mass whose brightness changes slightly."
+     }
+    },
+    {
+     "name": "Deneb Algedi",
+     "slug": "deneb-algedi",
+     "x": 0.07,
+     "y": 0.646,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Capricorni",
+     "colour": "White",
+     "size": "Star",
+     "ly": 39,
+     "mag": 2.81,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Keçinin kuyruğu” (Arapça)",
+      "en": "“The tail of the goat” (Arabic)"
+     },
+     "note": {
+      "tr": "Bilinen en yakın örten çift yıldız: iki yıldızı her gün birbirinin önünden geçer.",
+      "en": "The closest known eclipsing binary: its two stars pass in front of each other every day."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     5
+    ],
+    [
+     5,
+     7
+    ],
+    [
+     7,
+     6
+    ],
+    [
+     6,
+     4
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     3,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "aquarius",
+   "slug": "kova",
+   "name": {
+    "tr": "Kova",
+    "en": "Aquarius"
+   },
+   "latin": "Aquarius",
+   "region": "zodiac",
+   "rank": 10,
+   "brightest": "Sadalsuud",
+   "month": 10,
+   "fact": {
+    "tr": "Kova: Sarmal Bulutsusu, bize en yakın gezegenimsi bulutsu.",
+    "en": "Aquarius: the Helix Nebula, the nearest planetary nebula to us."
+   },
+   "legend": {
+    "tr": "Babilliler onu “Büyük Olan” diye tanır: taşan bir küp tutan tanrı Ea’nın kendisi. Yunan anlatısında tanrılara içki sunan güzel genç Ganymedes’tir. Gökte dört yıldız Y biçimli bir “Su Küpü” çizer.",
+    "en": "The Babylonians knew it as “the Great One”: the god Ea himself, holding an overflowing jar. In the Greek tale it is Ganymede, the handsome youth who poured the gods’ drink. Four of its stars draw a Y-shaped “Water Jar”."
+   },
+   "find": {
+    "tr": "Y biçimli Su Küpü’nü bul: Sadachbia, Zeta Aquarii ve Fenmu onun yıldızları. Oğlak ile Balık arasında, ekim akşamları güneyde.",
+    "en": "Find the Y-shaped Water Jar: Sadachbia, Zeta Aquarii and Fenmu are among its stars. Between Capricornus and Pisces, in the south on October evenings."
+   },
+   "sign": {
+    "tr": "20 Ocak ile 19 Şubat arası",
+    "en": "20 January to 19 February"
+   },
+   "sun": {
+    "tr": "Gökyüzünde ise Güneş yaklaşık 16 Şubat ile 12 Mart arasında Kova’nın önünden geçer.",
+    "en": "In the real sky the Sun passes in front of Aquarius from about 16 February to 12 March."
+   },
+   "stars": [
+    {
+     "name": "Albali",
+     "slug": "albali",
+     "x": 0.93,
+     "y": 0.457,
+     "letter": "epsilon",
+     "sup": "",
+     "genitive": "Aquarii",
+     "colour": "White",
+     "size": "Star",
+     "ly": 244,
+     "mag": 3.77,
+     "greek": {
+      "tr": "Epsilon",
+      "en": "Epsilon"
+     },
+     "meaning": {
+      "tr": "“Yutan” (Arapça)",
+      "en": "“The swallower” (Arabic)"
+     },
+     "note": {
+      "tr": "Beyaz bir yıldız; yanındaki turuncu eşi ancak 2023’te bulundu.",
+      "en": "A white star whose orange companion was found only in 2023."
+     }
+    },
+    {
+     "name": "Sadalsuud",
+     "slug": "sadalsuud",
+     "x": 0.633,
+     "y": 0.564,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Aquarii",
+     "colour": "Yellow",
+     "size": "Supergiant",
+     "ly": 542,
+     "mag": 2.87,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "“Şansların şansı” (Arapça)",
+      "en": "“The luck of lucks” (Arabic)"
+     },
+     "note": {
+      "tr": "Kova’nın en parlağı: Güneş’in 5–6 katı kütleli, 48 katı büyüklükte sarı bir süperdev.",
+      "en": "Aquarius’s brightest: a yellow supergiant of five or six Suns’ mass and 48 times the Sun’s size."
+     }
+    },
+    {
+     "name": "Sadalmelik",
+     "slug": "sadalmelik",
+     "x": 0.401,
+     "y": 0.708,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Aquarii",
+     "colour": "Yellow",
+     "size": "Supergiant",
+     "ly": 691,
+     "mag": 2.94,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“Kralın şanslısı” (Arapça)",
+      "en": "“The lucky one of the king” (Arabic)"
+     },
+     "note": {
+      "tr": "Güneş’in yaklaşık 70 katı büyüklükte sarı bir süperdev.",
+      "en": "A yellow supergiant about 70 times the Sun’s size."
+     }
+    },
+    {
+     "name": "Ancha",
+     "slug": "ancha",
+     "x": 0.326,
+     "y": 0.504,
+     "letter": "theta",
+     "sup": "",
+     "genitive": "Aquarii",
+     "colour": "Yellow",
+     "size": "Giant",
+     "ly": 191,
+     "mag": 4.18,
+     "greek": {
+      "tr": "Teta",
+      "en": "Theta"
+     },
+     "meaning": {
+      "tr": "“Kalça”",
+      "en": "“The haunch”"
+     },
+     "note": {
+      "tr": "Güneş’in yaklaşık 12 katı büyüklükte sarı bir dev.",
+      "en": "A yellow giant about 12 times the Sun’s size."
+     }
+    },
+    {
+     "name": "Sadachbia",
+     "slug": "sadachbia",
+     "x": 0.293,
+     "y": 0.679,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Aquarii",
+     "colour": "White",
+     "size": "Star",
+     "ly": 164,
+     "mag": 3.85,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "“Evlerin (çadırların) şansı” (Arapça)",
+      "en": "“Luck of the homes (tents)” (Arabic)"
+     },
+     "note": {
+      "tr": "Beyaz bir yıldız; 2024’te yanında bir eş yıldız bulundu.",
+      "en": "A white star; a companion was found beside it in 2024."
+     }
+    },
+    {
+     "name": "Zeta Aquarii",
+     "slug": "zeta-aquarii",
+     "x": 0.245,
+     "y": 0.716,
+     "letter": "zeta",
+     "sup": "",
+     "genitive": "Aquarii",
+     "colour": "YellowWhite",
+     "size": "Star",
+     "ly": 95,
+     "mag": 3.65,
+     "greek": {
+      "tr": "Zeta",
+      "en": "Zeta"
+     },
+     "meaning": {
+      "tr": "Resmî adı yok; Yunan harfi zeta ile anılır",
+      "en": "No official name; known by the Greek letter zeta"
+     },
+     "note": {
+      "tr": "Su Küpü’nün yıldızlarından; üç yıldızlı bir sistem, üçüncüsü ilk kez 2009’da görüntülendi.",
+      "en": "One of the Water Jar’s stars; a triple system whose third star was first imaged in 2009."
+     }
+    },
+    {
+     "name": "Fenmu",
+     "slug": "fenmu",
+     "x": 0.201,
+     "y": 0.713,
+     "letter": "eta",
+     "sup": "",
+     "genitive": "Aquarii",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 168,
+     "mag": 4.04,
+     "greek": {
+      "tr": "Eta",
+      "en": "Eta"
+     },
+     "meaning": {
+      "tr": "“Mezar” (Çince)",
+      "en": "“Tomb” (Chinese)"
+     },
+     "note": {
+      "tr": "Öyle hızlı döner ki ekvatordaki yarıçapı kutuplardakinden %24 büyüktür.",
+      "en": "It spins so fast that its radius is 24% larger at the equator than at the poles."
+     }
+    },
+    {
+     "name": "Shatabhisha",
+     "slug": "shatabhisha",
+     "x": 0.084,
+     "y": 0.509,
+     "letter": "lambda",
+     "sup": "",
+     "genitive": "Aquarii",
+     "colour": "Red",
+     "size": "Giant",
+     "ly": 365,
+     "mag": 3.57,
+     "greek": {
+      "tr": "Lambda",
+      "en": "Lambda"
+     },
+     "meaning": {
+      "tr": "“Yüz hekim” (Hint astronomisi)",
+      "en": "“A hundred physicians” (Indian astronomy)"
+     },
+     "note": {
+      "tr": "Güneş’in 3,6 katı kütleli, 100 katı büyüklüğe şişmiş kırmızı bir dev.",
+      "en": "A red giant of 3.6 Suns’ mass, swollen to 100 times the Sun’s size."
+     }
+    },
+    {
+     "name": "Skat",
+     "slug": "skat",
+     "x": 0.07,
+     "y": 0.284,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Aquarii",
+     "colour": "White",
+     "size": "Star",
+     "ly": 113,
+     "mag": 3.28,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“İncik” (Arapça)",
+      "en": "“The shin” (Arabic)"
+     },
+     "note": {
+      "tr": "Beyaz bir yıldız; 2017’de çok yakınında Güneş benzeri bir eş bulundu.",
+      "en": "A white star; in 2017 a Sun-like companion was found close beside it."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     4
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     7
+    ],
+    [
+     7,
+     8
+    ]
+   ]
+  },
+  {
+   "id": "pisces",
+   "slug": "balik",
+   "name": {
+    "tr": "Balık",
+    "en": "Pisces"
+   },
+   "latin": "Pisces",
+   "region": "zodiac",
+   "rank": 14,
+   "brightest": "Alpherg",
+   "month": 11,
+   "fact": {
+    "tr": "Balık: ilkbahar ekinoksunda Güneş bugün onun önündedir.",
+    "en": "Pisces: the Sun stands before it at the March equinox today."
+   },
+   "legend": {
+    "tr": "Yunan anlatısında Afrodit ile oğlu Eros, canavar Tayfun’dan kaçarken balığa dönüşür ya da iki balık onları kurtarır. Babilliler bu göğü “büyük kırlangıç” ve iki balığı bağlayan “balık ipi” diye bilirdi.",
+    "en": "In the Greek tale Aphrodite and her son Eros turned into fishes to escape the monster Typhon, or two fishes rescued them. The Babylonians saw here “the great swallow” and the “fish cord” that ties the two fishes."
+   },
+   "find": {
+    "tr": "Uzak iki balık, birer iple bir uçta buluşur: batıdaki balığın başı küçük bir halka, iplerin düğümü Alrescha. Kova ile Koç arasında, kasım akşamları.",
+    "en": "Two distant fishes, each on a cord that meets at one end: the western fish’s head is a small ring, and the knot is Alrescha. Between Aquarius and Aries, on November evenings."
+   },
+   "sign": {
+    "tr": "19 Şubat ile 20 Mart arası",
+    "en": "19 February to 20 March"
+   },
+   "sun": {
+    "tr": "Gökyüzünde ise Güneş yaklaşık 12 Mart ile 19 Nisan arasında Balık’ın önünden geçer.",
+    "en": "In the real sky the Sun passes in front of Pisces from about 12 March to 19 April."
+   },
+   "stars": [
+    {
+     "name": "Yunyu",
+     "slug": "yunyu",
+     "x": 0.93,
+     "y": 0.394,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Piscium",
+     "colour": "Yellow",
+     "size": "Giant",
+     "ly": 135,
+     "mag": 3.7,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "Çin’in “Bulut ve Yağmur” yıldız grubundan",
+      "en": "From the Chinese asterism “Cloud and Rain”"
+     },
+     "note": {
+      "tr": "Güneş’ten 63 kat ışıklı sarı bir dev.",
+      "en": "A yellow giant shining with the light of 63 Suns."
+     }
+    },
+    {
+     "name": "Kappa Piscium",
+     "slug": "kappa-piscium",
+     "x": 0.879,
+     "y": 0.351,
+     "letter": "kappa",
+     "sup": "",
+     "genitive": "Piscium",
+     "colour": "White",
+     "size": "Star",
+     "ly": 153,
+     "mag": 4.94,
+     "greek": {
+      "tr": "Kappa",
+      "en": "Kappa"
+     },
+     "meaning": {
+      "tr": "Resmî adı yok; Yunan harfi kappa ile anılır",
+      "en": "No official name; known by the Greek letter kappa"
+     },
+     "note": {
+      "tr": "Işığında uranyum çizgileri görülen tuhaf bir yıldız; belki nadir holmiyum da var.",
+      "en": "A peculiar star whose light shows lines of uranium, and maybe rare holmium."
+     }
+    },
+    {
+     "name": "Theta Piscium",
+     "slug": "theta-piscium",
+     "x": 0.874,
+     "y": 0.459,
+     "letter": "theta",
+     "sup": "",
+     "genitive": "Piscium",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 149,
+     "mag": 4.27,
+     "greek": {
+      "tr": "Teta",
+      "en": "Theta"
+     },
+     "meaning": {
+      "tr": "Resmî adı yok; Yunan harfi teta ile anılır",
+      "en": "No official name; known by the Greek letter theta"
+     },
+     "note": {
+      "tr": "Güneş’ten soğuk ama 51 kat ışıklı turuncu bir dev.",
+      "en": "An orange giant, cooler than the Sun yet 51 times as bright."
+     }
+    },
+    {
+     "name": "Puwuh Atarung",
+     "slug": "puwuh-atarung",
+     "x": 0.811,
+     "y": 0.444,
+     "letter": "iota",
+     "sup": "",
+     "genitive": "Piscium",
+     "colour": "YellowWhite",
+     "size": "Star",
+     "ly": 45,
+     "mag": 4.13,
+     "greek": {
+      "tr": "Yota",
+      "en": "Iota"
+     },
+     "meaning": {
+      "tr": "“Dövüşen bıldırcınlar”: Bali’de bu yıldızların takımyıldızı",
+      "en": "“Battling quails”: the constellation of these stars in Bali"
+     },
+     "note": {
+      "tr": "Balık’ın bu dokuz yıldızından bize en yakını: yaklaşık 45 ışık yılı.",
+      "en": "The nearest of these nine Pisces stars: about 45 light-years away."
+     }
+    },
+    {
+     "name": "Lambda Piscium",
+     "slug": "lambda-piscium",
+     "x": 0.8,
+     "y": 0.363,
+     "letter": "lambda",
+     "sup": "",
+     "genitive": "Piscium",
+     "colour": "White",
+     "size": "Star",
+     "ly": 107,
+     "mag": 4.49,
+     "greek": {
+      "tr": "Lambda",
+      "en": "Lambda"
+     },
+     "meaning": {
+      "tr": "Resmî adı yok; Yunan harfi lambda ile anılır",
+      "en": "No official name; known by the Greek letter lambda"
+     },
+     "note": {
+      "tr": "Büyük Ayı Akıntısı’nın üyesi: Büyük Ayı’nın yıldızlarıyla birlikte yol alır.",
+      "en": "A member of the Ursa Major Stream: it travels with the Great Bear’s stars."
+     }
+    },
+    {
+     "name": "Pili",
+     "slug": "pili",
+     "x": 0.71,
+     "y": 0.47,
+     "letter": "omega",
+     "sup": "",
+     "genitive": "Piscium",
+     "colour": "YellowWhite",
+     "size": "Star",
+     "ly": 104,
+     "mag": 4.01,
+     "greek": {
+      "tr": "Omega",
+      "en": "Omega"
+     },
+     "meaning": {
+      "tr": "Çin’in “Yıldırım” yıldız grubundan",
+      "en": "From the Chinese asterism “Thunderbolt”"
+     },
+     "note": {
+      "tr": "İlkbahar ekinoksunun noktası bugün onun hemen güneyinde.",
+      "en": "The March equinox point lies just south of it today."
+     }
+    },
+    {
+     "name": "Waiping",
+     "slug": "waiping",
+     "x": 0.453,
+     "y": 0.485,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Piscium",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 300,
+     "mag": 4.42,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "Çin’in “Dış Çit” yıldız grubundan",
+      "en": "From the Chinese asterism “Outer Fence”"
+     },
+     "note": {
+      "tr": "Ekliptiğe yakın: Ay zaman zaman önünden geçip onu örter.",
+      "en": "It sits near the ecliptic, so the Moon now and then passes in front of it."
+     }
+    },
+    {
+     "name": "Alrescha",
+     "slug": "alrescha",
+     "x": 0.07,
+     "y": 0.383,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Piscium",
+     "colour": "White",
+     "size": "Star",
+     "ly": 157,
+     "mag": 3.82,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“İp” (Arapça); öbür adı Okda, “düğüm”",
+      "en": "“The cord” (Arabic); also Okda, “the knot”"
+     },
+     "note": {
+      "tr": "İki balığın iplerinin birleştiği düğüm; üç yıldızlı bir sistem.",
+      "en": "The knot where the two fishes’ cords meet; a triple star system."
+     }
+    },
+    {
+     "name": "Alpherg",
+     "slug": "alpherg",
+     "x": 0.229,
+     "y": 0.649,
+     "letter": "eta",
+     "sup": "",
+     "genitive": "Piscium",
+     "colour": "Yellow",
+     "size": "Giant",
+     "ly": 350,
+     "mag": 3.61,
+     "greek": {
+      "tr": "Eta",
+      "en": "Eta"
+     },
+     "meaning": {
+      "tr": "Babil adı Kullat Nūnu: “balığı bağlayan ip”",
+      "en": "Its Babylonian name, Kullat Nūnu: “the cord that binds the fish”"
+     },
+     "note": {
+      "tr": "Balık’ın en parlak yıldızı: sarı bir dev.",
+      "en": "The brightest star of Pisces: a yellow giant."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     4
+    ],
+    [
+     4,
+     3
+    ],
+    [
+     3,
+     2
+    ],
+    [
+     2,
+     0
+    ],
+    [
+     3,
+     5
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     6,
+     7
+    ],
+    [
+     7,
+     8
+    ]
+   ]
+  },
+  {
+   "id": "aries",
+   "slug": "koc",
+   "name": {
+    "tr": "Koç",
+    "en": "Aries"
+   },
+   "latin": "Aries",
+   "region": "zodiac",
+   "rank": 39,
+   "brightest": "Hamal",
+   "month": 12,
+   "fact": {
+    "tr": "Koç: ilkbahar noktası adını ondan alır ama bugün Balık’ta.",
+    "en": "Aries: the spring equinox point bears its name, now in Pisces."
+   },
+   "legend": {
+    "tr": "Yunan anlatısında altın postlu, uçan bir koçtur: Hermes’in buyruğuyla Phriksos ile Helle’yi kurtarır; Phriksos’u Kolkhis’e taşır, Helle ise yolda düşer; Çanakkale Boğazı onun adını alır, Hellespontos. Babilliler bu yıldızlarda bir koç ve ücretli bir tarım işçisi görürdü.",
+    "en": "In the Greek tale it is a flying ram with a golden fleece: on Hermes’ orders it rescued Phrixus and Helle and carried Phrixus to Colchis. Helle fell in flight, and the Dardanelles took her name, the Hellespont. The Babylonians saw a ram here, and a hired farm labourer."
+   },
+   "find": {
+    "tr": "Koçun başı: kısa, kıvrık bir çizgide üç yıldız, Hamal, Sheratan ve Mesarthim. Balık ile Boğa arasında, aralık akşamları.",
+    "en": "The ram’s head: three stars in a short bent line, Hamal, Sheratan and Mesarthim. Between Pisces and Taurus, on December evenings."
+   },
+   "sign": {
+    "tr": "21 Mart ile 20 Nisan arası",
+    "en": "21 March to 20 April"
+   },
+   "sun": {
+    "tr": "Gökyüzünde ise Güneş yaklaşık 19 Nisan ile 14 Mayıs arasında Koç’un önünden geçer.",
+    "en": "In the real sky the Sun passes in front of Aries from about 19 April to 14 May."
+   },
+   "stars": [
+    {
+     "name": "Mesarthim",
+     "slug": "mesarthim",
+     "x": 0.93,
+     "y": 0.26,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Arietis",
+     "colour": "White",
+     "size": "Star",
+     "ly": 166,
+     "mag": 3.86,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "Koç’un “ilk yıldızı”: bir zamanlar ilkbahar noktasına en yakın görünen yıldız",
+      "en": "“The First Star in Aries”: once the visible star nearest the spring equinox point"
+     },
+     "note": {
+      "tr": "Küçük bir teleskopla iki beyaz yıldıza ayrılan bir çift.",
+      "en": "A double star a small telescope splits into two white stars."
+     }
+    },
+    {
+     "name": "Sheratan",
+     "slug": "sheratan",
+     "x": 0.918,
+     "y": 0.333,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Arietis",
+     "colour": "White",
+     "size": "Star",
+     "ly": 58,
+     "mag": 2.65,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "“İki işaret” (Arapça)",
+      "en": "“The two signs” (Arabic)"
+     },
+     "note": {
+      "tr": "Beyaz bir yıldız ve Güneş benzeri bir eşi; bize 58 ışık yılı uzakta.",
+      "en": "A white star with a Sun-like companion, 58 light-years away."
+     }
+    },
+    {
+     "name": "Hamal",
+     "slug": "hamal",
+     "x": 0.78,
+     "y": 0.461,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Arietis",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 66,
+     "mag": 2.0,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“Koçun başı” (Arapça)",
+      "en": "“Head of the ram” (Arabic)"
+     },
+     "note": {
+      "tr": "Koç’un en parlağı; gecenin ortalama 50. en parlak yıldızı.",
+      "en": "The brightest of Aries; on average the 50th-brightest star of the night."
+     }
+    },
+    {
+     "name": "Weixiu",
+     "slug": "weixiu",
+     "x": 0.38,
+     "y": 0.666,
+     "letter": "35",
+     "sup": "",
+     "genitive": "Arietis",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 340,
+     "mag": 4.64,
+     "greek": {
+      "tr": "35",
+      "en": "35"
+     },
+     "meaning": {
+      "tr": "Çin’in Wèi (“Mide”) takımyıldızından",
+      "en": "From the Chinese constellation Wèi, “the Stomach”"
+     },
+     "note": {
+      "tr": "Eşi görünmez; varlığını yalnız ışığındaki kaymalar ele verir.",
+      "en": "Its companion is unseen; only shifts in its light give it away."
+     }
+    },
+    {
+     "name": "Lilii Borea",
+     "slug": "lilii-borea",
+     "x": 0.331,
+     "y": 0.74,
+     "letter": "39",
+     "sup": "",
+     "genitive": "Arietis",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 172,
+     "mag": 4.51,
+     "greek": {
+      "tr": "39",
+      "en": "39"
+     },
+     "meaning": {
+      "tr": "“Zambak’ın kuzeyinde” (Latince): eski Zambak takımyıldızı",
+      "en": "“In the north of the Lily” (Latin): the old constellation Lilium"
+     },
+     "note": {
+      "tr": "Bir zamanlar artık kullanılmayan Kuzey Sinek takımyıldızındaydı; turuncu bir dev.",
+      "en": "An orange giant that once belonged to the obsolete Northern Fly."
+     }
+    },
+    {
+     "name": "Bharani",
+     "slug": "bharani",
+     "x": 0.308,
+     "y": 0.644,
+     "letter": "41",
+     "sup": "",
+     "genitive": "Arietis",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 166,
+     "mag": 3.63,
+     "greek": {
+      "tr": "41",
+      "en": "41"
+     },
+     "meaning": {
+      "tr": "Hint astronomisinde ikinci ay evi",
+      "en": "The second lunar mansion of Hindu astronomy"
+     },
+     "note": {
+      "tr": "Öyle hızlı döner ki ekvatordaki yarıçapı kutuplardakinden %12 büyüktür.",
+      "en": "It spins so fast that its radius is 12% larger at the equator than at the poles."
+     }
+    },
+    {
+     "name": "Botein",
+     "slug": "botein",
+     "x": 0.07,
+     "y": 0.28,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Arietis",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 165,
+     "mag": 4.35,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Küçük karın” (Arapça)",
+      "en": "“The little belly” (Arabic)"
+     },
+     "note": {
+      "tr": "Çekirdeğinde helyum yakan turuncu bir dev.",
+      "en": "An orange giant burning helium at its core."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     2
+    ],
+    [
+     5,
+     6
+    ]
+   ]
+  },
+  {
+   "id": "taurus",
+   "slug": "boga",
+   "name": {
+    "tr": "Boğa",
+    "en": "Taurus"
+   },
+   "latin": "Taurus",
+   "region": "zodiac",
+   "rank": 17,
+   "brightest": "Aldebaran",
+   "month": 1,
+   "fact": {
+    "tr": "Boğa: Yengeç Bulutsusu’nun patlaması 1054’te gündüz görüldü.",
+    "en": "Taurus: the Crab Nebula’s supernova was seen by day in 1054."
+   },
+   "legend": {
+    "tr": "Yunan anlatısında Zeus’tur: Fenikeli prenses Europa’yı kaçırmak için görkemli beyaz bir boğaya dönüşür. Sırtındaki Ülker’e pek çok kültür “yedi kız kardeş” der.",
+    "en": "In Greek myth it is Zeus, who took the form of a magnificent white bull to carry off Europa, a Phoenician princess. Many cultures call the Pleiades on its back the “seven sisters”."
+   },
+   "find": {
+    "tr": "Boğanın yüzü V biçiminde bir yıldız grubu, Hyadlar; parlak turuncu Aldebaran onun gözü. Ülker sırtında küçük bir küme, ocak akşamları.",
+    "en": "The bull’s face is a V of stars, the Hyades, with bright orange Aldebaran for its eye. The Pleiades sit on its back, on January evenings."
+   },
+   "sign": {
+    "tr": "21 Nisan ile 21 Mayıs arası",
+    "en": "21 April to 21 May"
+   },
+   "sun": {
+    "tr": "Gökyüzünde ise Güneş yaklaşık 14 Mayıs ile 21 Haziran arasında Boğa’nın önünden geçer.",
+    "en": "In the real sky the Sun passes in front of Taurus from about 14 May to 21 June."
+   },
+   "stars": [
+    {
+     "name": "Prima Hyadum",
+     "slug": "prima-hyadum",
+     "x": 0.747,
+     "y": 0.255,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Tauri",
+     "colour": "Yellow",
+     "size": "Giant",
+     "ly": 154,
+     "mag": 3.65,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "“Hyadlar’ın birincisi” (Latince)",
+      "en": "“First of the Hyades” (Latin)"
+     },
+     "note": {
+      "tr": "Hyadlar kümesinde sarı bir dev; bir zamanlar çift sanıldı, bugün “şüpheli çift” sayılır.",
+      "en": "A yellow giant of the Hyades; once taken for a double, it is now listed as a “dubious double”."
+     }
+    },
+    {
+     "name": "Secunda Hyadum",
+     "slug": "secunda-hyadum",
+     "x": 0.693,
+     "y": 0.397,
+     "letter": "delta",
+     "sup": "¹",
+     "genitive": "Tauri",
+     "colour": "Yellow",
+     "size": "Giant",
+     "ly": 156,
+     "mag": 3.77,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Hyadlar’ın ikincisi” (Latince)",
+      "en": "“Second of the Hyades” (Latin)"
+     },
+     "note": {
+      "tr": "Bir eşiyle 529,8 günde bir dolanan bir çift.",
+      "en": "A binary whose two stars circle each other every 529.8 days."
+     }
+    },
+    {
+     "name": "Ain",
+     "slug": "ain",
+     "x": 0.595,
+     "y": 0.518,
+     "letter": "epsilon",
+     "sup": "",
+     "genitive": "Tauri",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 146,
+     "mag": 3.53,
+     "greek": {
+      "tr": "Epsilon",
+      "en": "Epsilon"
+     },
+     "meaning": {
+      "tr": "“Göz” (Arapça)",
+      "en": "“The eye” (Arabic)"
+     },
+     "note": {
+      "tr": "Bir açık yıldız kümesinde bulunan ilk gezegen onun çevresinde dolanır.",
+      "en": "The first planet ever found in an open cluster orbits it."
+     }
+    },
+    {
+     "name": "Chamukuy",
+     "slug": "chamukuy",
+     "x": 0.595,
+     "y": 0.273,
+     "letter": "theta",
+     "sup": "²",
+     "genitive": "Tauri",
+     "colour": "White",
+     "size": "Giant",
+     "ly": 157,
+     "mag": 3.4,
+     "greek": {
+      "tr": "Teta",
+      "en": "Theta"
+     },
+     "meaning": {
+      "tr": "“Küçük bir kuş” (Yukatek Maya dili)",
+      "en": "“A small bird” (Yucatec Maya)"
+     },
+     "note": {
+      "tr": "Parlaklığı 1,82 saatte bir inip çıkar.",
+      "en": "Its brightness rises and falls every 1.82 hours."
+     }
+    },
+    {
+     "name": "Aldebaran",
+     "slug": "aldebaran",
+     "x": 0.47,
+     "y": 0.32,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Tauri",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 67,
+     "mag": 0.85,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“İzleyen” (Arapça): Ülker’i izler gibi göründüğü için",
+      "en": "“The follower” (Arabic): it seems to follow the Pleiades"
+     },
+     "note": {
+      "tr": "Boğa’nın gözü; Hyadlar’dan biri gibi görünür ama değildir.",
+      "en": "The bull’s eye; it looks like one of the Hyades but is not."
+     }
+    },
+    {
+     "name": "Alcyone",
+     "slug": "alcyone",
+     "x": 0.93,
+     "y": 0.594,
+     "letter": "eta",
+     "sup": "",
+     "genitive": "Tauri",
+     "colour": "BlueWhite",
+     "size": "Giant",
+     "ly": 440,
+     "mag": 2.87,
+     "greek": {
+      "tr": "Eta",
+      "en": "Eta"
+     },
+     "meaning": {
+      "tr": "Atlas ile Pleione’nin yedi kızından biri: Ülker’in kız kardeşleri",
+      "en": "One of the seven daughters of Atlas and Pleione: the Pleiades"
+     },
+     "note": {
+      "tr": "Ülker’in en parlak yıldızı.",
+      "en": "The brightest star of the Pleiades."
+     }
+    },
+    {
+     "name": "Elnath",
+     "slug": "elnath",
+     "x": 0.159,
+     "y": 0.745,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Tauri",
+     "colour": "BlueWhite",
+     "size": "Giant",
+     "ly": 134,
+     "mag": 1.65,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "“Toslayan” (Arapça): boğanın boynuzları",
+      "en": "“The butting one” (Arabic): the bull’s horns"
+     },
+     "note": {
+      "tr": "Cıva ve mangan bakımından zengin bir yıldız.",
+      "en": "A star rich in mercury and manganese."
+     }
+    },
+    {
+     "name": "Tianguan",
+     "slug": "tianguan",
+     "x": 0.07,
+     "y": 0.494,
+     "letter": "zeta",
+     "sup": "",
+     "genitive": "Tauri",
+     "colour": "BlueWhite",
+     "size": "Giant",
+     "ly": 440,
+     "mag": 3.01,
+     "greek": {
+      "tr": "Zeta",
+      "en": "Zeta"
+     },
+     "meaning": {
+      "tr": "“Gök Kapısı” (Çince)",
+      "en": "“Celestial Gate” (Chinese)"
+     },
+     "note": {
+      "tr": "Çevresinde dönen bir gaz diski olan, hızlı dönen sıcak bir yıldız.",
+      "en": "A hot, fast-spinning star with a rotating disk of gas around it."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     0,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     2,
+     6
+    ],
+    [
+     4,
+     7
+    ],
+    [
+     2,
+     5
+    ]
+   ]
+  },
+  {
+   "id": "corona-borealis",
+   "slug": "kuzey-taci",
+   "name": {
+    "tr": "Kuzey Tacı",
+    "en": "Corona Borealis"
+   },
+   "latin": "Corona Borealis",
+   "region": "north",
+   "rank": 73,
+   "brightest": "Alphecca",
+   "month": 6,
+   "fact": {
+    "tr": "Kuzey Tacı: Parlama Yıldızı 1866 ve 1946’da patladı.",
+    "en": "Corona Borealis: the Blaze Star flared up in 1866 and 1946."
+   },
+   "legend": {
+    "tr": "Yunan anlatısında Dionysos’un Giritli prenses Ariadne’ye verdiği taçtır; Ariadne onu göğe yerleştirir. Başka kültürler bu deseni yaşlılar halkası, kartal yuvası, ayı ini ya da duman deliği olarak görmüş.",
+    "en": "In Greek myth it is the crown the god Dionysus gave the Cretan princess Ariadne, and she set it in the heavens. Other cultures saw a circle of elders, an eagle’s nest, a bear’s den or a smokehole."
+   },
+   "find": {
+    "tr": "Çoban ile Herkül arasında yarım çember biçiminde küçük bir yıldız kavsi; ortasında parlak Alphecca. Haziran akşamları.",
+    "en": "A small semicircle of stars between Boötes and Hercules, bright Alphecca at its middle. On June evenings."
+   },
+   "sign": null,
+   "sun": null,
+   "stars": [
+    {
+     "name": "Guansuo",
+     "slug": "guansuo",
+     "x": 0.799,
+     "y": 0.809,
+     "letter": "theta",
+     "sup": "",
+     "genitive": "Coronae Borealis",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 380,
+     "mag": 4.14,
+     "greek": {
+      "tr": "Teta",
+      "en": "Theta"
+     },
+     "meaning": {
+      "tr": "Çin’in “Sarılı Kayış” yıldız grubundan",
+      "en": "From the Chinese asterism “the Coiled Thong”"
+     },
+     "note": {
+      "tr": "Öyle hızlı döner ki çevresindeki gaz diskinin bundan oluştuğu düşünülüyor.",
+      "en": "It spins so fast that its disk of gas is thought to have formed from the spin."
+     }
+    },
+    {
+     "name": "Nusakan",
+     "slug": "nusakan",
+     "x": 0.93,
+     "y": 0.546,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Coronae Borealis",
+     "colour": "White",
+     "size": "Star",
+     "ly": 112,
+     "mag": 3.68,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "“İki çizgi” (Arapça): iki sıra yıldız",
+      "en": "“The two lines” (Arabic): two rows of stars"
+     },
+     "note": {
+      "tr": "Işığı yaklaşık 16 dakikada bir titreşir.",
+      "en": "Its light pulses about every 16 minutes."
+     }
+    },
+    {
+     "name": "Alphecca",
+     "slug": "alphecca",
+     "x": 0.755,
+     "y": 0.267,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Coronae Borealis",
+     "colour": "White",
+     "size": "Star",
+     "ly": 75,
+     "mag": 2.24,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“Kırık halkanın parlağı” (Arapça); Latince adı Gemma, “mücevher”",
+      "en": "“The bright one of the broken ring” (Arabic); its Latin name Gemma means “jewel”"
+     },
+     "note": {
+      "tr": "İki yıldızı 17,36 günde bir birbirinin önünden geçer.",
+      "en": "Its two stars pass in front of each other every 17.36 days."
+     }
+    },
+    {
+     "name": "Baltesha",
+     "slug": "baltesha",
+     "x": 0.548,
+     "y": 0.218,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Coronae Borealis",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 146,
+     "mag": 3.83,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "Sümerce: “Onur” yıldız grubu",
+      "en": "Sumerian: the asterism “of Dignity”"
+     },
+     "note": {
+      "tr": "Parlaklığı yaklaşık 43 dakikada bir dalgalanır.",
+      "en": "Its brightness ripples about every 43 minutes."
+     }
+    },
+    {
+     "name": "Matrichakra",
+     "slug": "matrichakra",
+     "x": 0.373,
+     "y": 0.191,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Coronae Borealis",
+     "colour": "Yellow",
+     "size": "Giant",
+     "ly": 167,
+     "mag": 4.63,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "Hint astronomisinde “çember”",
+      "en": "“The circle” in Indian astronomy"
+     },
+     "note": {
+      "tr": "Bir zamanlar mavi-beyaz bir yıldızdı, şimdi sarı bir dev.",
+      "en": "Once a blue-white star, now a yellow giant."
+     }
+    },
+    {
+     "name": "Aurwandilsta",
+     "slug": "aurwandilsta",
+     "x": 0.07,
+     "y": 0.633,
+     "letter": "iota",
+     "sup": "",
+     "genitive": "Coronae Borealis",
+     "colour": "White",
+     "size": "Giant",
+     "ly": 372,
+     "mag": 4.96,
+     "greek": {
+      "tr": "Yota",
+      "en": "Iota"
+     },
+     "meaning": {
+      "tr": "“Aurvandil’in ayak parmağı” (Eski İskandinav dili)",
+      "en": "“Aurvandil’s toe” (Old Norse)"
+     },
+     "note": {
+      "tr": "Cıva ve mangan bakımından zengin; bir eşiyle 35,5 günde bir dolanır.",
+      "en": "Rich in mercury and manganese; it circles a companion every 35.5 days."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     4,
+     5
+    ]
+   ]
+  },
+  {
+   "id": "gemini",
+   "slug": "ikizler",
+   "name": {
+    "tr": "İkizler",
+    "en": "Gemini"
+   },
+   "latin": "Gemini",
+   "region": "zodiac",
+   "rank": 30,
+   "brightest": "Pollux",
+   "month": 2,
+   "fact": {
+    "tr": "İkizler: Kastor tek ışık görünür ama altı yıldızdır.",
+    "en": "Gemini: Castor looks like one light but is six stars."
+   },
+   "legend": {
+    "tr": "Yunan anlatısında Kastor ve Polluks ikizdir: Polluks Zeus’un ölümsüz oğlu, Kastor ölümlü olandır; Polluks ölümsüzlüğünü kardeşiyle paylaşır. Babilliler bu iki yıldıza “Büyük İkizler” derdi.",
+    "en": "In Greek myth Castor and Pollux are twins: Pollux the immortal son of Zeus, Castor the mortal one, and Pollux shared his immortality with his brother. The Babylonians called the two stars the Great Twins."
+   },
+   "find": {
+    "tr": "Yan yana iki parlak yıldız, Castor ve Pollux, ikizlerin başları; gövdeleri onlardan aşağı iki paralel çizgi. Boğa ile Yengeç arasında, şubat akşamları.",
+    "en": "Two bright stars side by side, Castor and Pollux, are the twins’ heads; their bodies run down from them in two parallel lines. Between Taurus and Cancer, on February evenings."
+   },
+   "sign": {
+    "tr": "22 Mayıs ile 21 Haziran arası",
+    "en": "22 May to 21 June"
+   },
+   "sun": {
+    "tr": "Gökyüzünde ise Güneş yaklaşık 21 Haziran ile 21 Temmuz arasında İkizler’in önünden geçer.",
+    "en": "In the real sky the Sun passes in front of Gemini from about 21 June to 21 July."
+   },
+   "stars": [
+    {
+     "name": "Propus",
+     "slug": "propus",
+     "x": 0.93,
+     "y": 0.432,
+     "letter": "eta",
+     "sup": "",
+     "genitive": "Geminorum",
+     "colour": "Red",
+     "size": "Giant",
+     "ly": 380,
+     "mag": 3.4,
+     "greek": {
+      "tr": "Eta",
+      "en": "Eta"
+     },
+     "meaning": {
+      "tr": "“Öndeki ayak” (Yunanca)",
+      "en": "“The forward foot” (Greek)"
+     },
+     "note": {
+      "tr": "Arada bir bir eşi önünden geçer; bu tutulmalar haftalarca sürer.",
+      "en": "Now and then a companion passes in front of it; the eclipses last for weeks."
+     }
+    },
+    {
+     "name": "Tejat",
+     "slug": "tejat",
+     "x": 0.853,
+     "y": 0.432,
+     "letter": "mu",
+     "sup": "",
+     "genitive": "Geminorum",
+     "colour": "Red",
+     "size": "Giant",
+     "ly": 230,
+     "mag": 2.88,
+     "greek": {
+      "tr": "Mü",
+      "en": "Mu"
+     },
+     "meaning": {
+      "tr": "Anlamı bilinmeyen eski bir Güney Arapça sözcük",
+      "en": "An old South Arabian word of unknown meaning"
+     },
+     "note": {
+      "tr": "Güneş’in 100 katından büyüğe şişmiş, 1.500 kat ışıklı bir dev.",
+      "en": "A giant swollen past 100 times the Sun’s size, 1,500 times as bright."
+     }
+    },
+    {
+     "name": "Mebsuta",
+     "slug": "mebsuta",
+     "x": 0.654,
+     "y": 0.541,
+     "letter": "epsilon",
+     "sup": "",
+     "genitive": "Geminorum",
+     "colour": "Yellow",
+     "size": "Supergiant",
+     "ly": 861,
+     "mag": 3.06,
+     "greek": {
+      "tr": "Epsilon",
+      "en": "Epsilon"
+     },
+     "meaning": {
+      "tr": "“Uzatılmış pençe” (Arapça)",
+      "en": "“The outstretched paw” (Arabic)"
+     },
+     "note": {
+      "tr": "1943’ten beri tayfı, öteki yıldızların sınıflandırıldığı sabit ölçütlerden biri.",
+      "en": "Since 1943 its spectrum has been one of the fixed marks other stars are classed by."
+     }
+    },
+    {
+     "name": "Castor",
+     "slug": "castor",
+     "x": 0.172,
+     "y": 0.823,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Geminorum",
+     "colour": "White",
+     "size": "Star",
+     "ly": 49,
+     "mag": 1.58,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "Zeus’un ikiz oğlunun adı; Arapçada “öndeki ikizin başı”",
+      "en": "Named for Zeus’ twin son; in Arabic “the head of the foremost twin”"
+     },
+     "note": {
+      "tr": "Tek ışık görünür ama üç çift halinde altı yıldızdır.",
+      "en": "One point of light, but six stars in three pairs."
+     }
+    },
+    {
+     "name": "Pollux",
+     "slug": "pollux",
+     "x": 0.07,
+     "y": 0.662,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Geminorum",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 34,
+     "mag": 1.14,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "Castor’un efsanedeki ikizi",
+      "en": "Castor’s twin in myth"
+     },
+     "note": {
+      "tr": "Güneş’e en yakın kırmızı dev.",
+      "en": "The closest red giant to the Sun."
+     }
+    },
+    {
+     "name": "Wasat",
+     "slug": "wasat",
+     "x": 0.31,
+     "y": 0.41,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Geminorum",
+     "colour": "YellowWhite",
+     "size": "Star",
+     "ly": 61,
+     "mag": 3.53,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Orta” (Arapça); neyin ortası olduğu belirsiz",
+      "en": "“Middle” (Arabic); of what is unclear"
+     },
+     "note": {
+      "tr": "Tutulum çizgisine öyle yakın ki Ay ve Güneş önünden geçebilir.",
+      "en": "So near the ecliptic that the Moon and the Sun can pass in front of it."
+     }
+    },
+    {
+     "name": "Mekbuda",
+     "slug": "mekbuda",
+     "x": 0.462,
+     "y": 0.351,
+     "letter": "zeta",
+     "sup": "",
+     "genitive": "Geminorum",
+     "colour": "Yellow",
+     "size": "Supergiant",
+     "ly": 1120,
+     "mag": 3.93,
+     "greek": {
+      "tr": "Zeta",
+      "en": "Zeta"
+     },
+     "meaning": {
+      "tr": "“Aslanın katlanmış pençesi” (Arapça)",
+      "en": "“The lion’s folded paw” (Arabic)"
+     },
+     "note": {
+      "tr": "Nabız gibi atan bir yıldız; atışı her yıl 3,1 saniye kısalıyor.",
+      "en": "A pulsing star whose beat grows 3.1 seconds shorter every year."
+     }
+    },
+    {
+     "name": "Alhena",
+     "slug": "alhena",
+     "x": 0.713,
+     "y": 0.177,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Geminorum",
+     "colour": "White",
+     "size": "Star",
+     "ly": 109,
+     "mag": 1.92,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "“Damga” (Arapça): devenin boynundaki",
+      "en": "“The brand” (Arabic), on a camel’s neck"
+     },
+     "note": {
+      "tr": "Çekirdeğindeki hidrojeni tüketiyor; altdev evresine girdi.",
+      "en": "Running out of hydrogen at its core, it has become a subgiant."
+     }
+    }
+   ],
+   "lines": [
+    [
+     3,
+     2
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     6
+    ],
+    [
+     6,
+     7
+    ],
+    [
+     3,
+     4
+    ]
+   ]
+  },
+  {
+   "id": "cygnus",
+   "slug": "kugu",
+   "name": {
+    "tr": "Kuğu",
+    "en": "Cygnus"
+   },
+   "latin": "Cygnus",
+   "region": "north",
+   "rank": 16,
+   "brightest": "Deneb",
+   "month": 9,
+   "fact": {
+    "tr": "Kuğu: Deneb, Yaz Üçgeni’nin bir köşesidir.",
+    "en": "Cygnus: Deneb is a corner of the Summer Triangle."
+   },
+   "legend": {
+    "tr": "Yunan anlatısında Zeus, Leda’ya ulaşmak için kuğu kılığına girer. Bir başka anlatıda Kyknos, nehre düşen dostu Phaethon’u bulmak için suya defalarca dalar; Zeus ona acır ve onu kuğuya çevirir.",
+    "en": "In Greek myth Zeus takes the form of a swan to reach Leda. In another tale Cycnus dives into the river again and again to find his fallen friend Phaethon, and Zeus, in pity, turns him into a swan."
+   },
+   "find": {
+    "tr": "Samanyolu boyunca uzanan büyük bir haç, Kuzey Haçı: tepesinde parlak Deneb, ayağında Albireo. Eylül akşamları.",
+    "en": "A great cross along the Milky Way, the Northern Cross: bright Deneb at its top, Albireo at its foot. On September evenings."
+   },
+   "sign": null,
+   "sun": null,
+   "stars": [
+    {
+     "name": "Albireo",
+     "slug": "albireo",
+     "x": 0.93,
+     "y": 0.099,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Cygni",
+     "colour": "Orange",
+     "size": "BrightGiant",
+     "ly": 365,
+     "mag": 3.1,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "Bozulmuş bir Latince addan; kuğunun gagasını gösterir",
+      "en": "From a garbled Latin name; it marks the swan’s beak"
+     },
+     "note": {
+      "tr": "Küçük bir teleskopla biri altın, biri mavi iki yıldız: gökyüzünün en güzel renk çiftlerinden.",
+      "en": "Through a small telescope, a gold star and a blue one: one of the sky’s finest colour pairs."
+     }
+    },
+    {
+     "name": "Sadr",
+     "slug": "sadr",
+     "x": 0.593,
+     "y": 0.524,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Cygni",
+     "colour": "YellowWhite",
+     "size": "Supergiant",
+     "ly": 1800,
+     "mag": 2.23,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "“Göğüs” (Arapça): kuğunun göğsü",
+      "en": "“The breast” (Arabic): the swan’s breast"
+     },
+     "note": {
+      "tr": "Kuzey Haçı’nın ortası; çevresinde parlayan bir gaz bulutu var.",
+      "en": "The centre of the Northern Cross; a cloud of gas glows around it."
+     }
+    },
+    {
+     "name": "Fawaris",
+     "slug": "fawaris",
+     "x": 0.837,
+     "y": 0.692,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Cygni",
+     "colour": "BlueWhite",
+     "size": "Giant",
+     "ly": 165,
+     "mag": 2.87,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Atlılar” (Arapça)",
+      "en": "“The horsemen” (Arabic)"
+     },
+     "note": {
+      "tr": "Üç yıldızlı bir sistem; yanında sönük, sarımsı beyaz bir eşi var.",
+      "en": "A triple system, with a faint yellow-white companion at its side."
+     }
+    },
+    {
+     "name": "Aljanah",
+     "slug": "aljanah",
+     "x": 0.436,
+     "y": 0.307,
+     "letter": "epsilon",
+     "sup": "",
+     "genitive": "Cygni",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 73,
+     "mag": 2.48,
+     "greek": {
+      "tr": "Epsilon",
+      "en": "Epsilon"
+     },
+     "meaning": {
+      "tr": "“Kanat” (Arapça)",
+      "en": "“The wing” (Arabic)"
+     },
+     "note": {
+      "tr": "Kuğunun doğu kanadı; görünmeyen bir eşi var.",
+      "en": "The swan’s eastern wing; it has an unseen companion."
+     }
+    },
+    {
+     "name": "Azelfafage",
+     "slug": "azelfafage",
+     "x": 0.07,
+     "y": 0.901,
+     "letter": "pi",
+     "sup": "¹",
+     "genitive": "Cygni",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 1700,
+     "mag": 4.67,
+     "greek": {
+      "tr": "Pi",
+      "en": "Pi"
+     },
+     "meaning": {
+      "tr": "Belirsiz; belki Çalgı’nın eski Arapça adı (“kaplumbağa”), yanlışlıkla buraya taşınmış",
+      "en": "Uncertain; perhaps an old Arabic name of Lyra (“the tortoise”), moved here by mistake"
+     },
+     "note": {
+      "tr": "Kuğunun kuyruğunun ucunda; şehir ışıklarında zor seçilir.",
+      "en": "At the tip of the swan’s tail; hard to pick out under city lights."
+     }
+    },
+    {
+     "name": "Deneb",
+     "slug": "deneb",
+     "x": 0.467,
+     "y": 0.697,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Cygni",
+     "colour": "White",
+     "size": "Supergiant",
+     "ly": 2600,
+     "mag": 1.25,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“Kuyruk” (Arapça), “tavuğun kuyruğu”ndan",
+      "en": "“The tail” (Arabic), from “the hen’s tail”"
+     },
+     "note": {
+      "tr": "Gözle görülebilen en ışıklı yıldızlardan: on binlerce Güneş kadar ışık saçar.",
+      "en": "One of the most luminous stars the eye can see: it shines like tens of thousands of Suns."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     5
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     3
+    ],
+    [
+     5,
+     4
+    ]
+   ]
+  },
+  {
+   "id": "cancer",
+   "slug": "yengec",
+   "name": {
+    "tr": "Yengeç",
+    "en": "Cancer"
+   },
+   "latin": "Cancer",
+   "region": "zodiac",
+   "rank": 31,
+   "brightest": "Tarf",
+   "month": 3,
+   "fact": {
+    "tr": "Yengeç: Copernicus sisteminde en az yedi gezegen var.",
+    "en": "Cancer: the Copernicus system has at least seven planets."
+   },
+   "legend": {
+    "tr": "Yunan anlatısında Hera, Lerna’daki Hidra ile dövüşen Herakles’in üstüne dev bir yengeç gönderir. Yengeç Herakles’in ayağını ısırır ve ezilir; Hera onu göğe yerleştirir.",
+    "en": "In Greek myth Hera sends a giant crab against Heracles as he fights the Lernaean Hydra. The crab bites his foot and is crushed, and Hera sets it among the stars."
+   },
+   "find": {
+    "tr": "İkizler ile Aslan arasında sönük bir takımyıldız; şehir ışıklarında görünmez. Ortasında, karanlık gökte bir sis gibi parlayan Arı Kovanı Kümesi. Mart akşamları.",
+    "en": "A faint constellation between Gemini and Leo, invisible under city lights. At its middle the Beehive Cluster glows like a mist in a dark sky. On March evenings."
+   },
+   "sign": {
+    "tr": "22 Haziran ile 22 Temmuz arası",
+    "en": "22 June to 22 July"
+   },
+   "sun": {
+    "tr": "Gökyüzünde ise Güneş yaklaşık 21 Temmuz ile 10 Ağustos arasında Yengeç’in önünden geçer.",
+    "en": "In the real sky the Sun passes in front of Cancer from about 21 July to 10 August."
+   },
+   "stars": [
+    {
+     "name": "Piautos",
+     "slug": "piautos",
+     "x": 0.715,
+     "y": 0.736,
+     "letter": "lambda",
+     "sup": "",
+     "genitive": "Cancri",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 569,
+     "mag": 5.92,
+     "greek": {
+      "tr": "Lambda",
+      "en": "Lambda"
+     },
+     "meaning": {
+      "tr": "Kıptîce, Ay konakları listesinden; belki “aynısı”; kökeni bilinmiyor",
+      "en": "Coptic, from a list of lunar stations; perhaps “the very same”; its origin is unknown"
+     },
+     "note": {
+      "tr": "Çok hızlı döner: yüzeyi saniyede en az 188 km yol alır.",
+      "en": "It spins fast: its surface moves at 188 km a second at least."
+     }
+    },
+    {
+     "name": "Copernicus",
+     "slug": "copernicus",
+     "x": 0.375,
+     "y": 0.93,
+     "letter": "rho",
+     "sup": "¹",
+     "genitive": "Cancri",
+     "colour": "Orange",
+     "size": "Star",
+     "ly": 41,
+     "mag": 5.96,
+     "greek": {
+      "tr": "Ro",
+      "en": "Rho"
+     },
+     "meaning": {
+      "tr": "Gökbilimci Nikolaus Kopernik’in adı (2015)",
+      "en": "Named for the astronomer Nicolaus Copernicus (2015)"
+     },
+     "note": {
+      "tr": "Bir çift yıldız; en az yedi gezegeni var: beşi Copernicus’un, ikisi eşinin çevresinde.",
+      "en": "A binary with at least seven planets: five around Copernicus, two around its companion."
+     }
+    },
+    {
+     "name": "Nahn",
+     "slug": "nahn",
+     "x": 0.197,
+     "y": 0.648,
+     "letter": "xi",
+     "sup": "",
+     "genitive": "Cancri",
+     "colour": "Yellow",
+     "size": "Giant",
+     "ly": 410,
+     "mag": 5.16,
+     "greek": {
+      "tr": "Ksi",
+      "en": "Xi"
+     },
+     "meaning": {
+      "tr": "“Burun” (Farsça)",
+      "en": "“The nose” (Persian)"
+     },
+     "note": {
+      "tr": "Bir çift yıldız: iki yıldızı 4,66 yılda bir birbirini dolanır.",
+      "en": "A binary whose two stars circle each other every 4.66 years."
+     }
+    },
+    {
+     "name": "Asellus Borealis",
+     "slug": "asellus-borealis",
+     "x": 0.473,
+     "y": 0.622,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Cancri",
+     "colour": "White",
+     "size": "Star",
+     "ly": 175,
+     "mag": 4.66,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "“Kuzey eşeği” (Latince)",
+      "en": "“The northern donkey” (Latin)"
+     },
+     "note": {
+      "tr": "Efsanede Dionysos ile Silenos’un Titanlara karşı bindiği eşeklerden biri; Arı Kovanı’nın hemen kuzeyinde durur.",
+      "en": "In myth, one of the donkeys Dionysus and Silenus rode against the Titans; it stands just north of the Beehive."
+     }
+    },
+    {
+     "name": "Asellus Australis",
+     "slug": "asellus-australis",
+     "x": 0.459,
+     "y": 0.473,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Cancri",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 137,
+     "mag": 3.94,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Güney eşek yavrusu” (Latince)",
+      "en": "“The southern donkey colt” (Latin)"
+     },
+     "note": {
+      "tr": "Jüpiter’in bir yıldızın önünden geçtiği bilinen ilk kayıt onunla ilgili: MÖ 240.",
+      "en": "The first recorded passing of Jupiter in front of a star was of this one, in 240 BC."
+     }
+    },
+    {
+     "name": "Acubens",
+     "slug": "acubens",
+     "x": 0.312,
+     "y": 0.19,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Cancri",
+     "colour": "White",
+     "size": "Star",
+     "ly": 178,
+     "mag": 4.26,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“Kıskaçlar” (Arapça)",
+      "en": "“The claws” (Arabic)"
+     },
+     "note": {
+      "tr": "Teleskopla 11. kadir parlaklığında, sönük bir eşi görülür.",
+      "en": "A telescope shows its faint eleventh-magnitude companion."
+     }
+    },
+    {
+     "name": "Tegmine",
+     "slug": "tegmine",
+     "x": 0.803,
+     "y": 0.45,
+     "letter": "zeta",
+     "sup": "¹",
+     "genitive": "Cancri",
+     "colour": "YellowWhite",
+     "size": "Star",
+     "ly": 82,
+     "mag": 4.67,
+     "greek": {
+      "tr": "Zeta",
+      "en": "Zeta"
+     },
+     "meaning": {
+      "tr": "“Kabuk” (yengecin)",
+      "en": "“The shell” (of the crab)"
+     },
+     "note": {
+      "tr": "En az dört yıldız, iki sistem hâlinde; iki sistem 1.115 yılda bir birbirini dolanır.",
+      "en": "At least four stars in two systems, which circle each other every 1,115 years."
+     }
+    },
+    {
+     "name": "Tarf",
+     "slug": "tarf",
+     "x": 0.758,
+     "y": 0.07,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Cancri",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 303,
+     "mag": 3.53,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "“Uç, kenar” (Arapça)",
+      "en": "“The end, the edge” (Arabic)"
+     },
+     "note": {
+      "tr": "Çevresinde bir gezegen olduğu sanılıyor: Jüpiter’in en az 7,8 katı bir dev, 605 günde bir dolanır.",
+      "en": "A planet is thought to circle it: a giant of at least 7.8 Jupiters, once every 605 days."
+     }
+    }
+   ],
+   "lines": [
+    [
+     4,
+     3
+    ],
+    [
+     4,
+     7
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     3,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     7,
+     6
+    ]
+   ]
+  },
+  {
+   "id": "aquila",
+   "slug": "kartal",
+   "name": {
+    "tr": "Kartal",
+    "en": "Aquila"
+   },
+   "latin": "Aquila",
+   "region": "equator",
+   "rank": 22,
+   "brightest": "Altair",
+   "month": 8,
+   "fact": {
+    "tr": "Kartal: Altair, Yaz Üçgeni’nin bize en yakın köşesi.",
+    "en": "Aquila: Altair is the Summer Triangle’s nearest corner."
+   },
+   "legend": {
+    "tr": "Yunan anlatısında kartal, Zeus’un yıldırımlarını taşır. Truva kralının oğlu Ganymedes’i, tanrılara saki olsun diye Olimpos’a kaçıran da odur.",
+    "en": "In Greek myth the eagle carries Zeus’s thunderbolts. It is also the eagle that carried Ganymede, a son of a king of Troy, up to Olympus to be the gods’ cup-bearer."
+   },
+   "find": {
+    "tr": "Yaz Üçgeni’nin bir köşesi parlak Altair; iki yanında Tarazed ile Alshain, onunla kısa bir çizgi çizer. Ağustos akşamları.",
+    "en": "Bright Altair, a corner of the Summer Triangle, with Tarazed and Alshain either side of it in a short line. On August evenings."
+   },
+   "sign": null,
+   "sun": null,
+   "stars": [
+    {
+     "name": "Arin-majlep",
+     "slug": "arin-majlep",
+     "x": 0.93,
+     "y": 0.884,
+     "letter": "epsilon",
+     "sup": "",
+     "genitive": "Aquilae",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 179,
+     "mag": 4.02,
+     "greek": {
+      "tr": "Epsilon",
+      "en": "Epsilon"
+     },
+     "meaning": {
+      "tr": "Marshall dilinde “Büyük Göz’ün eşi”; Büyük Göz, Altair’dir",
+      "en": "Marshallese, “replica of the Big Eye”; the Big Eye is Altair"
+     },
+     "note": {
+      "tr": "Bir çift yıldız: iki yıldızı 1.271 günde bir birbirini dolanır.",
+      "en": "A binary whose two stars circle each other every 1,271 days."
+     }
+    },
+    {
+     "name": "Okab",
+     "slug": "okab",
+     "x": 0.861,
+     "y": 0.826,
+     "letter": "zeta",
+     "sup": "",
+     "genitive": "Aquilae",
+     "colour": "White",
+     "size": "Star",
+     "ly": 83,
+     "mag": 2.99,
+     "greek": {
+      "tr": "Zeta",
+      "en": "Zeta"
+     },
+     "meaning": {
+      "tr": "“Kartalın kuyruğu” (Arapça)",
+      "en": "“The tail of the eagle” (Arabic)"
+     },
+     "note": {
+      "tr": "Gökbilimciler onu ölçü alır: tayflardan Dünya’nın kendi havasının izini onunla ayıklarlar.",
+      "en": "Astronomers use it as a standard to take the trace of Earth’s own air out of their spectra."
+     }
+    },
+    {
+     "name": "Guqi",
+     "slug": "guqi",
+     "x": 0.62,
+     "y": 0.306,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Aquilae",
+     "colour": "YellowWhite",
+     "size": "Star",
+     "ly": 51,
+     "mag": 3.36,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Davul bayrağı” (Çince)",
+      "en": "“The drum flag” (Chinese)"
+     },
+     "note": {
+      "tr": "Bir Delta Scuti yıldızı: dış katmanları nabız gibi atar, ışığı da onlarla değişir.",
+      "en": "A Delta Scuti star: its outer layers pulse, and its light with them."
+     }
+    },
+    {
+     "name": "Pagru",
+     "slug": "pagru",
+     "x": 0.296,
+     "y": 0.204,
+     "letter": "eta",
+     "sup": "",
+     "genitive": "Aquilae",
+     "colour": "Yellow",
+     "size": "Supergiant",
+     "ly": 886,
+     "mag": 3.87,
+     "greek": {
+      "tr": "Eta",
+      "en": "Eta"
+     },
+     "meaning": {
+      "tr": "“Ceset” (Akadca), MUL.APIN tabletlerinden",
+      "en": "“The corpse” (Akkadian), from the MUL.APIN tablets"
+     },
+     "note": {
+      "tr": "Bir Sefeid: parlaklığı 7,177 günde bir 3,49 ile 4,3 kadir arasında gidip gelir.",
+      "en": "A Cepheid: its brightness swings between magnitude 3.49 and 4.3 every 7.177 days."
+     }
+    },
+    {
+     "name": "Antinous",
+     "slug": "antinous",
+     "x": 0.07,
+     "y": 0.116,
+     "letter": "theta",
+     "sup": "",
+     "genitive": "Aquilae",
+     "colour": "BlueWhite",
+     "size": "Giant",
+     "ly": 286,
+     "mag": 3.24,
+     "greek": {
+      "tr": "Teta",
+      "en": "Theta"
+     },
+     "meaning": {
+      "tr": "Hadrianus döneminde adı konan eski Antinous takımyıldızından",
+      "en": "After the old constellation Antinous, named in Hadrian’s reign"
+     },
+     "note": {
+      "tr": "Bir çift yıldız: iki yıldızı 17,1 günde bir birbirini dolanır.",
+      "en": "A pair of stars that circle each other every 17.1 days."
+     }
+    },
+    {
+     "name": "Alshain",
+     "slug": "alshain",
+     "x": 0.262,
+     "y": 0.465,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Aquilae",
+     "colour": "Yellow",
+     "size": "Star",
+     "ly": 44,
+     "mag": 3.87,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "“Terazi kolu” (Farsça)",
+      "en": "“The scale beam” (Persian)"
+     },
+     "note": {
+      "tr": "1943’ten beri tayfı, öbür yıldızların sınıflandığı ölçülerden biri.",
+      "en": "Since 1943 its spectrum has been one of the anchors other stars are classified by."
+     }
+    },
+    {
+     "name": "Tarazed",
+     "slug": "tarazed",
+     "x": 0.37,
+     "y": 0.669,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Aquilae",
+     "colour": "Orange",
+     "size": "BrightGiant",
+     "ly": 395,
+     "mag": 2.72,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "“Terazi kolu” (Farsça), Alshain ile aynı kökten",
+      "en": "“The scale beam” (Persian), the same root as Alshain"
+     },
+     "note": {
+      "tr": "Şişmiş bir dev: yarıçapı Güneş’inkinin 92 katı.",
+      "en": "A swollen giant: its radius is 92 times the Sun’s."
+     }
+    },
+    {
+     "name": "Altair",
+     "slug": "altair",
+     "x": 0.316,
+     "y": 0.584,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Aquilae",
+     "colour": "White",
+     "size": "Star",
+     "ly": 17,
+     "mag": 0.76,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“Uçan kartal” (Arapça)",
+      "en": "“The flying eagle” (Arabic)"
+     },
+     "note": {
+      "tr": "Öyle hızlı döner ki ekvatordaki yarıçapı kutuplardakinden %20’den fazla büyüktür.",
+      "en": "It spins so fast that its radius is over 20% larger at the equator than at the poles."
+     }
+    }
+   ],
+   "lines": [
+    [
+     6,
+     7
+    ],
+    [
+     7,
+     5
+    ],
+    [
+     7,
+     2
+    ],
+    [
+     2,
+     1
+    ],
+    [
+     1,
+     0
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ]
+   ]
+  },
+  {
+   "id": "lyra",
+   "slug": "lir",
+   "name": {
+    "tr": "Lir",
+    "en": "Lyra"
+   },
+   "latin": "Lyra",
+   "region": "north",
+   "rank": 52,
+   "brightest": "Vega",
+   "month": 8,
+   "fact": {
+    "tr": "Lir: Vega, Güneş’ten sonra fotoğrafı çekilen ilk yıldız.",
+    "en": "Lyra: Vega was the first star photographed after the Sun."
+   },
+   "legend": {
+    "tr": "Yunan anlatısında Lir, Orfeus’un lirdir. Müziği taşları bile büyülerdi; Argonotlarla yola çıktığında Sirenlerin şarkısını çalgısıyla bastırıp gemiyi kurtardı.",
+    "en": "In Greek myth Lyra is the lyre of Orpheus, whose music charmed even stones. Sailing with the Argonauts, he played over the Sirens’ song and saved the ship."
+   },
+   "find": {
+    "tr": "Gecenin en parlak yıldızlarından Vega, Yaz Üçgeni’nin bir köşesi. Yanındaki dört sönük yıldız küçük bir paralelkenar çizer: lirin gövdesi. Ağustos akşamları.",
+    "en": "Vega, one of the night’s brightest stars, is a corner of the Summer Triangle. Beside it four faint stars make a small parallelogram, the lyre’s frame. On August evenings."
+   },
+   "sign": null,
+   "sun": null,
+   "stars": [
+    {
+     "name": "Sheliak",
+     "slug": "sheliak",
+     "x": 0.447,
+     "y": 0.153,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Lyrae",
+     "colour": "BlueWhite",
+     "size": "BrightGiant",
+     "ly": 960,
+     "mag": 3.52,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "Lir’in Arapça adlarından biri",
+      "en": "One of the Arabic names of the Lyre"
+     },
+     "note": {
+      "tr": "İki yıldızı birbirini örter: ışığı 12,94 günde bir 3,2 ile 4,4 kadir arasında gidip gelir.",
+      "en": "Its two stars eclipse each other: its light swings between magnitude 3.2 and 4.4 every 12.94 days."
+     }
+    },
+    {
+     "name": "Sulafat",
+     "slug": "sulafat",
+     "x": 0.228,
+     "y": 0.07,
+     "letter": "gamma",
+     "sup": "",
+     "genitive": "Lyrae",
+     "colour": "BlueWhite",
+     "size": "Giant",
+     "ly": 620,
+     "mag": 3.24,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "“Kaplumbağa” (Arapça)",
+      "en": "“The turtle” (Arabic)"
+     },
+     "note": {
+      "tr": "Lir’in ikinci parlak yıldızı; çekirdeğindeki hidrojeni tüketmiş bir dev.",
+      "en": "Lyra’s second brightest star, a giant that has used up the hydrogen in its core."
+     }
+    },
+    {
+     "name": "Jiantai",
+     "slug": "jiantai",
+     "x": 0.337,
+     "y": 0.589,
+     "letter": "delta",
+     "sup": "²",
+     "genitive": "Lyrae",
+     "colour": "Red",
+     "size": "BrightGiant",
+     "ly": 770,
+     "mag": 4.22,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“Su saati terası” (Çince)",
+      "en": "“The water-clock terrace” (Chinese)"
+     },
+     "note": {
+      "tr": "Şişmiş kırmızı bir dev: yarıçapı Güneş’inkinin 290 katı.",
+      "en": "A swollen red giant: its radius is 290 times the Sun’s."
+     }
+    },
+    {
+     "name": "Kautoki",
+     "slug": "kautoki",
+     "x": 0.578,
+     "y": 0.676,
+     "letter": "zeta",
+     "sup": "¹",
+     "genitive": "Lyrae",
+     "colour": "White",
+     "size": "Star",
+     "ly": 158,
+     "mag": 4.37,
+     "greek": {
+      "tr": "Zeta",
+      "en": "Zeta"
+     },
+     "meaning": {
+      "tr": "“Keser sapı” (Kapingamarangi dili)",
+      "en": "“The adze handle” (Kapingamarangi)"
+     },
+     "note": {
+      "tr": "Bir çift yıldız: iki yıldızı 4,3 günde bir birbirini dolanır.",
+      "en": "A pair of stars that circle each other every 4.3 days."
+     }
+    },
+    {
+     "name": "Pongaponga",
+     "slug": "pongaponga",
+     "x": 0.589,
+     "y": 0.93,
+     "letter": "epsilon",
+     "sup": "¹",
+     "genitive": "Lyrae",
+     "colour": "White",
+     "size": "Star",
+     "ly": 160,
+     "mag": 4.66,
+     "greek": {
+      "tr": "Epsilon",
+      "en": "Epsilon"
+     },
+     "meaning": {
+      "tr": "“Burun delikleri” (Pukapuka dili)",
+      "en": "“Nostrils” (Pukapukan)"
+     },
+     "note": {
+      "tr": "“Çift Çift” diye bilinir: her biri kendisi de bir çift olan iki çift yıldız.",
+      "en": "Known as the Double Double: two pairs of stars, each of them a pair itself."
+     }
+    },
+    {
+     "name": "Vega",
+     "slug": "vega",
+     "x": 0.772,
+     "y": 0.821,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Lyrae",
+     "colour": "White",
+     "size": "Star",
+     "ly": 25,
+     "mag": 0.03,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“Düşen kartal” (Arapça)",
+      "en": "“The falling eagle” (Arabic)"
+     },
+     "note": {
+      "tr": "MÖ 12.000 dolaylarında kuzeyin kutup yıldızıydı; 13.727 yılı dolaylarında yeniden olacak.",
+      "en": "It was the northern pole star around 12,000 BC and will be again around the year 13,727."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     1
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     0
+    ],
+    [
+     3,
+     5
+    ],
+    [
+     5,
+     4
+    ],
+    [
+     4,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "andromeda",
+   "slug": "andromeda",
+   "name": {
+    "tr": "Andromeda",
+    "en": "Andromeda"
+   },
+   "latin": "Andromeda",
+   "region": "north",
+   "rank": 19,
+   "brightest": "Alpheratz",
+   "month": 11,
+   "fact": {
+    "tr": "Andromeda: gökadasının ışığı 2,5 milyon yıl önce yola çıktı.",
+    "en": "Andromeda: its galaxy’s light set off 2.5 million years ago."
+   },
+   "legend": {
+    "tr": "Yunan anlatısında Andromeda, Kraliçe Kassiopeia’nın kızıdır. Annesinin övünmesine kızan Poseidon’un deniz canavarına sunulmak üzere bir kayaya zincirlenir; kahraman Perseus onu kurtarır ve onunla evlenir.",
+    "en": "In Greek myth Andromeda is the daughter of Queen Cassiopeia. After her mother’s boast angered Poseidon, she was chained to a rock for his sea monster; the hero Perseus saved her and married her."
+   },
+   "find": {
+    "tr": "Pegasus’un Büyük Karesi’nin sol üst köşesindeki Alpheratz, Andromeda’nın başıdır; ondan doğuya Mirach ve Almach bir zincir gibi uzanır. Kasım akşamları.",
+    "en": "Alpheratz, the upper left corner of the Great Square of Pegasus, is Andromeda’s head; from it Mirach and Almach run east like a chain. November evenings."
+   },
+   "sign": null,
+   "sun": null,
+   "stars": [
+    {
+     "name": "Almach",
+     "slug": "almach",
+     "x": 0.07,
+     "y": 0.605,
+     "letter": "gamma",
+     "sup": "¹",
+     "genitive": "Andromedae",
+     "colour": "Orange",
+     "size": "BrightGiant",
+     "ly": 390,
+     "mag": 2.27,
+     "greek": {
+      "tr": "Gama",
+      "en": "Gamma"
+     },
+     "meaning": {
+      "tr": "“Karakulak”, yani çöl vaşağı (Arapça)",
+      "en": "“The caracal”, the desert lynx (Arabic)"
+     },
+     "note": {
+      "tr": "Teleskopla altın sarısı bir yıldızın yanında çivit mavisi bir eşi görünür; göze tek görünen bu ışık dört yıldızdır.",
+      "en": "Through a telescope a golden star shows an indigo-blue companion; the single point the eye sees is four stars."
+     }
+    },
+    {
+     "name": "Nembus",
+     "slug": "nembus",
+     "x": 0.222,
+     "y": 0.798,
+     "letter": "51",
+     "sup": "",
+     "genitive": "Andromedae",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 169,
+     "mag": 3.57,
+     "greek": {
+      "tr": "51",
+      "en": "51"
+     },
+     "meaning": {
+      "tr": "Kökeni ve anlamı bilinmeyen eski bir ad",
+      "en": "An old name of unknown origin and meaning"
+     },
+     "note": {
+      "tr": "Bayer 1603’te onu Perseus’a koyup Upsilon Persei demişti; bugün Andromeda’nın beşinci parlak yıldızı.",
+      "en": "In 1603 Bayer put it in Perseus as Upsilon Persei; today it is Andromeda’s fifth brightest star."
+     }
+    },
+    {
+     "name": "Titawin",
+     "slug": "titawin",
+     "x": 0.229,
+     "y": 0.577,
+     "letter": "upsilon",
+     "sup": "",
+     "genitive": "Andromedae",
+     "colour": "YellowWhite",
+     "size": "Star",
+     "ly": 44,
+     "mag": 4.1,
+     "greek": {
+      "tr": "Üpsilon",
+      "en": "Upsilon"
+     },
+     "meaning": {
+      "tr": "Fas’taki Tetuan kentinin Amazigce adı",
+      "en": "The Amazigh name of Tétouan, a city in Morocco"
+     },
+     "note": {
+      "tr": "Güneş gibi bir yıldızın çevresinde birden çok gezegen ilk kez burada bulundu (1999).",
+      "en": "The first Sun-like star found with more than one planet (1999)."
+     }
+    },
+    {
+     "name": "Mirach",
+     "slug": "mirach",
+     "x": 0.388,
+     "y": 0.4,
+     "letter": "beta",
+     "sup": "",
+     "genitive": "Andromedae",
+     "colour": "Red",
+     "size": "Giant",
+     "ly": 197,
+     "mag": 2.07,
+     "greek": {
+      "tr": "Beta",
+      "en": "Beta"
+     },
+     "meaning": {
+      "tr": "“Bel, kuşak” (Arapça)",
+      "en": "“The loins”, or “the girdle” (Arabic)"
+     },
+     "note": {
+      "tr": "Hemen yanında “Mirach’ın Hayaleti” denen sönük bir gökada var: NGC 404.",
+      "en": "Right beside it lies a faint galaxy nicknamed “Mirach’s Ghost”: NGC 404."
+     }
+    },
+    {
+     "name": "Kuda",
+     "slug": "kuda",
+     "x": 0.567,
+     "y": 0.254,
+     "letter": "delta",
+     "sup": "",
+     "genitive": "Andromedae",
+     "colour": "Orange",
+     "size": "Giant",
+     "ly": 106,
+     "mag": 3.28,
+     "greek": {
+      "tr": "Delta",
+      "en": "Delta"
+     },
+     "meaning": {
+      "tr": "“At” (Malayca); Bali ve Cava’da bir takımyıldızı",
+      "en": "“Horse” (Malay), a constellation of Bali and Java"
+     },
+     "note": {
+      "tr": "Turuncu bir dev ve iki eşinden oluşan üç yıldızlı bir sistem.",
+      "en": "A triple star: an orange giant and two companions."
+     }
+    },
+    {
+     "name": "Kaffalmusalsala",
+     "slug": "kaffalmusalsala",
+     "x": 0.9,
+     "y": 0.65,
+     "letter": "kappa",
+     "sup": "",
+     "genitive": "Andromedae",
+     "colour": "White",
+     "size": "Star",
+     "ly": 168,
+     "mag": 4.14,
+     "greek": {
+      "tr": "Kappa",
+      "en": "Kappa"
+     },
+     "meaning": {
+      "tr": "“Zincirli kadının eli” (Arapça)",
+      "en": "“The hand of the chained woman” (Arabic)"
+     },
+     "note": {
+      "tr": "Yanındaki dev eşin 2012’de doğrudan fotoğrafı çekildi: Jüpiter’den çok daha ağır bir gezegen ya da cüce bir yıldız.",
+      "en": "A giant companion beside it was photographed directly in 2012: a planet far heavier than Jupiter, or a dwarf star."
+     }
+    },
+    {
+     "name": "Udkadua",
+     "slug": "udkadua",
+     "x": 0.935,
+     "y": 0.785,
+     "letter": "lambda",
+     "sup": "",
+     "genitive": "Andromedae",
+     "colour": "Yellow",
+     "size": "Giant",
+     "ly": 85,
+     "mag": 3.81,
+     "greek": {
+      "tr": "Lambda",
+      "en": "Lambda"
+     },
+     "meaning": {
+      "tr": "“Ağzı açık fırtına iblisi” (Sümerce bir takımyıldızı)",
+      "en": "“The storm demon with the gaping mouth” (a Sumerian constellation)"
+     },
+     "note": {
+      "tr": "Işığı 54 günde bir hafifçe değişir; yüzeyindeki yıldız lekelerinin haritası çıkarıldı.",
+      "en": "Its light changes gently every 54 days; the spots on its surface have been mapped."
+     }
+    },
+    {
+     "name": "Alpheratz",
+     "slug": "alpheratz",
+     "x": 0.749,
+     "y": 0.2,
+     "letter": "alpha",
+     "sup": "",
+     "genitive": "Andromedae",
+     "colour": "BlueWhite",
+     "size": "Star",
+     "ly": 97,
+     "mag": 2.06,
+     "greek": {
+      "tr": "Alfa",
+      "en": "Alpha"
+     },
+     "meaning": {
+      "tr": "“Atın göbeği” (Arapça)",
+      "en": "“The horse’s navel” (Arabic)"
+     },
+     "note": {
+      "tr": "Pegasus’un Büyük Karesi’nin bir köşesi; bilinen en parlak cıva-manganez yıldızı.",
+      "en": "A corner of the Great Square of Pegasus, and the brightest mercury-manganese star known."
+     }
+    }
+   ],
+   "lines": [
+    [
+     0,
+     3
+    ],
+    [
+     1,
+     2
+    ],
+    [
+     2,
+     3
+    ],
+    [
+     3,
+     4
+    ],
+    [
+     4,
+     7
+    ],
+    [
+     4,
+     5
+    ],
+    [
+     5,
+     6
+    ]
+   ]
+  }
+ ],
+ "starTypes": {
+  "colour": {
+   "Blue": {
+    "tr": "Mavi",
+    "en": "Blue"
+   },
+   "BlueWhite": {
+    "tr": "Mavi-beyaz",
+    "en": "Blue-white"
+   },
+   "Orange": {
+    "tr": "Turuncu",
+    "en": "Orange"
+   },
+   "Red": {
+    "tr": "Kırmızı",
+    "en": "Red"
+   },
+   "White": {
+    "tr": "Beyaz",
+    "en": "White"
+   },
+   "Yellow": {
+    "tr": "Sarı",
+    "en": "Yellow"
+   },
+   "YellowWhite": {
+    "tr": "Sarımsı beyaz",
+    "en": "Yellow-white"
+   }
+  },
+  "size": {
+   "BrightGiant": {
+    "tr": "parlak dev",
+    "en": "bright giant"
+   },
+   "Giant": {
+    "tr": "dev",
+    "en": "giant"
+   },
+   "Star": {
+    "tr": "yıldız",
+    "en": "star"
+   },
+   "Supergiant": {
+    "tr": "süperdev",
+    "en": "supergiant"
+   }
+  }
+ },
+ "guide": {
+  "jars": [
+   {
+    "key": "ice",
+    "title": {
+     "tr": "Buzlu kavanoz",
+     "en": "Icy jar"
+    },
+    "line": {
+     "tr": "Yanındaki kavanoz mühürlenince buz çözülür. O zamana kadar yıldız almaz, vermez.",
+     "en": "Its ice melts when the jar beside it is sealed. Until then it neither takes nor gives stars."
+    }
+   },
+   {
+    "key": "label",
+    "title": {
+     "tr": "Etiketli kavanoz",
+     "en": "Labelled jar"
+    },
+    "line": {
+     "tr": "Yalnızca etiketindeki rengi alır. İçindeki yıldızlar yine de alınabilir.",
+     "en": "It takes only the colour on its tag. Its stars can still be taken out."
+    }
+   },
+   {
+    "key": "colour_lock",
+    "title": {
+     "tr": "Renk kilidi",
+     "en": "Colour lock"
+    },
+    "line": {
+     "tr": "Kilidindeki renk tamamlanınca açılır. O zamana kadar yıldız almaz, vermez.",
+     "en": "It opens when its colour is completed. Until then it neither takes nor gives stars."
+    }
+   },
+   {
+    "key": "tall_jar",
+    "title": {
+     "tr": "Uzun şişeler",
+     "en": "Tall jars"
+    },
+    "line": {
+     "tr": "Bu kavanozlar altı yıldız alır. Bir rengi tamamlamak için altısı da gerekir.",
+     "en": "These jars hold six stars, and a colour needs all six to finish."
+    }
+   },
+   {
+    "key": "big_jar",
+    "title": {
+     "tr": "Dev kavanoz",
+     "en": "Giant jars"
+    },
+    "line": {
+     "tr": "Bu kavanozlar daha çok yıldız alır. Her birini tek renkle doldur.",
+     "en": "These jars hold more stars. Fill each one with a single colour."
+    }
+   },
+   {
+    "key": "inverted",
+    "title": {
+     "tr": "Ters kavanoz",
+     "en": "Upside-down jar"
+    },
+    "line": {
+     "tr": "Bu kavanozun ağzı aşağıda: yıldızlar alttan girer, alttan çıkar. Sıradaki, en alttaki yıldızdır.",
+     "en": "This jar stands mouth down: stars go in and out at the bottom. The next one is the bottom star."
+    }
+   },
+   {
+    "key": "oneway_gives",
+    "title": {
+     "tr": "Veren kavanoz",
+     "en": "Giving jar"
+    },
+    "line": {
+     "tr": "Döküm ağızlı kavanozdan yıldız alınır ama ona yıldız konmaz.",
+     "en": "Take stars from the jar with a spout, but none can go in."
+    }
+   },
+   {
+    "key": "oneway_takes",
+    "title": {
+     "tr": "Alan kavanoz",
+     "en": "Taking jar"
+    },
+    "line": {
+     "tr": "Hunili kavanoza yıldız konur ama ondan yıldız alınmaz. Dolunca mühürlenir.",
+     "en": "Stars go into the jar with a funnel, but none come out. It seals when full."
+    }
+   },
+   {
+    "key": "locked_jar",
+    "title": {
+     "tr": "Ek kavanoz",
+     "en": "Extra jar"
+    },
+    "line": {
+     "tr": "Bu kavanoz kilitli. Kısa bir reklam izlersen boş bir kavanoz olarak açılır; seviye başına bir kez.",
+     "en": "This jar is locked. Watch a short ad and it opens as an empty jar, once per level."
+    }
+   }
+  ],
+  "stars": [
+   {
+    "key": "hidden",
+    "title": {
+     "tr": "Gizli yıldız",
+     "en": "Hidden star"
+    },
+    "line": {
+     "tr": "Bulutun altında bir yıldız saklı. Üstündeki yıldızları başka bir kavanoza dökünce bulut dağılır ve yıldız görünür.",
+     "en": "A star hides under the cloud. Pour the stars above it into another jar and the cloud clears to show it."
+    }
+   },
+   {
+    "key": "joker",
+    "title": {
+     "tr": "Joker yıldız",
+     "en": "Joker star"
+    },
+    "line": {
+     "tr": "Her rengin üstüne konur, her renk onun üstüne konur. Kavanozu hangi renkle dolarsa o renge döner.",
+     "en": "It goes on any colour, and any colour goes on it. It turns the colour its jar fills with."
+    }
+   },
+   {
+    "key": "clock",
+    "title": {
+     "tr": "Saatli yıldız",
+     "en": "Clock star"
+    },
+    "line": {
+     "tr": "Saati her hamlede bir azalır. Saat bitmeden rengini mühürle; yoksa buluta girer.",
+     "en": "Its clock ticks down with every move. Seal its colour before it runs out, or it hides in a cloud."
+    }
+   },
+   {
+    "key": "bundle",
+    "title": {
+     "tr": "Ülker demeti",
+     "en": "The Pleiades bundle"
+    },
+    "line": {
+     "tr": "Bağlı iki yıldız yalnız birlikte taşınır. Gittikleri kavanozda iki boş yer olmalı.",
+     "en": "Two bound stars move only together. Where they go, two places must be free."
+    }
+   },
+   {
+    "key": "planet",
+    "title": {
+     "tr": "Yeni yıldız: gezegen",
+     "en": "A new star: the planet"
+    },
+    "line": {
+     "tr": "Kırmızı halkalı gezegen sekizinci yıldız türü. O da tek renkle dolan bir kavanoz ister.",
+     "en": "The red ringed planet is the eighth star. It too wants a jar of its own colour."
+    }
+   },
+   {
+    "key": "crystal",
+    "title": {
+     "tr": "Yeni yıldız: kristal",
+     "en": "A new star: the crystal"
+    },
+    "line": {
+     "tr": "Gümüş kristal dokuzuncu yıldız türü. O da tek renkle dolan bir kavanoz ister.",
+     "en": "The silver crystal is the ninth star. It too wants a jar of its own colour."
+    }
+   },
+   {
+    "key": "comet",
+    "title": {
+     "tr": "Kuyruklu yıldız",
+     "en": "Comet"
+    },
+    "line": {
+     "tr": "Gökte bir kuyruklu yıldız geçerse dokun: yıldız tozu kazanırsın.",
+     "en": "If a comet crosses the sky, tap it to win stardust."
+    }
+   },
+   {
+    "key": "move_limit",
+    "title": {
+     "tr": "Hamle sınırı",
+     "en": "Move limit"
+    },
+    "line": {
+     "tr": "Bu seviyede hamlelerin sayılı. Hamlelerin bitmeden kavanozları doldur.",
+     "en": "This level counts your moves. Fill the jars before they run out."
+    }
+   }
+  ],
+  "bosses": [
+   {
+    "key": "vessel",
+    "title": {
+     "tr": "Bölüm kavanozu",
+     "en": "Chapter jar"
+    },
+    "line": {
+     "tr": "Bölümün son seviyesi: yıldızları bu büyük kavanozun bölmelerine sırayla dök. İçinden yıldız alınamaz.",
+     "en": "The chapter’s last level: pour stars into this big jar’s chambers in order. Nothing comes back out of it."
+    }
+   },
+   {
+    "key": "boss_funnel",
+    "title": {
+     "tr": "Huni",
+     "en": "Funnel"
+    },
+    "line": {
+     "tr": "Büyük kavanoz yalnız bu kavanozdan dolar. Yıldızları önce buraya taşı.",
+     "en": "The big jar fills only from this jar. Bring the stars here first."
+    }
+   },
+   {
+    "key": "boss_onepour",
+    "title": {
+     "tr": "Tek Nefes",
+     "en": "One Breath"
+    },
+    "line": {
+     "tr": "Büyük kavanoz bir bölmeyi tek dökmede ister: aynı renkten 4 yıldız birden.",
+     "en": "The big jar wants a chamber in one pour: 4 stars of a colour at once."
+    }
+   },
+   {
+    "key": "boss_key",
+    "title": {
+     "tr": "Anahtar Oda",
+     "en": "Key Chamber"
+    },
+    "line": {
+     "tr": "Bu kavanoz donmuş. Büyük kavanozun ilk bölmesi dolunca buzu çözülür.",
+     "en": "This jar is frozen. Its ice melts when the big jar’s first chamber fills."
+    }
+   },
+   {
+    "key": "boss_eclipse",
+    "title": {
+     "tr": "Tutulma",
+     "en": "Eclipse"
+    },
+    "line": {
+     "tr": "İlk bölme dolunca bu kavanoz donar, sonraki bölme dolunca çözülür. İçinde lazım olan yıldız bırakma.",
+     "en": "When the first chamber fills, this jar freezes; the next chamber thaws it. Leave no star in it that you need."
+    }
+   },
+   {
+    "key": "boss_nova",
+    "title": {
+     "tr": "Süpernova",
+     "en": "Supernova"
+    },
+    "line": {
+     "tr": "İlk bölme dolunca büyük kavanoz 3 yıldızı buraya püskürtür. Yer bırak.",
+     "en": "When the first chamber fills, the big jar throws 3 stars here. Leave room."
+    }
+   },
+   {
+    "key": "boss_light",
+    "title": {
+     "tr": "Son Işık",
+     "en": "Last Light"
+    },
+    "line": {
+     "tr": "Bu seviyede hamlelerin sayılı. Hamleler bitmeden büyük kavanozu doldur.",
+     "en": "Your moves are counted on this level. Fill the big jar before they run out."
+    }
+   }
+  ],
+  "space": [
+   {
+    "key": "nebula",
+    "title": {
+     "tr": "Nebula",
+     "en": "Nebula"
+    },
+    "line": {
+     "tr": "Sisin içinde yalnızca en üstteki yıldızlar görünür. Bir yıldızı alınca altındaki belirir.",
+     "en": "In the fog only the top stars show. Take one and the star below appears."
+    },
+    "object": {
+     "tr": "Baykuş Bulutsusu",
+     "en": "Owl Nebula"
+    },
+    "fact": {
+     "tr": "Gezegenimsi bulutsu, Güneş gibi bir yıldızın ömrünün sonunda dışarı savurduğu parlayan gaz kabuğudur. Büyük Ayı’daki Baykuş Bulutsusu da bunlardan biri; Güneş de bir gün böyle bir kabuk bırakacak.",
+     "en": "A planetary nebula is the glowing shell of gas a star like the Sun casts off at the end of its life. The Owl Nebula in the Great Bear is one of them; one day the Sun will leave one too."
+    }
+   },
+   {
+    "key": "saturn",
+    "title": {
+     "tr": "Halkalı gezegen",
+     "en": "Ringed planet"
+    },
+    "line": {
+     "tr": "Her 3 hamlede kavanozlar halka üstünde bir yer kayar. Noktalar kaç hamle kaldığını gösterir.",
+     "en": "Every 3 moves the jars slide one place round the ring. The dots show how many moves are left."
+    },
+    "object": {
+     "tr": "Satürn",
+     "en": "Saturn"
+    },
+    "fact": {
+     "tr": "Satürn’ün halkaları neredeyse tamamen su buzundan: toz zerresinden birkaç metreye kadar parçacıklar gezegenin çevresinde döner. Ana halkalar 80.000 km’ye kadar uzanır ama yer yer yalnızca 10 metre kalınlığındadır.",
+     "en": "Saturn’s rings are almost entirely water ice: grains from a speck of dust to a few metres across, circling the planet. The main rings reach 80,000 km out, yet in places they are only about 10 metres thick."
+    }
+   },
+   {
+    "key": "supernova",
+    "title": {
+     "tr": "Süpernova",
+     "en": "Supernova"
+    },
+    "line": {
+     "tr": "Her 4 hamlede bir parlama, bulutların altındaki yıldızları bir hamleliğine gösterir. Noktalar kaç hamle kaldığını gösterir.",
+     "en": "Every 4 moves a flash shows the stars under the clouds for one move. The dots show how many moves are left."
+    },
+    "object": {
+     "tr": "Betelgeuse",
+     "en": "Betelgeuse"
+    },
+    "fact": {
+     "tr": "Betelgeuse 2019 sonbaharında sönmeye başladı ve Şubat 2020’de ışığının yaklaşık üçte ikisini kendi tozunun ardında yitirdi. 100.000 yıl içinde süpernova olarak patlaması bekleniyor; patladığında üç aydan uzun süre yarım Ay kadar parlayacak.",
+     "en": "In autumn 2019 Betelgeuse began to dim, and by February 2020 it had lost about two thirds of its light behind its own dust. It should explode as a supernova within 100,000 years, shining as bright as the half Moon for more than three months."
+    }
+   },
+   {
+    "key": "leonids",
+    "title": {
+     "tr": "Meteor yağmuru",
+     "en": "Meteor shower"
+    },
+    "line": {
+     "tr": "Her 3 hamlede üst ve alt sıra yer değiştirir. Noktalar kaç hamle kaldığını gösterir.",
+     "en": "Every 3 moves the top and bottom rows swap places. The dots show how many moves are left."
+    },
+    "object": {
+     "tr": "Leonid meteorları",
+     "en": "The Leonids"
+    },
+    "fact": {
+     "tr": "12–13 Kasım 1833 gecesi Leonidler bir fırtınaya döndü: bir tahmine göre saatte yüz binden çok meteor düştü. Bu meteorlar Tempel–Tuttle kuyruklu yıldızının bıraktığı tozdur.",
+     "en": "On the night of 12–13 November 1833 the Leonids became a storm: by one estimate, over a hundred thousand meteors fell an hour. They are dust left by comet Tempel–Tuttle."
+    }
+   },
+   {
+    "key": "galaxy",
+    "title": {
+     "tr": "Gökada",
+     "en": "Galaxy"
+    },
+    "line": {
+     "tr": "Her 4 hamlede tahta yarım tur döner; her kavanoz karşısındakinin yerine geçer. Noktalar kaç hamle kaldığını gösterir.",
+     "en": "Every 4 moves the board turns half a circle; each jar takes the place of the one opposite. The dots show how many moves are left."
+    },
+    "object": {
+     "tr": "Sombrero Gökadası",
+     "en": "The Sombrero Galaxy"
+    },
+    "fact": {
+     "tr": "Sombrero Gökadası 31 milyon ışık yılı uzakta ve bize neredeyse yandan görünür. Üstündeki koyu şerit, parlak merkezini çevreleyen bir toz halkasıdır; yeni yıldızlarının çoğu orada doğar.",
+     "en": "The Sombrero Galaxy is 31 million light years away and seen almost edge-on. The dark band across it is a ring of dust round its bright centre, where most of its new stars are born."
+    }
+   },
+   {
+    "key": "exoplanet",
+    "title": {
+     "tr": "Ötegezegen",
+     "en": "Exoplanet"
+    },
+    "line": {
+     "tr": "Her hamlede bir gezegen bir kavanozun önüne geçer; o kavanozun yıldızları bir hamle karanlıkta kalır. Kavanoza yine de dokunabilirsin.",
+     "en": "Each move a planet passes in front of a jar, and that jar’s stars are dark for one move. You can still tap the jar."
+    },
+    "object": {
+     "tr": "Gliese 581",
+     "en": "Gliese 581"
+    },
+    "fact": {
+     "tr": "Gliese 581, 20 ışık yılı uzakta bir kırmızı cüce; çevresinde doğrulanmış üç gezegen var. 2010’da duyurulan “yaşanabilir” gezegenin büyük olasılıkla yıldızın kendi etkinliği olduğu anlaşıldı.",
+     "en": "Gliese 581 is a red dwarf 20 light years away with three confirmed planets. The “habitable” planet announced in 2010 turned out, most likely, to be the star’s own activity."
+    }
+   },
+   {
+    "key": "cluster",
+    "title": {
+     "tr": "Küresel küme",
+     "en": "Globular cluster"
+    },
+    "line": {
+     "tr": "Kalabalık bir küme: kavanozlar daha çok ve daha küçük, renkler daha çok.",
+     "en": "A crowded cluster: more jars, smaller ones, and more colours."
+    },
+    "object": {
+     "tr": "M4 küresel kümesi",
+     "en": "The globular cluster M4"
+    },
+    "fact": {
+     "tr": "M4, bize en yakın küresel küme: 6.000 ışık yılı uzakta ve yıldızları yaklaşık 12 milyar yaşında.",
+     "en": "M4 is the globular cluster nearest us: 6,000 light-years away, its stars some 12 billion years old."
+    }
+   },
+   {
+    "key": "core",
+    "title": {
+     "tr": "Gökada merkezi",
+     "en": "Galactic centre"
+    },
+    "line": {
+     "tr": "Her 3 hamlede her sıranın dıştaki kavanozları merkeze bir yer yaklaşır, en içteki kenara fırlar. Noktalar kaç hamle kaldığını gösterir.",
+     "en": "Every 3 moves each row’s outer jars move one place towards the centre, and the innermost is flung to the edge. The dots show how many moves are left."
+    },
+    "object": {
+     "tr": "Sagittarius A*",
+     "en": "Sagittarius A*"
+    },
+    "fact": {
+     "tr": "Samanyolu’nun merkezinde, Güneş’in 4,3 milyon katı kütlesinde bir kara delik var: Sagittarius A*. İlk görüntüsü 2022’de yayımlandı.",
+     "en": "At the Milky Way’s heart lies Sagittarius A*, a black hole of 4.3 million Suns. Its first picture was released in 2022."
+    }
+   },
+   {
+    "key": "neptune",
+    "title": {
+     "tr": "Buz devi",
+     "en": "Ice giant"
+    },
+    "line": {
+     "tr": "Her 4 hamlede tahta aynadaki gibi döner: sağdaki kavanozlar sola, soldakiler sağa geçer. Noktalar kaç hamle kaldığını gösterir.",
+     "en": "Every 4 moves the board flips as in a mirror: the jars on the right go to the left, and the left ones to the right. The dots show how many moves are left."
+    },
+    "object": {
+     "tr": "Neptün",
+     "en": "Neptune"
+    },
+    "fact": {
+     "tr": "Neptün, hesapla bulunan ilk gezegen: Le Verrier onu Oğlak’ta, Deneb Algedi’nin 5 derece doğusunda bekledi; Galle 23 Eylül 1846’da onu tahminin 1 derece yakınında buldu.",
+     "en": "Neptune was the first planet found by calculation: Le Verrier expected it in Capricornus, five degrees east of Deneb Algedi, and on 23 September 1846 Galle found it within a degree of that place."
+    }
+   },
+   {
+    "key": "helix",
+    "title": {
+     "tr": "Sarmal Bulutsusu",
+     "en": "Helix Nebula"
+    },
+    "line": {
+     "tr": "Her 3 hamlede göz kapanır: bir hamle boyunca yalnızca en üstteki yıldızlar görünür. Noktalar kaç hamle kaldığını gösterir.",
+     "en": "Every 3 moves the eye closes: for one move only the top stars show. The dots show how many moves are left."
+    },
+    "object": {
+     "tr": "Sarmal Bulutsusu (NGC 7293)",
+     "en": "The Helix Nebula (NGC 7293)"
+    },
+    "fact": {
+     "tr": "Sarmal Bulutsusu, bize en yakın parlak gezegenimsi bulutsulardan biri: 655 ışık yılı uzakta, ölmekte olan bir yıldızın saçtığı yaklaşık 10.600 yaşında bir gaz kabuğu. Bir göze benzediği için “Tanrı’nın Gözü” diye de anılır.",
+     "en": "The Helix Nebula is one of the nearest bright planetary nebulae: 655 light years away, a shell of gas some 10,600 years old shed by a dying star. It looks like an eye, and is sometimes called the “Eye of God”."
+    }
+   },
+   {
+    "key": "whitedwarf",
+    "title": {
+     "tr": "Beyaz cüce",
+     "en": "White dwarf"
+    },
+    "line": {
+     "tr": "Soluk ışık: üsttekiler dışındaki yıldızların rengi solar. Onları şekillerinden tanı.",
+     "en": "Pale light: stars under the top lose their colour. Read them by their shapes."
+    },
+    "object": {
+     "tr": "Van Maanen Yıldızı",
+     "en": "Van Maanen’s Star"
+    },
+    "fact": {
+     "tr": "Van Maanen Yıldızı, Güneş’e en yakın beyaz cücelerden biri: yaklaşık 14 ışık yılı uzakta, Balık takımyıldızında. Adriaan van Maanen onu 1917’de gökyüzündeki hızlı kayışından fark etti.",
+     "en": "Van Maanen’s Star is one of the nearest white dwarfs to the Sun: about 14 light-years away, in Pisces. Adriaan van Maanen spotted it in 1917 by its quick drift across the sky."
+    }
+   },
+   {
+    "key": "reddwarf",
+    "title": {
+     "tr": "Kırmızı cüce",
+     "en": "Red dwarf"
+    },
+    "line": {
+     "tr": "Uzun gece: her 4 hamlede bir kavanoz daha kararır, yalnız üst yıldızı görünür. Bir kavanoz mühürlemek ışığı geri getirir. Noktalar kaç hamle kaldığını gösterir.",
+     "en": "Long night: every 4 moves another jar goes dark and shows only its top star. Sealing a jar brings the light back. The dots show the moves left."
+    },
+    "object": {
+     "tr": "Teegarden Yıldızı",
+     "en": "Teegarden’s Star"
+    },
+    "fact": {
+     "tr": "Teegarden Yıldızı, Koç takımyıldızında yalnızca 12,5 ışık yılı uzakta bir kırmızı cüce. Bu kadar yakın olmasına rağmen çıplak gözle görülemeyecek kadar sönük.",
+     "en": "Teegarden’s Star is a red dwarf only 12.5 light-years away, in Aries. Close as it is, it is far too faint to see with the naked eye."
+    }
+   },
+   {
+    "key": "blackhole",
+    "title": {
+     "tr": "Kara delik",
+     "en": "Black hole"
+    },
+    "line": {
+     "tr": "Olay ufku: ortadaki kavanozun camı kara, yalnızca en üstteki yıldızı görünür. Altında ne olduğunu aklında tut.",
+     "en": "Event horizon: the middle jar’s glass is black and only its top star shows. Keep in mind what lies beneath."
+    },
+    "object": {
+     "tr": "Kuğu X-1",
+     "en": "Cygnus X-1"
+    },
+    "fact": {
+     "tr": "Kuğu X-1, kara delik olduğu kabul edilen ilk cisim: yaklaşık 7.000 ışık yılı uzakta ve Güneş’in yaklaşık 21 katı kütlede. Kendisi görünmez; yanındaki dev yıldızdan çektiği gazın parıltısıyla bulundu.",
+     "en": "Cygnus X-1 was the first object accepted as a black hole: about 7,000 light-years away, some 21 times the Sun’s mass. It cannot be seen itself; it was found by the glow of gas it pulls from its giant companion."
+    }
+   }
+  ]
+ },
+ "news": [
+  {
+   "version": "0.80",
+   "lines": [
+    {
+     "key": "whatsnew.6p.news",
+     "tr": "Bu geceki gökyüzü artık üstte; okla gizleyebilirsin",
+     "en": "Tonight’s sky now sits up top; the arrow hides it"
+    },
+    {
+     "key": "whatsnew.6p.unfold",
+     "tr": "Katlanabilir telefonu açınca kavanozlar yeniden dizilir",
+     "en": "Unfold your phone mid-level and the jars rearrange"
+    }
+   ]
+  },
+  {
+   "version": "0.79",
+   "lines": [
+    {
+     "key": "whatsnew.6o.dome",
+     "tr": "Gözlemevin artık ana ekranda duruyor",
+     "en": "Your observatory now stands on the home screen"
+    }
+   ]
+  },
+  {
+   "version": "0.77",
+   "lines": [
+    {
+     "key": "whatsnew.6m.shapes",
+     "tr": "Ana ekran artık tablet ve katlanabilir telefonlara uyuyor",
+     "en": "Home now fits tablets and foldable phones"
+    }
+   ]
+  },
+  {
+   "version": "0.72",
+   "lines": [
+    {
+     "key": "whatsnew.bossrules.new",
+     "tr": "Boss seviyeleri yenilendi: yeni kurallar var",
+     "en": "Bosses are new, with new rules"
+    }
+   ]
+  },
+  {
+   "version": "0.71",
+   "lines": [
+    {
+     "key": "whatsnew.obs.avatars",
+     "tr": "Özel anlarını yakala, yeni avatarlar kazan",
+     "en": "Catch special moments, earn new avatars"
+    },
+    {
+     "key": "whatsnew.obs.badges",
+     "tr": "Rozet vitrini ve kavanoz temaları geldi",
+     "en": "Badges and jar themes have arrived"
+    },
+    {
+     "key": "whatsnew.obs.observatory",
+     "tr": "Gözlemevi açıldı: tepeni kur, teleskobunu yükselt",
+     "en": "The Observatory is open: build your hill, upgrade your telescope"
+    }
+   ]
+  },
+  {
+   "version": "0.70",
+   "lines": [
+    {
+     "key": "whatsnew.sky.countdown",
+     "tr": "Geri sayım: olayın yerini ve zamanını gör",
+     "en": "Countdown: see where and when it happens"
+    },
+    {
+     "key": "whatsnew.sky.events",
+     "tr": "Gerçek gök olayları: bildirim, bilgi ve özel bölüm",
+     "en": "Real sky events: a reminder, the facts and a special chapter"
+    },
+    {
+     "key": "whatsnew.sky.window",
+     "tr": "Gökyüzü Penceresi: yaktığın yıldızlar gerçek gökte",
+     "en": "Sky window: the stars you light, in the real sky"
+    }
+   ]
+  },
+  {
+   "version": "0.69",
+   "lines": [
+    {
+     "key": "whatsnew.6i.night",
+     "tr": "Gece nöbeti: 150. seviyeden sonra kat kat yükselen bir kule, can harcamadan",
+     "en": "Night watch: a tower that grows floor by floor after level 150, no lives spent"
+    },
+    {
+     "key": "whatsnew.6i.road",
+     "tr": "Yıldız Yolu: 28 günlük sezon, 30 basamak bedava ödül",
+     "en": "Star Road: a 28-day season with 30 steps of free prizes"
+    },
+    {
+     "key": "whatsnew.6i.space",
+     "tr": "Üç yeni özel bölüm: beyaz cüce, kırmızı cüce, kara delik",
+     "en": "Three new special chapters: white dwarf, red dwarf, black hole"
+    }
+   ]
+  },
+  {
+   "version": "0.68",
+   "lines": [
+    {
+     "key": "whatsnew.friends.add",
+     "tr": "Arkadaş ekle, birbirinize can gönderin",
+     "en": "Add friends and send each other lives"
+    },
+    {
+     "key": "whatsnew.friends.ranking",
+     "tr": "Günün bulmacasında dünya ve arkadaş sıralaması",
+     "en": "World and friends rankings for the daily puzzle"
+    }
+   ]
+  },
+  {
+   "version": "0.67",
+   "lines": [
+    {
+     "key": "whatsnew.067.daily",
+     "tr": "Günün bulmacası artık çok zor: az çözüm, sınırsız deneme",
+     "en": "The daily puzzle is now very hard: few solutions, unlimited tries"
+    },
+    {
+     "key": "whatsnew.067.share",
+     "tr": "Denemelerini ay evreleriyle paylaş, çözüm görünmez",
+     "en": "Share your tries as moon phases, with no spoilers"
+    }
+   ]
+  },
+  {
+   "version": "0.65",
+   "lines": [
+    {
+     "key": "whatsnew.065.reward",
+     "tr": "Ödüllerin artık gerçek bir kutlamayla geliyor",
+     "en": "Rewards now arrive with a real celebration"
+    },
+    {
+     "key": "whatsnew.065.text",
+     "tr": "Ayarlardan yazı boyutunu büyütebilirsin",
+     "en": "You can enlarge the text in Settings"
+    }
+   ]
+  },
+  {
+   "version": "0.64",
+   "lines": [
+    {
+     "key": "whatsnew.064.calendar",
+     "tr": "Giriş takvimi büyüdü: 30 ve 365. gün ödülleri",
+     "en": "Bigger login calendar: day 30 and day 365 prizes"
+    },
+    {
+     "key": "whatsnew.064.opening",
+     "tr": "Yeni açılış: kavanoz dolar, oyun başlar",
+     "en": "A new opening: the jar fills, the game begins"
+    }
+   ]
+  },
+  {
+   "version": "0.63",
+   "lines": [
+    {
+     "key": "whatsnew.cloud.save",
+     "tr": "Bulut kaydı: ilerlemen yeni telefonda da seninle",
+     "en": "Cloud save: your progress follows you to a new phone"
+    }
+   ]
+  },
+  {
+   "version": "0.61",
+   "lines": [
+    {
+     "key": "whatsnew.andromeda.chapter",
+     "tr": "Yeni takımyıldız: Andromeda",
+     "en": "New constellation: Andromeda"
+    },
+    {
+     "key": "whatsnew.andromeda.space",
+     "tr": "Yeni özel bölümler: Buz devi ve Sarmal Bulutsusu",
+     "en": "New special chapters: Ice giant and Helix Nebula"
+    }
+   ]
+  },
+  {
+   "version": "0.57",
+   "lines": [
+    {
+     "key": "whatsnew.057.lyra",
+     "tr": "Yeni takımyıldız: Lir ve saatli yıldız",
+     "en": "New constellation: Lyra, with the clock star"
+    },
+    {
+     "key": "whatsnew.057.space",
+     "tr": "Yeni özel bölümler: Küresel küme ve Gökada merkezi",
+     "en": "New special chapters: Globular cluster and Galactic centre"
+    }
+   ]
+  },
+  {
+   "version": "0.55",
+   "lines": [
+    {
+     "key": "whatsnew.055.aquila",
+     "tr": "Yeni takımyıldız: Kartal",
+     "en": "New constellation: Aquila"
+    },
+    {
+     "key": "whatsnew.055.space",
+     "tr": "Yeni özel bölümler: Gökada ve Ötegezegen",
+     "en": "New special chapters: Galaxy and Exoplanet"
+    }
+   ]
+  },
+  {
+   "version": "0.54",
+   "lines": [
+    {
+     "key": "whatsnew.054.cancer",
+     "tr": "Yeni takımyıldız: Yengeç ve tek yönlü kavanozlar",
+     "en": "New constellation: Cancer, with one-way jars"
+    },
+    {
+     "key": "whatsnew.054.space",
+     "tr": "Yeni özel bölümler: Süpernova ve Meteor yağmuru",
+     "en": "New special chapters: Supernova and Meteor shower"
+    }
+   ]
+  },
+  {
+   "version": "0.53",
+   "lines": [
+    {
+     "key": "whatsnew.053.cygnus",
+     "tr": "Yeni takımyıldız: Kuğu",
+     "en": "New constellation: Cygnus"
+    }
+   ]
+  },
+  {
+   "version": "0.52",
+   "lines": [
+    {
+     "key": "whatsnew.052.arabic",
+     "tr": "Arapça geldi",
+     "en": "Now in Arabic"
+    }
+   ]
+  },
+  {
+   "version": "0.51",
+   "lines": [
+    {
+     "key": "whatsnew.051.dots",
+     "tr": "Renk körü noktaları etiketlerde de",
+     "en": "Colour-blind dots on tags and guides too"
+    },
+    {
+     "key": "whatsnew.051.languages",
+     "tr": "Japonca, Korece ve Çince geldi",
+     "en": "Now in Japanese, Korean and Chinese"
+    }
+   ]
+  },
+  {
+   "version": "0.50",
+   "lines": [
+    {
+     "key": "whatsnew.050.colourBlind",
+     "tr": "Ayarlarda renk körü modu",
+     "en": "A colour-blind mode in the settings"
+    },
+    {
+     "key": "whatsnew.050.languages",
+     "tr": "Oyun artık 9 dilde",
+     "en": "The game now speaks 9 languages"
+    },
+    {
+     "key": "whatsnew.050.legendary",
+     "tr": "Her takımyıldızında bir Efsane seviye",
+     "en": "A Legendary level in every constellation"
+    }
+   ]
+  }
+ ]
+}

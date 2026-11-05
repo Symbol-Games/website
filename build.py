@@ -1,6 +1,6 @@
 """Builds the Symbol Interactive site (symbolinteractive.com.tr): python3 build.py
 
-Turkish pages at the root, English under en/; every page links its twin (language switch + hreflang).
+Turkish pages at the root, English under en/; every page links its twin (language switch + hreflang). The guides (sky, jars, news) read data/game.json, made by tools/export_game.py.
 The look is "Oyuncak Kutusu": Zar the die is a toy and the site is his packaging. One stylesheet (site.css), one script (site.js),
 self-hosted OFL fonts. No cookies, no analytics, no third-party requests. Design: game-studio docs/superpowers/specs/2026-11-05-symbol-interactive-site-design.md
 
@@ -11,14 +11,18 @@ Never written here: CNAME and app-ads.txt (they are maintained by hand). After a
 import json
 import math
 import pathlib
+from html import escape as esc
 
 ROOT = pathlib.Path(__file__).parent
 SITE = "https://symbolinteractive.com.tr"
 MAIL = "symbolinteractive@gmail.com"  # the support address the user set in the release checklist (2026-11-03)
 CONTROLLER = "Cem Tezgelen"  # the developer's own name, as the user gave it (2026-11-03)
 UPDATED = {"tr": "5 Kasım 2026", "en": "5 November 2026"}  # privacy policy, terms and deletion pages
+# What the guides show comes from the game itself: tools/export_game.py writes this file.
+GAMEDATA = json.loads((ROOT / "data" / "game.json").read_text(encoding="utf-8"))
+SKY = GAMEDATA["constellations"]
 # Every count on the site reads from here. The "+" follows the store listing (user, 2026-11-04): new constellations never make it false.
-GAME = {"constellations": "20+", "levels": "150+", "languages": "13"}
+GAME = {"constellations": "20+", "levels": "150+", "languages": "13", "stars": f"{sum(len(c['stars']) for c in SKY)}+", "space": f"{len(GAMEDATA['guide']['space'])}+"}
 PROMO = {"tr": "https://www.youtube.com/watch?v=xBwJEss7ArU", "en": "https://www.youtube.com/watch?v=RyvFsGcgpys"}  # a plain link: never embedded
 
 # Every page and its twin. Paths are the files; URLs are root-absolute so the 404 page works at any depth.
@@ -32,12 +36,16 @@ PAGES = {
     "privacy": {"tr": "gizlilik.html", "en": "en/privacy.html"},
     "terms": {"tr": "kullanim-kosullari.html", "en": "en/terms.html"},
     "delete": {"tr": "hesap-silme.html", "en": "en/delete-account.html"},
+    "news": {"tr": "yenilikler.html", "en": "en/news.html"},
+    "guide": {"tr": "rehber.html", "en": "en/guide.html"},
+    "makingof": {"tr": "yapim-hikayesi.html", "en": "en/making-of.html"},
+    "sky": {"tr": "gokyuzu/index.html", "en": "en/sky/index.html"},
+    **{f"sky:{c['id']}": {"tr": f"gokyuzu/{c['slug']}.html", "en": f"en/sky/{c['id']}.html"} for c in SKY},
 }
 
 
 def u(key, lang):
-    path = PAGES[key][lang]
-    return {"index.html": "/", "en/index.html": "/en/"}.get(path, "/" + path)
+    return "/" + PAGES[key][lang].removesuffix("index.html")
 
 
 def mailto(subject=None):
@@ -126,12 +134,12 @@ T = {
            "home": "Symbol Interactive ana sayfa", "foot_about": "Türkiye’de kurulmuş bağımsız bir oyun stüdyosu.",
            "no_track": "Bu site çerez kullanmaz ve ziyaretçileri izlemez.", "studio": "Stüdyo", "help": "Yardım", "legal": "Yasal", "press": "Basın kiti",
            "home_l": "Ana sayfa", "privacy": "Gizlilik politikası", "terms": "Kullanım koşulları", "delete": "Hesap silme", "starjars": "Star Jars",
-           "contents": "Bu sayfada"},
+           "contents": "Bu sayfada", "game_page": "Oyunun sayfası", "guide": "Kavanoz ve kural rehberi", "sky": "Gökyüzü rehberi", "news": "Yenilikler", "making": "Yapım hikâyesi"},
     "en": {"skip": "Skip to content", "nav": "Main menu", "games": "Games", "about": "About", "studio_nav": "Studio", "support": "Support", "other": "Türkçe", "other_lang": "tr",
            "home": "Symbol Interactive home", "foot_about": "An independent game studio founded in Türkiye.",
            "no_track": "This site uses no cookies and does not track visitors.", "studio": "Studio", "help": "Help", "legal": "Legal", "press": "Press kit",
            "home_l": "Home", "privacy": "Privacy policy", "terms": "Terms of use", "delete": "Delete account", "starjars": "Star Jars",
-           "contents": "On this page"},
+           "contents": "On this page", "game_page": "The game’s page", "guide": "Jar and rule guide", "sky": "Sky guide", "news": "What’s new", "making": "The making of"},
 }
 
 
@@ -179,8 +187,9 @@ def nav_items(lang, key, other_href):
     t = T[lang]
     labels = {"games": t["games"], "about": t["studio_nav"], "support": t["support"]}
     items = []
+    in_game = key in ("starjars", "guide", "news") or (key or "").startswith("sky")
     for k, label in labels.items():
-        cur = ' aria-current="page"' if k == key or (k == "games" and key == "starjars") else ""
+        cur = ' aria-current="page"' if k == key or (k == "games" and in_game) or (k == "about" and key == "makingof") else ""
         items.append(f'<li><a href="{u(k, lang)}"{cur}>{label}</a></li>')
     items.append(f'<li><a href="{other_href}" lang="{t["other_lang"]}" hreflang="{t["other_lang"]}">{t["other"]}</a></li>')
     return f'<nav aria-label="{t["nav"]}"><ul>{"".join(items)}</ul></nav>'
@@ -207,10 +216,13 @@ def footer(lang, other_href):
     <p class="promise">{t["foot_about"]}</p><p class="promise">{t["no_track"]}</p><p class="promise">© 2026 Symbol Interactive</p></div>
   <div><h2>{t["studio"]}</h2><ul>
     <li><a href="{u("home", lang)}">{t["home_l"]}</a></li><li><a href="{u("games", lang)}">{t["games"]}</a></li>
-    <li><a href="{u("starjars", lang)}">{t["starjars"]}</a></li><li><a href="{u("about", lang)}">{t["about"]}</a></li><li><a href="{u("press", lang)}">{t["press"]}</a></li></ul></div>
+    <li><a href="{u("about", lang)}">{t["about"]}</a></li><li><a href="{u("makingof", lang)}">{t["making"]}</a></li><li><a href="{u("press", lang)}">{t["press"]}</a></li></ul></div>
+  <div><h2>{t["starjars"]}</h2><ul>
+    <li><a href="{u("starjars", lang)}">{t["game_page"]}</a></li><li><a href="{u("guide", lang)}">{t["guide"]}</a></li>
+    <li><a href="{u("sky", lang)}">{t["sky"]}</a></li><li><a href="{u("news", lang)}">{t["news"]}</a></li></ul></div>
   <div><h2>{t["help"]}</h2><ul>
     <li><a href="{u("support", lang)}">{t["support"]}</a></li><li><a href="{u("delete", lang)}">{t["delete"]}</a></li>
-    <li><a href="mailto:{MAIL}">{MAIL}</a></li></ul></div>
+    <li><a href="mailto:{MAIL}">{MAIL.replace("@", "<wbr>@")}</a></li></ul></div>
   <div><h2>{t["legal"]}</h2><ul>
     <li><a href="{u("privacy", lang)}">{t["privacy"]}</a></li><li><a href="{u("terms", lang)}">{t["terms"]}</a></li>
     <li><a href="{other_href}" lang="{t["other_lang"]}" hreflang="{t["other_lang"]}">{t["other"]}</a></li></ul></div>
@@ -273,7 +285,7 @@ C = {
         "desc": "Symbol Interactive, Türkiye’de kurulmuş bağımsız bir oyun stüdyosu. Star Jars Sort Deluxe’ü tarayıcında dene.",
         "h1": "Kutudan oyun çıkar.", "lede": "Symbol Interactive, Türkiye’de kurulmuş bağımsız bir oyun stüdyosu. Oyunlarımızı oyuncak yapar gibi, özenle yapıyoruz.",
         "our_games": "Oyunlarımız", "play_web": "Tarayıcıda oyna", "game_page": "Oyunun sayfası", "age": "13 yaş ve üstü",
-        "badges": ["Pil gerekmez", "Türkiye’de yapıldı", "Kendi çizimimiz"], "burst": ("Star Jars<br>yakında!", "Star Jars<br>çıktı!"), "say": "Sonunda! Oyunlar aşağıda.",
+        "badges": ["Pil gerekmez", "Türkiye’de yapıldı"], "burst": ("Star Jars<br>yakında!", "Star Jars<br>çıktı!"), "say": "Sonunda! Oyunlar aşağıda.",
         "open": "Ambalajı aç", "shut": "Ambalajı kapat",
         "shelf": "Raftakiler", "alt": "Yıldız Kavanozu", "box_small": f"Sort Deluxe · {GAME['levels']} seviye · {GAME['languages']} dil",
         "game_text": "Renkli yıldızları kavanozlar arasında dök, her kavanozda tek renk kalınca mühürle. Her seviye gerçek bir takımyıldızının bir yıldızını yakar.",
@@ -294,13 +306,13 @@ C = {
         "try_label": "Hemen dene", "try_h": "Kutuyu açmadan oyna", "try_p": "Dök, ayır, mühürle. İki bölümü tarayıcında oyna: oyunun gerçek kuralları ve görselleri. İndirme yok, hesap yok.", "try_note": "Süpernova bölümü oyunun ilerleyen kısmından.",
         "play": "Oyna", "demo_alt": "Demonun ilk bölümü: kavanozlarda renkli yıldızlar", "demo_title": "Star Jars demosu", "demo_close": "Kapat",
         "facts_h": "Oyun Değerleri", "facts_for": "Star Jars Sort Deluxe, bir kutu için", "facts": [("Takımyıldızı", GAME["constellations"]), ("Seviye", GAME["levels"]), ("Dil", GAME["languages"]), ("Fiyat", "Ücretsiz*")],
-        "facts2": [("Banner reklam", "0"), ("Hazır görsel paketi", "0"), ("Oynamak için istenen ad, e-posta, telefon", "0")],
+        "facts2": [("Yıldız kartı", GAME["stars"]), ("Uzay bölümü", GAME["space"]), ("Her gün yeni bulmaca", "1")],
         "facts_note": "* Reklam ve uygulama içi satın alma içerir. 13 yaş ve üstü içindir. Neyi neden işlediğimiz gizlilik politikasında yazar.",
         "rules_h": "Nasıl oyun yapıyoruz",
-        "rules": [("Dokununca tatmin eden", "Her hamlenin görünür bir sonucu, her bölümün güzel bir bitişi var."),
-                  ("Kendi çizimimiz, kendi sesimiz", "Oyunlarımızın görsellerini, animasyonlarını ve ses efektlerini kendimiz yapıyoruz. Hazır görsel paketi kullanmıyoruz."),
-                  ("Adil para kazanma", "Oyunlarımız ücretsiz. Ödüllü reklamı izlemek senin seçimin, banner reklam yok; mağazadaki her paketin ne verdiği açıkça yazar."),
-                  ("Gizliliğe saygı", "Oynamak için adını, e-postanı ya da telefon numaranı istemiyoruz. Neyi neden işlediğimizi gizlilik politikasında açıkça yazıyoruz.")],
+        "rules": [("Önce oynarız", "Kararı kâğıt üstünde değil, oynayarak veririz. Tutmayan fikri cilalamak yerine bırakırız."),
+                  ("Her oyun kendine benzer", "Her oyunun görünüşü, sesi ve kuralları o oyun için yapılır. İki oyunumuz yan yana geldiğinde kardeş gibi durmaz."),
+                  ("Ayrıntıdan vazgeçmeyiz", "Bir dokunuşun hissini, bir animasyonun süresini, bir bilginin doğruluğunu, kimse fark etmeyecek olsa da düzeltiriz."),
+                  ("Çıkınca bitmez", "Yayın başlangıçtır. Oyunlarımıza düzenli olarak yeni bölüm ve yeni kural eklemeyi sürdürürüz.")],
         "maker_h": "Üretici", "maker_p": "Symbol Interactive’i 2026’da Cem Tezgelen kurdu. Oyunlarımızı tasarlıyor, yazıyor, çiziyor ve yayımlıyoruz; büyük bir ekip değiliz, oyunun her ayrıntısına dokunuyoruz.",
         "maker_more": "Stüdyoyu tanı", "maker_rows": [("Üretici", "Symbol Interactive"), ("Adres", "Aydın, Türkiye")], "write": "Bize yaz",
     },
@@ -308,7 +320,7 @@ C = {
         "desc": "Symbol Interactive is an independent game studio from Türkiye. Play Star Jars Sort Deluxe in your browser.",
         "h1": "There’s a game in this box.", "lede": "Symbol Interactive is an independent game studio founded in Türkiye. We make games the way you’d make a good toy: with care.",
         "our_games": "Our games", "play_web": "Play in your browser", "game_page": "The game’s page", "age": "Ages 13 and up",
-        "badges": ["No batteries needed", "Made in Türkiye", "Our own art"], "burst": ("Star Jars<br>soon!", "Star Jars<br>is out!"), "say": "At last! The games are below.",
+        "badges": ["No batteries needed", "Made in Türkiye"], "burst": ("Star Jars<br>soon!", "Star Jars<br>is out!"), "say": "At last! The games are below.",
         "open": "Open the packaging", "shut": "Close the packaging",
         "shelf": "On the shelf", "alt": "A calm sorting puzzle", "box_small": f"Sort Deluxe · {GAME['levels']} levels · {GAME['languages']} languages",
         "game_text": "Pour colourful stars between jars until every jar holds a single colour, then seal it. Every level lights a star of a real constellation.",
@@ -329,13 +341,13 @@ C = {
         "try_label": "Try it now", "try_h": "Play before you open it", "try_p": "Pour, sort, seal. Play two boards in your browser, with the game’s real rules and art. No download, no account.", "try_note": "The supernova chapter comes from later in the game.",
         "play": "Play", "demo_alt": "The demo’s first board: colourful stars in jars", "demo_title": "Star Jars demo", "demo_close": "Close",
         "facts_h": "Game Facts", "facts_for": "Star Jars Sort Deluxe, per box", "facts": [("Constellations", GAME["constellations"]), ("Levels", GAME["levels"]), ("Languages", GAME["languages"]), ("Price", "Free*")],
-        "facts2": [("Banner ads", "0"), ("Ready-made art packs", "0"), ("Name, email or phone asked to play", "0")],
+        "facts2": [("Star cards", GAME["stars"]), ("Space chapters", GAME["space"]), ("New puzzle every day", "1")],
         "facts_note": "* Contains ads and in-app purchases. For ages 13 and up. What we process and why is in the privacy policy.",
         "rules_h": "How we make games",
-        "rules": [("Satisfying to touch", "Every move has a visible result, and every chapter a good ending."),
-                  ("Our own art and sound", "We make our games’ visuals, animation and sound effects ourselves. We don’t use ready-made art packs."),
-                  ("Fair monetisation", "Our games are free. Watching a rewarded ad is your choice, there are no banner ads, and every shop pack says plainly what it gives."),
-                  ("Respect for privacy", "We never ask for your name, email or phone number to play. We say plainly what we process and why in our privacy policy.")],
+        "rules": [("We play first", "We decide by playing, not on paper. An idea that doesn’t work gets dropped, not polished."),
+                  ("Every game looks like itself", "Each game’s look, sound and rules are made for that game. Put two of our games side by side and they won’t look like siblings."),
+                  ("We don’t give up on details", "The feel of a tap, the length of an animation, the accuracy of a fact: we fix them even when nobody would notice."),
+                  ("Release isn’t the end", "Release is the start. We keep adding new chapters and new rules to our games.")],
         "maker_h": "Made by", "maker_p": "Cem Tezgelen founded Symbol Interactive in 2026. We design, write, draw and publish our games ourselves; we are not a big team, and we touch every detail of every game.",
         "maker_more": "About the studio", "maker_rows": [("Made by", "Symbol Interactive"), ("Address", "Aydın, Türkiye")], "write": "Write to us",
     },
@@ -363,6 +375,23 @@ def blister(lang, inside, say_style=""):
             f'<div class="say" aria-hidden="true"{say_style}>{c["say"]}</div>')
 
 
+def next_box():
+    """The second box on the shelf: wrapped until NEXT_GAME is set, then it wears the game's name."""
+    if not NEXT_GAME:
+        return '<div class="box3d small wrapped" aria-hidden="true"><div class="box"><div class="bt"></div><div class="bs"><span>?</span></div><div class="bf"><b>?</b></div></div></div>'
+    name = esc(NEXT_GAME["name"])
+    return f'<div class="box3d small opened" aria-hidden="true"><div class="box"><div class="bt"></div><div class="bs"><span>{name}</span></div><div class="bf"><b>{name}</b></div></div></div>'
+
+
+def next_line(lang):
+    if not NEXT_GAME:
+        return C[lang]["next"]
+    n = NEXT_GAME
+    steam = f' · <a href="{n["steam"]}" rel="noopener">{NEXT_STEAM[lang]}</a>' if n.get("steam") else ""
+    title = f'<a href="{n["url"]}">{esc(n["name"])}</a>' if n.get("url") else f'<b>{esc(n["name"])}</b>'
+    return f'{NEXT_SOON[lang]}: {title}. {esc(n[lang])}{steam}'
+
+
 def shelf(lang, tag="h2", title=None, lede="", play=None):
     c = C[lang]
     play = play or u("starjars", lang) + "#dene"
@@ -376,17 +405,14 @@ def shelf(lang, tag="h2", title=None, lede="", play=None):
       <div class="bs"><span>STAR JARS · SYMBOL INTERACTIVE</span></div>
       <div class="bf"><div class="bfh">{logo()}<b>13+</b></div><div class="bft"><p class="bftitle">Star Jars</p><small>{c["box_small"]}</small></div><img src="/img/sj/{lang}-board.jpg" width="560" height="1213" alt="" loading="lazy"></div>
     </div></div>
-    <div class="box3d small wrapped" aria-hidden="true"><div class="box">
-      <div class="bt"></div><div class="bs"><span>?</span></div>
-      <div class="bf"><b>?</b></div>
-    </div></div>
+    {next_box()}
     <article class="info" aria-labelledby="sj">
       <span class="label">{c["alt"]}</span>
       <{sub} id="sj">Star Jars Sort Deluxe</{sub}>
       <p>{c["game_text"]}</p>
       <p class="soon">{c["soon"][live_i(lang)]}</p>
       <div class="actions"><a class="btn" href="{play}">{c["play_web"]}</a><a class="btn line" href="{u("starjars", lang)}">{c["game_page"]}</a></div>
-      <p class="nextgame">{c["next"]}</p>
+      <p class="nextgame">{next_line(lang)}</p>
     </article>
   </div>
   <div class="plank" aria-hidden="true"></div>
@@ -469,7 +495,7 @@ def maker(lang):
     c = C[lang]
     rows = "".join(f"<span>{k}: {v}</span>" for k, v in c["maker_rows"])
     return f'''<section class="maker" id="studyo" aria-labelledby="maker-h">
-  <div><h2 id="maker-h">{c["maker_h"]}</h2><p>{c["maker_p"]}</p><p class="more-link"><a href="{u("about", lang)}">{c["maker_more"]}</a></p></div>
+  <div><h2 id="maker-h">{c["maker_h"]}</h2><p>{c["maker_p"]}</p><p class="more-link"><a href="{u("about", lang)}">{c["maker_more"]}</a> · <a href="{u("makingof", lang)}">{T[lang]["making"]}</a></p></div>
   <div class="spec">{rows}<span>{c["write"]}: <a href="mailto:{MAIL}">{MAIL}</a></span></div>
 </section>'''
 
@@ -550,11 +576,11 @@ def games_body(lang):
 
 ABOUT = {
     "tr": {"h1": "Hakkımızda", "lede": "Symbol Interactive, özenle yapılmış, oynayanın kendini iyi hissettiği oyunlar yapan bağımsız bir oyun stüdyosu.",
-           "vision_h": "Vizyonumuz", "vision": "Çoğu oyun dikkatini çekmek için bağırıyor. Biz tersini deniyoruz: anlaşılır, dokununca tatmin eden oyunlar; adil bir ekonomi ve oyuncunun bilgilerine saygı. Büyük bir katalog yerine, her biri uzun süre parlatılmış birkaç oyun.",
+           "vision_h": "Vizyonumuz", "vision": "Çoğu oyun dikkatini çekmek için bağırıyor. Biz tersini deniyoruz: ilk dokunuşta anlaşılan, her yeni bölümde yeni bir fikir getiren oyunlar. Büyük bir katalog yerine, üzerinde çalışmayı sürdürdüğümüz birkaç oyun.",
            "who_h": "Kim", "who": f"Symbol Interactive’i 2026’da Cem Tezgelen kurdu. Symbol Interactive bir şirket unvanı değil; Cem Tezgelen’in oyunlarını yayımladığı addır. Oyunlarımızdaki kişisel verilerin sorumlusu da odur (<a href=\"{u('privacy', 'tr')}\">gizlilik politikası</a>).",
            "rows": [("Kuruluş", "2026"), ("Adres", "Aydın, Türkiye"), ("Kurucu", "Cem Tezgelen")], "games": "Oyunlar", "more": "yenileri geliştiriliyor", "contact": "İletişim"},
     "en": {"h1": "About", "lede": "Symbol Interactive is an independent game studio making games with care, games that leave you feeling good.",
-           "vision_h": "Our vision", "vision": "Most games shout for your attention. We try the opposite: clear games that feel satisfying to touch, a fair economy, and respect for players’ information. A few games, each polished for a long time, rather than a big catalogue.",
+           "vision_h": "Our vision", "vision": "Most games shout for your attention. We try the opposite: games you understand at the first touch, with a new idea in every new chapter. A few games we keep working on, rather than a big catalogue.",
            "who_h": "Who", "who": f"Cem Tezgelen founded Symbol Interactive in 2026. Symbol Interactive is not a company name but the name under which Cem Tezgelen publishes games. Cem Tezgelen is also the controller of the personal data in our games (<a href=\"{u('privacy', 'en')}\">privacy policy</a>).",
            "rows": [("Founded", "2026"), ("Address", "Aydın, Türkiye"), ("Founder", "Cem Tezgelen")], "games": "Games", "more": "more in development", "contact": "Contact"},
 }
@@ -571,6 +597,7 @@ def about_body(lang):
 <p>{a["vision"]}</p>
 <h2>{a["who_h"]}</h2>
 <p>{a["who"]}</p>
+<p class="more-link"><a href="{u("makingof", lang)}">{T[lang]["making"]}</a></p>
 </article>
 <aside class="studio-side">{zar()}
 <div class="spec">{rows}<span>{a["games"]}: <a href="{u("starjars", lang)}">Star Jars Sort Deluxe</a> (iOS, Android); {a["more"]}</span><span>{a["contact"]}: <a href="mailto:{MAIL}">{MAIL}</a></span></div>
@@ -1086,6 +1113,12 @@ DELETE_INTRO = {
 # The demo itself (demo/starjars.html) is built by ~/.cache/star-jars-tools/ads/playable2/build_web.py and only reads this.
 STORES = {"live": False, "ios": "https://apps.apple.com/app/id6830266206", "android": "https://play.google.com/store/apps/details?id=com.symbolinteractive.starjars"}
 
+# The wrapped box on the shelf. On the day a game is announced, set this, run build.py, push: the wrapping comes off and the line under Star Jars names it.
+# This repo is public, so a name goes here only once it is announced. Shape: {"name": "...", "tr": "bir cümle", "en": "one line", "url": "/... or https://...", "steam": "https://store.steampowered.com/app/..."}; url and steam are optional.
+NEXT_GAME = None
+NEXT_SOON = {"tr": "Sıradaki kutu", "en": "The next box"}
+NEXT_STEAM = {"tr": "Steam’de istek listene ekle", "en": "Wishlist it on Steam"}
+
 # ---------------------------------------------------------------- the game's own box
 
 STARJARS = {
@@ -1141,6 +1174,7 @@ def starjars_page(lang):
 {demo_block(lang, gold=True)}
 {film(lang, dark=True)}
 {parts(lang, night=True)}
+{learn(lang)}
 {more_links(lang)}
 </main>
 {demo_dialog(lang)}
@@ -1165,6 +1199,302 @@ NOT_FOUND = f'''<div class="empty">
 </div>
 </div>
 </div>'''
+
+# ---------------------------------------------------------------- the game's guides. Their words and numbers come from the game (data/game.json), so the site never says something the game doesn't.
+
+def label_tile(src, alt=""):
+    return f'<div class="gpic"><img src="{src}" width="560" height="560" alt="{alt}" loading="lazy"></div>'
+
+
+def pagehead(label, title, lede, art="", chips=(), night=False):
+    links = ""
+    if chips:
+        links = '<ul class="chips">' + "".join(f'<li><a href="{href}">{text}</a></li>' for href, text in chips) + "</ul>"
+    pic = f'<img class="headart" src="{art}" width="560" height="560" alt="" loading="lazy">' if art else ""
+    return f'<section class="pagehead{" night" if night else ""}"><div><span class="label">{label}</span><h1>{title}</h1><p class="lede">{lede}</p>{links}</div>{pic}</section>'
+
+
+def try_strip(lang):
+    """Every guide ends the same way: go and play it."""
+    c = C[lang]
+    return (f'<section class="trystrip"><div><h2>{TRY_STRIP[lang][0]}</h2><p>{TRY_STRIP[lang][1]}</p></div>'
+            f'<div class="actions"><a class="btn" href="{u("starjars", lang)}#dene">{PLAY_ICON}{c["play_web"]}</a><a class="btn line" href="{u("starjars", lang)}">{c["game_page"]}</a></div></section>')
+
+
+TRY_STRIP = {"tr": ("Okumak yetmez", "İki bölümü şimdi tarayıcında oyna. İndirme yok, hesap yok."), "en": ("Reading isn’t enough", "Play two boards in your browser now. No download, no account.")}
+
+# ---- what's new
+
+NEWS = {
+    "tr": {"title": "Yenilikler", "desc": "Star Jars Sort Deluxe’e eklenen takımyıldızları, uzay bölümleri ve özellikler. En yenisi en üstte.", "lede": "Star Jars yayına hazırlanırken oyuna neler eklendi? En yenisi en üstte.", "version": "Sürüm"},
+    "en": {"title": "What’s new", "desc": "The constellations, space chapters and features added to Star Jars Sort Deluxe, newest first.", "lede": "What has been added to Star Jars as it gets ready for release? Newest first.", "version": "Version"},
+}
+# A line that names something the guides explain links to it.
+NEWS_LINKS = {"whatsnew.053.cygnus": "sky:cygnus", "whatsnew.054.cancer": "sky:cancer", "whatsnew.055.aquila": "sky:aquila", "whatsnew.057.lyra": "sky:lyra", "whatsnew.andromeda.chapter": "sky:andromeda",
+              "whatsnew.054.space": "guide#uzay", "whatsnew.055.space": "guide#uzay", "whatsnew.057.space": "guide#uzay", "whatsnew.andromeda.space": "guide#uzay", "whatsnew.6i.space": "guide#uzay",
+              "whatsnew.bossrules.new": "guide#bolum-kavanozlari"}
+
+
+def news_body(lang):
+    n = NEWS[lang]
+    batches = ""
+    for batch in GAMEDATA["news"]:
+        lines = ""
+        for line in batch["lines"]:
+            text = esc(line[lang])
+            target = NEWS_LINKS.get(line["key"])
+            if target:
+                key, _, anchor = target.partition("#")
+                text = f'<a href="{u(key, lang)}{"#" + anchor if anchor else ""}">{text}</a>'
+            lines += f"<li>{text}</li>"
+        batches += f'<li class="batch"><h2><small>{n["version"]}</small>{batch["version"]}</h2><ul>{lines}</ul></li>'
+    return f'{pagehead("Star Jars Sort Deluxe", n["title"], n["lede"], "/img/guide/comet.webp")}<section class="newslist"><ol>{batches}</ol></section>{try_strip(lang)}'
+
+
+# ---- the jars and the rules
+
+GUIDE = {
+    "tr": {"title": "Kavanoz ve kural rehberi", "seo": "Star Jars kavanoz ve kural rehberi", "desc": "Star Jars Sort Deluxe’teki her kavanoz, yıldız türü, bölüm kavanozu ve uzay bölümü kuralı, tek sayfada.", "label": "Kutudan çıkan kılavuz",
+           "lede": "Star Jars’ta karşına çıkacak her kavanoz, her yıldız ve her kural, oyunun kendi sözleriyle.",
+           "basic_h": "Temel kural", "basic": [("pour", "Dök", "Bir kavanoza, sonra başka birine dokun. En üstteki aynı renk yıldızlar oraya geçer. Hedef ya boş olmalı ya da en üstünde aynı renk bulunmalı."),
+                                                ("sort", "Ayır", "Her rengin kendi şekli var. Bir kavanozda tek renk kalana kadar sırala. Takılırsan hamleni geri alabilir ya da ipucu isteyebilirsin."),
+                                                ("seal", "Mühürle", "Tek renkle dolan kavanoz mühürlenir. Her kavanoz mühürlü ya da boş kalınca seviye biter ve takımyıldızının bir yıldızı yanar.")],
+           "jars_h": "Kavanozlar", "jars_p": "Yeni bir kavanoz ilk çıktığında oyun onu sana tanıtır. Hepsi burada bir arada.",
+           "stars_h": "Yıldızlar ve kurallar", "stars_p": "Bazı yıldızlar ve seviyeler ek bir kuralla gelir.",
+           "boss_h": "Bölüm kavanozları", "boss_p": "Her takımyıldızı, ona özel çizilmiş büyük bir kavanozla biter. Bazılarının kendi kuralı vardır.",
+           "space_h": "Uzay bölümleri", "space_p": "Haritada ilerledikçe açılan özel bölümler. Her biri gerçek bir gök cismini anlatır ve kendi kuralıyla gelir.", "real": "Gerçekte"},
+    "en": {"title": "Jar and rule guide", "seo": "Star Jars jar and rule guide", "desc": "Every jar, star type, chapter jar and space chapter rule in Star Jars Sort Deluxe, on one page.", "label": "The leaflet in the box",
+           "lede": "Every jar, every star and every rule you’ll meet in Star Jars, in the game’s own words.",
+           "basic_h": "The basic rule", "basic": [("pour", "Pour", "Tap a jar, then another. The matching stars on top move across. The target must be empty or have the same colour on top."),
+                                                  ("sort", "Sort", "Every colour has its own shape. Sort until a jar holds a single colour. If you get stuck, undo a move or ask for a hint."),
+                                                  ("seal", "Seal", "A jar full of one colour seals. When every jar is sealed or empty, the level ends and a star of the constellation lights up.")],
+           "jars_h": "Jars", "jars_p": "The game introduces each new jar the first time it appears. Here they all are together.",
+           "stars_h": "Stars and rules", "stars_p": "Some stars and levels come with an extra rule.",
+           "boss_h": "Chapter jars", "boss_p": "Every constellation ends with a big jar drawn just for it. Some have a rule of their own.",
+           "space_h": "Space chapters", "space_p": "Special chapters that open as you travel the map. Each tells of a real object in the sky and brings its own rule.", "real": "In reality"},
+}
+
+
+def guide_cards(lang, items):
+    return "".join(f'<article class="gcard">{label_tile("/img/guide/" + i["key"] + ".webp")}<h3>{esc(i["title"][lang])}</h3><p>{esc(i["line"][lang])}</p></article>' for i in items)
+
+
+def guide_body(lang):
+    g, d = GUIDE[lang], GAMEDATA["guide"]
+    chips = [("#temel", g["basic_h"]), ("#kavanozlar", g["jars_h"]), ("#yildizlar", g["stars_h"]), ("#bolum-kavanozlari", g["boss_h"]), ("#uzay", g["space_h"])]
+    steps = "".join(f'<li>{label_tile("/img/guide/" + key + ".webp")}<div>{pip_die(i + 1)}<h3>{h}</h3><p>{p}</p></div></li>' for i, (key, h, p) in enumerate(g["basic"]))
+    space = "".join(f'<article class="scard"><img src="/img/guide/{i["key"]}.webp" width="560" height="560" alt="" loading="lazy"><div><span class="label">{esc(i["object"][lang])}</span><h3>{esc(i["title"][lang])}</h3>'
+                    f'<p class="rule">{esc(i["line"][lang])}</p><p><b>{g["real"]}:</b> {esc(i["fact"][lang])}</p></div></article>' for i in d["space"])
+    return f'''{pagehead(g["label"], g["title"], g["lede"], "/img/guide/ice.webp", chips)}
+<section class="gsec" id="temel" aria-labelledby="temel-h"><h2 id="temel-h">{g["basic_h"]}</h2><ol class="gsteps">{steps}</ol></section>
+<section class="gsec cream" id="kavanozlar" aria-labelledby="jars-h"><h2 id="jars-h">{g["jars_h"]}</h2><p class="intro">{g["jars_p"]}</p><div class="gcards">{guide_cards(lang, d["jars"])}</div></section>
+<section class="gsec" id="yildizlar" aria-labelledby="stars-h"><h2 id="stars-h">{g["stars_h"]}</h2><p class="intro">{g["stars_p"]}</p><div class="gcards">{guide_cards(lang, d["stars"])}</div></section>
+<section class="gsec gold" id="bolum-kavanozlari" aria-labelledby="boss-h"><h2 id="boss-h">{g["boss_h"]}</h2><p class="intro">{g["boss_p"]}</p><div class="gcards">{guide_cards(lang, d["bosses"])}</div></section>
+<section class="gsec night" id="uzay" aria-labelledby="space-h"><h2 id="space-h">{g["space_h"]}</h2><p class="intro">{g["space_p"]}</p><div class="scards">{space}</div></section>
+{try_strip(lang)}'''
+
+
+# ---- the sky
+
+SKYT = {
+    "tr": {"title": "Gökyüzü rehberi", "seo": "Gökyüzü rehberi: takımyıldızları nasıl bulunur?", "label": "Star Jars · Gökyüzü rehberi",
+           "desc": "Star Jars’taki gerçek takımyıldızları: nasıl bulunur, en iyi ne zaman görünür, hangi efsaneyi anlatır. Her yıldızın uzaklığı, rengi ve adının anlamı.",
+           "lede": "Oyundaki her takımyıldızı gökyüzünde gerçekten var. Nasıl bulunur, en iyi ne zaman görünür, hangi efsaneyi anlatır? Her yıldızın uzaklığı, rengi ve adının anlamı da burada.",
+           "regions": {"north": "Kuzey göğü", "equator": "Gök ekvatoru", "zodiac": "Burç kuşağı"}, "months": ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+           "cal_h": "Bu ay hangisi?", "cal_p": "Her takımyıldızının akşam 21.00 sularında en iyi göründüğü ay.", "now": "bu ay", "best_short": "En iyi: {0}",
+           "best": "En iyi {0} akşamları, 21.00 sularında", "rank": "88 takımyıldızı arasında büyüklükte {0}.", "brightest": "En parlak yıldızı {0} ({1} kadir)", "count": "Bu rehberde {0} yıldız",
+           "find": "Gökyüzünde bul", "legend": "Efsane", "sign": "Burç", "stars": "Yıldızları", "stars_p": "Kadir, yıldızın bize ne kadar parlak göründüğünü söyler: sayı küçüldükçe yıldız parlar.",
+           "type": "Tür", "distance": "Uzaklık", "ly": "yaklaşık {0} ışık yılı", "mag": "Parlaklık", "mag_v": "{0} kadir", "name_m": "Adı", "map": "{0} takımyıldızının haritası", "all": "Tüm takımyıldızları", "crumb": "Yol",
+           "prev": "Önceki", "next": "Sonraki",
+           "note": "Haritadaki çizimler oyundaki hâliyledir, gökyüzündeki yerleri birebir göstermez.",
+           "src": "Kaynaklar: takımyıldızı alanları Uluslararası Astronomi Birliği (IAU) sınırlarına göre; yıldız değerleri Hipparcos ve Gaia ölçümlerine dayanan Wikipedia maddelerinden; Güneş’in tarihleri EarthSky’dan. Uzaklıklar yuvarlanmıştır.",
+           "seo_one": "{0} takımyıldızı: nasıl bulunur, yıldızları ve efsanesi", "desc_one": "{0} Nasıl bulunur, en iyi ne zaman görünür, yıldızları ve efsanesi."},
+    "en": {"title": "Sky guide", "seo": "Sky guide: how to find the constellations", "label": "Star Jars · Sky guide",
+           "desc": "The real constellations in Star Jars: how to find them, when they are best seen and the legends they tell. Every star’s distance, colour and the meaning of its name.",
+           "lede": "Every constellation in the game is really up there. How do you find it, when is it best seen, what legend does it tell? Every star’s distance, colour and the meaning of its name are here too.",
+           "regions": {"north": "Northern sky", "equator": "Celestial equator", "zodiac": "Zodiac"}, "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+           "cal_h": "Which one this month?", "cal_p": "The month each constellation is best seen, around 9 p.m.", "now": "this month", "best_short": "Best in {0}",
+           "best": "Best in {0}, around 9 p.m.", "rank": "No. {0} of the 88 constellations by area", "brightest": "Brightest star {0} (magnitude {1})", "count": "{0} stars in this guide",
+           "find": "Find it in the sky", "legend": "Legend", "sign": "Sign", "stars": "Its stars", "stars_p": "Magnitude says how bright a star looks from here: the smaller the number, the brighter the star.",
+           "type": "Type", "distance": "Distance", "ly": "about {0} light years", "mag": "Brightness", "mag_v": "magnitude {0}", "name_m": "Name", "map": "Map of the constellation {0}", "all": "All constellations", "crumb": "Path",
+           "prev": "Previous", "next": "Next",
+           "note": "The drawings on these maps are the game’s, and don’t show exact positions in the sky.",
+           "src": "Sources: constellation areas follow the International Astronomical Union (IAU) boundaries; star values come from Wikipedia’s articles, based on Hipparcos and Gaia; the Sun’s dates come from EarthSky. Distances are rounded.",
+           "seo_one": "The constellation {0}: how to find it, its stars and legend", "desc_one": "{0} How to find it, when it is best seen, its stars and its legend."},
+}
+
+
+def num(lang, value, digits=2):
+    text = f"{value:,.{digits}f}"
+    return text.translate(str.maketrans(",.", ".,")) if lang == "tr" else text
+
+
+def star_xy(s):
+    return 90 + s["x"] * 820, 90 + (1 - s["y"]) * 820
+
+
+def star_r(s):
+    return max(8, 24 - s["mag"] * 4)
+
+
+def label_spots(c, size=34):
+    """Where each star's name goes: the side that covers the fewest other names, stars and lines. Brightest stars choose first."""
+    stars, taken, spots = c["stars"], [], {}
+    points = [star_xy(s) for s in stars]
+    segments = [(points[a], points[b]) for a, b in c["lines"]]
+
+    def hits(box):
+        x0, y0, x1, y1 = box
+        cost = 1000 if x0 < 4 or x1 > 996 or y0 < 4 or y1 > 996 else 0
+        cost += sum(100 for a0, b0, a1, b1 in taken if x0 < a1 and a0 < x1 and y0 < b1 and b0 < y1)
+        cost += sum(60 for s, (px, py) in zip(stars, points) if x0 - star_r(s) < px < x1 + star_r(s) and y0 - star_r(s) < py < y1 + star_r(s))
+        for (ax, ay), (bx, by) in segments:
+            cost += 8 * sum(1 for i in range(21) if x0 < ax + (bx - ax) * i / 20 < x1 and y0 < ay + (by - ay) * i / 20 < y1)
+        return cost
+
+    for i in sorted(range(len(stars)), key=lambda n: stars[n]["mag"]):
+        x, y = points[i]
+        r, w = star_r(stars[i]) + 11, len(stars[i]["name"]) * size * .5
+        options = [("start", x + r, y + size * .34, (x + r, y - size / 2, x + r + w, y + size / 2)), ("end", x - r, y + size * .34, (x - r - w, y - size / 2, x - r, y + size / 2)),
+                   ("middle", x, y - r - 6, (x - w / 2, y - r - size, x + w / 2, y - r)), ("middle", x, y + r + size * .8, (x - w / 2, y + r, x + w / 2, y + r + size))]
+        best = min(options, key=lambda o: hits(o[3]))
+        taken.append(best[3])
+        spots[i] = best[:3]
+    return spots
+
+
+def sky_map(c, lang=None):
+    """The constellation as the game draws it. With a language: a real map with names that link to the star cards. Without: a small picture."""
+    stars = c["stars"]
+    lines = "".join('<line x1="{:.0f}" y1="{:.0f}" x2="{:.0f}" y2="{:.0f}"/>'.format(*star_xy(stars[a]), *star_xy(stars[b])) for a, b in c["lines"])
+    if lang is None:
+        dots = "".join('<circle class="halo c-{}" cx="{:.0f}" cy="{:.0f}" r="{:.0f}"/><circle class="c-{}" cx="{:.0f}" cy="{:.0f}" r="{:.0f}"/>'.format(s["colour"], *star_xy(s), star_r(s) * 2.6, s["colour"], *star_xy(s), star_r(s) * 1.5) for s in stars)
+        return f'<svg class="skymap mini" viewBox="0 0 1000 1000" aria-hidden="true" focusable="false">{lines}{dots}</svg>'
+    spots = label_spots(c)
+    dots = ""
+    for i, s in enumerate(stars):
+        x, y = star_xy(s)
+        anchor, tx, ty = spots[i]
+        dots += (f'<a href="#{s["slug"]}"><circle class="halo c-{s["colour"]}" cx="{x:.0f}" cy="{y:.0f}" r="{star_r(s) * 2.1:.0f}"/><circle class="c-{s["colour"]}" cx="{x:.0f}" cy="{y:.0f}" r="{star_r(s):.0f}"/>'
+                 f'<text x="{tx:.0f}" y="{ty:.0f}" text-anchor="{anchor}">{esc(s["name"])}</text></a>')
+    title = SKYT[lang]["map"].format(esc(c["name"][lang]))
+    return f'<svg class="skymap" viewBox="0 0 1000 1000" role="group" aria-label="{title}">{lines}{dots}</svg>'
+
+
+def sky_index_body(lang):
+    t = SKYT[lang]
+    groups = ""
+    for region in ("north", "equator", "zodiac"):
+        cards = ""
+        for c in (x for x in SKY if x["region"] == region):
+            cards += (f'<a class="skycard" href="{u("sky:" + c["id"], lang)}">{sky_map(c)}<span class="name">{esc(c["name"][lang])}</span><span class="latin">{esc(c["latin"])}</span>'
+                      f'<span class="when">{t["best_short"].format(t["months"][c["month"] - 1])}</span></a>')
+        groups += f'<h2 id="{region}-h">{t["regions"][region]}</h2><div class="chartgrid">{cards}</div>'
+    months = ""
+    for m in range(1, 13):
+        links = "".join(f'<a href="{u("sky:" + c["id"], lang)}">{esc(c["name"][lang])}</a>' for c in SKY if c["month"] == m)
+        months += f'<li data-month="{m}"><h3 data-now="{t["now"]}">{t["months"][m - 1]}</h3>{links}</li>'
+    orion = next(c for c in SKY if c["id"] == "orion")
+    return f'''<section class="skyhero"><div><span class="label">{t["label"]}</span><h1>{t["title"]}</h1><p class="lede">{t["lede"]}</p></div>{sky_map(orion)}</section>
+<section class="chart" aria-label="{t["title"]}">{groups}</section>
+<section class="gsec cream" id="takvim" aria-labelledby="cal-h"><h2 id="cal-h">{t["cal_h"]}</h2><p class="intro">{t["cal_p"]}</p><ol class="months">{months}</ol></section>
+{try_strip(lang)}
+<section class="skysrc"><p>{t["note"]} {t["src"]}</p></section>'''
+
+
+def sky_page_body(lang, i):
+    t, c = SKYT[lang], SKY[i]
+    name = esc(c["name"][lang])
+    month = t["months"][c["month"] - 1]
+    # The brightest star's number is the one on its own card, so a page never shows two values for one star.
+    spec = "".join(f"<span>{x}</span>" for x in (t["best"].format(month), t["rank"].format(c["rank"]), t["brightest"].format(esc(c["brightest"]), num(lang, next(s for s in c["stars"] if s["name"] == c["brightest"])["mag"])), t["count"].format(len(c["stars"]))))
+    texts = f'<article><h2>{t["find"]}</h2><p>{esc(c["find"][lang])}</p></article><article><h2>{t["legend"]}</h2><p>{esc(c["legend"][lang])}</p></article>'
+    if c["sign"]:
+        texts += f'<article><h2>{t["sign"]}</h2><p>{esc(c["sign"][lang])}. {esc(c["sun"][lang])}</p></article>'
+    cards = ""
+    for s in c["stars"]:
+        kind = GAMEDATA["starTypes"]["colour"][s["colour"]][lang] + " " + GAMEDATA["starTypes"]["size"][s["size"]][lang]
+        cards += (f'<article class="starcard" id="{s["slug"]}"><span class="orb c-{s["colour"]}" aria-hidden="true"></span><h3>{esc(s["name"])}</h3><p class="bayer">{esc(s["greek"][lang])}{s["sup"]} {esc(s["genitive"])}</p>'
+                  f'<dl><dt>{t["type"]}</dt><dd>{kind}</dd><dt>{t["distance"]}</dt><dd>{t["ly"].format(num(lang, s["ly"], 0))}</dd><dt>{t["mag"]}</dt><dd>{t["mag_v"].format(num(lang, s["mag"]))}</dd><dt>{t["name_m"]}</dt><dd>{esc(s["meaning"][lang])}</dd></dl>'
+                  f'<p>{esc(s["note"][lang])}</p></article>')
+    before, after = SKY[i - 1], SKY[(i + 1) % len(SKY)]
+    latin = f'<p class="latin">{esc(c["latin"])}</p>' if c["latin"] != c["name"][lang] else ""
+    return f'''<nav class="crumbs" aria-label="{t["crumb"]}"><a href="{u("sky", lang)}">{t["title"]}</a><span aria-hidden="true">›</span><span aria-current="page">{name}</span></nav>
+<section class="skyhero one"><div><span class="label">{t["regions"][c["region"]]}</span><h1>{name}</h1>{latin}<p class="lede">{esc(c["fact"][lang])}</p><div class="skyspec">{spec}</div></div>
+<div class="mapwrap">{sky_map(c, lang)}<p class="mapnote">{t["note"]}</p></div></section>
+<section class="skytext">{texts}</section>
+<section class="gsec cream" id="yildizlari" aria-labelledby="sl-h"><h2 id="sl-h">{t["stars"]}</h2><p class="intro">{t["stars_p"]}</p><div class="starcards">{cards}</div></section>
+{try_strip(lang)}
+<nav class="skynav" aria-label="{t["all"]}"><a href="{u("sky:" + before["id"], lang)}"><small>{t["prev"]}</small>{esc(before["name"][lang])}</a><a href="{u("sky", lang)}"><small>{t["title"]}</small>{t["all"]}</a><a href="{u("sky:" + after["id"], lang)}"><small>{t["next"]}</small>{esc(after["name"][lang])}</a></nav>
+<section class="skysrc"><p>{t["src"]}</p></section>'''
+
+
+def sky_ld(lang, title, desc, key):
+    return {"@context": "https://schema.org", "@type": "Article", "headline": title, "description": desc, "inLanguage": lang, "url": SITE + u(key, lang), "image": f"{SITE}/img/og-starjars-{lang}.jpg",
+            "author": {"@type": "Organization", "name": "Symbol Interactive", "url": SITE + "/"}, "publisher": {"@type": "Organization", "name": "Symbol Interactive", "logo": {"@type": "ImageObject", "url": SITE + "/img/apple-touch-icon.png"}}}
+
+
+# ---- the making of. Told without dates. Only what the game's changelog and design notes show to be true.
+
+MAKING = {
+    "tr": {"title": "Yapım hikâyesi", "seo": "Star Jars’ın yapım hikâyesi", "desc": "Star Jars Sort Deluxe nasıl yapıldı: kurallardan kodla çizilen görsellere, gerçek takımyıldızlarından 13 dile.", "label": "Star Jars Sort Deluxe",
+           "lede": "Star Jars tek bir soruyla başladı: renkli yıldızları sıralarken gerçek bir gökyüzünü yakmak nasıl olurdu? Kutunun içine neyin nasıl girdiğini burada anlatıyoruz.",
+           "steps": [("Önce kurallar", "İlk sürümde tek bir çizim yoktu. Hamle kuralları, geri alma ve seviyeleri çözmeyi deneyen bir çözücü vardı. Çözücüden geçmeyen seviye oyuna girmez; bu kural bugün de geçerli.", "art:pour", ""),
+                     ("Çizimler koddan çıktı", "Yıldızları, kavanozları, mühürleri kodla çiziyoruz. Bir ayrıntıyı değiştirmek için birkaç satırı düzeltip bütün çizimleri yeniden üretmek yetiyor. Bu yüzden oyunda hazır görsel paketi yok.", "art:vessel", ""),
+                     ("Her rengin kendi şekli", "Bu oyunun özü renkleri ayırmak, ama herkes renkleri aynı görmüyor. O yüzden her rengin bir şekli de var: yıldız, küre, kalp, damla, elmas, hilal, üçgen, gezegen, kristal.", "strip:shapes", ""),
+                     ("Bulmaca gökyüzüne bağlandı", "Baştan beri aklımızdaki fark buydu: sıraladığın yıldızlar gerçek olacaktı. Ana ekran bir haritaya dönüştü, her seviye gerçek bir takımyıldızının bir yıldızını yakar oldu. Kartlardaki uzaklık ve parlaklık değerlerini kaynaklarıyla karşılaştırdık.", "shot:card", "sky"),
+                     ("Her bölüme yeni bir fikir", "Aynı bulmacayı yüzlerce kez çözdürmek istemedik. Buzlu kavanoz, etiket, renk kilidi, saatli yıldız, ters kavanoz: yol boyunca yeni kurallar geldi. Bölümler o takımyıldızına özel bir kavanozla bitiyor, uzay bölümleri de kendi kuralını getiriyor.", "shot:boss", "guide"),
+                     ("13 dil", "Oyun Türkçe başladı, sonra İngilizce geldi, ardından Arapça dahil 13 dile çıktı. Çevrilen yalnızca düğmeler değil, yıldız kartları da her dilde.", "langs", ""),
+                     ("Şimdi", "Oyun test sürümlerinde, mağazalara hazırlanıyor. Bu sayfayı son güncellediğimizde {version} sürümündeydi. Yayından sonra da yeni bölümler eklemeyi sürdüreceğiz.", "zar", "news")],
+           "more": {"sky": "Gökyüzü rehberine git", "guide": "Kavanoz ve kural rehberine git", "news": "Yeniliklere bak"}, "alts": {"card": "Oyundaki bir yıldız kartı", "boss": "Bir takımyıldızına özel bölüm kavanozu"}},
+    "en": {"title": "The making of", "seo": "The making of Star Jars", "desc": "How Star Jars Sort Deluxe was made: from the rules to art drawn in code, from real constellations to 13 languages.", "label": "Star Jars Sort Deluxe",
+           "lede": "Star Jars began with one question: what if sorting colourful stars lit up a real sky? Here is what went into the box, and how.",
+           "steps": [("Rules first", "The first version had no drawings at all. It had the rules of a move, undo, and a solver that tries to solve the levels. A level the solver can’t get through doesn’t go in the game, and that still holds today.", "art:pour", ""),
+                     ("Art out of code", "We draw the stars, jars and seals in code. To change a detail we fix a few lines and make every drawing again. That’s why there are no ready-made art packs in the game.", "art:vessel", ""),
+                     ("A shape for every colour", "The heart of this game is telling colours apart, but not everyone sees them the same. So every colour has a shape too: star, orb, heart, drop, diamond, crescent, triangle, planet, crystal.", "strip:shapes", ""),
+                     ("The puzzle met the sky", "This was the difference we wanted from the start: the stars you sort would be real. The home screen became a map, and every level came to light a star of a real constellation. We checked the distances and brightness on the cards against their sources.", "shot:card", "sky"),
+                     ("A new idea in every chapter", "We didn’t want you solving the same puzzle hundreds of times. Icy jars, labels, colour locks, clock stars, upside-down jars: new rules arrived along the way. Chapters end with a jar drawn for their constellation, and space chapters bring rules of their own.", "shot:boss", "guide"),
+                     ("13 languages", "The game began in Turkish, then came English, then 13 languages including Arabic. Not just the buttons: the star cards are in every language too.", "langs", ""),
+                     ("Now", "The game is in test versions, getting ready for the stores. When we last updated this page it was at version {version}. We’ll keep adding new chapters after release.", "zar", "news")],
+           "more": {"sky": "Go to the sky guide", "guide": "Go to the jar and rule guide", "news": "See what’s new"}, "alts": {"card": "A star card in the game", "boss": "A chapter jar drawn for one constellation"}},
+}
+
+
+def making_body(lang):
+    m = MAKING[lang]
+    rows = ""
+    for i, (title, text, media_key, more) in enumerate(m["steps"]):
+        kind, _, name = media_key.partition(":")
+        if kind == "art":
+            pic = f'<div class="smed panel"><img src="/img/guide/{name}.webp" width="560" height="560" alt="" loading="lazy"></div>'
+        elif kind == "strip":
+            pic = f'<div class="smed panel strip"><img src="/img/guide/{name}.webp" width="1944" height="216" alt="" loading="lazy"></div>'
+        elif kind == "shot":
+            pic = f'<div class="smed phone"><img src="/img/sj/{lang}-{name}.jpg" width="560" height="1213" alt="{m["alts"][name]}" loading="lazy"></div>'
+        elif kind == "langs":
+            names = "".join(f'<li lang="{code}"{" dir=" + chr(34) + "rtl" + chr(34) if code == "ar" else ""}>{n}</li>' for code, n in LANGS)
+            pic = f'<div class="smed panel"><ul class="langs big">{names}</ul></div>'
+        else:
+            pic = f'<div class="smed zarbox">{zar()}</div>'
+        link = f'<p class="more-link"><a href="{u(more, lang)}">{m["more"][more]}</a></p>' if more else ""
+        version = GAMEDATA["gameVersion"].removesuffix(".0")
+        rows += f'<li><div class="stx"><b class="let" aria-hidden="true">{i + 1}</b><h2>{title}</h2><p>{text.format(version=version)}</p>{link}</div>{pic}</li>'
+    return f'{pagehead(m["label"], m["title"], m["lede"], "/img/guide/seal.webp")}<ol class="story">{rows}</ol>{try_strip(lang)}'
+
+
+LEARN = {
+    "tr": ("Oyunu yakından tanı", [("guide", "Kavanoz ve kural rehberi", "Her kavanoz, her yıldız, her kural.", "ice"), ("sky", "Gökyüzü rehberi", f"{GAME['constellations']} takımyıldızı ve {GAME['stars']} yıldız: nasıl bulunur, ne anlatır.", "saturn"),
+                                   ("news", "Yenilikler", "Oyuna son eklenenler.", "comet"), ("makingof", "Yapım hikâyesi", "Kutuya ne girdi, nasıl girdi.", "pour")]),
+    "en": ("Get to know the game", [("guide", "Jar and rule guide", "Every jar, every star, every rule.", "ice"), ("sky", "Sky guide", f"{GAME['constellations']} constellations and {GAME['stars']} stars: how to find them, what they tell.", "saturn"),
+                                    ("news", "What’s new", "The latest additions to the game.", "comet"), ("makingof", "The making of", "What went into the box, and how.", "pour")]),
+}
+
+
+def learn(lang):
+    title, items = LEARN[lang]
+    cards = "".join(f'<a class="learncard" href="{u(k, lang)}"><img src="/img/guide/{art}.webp" width="560" height="560" alt="" loading="lazy"><span><b>{h}</b>{p}</span></a>' for k, h, p, art in items)
+    return f'<section class="learn" aria-labelledby="learn-h"><h2 id="learn-h">{title}</h2><div class="learngrid">{cards}</div></section>'
+
 
 # ---------------------------------------------------------------- write everything
 
@@ -1200,6 +1530,15 @@ for lang in ("tr", "en"):
                                              "en": "Delete your Star Jars Sort Deluxe account and cloud save: steps, what is deleted and kept, and how long it takes."}[lang],
          doc(lang, {"tr": "Hesap silme", "en": "Deleting your account"}[lang], [l["game"], f'{l["updated"]}: {UPDATED[lang]}'], DELETE_INTRO[lang], DELETE[lang]))
     starjars_page(lang)
+    page(lang, "news", NEWS[lang]["title"] + " · Star Jars", NEWS[lang]["desc"], news_body(lang), plain=True, og=f"/img/og-starjars-{lang}.jpg")
+    page(lang, "guide", GUIDE[lang]["seo"], GUIDE[lang]["desc"], guide_body(lang), plain=True, og=f"/img/og-starjars-{lang}.jpg")
+    page(lang, "makingof", MAKING[lang]["seo"] + tag, MAKING[lang]["desc"], making_body(lang), plain=True, script=True, og=f"/img/og-starjars-{lang}.jpg")
+    page(lang, "sky", SKYT[lang]["seo"], SKYT[lang]["desc"], sky_index_body(lang), plain=True, script=True, og=f"/img/og-starjars-{lang}.jpg", ld=sky_ld(lang, SKYT[lang]["seo"], SKYT[lang]["desc"], "sky"))
+    for i, one in enumerate(SKY):
+        one_key = f"sky:{one['id']}"
+        one_title = SKYT[lang]["seo_one"].format(esc(one["name"][lang]))
+        one_desc = SKYT[lang]["desc_one"].format(esc(one["fact"][lang]))
+        page(lang, one_key, one_title, one_desc, sky_page_body(lang, i), plain=True, og=f"/img/og-starjars-{lang}.jpg", ld=sky_ld(lang, one_title, one_desc, one_key))
 write("demo/stores.js", "window.SJ_STORES=" + json.dumps(STORES) + ";\n")
 
 # The App Store's support URL (the user, 2026-11-03): /support, English first and Turkish below, on one page.
@@ -1281,7 +1620,7 @@ write("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="ht
 write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
 
 # Guards: no review notes, every page has its twin, and the two hand-kept files are untouched by this script.
-pages = [*ROOT.glob("*.html"), *ROOT.glob("en/*.html")]
+pages = [*ROOT.glob("*.html"), *ROOT.glob("en/*.html"), *ROOT.glob("gokyuzu/*.html"), *ROOT.glob("en/sky/*.html")]
 assert not any("REVIEW" in p.read_text(encoding="utf-8") for p in pages), "a REVIEW note is left in a page"
 for key, paths in PAGES.items():
     for lang, path in paths.items():

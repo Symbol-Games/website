@@ -39,6 +39,10 @@
     blink();
   }
 
+  // The sky guide's calendar marks this month.
+  var month = document.querySelector('[data-month="' + (new Date().getMonth() + 1) + '"]');
+  if (month) month.classList.add("now");
+
   // The packaging opens with a click.
   var pack = document.getElementById("blister");
   if (pack) pack.addEventListener("click", function () {
