@@ -1,5 +1,6 @@
 # Symbol Interactive: authorized sellers of our apps' ad inventory (IAB app-ads.txt).
 ownerdomain=symbolinteractive.com.tr
+ironsrc.com, 697951, DIRECT
 
 # Google AdMob
 google.com, pub-4775497827764959, DIRECT, f08c47fec0942fa0
