@@ -1002,6 +1002,7 @@ TERMS = {
 <p>Oyunda yıldız tozu, can, ipucu, ek kavanoz ve geri alma gibi oyun içi para ve öğeler kazanabilir ya da satın alabilirsin. Bunlar yalnızca oyunda kullanılan bir lisanstır:</p>
 <ul>
 <li>Gerçek para değerleri yoktur; paraya çevrilemez, satılamaz ve başka bir oyuncuya aktarılamaz.</li>
+<li>Arena düellolarına koyduğun yıldız tozunu düellonun sonucuna göre kazanır ya da kaybedersin. Düello bir beceri yarışıdır, şansa dayanmaz; kazanılan toz da yalnız oyunda kullanılır.</li>
 <li>Oyunu dengeli tutmak için öğelerin oyundaki fiyatlarını, miktarlarını ve etkilerini değiştirebiliriz; satın aldığın bir paketin içeriğini sonradan geri alıp azaltmayız.</li>
 <li>Reklamsız gibi kalıcı satın almalar mağaza hesabına bağlıdır; aynı App Store ya da Google Play hesabıyla Ayarlar'daki <strong>Satın alımları geri yükle</strong> ile geri gelir.</li>
 <li>Diğer öğeler ilerlemenle birlikte saklanır. Bulut kaydı olmadan oyunu silersen ya da telefon değiştirirsen bunlar kaybolabilir; bulut kaydı 1.0.0 sürümüyle gelir.</li>
@@ -1017,7 +1018,8 @@ TERMS = {
         ("hesap", "Hesap ve bulut kaydı", f'''
 <p>1.0.0 sürümünden itibaren oyun senin için anonim bir hesap açar ve ilerlemeni buluta kaydeder. Hesabını Apple ya da Google hesabına bağlarsan, o hesabın güvenliği senin sorumluluğundadır. Hesabını istediğin an oyunun içinden silebilirsin (<a href="{u("delete", "tr")}">hesap silme</a>).</p>'''),
         ("adil", "Adil oyun", '''
-<p>Hile yapmak, oyunu değiştiren ya da kendi kendine oynayan araçlar kullanmak, bir hatayı bilerek kötüye kullanmak ve oyunun sunucularına zarar vermeye çalışmak yasaktır. Bunu görürsek ilgili öğeleri düzeltebilir ya da bulut kaydını kapatabiliriz. Bir hata bulursan bize haber vermen bizi çok sevindirir.</p>'''),
+<p>Hile yapmak, oyunu değiştiren ya da kendi kendine oynayan araçlar kullanmak, bir hatayı bilerek kötüye kullanmak ve oyunun sunucularına zarar vermeye çalışmak yasaktır. Bunu görürsek ilgili öğeleri düzeltebilir ya da bulut kaydını kapatabiliriz. Bir hata bulursan bize haber vermen bizi çok sevindirir.</p>
+<p>Arena'da anlaşmalı düello (bilerek kaybetmek, puan ya da toz aktarmak için oynamak) yasaktır; görürsek lig puanlarını ve tozu düzeltebiliriz.</p>'''),
         ("degisiklik", "Oyundaki değişiklikler ve oyunun sona ermesi", '''
 <p>Oyunu güncelleyerek içerik ekleyebilir, değiştirebilir ya da kaldırabiliriz. Satın alınabilir öğeleri olan bir oyunu tamamen kapatmaya karar verirsek bunu en az 30 gün önceden bu sitede duyururuz.</p>'''),
         ("sorumluluk", "Sorumluluk", '''
@@ -1041,6 +1043,7 @@ TERMS = {
 <p>In the game you can earn or buy virtual currency and items such as stardust, lives, hints, extra jars and undos. They are a licence to use inside the game only:</p>
 <ul>
 <li>They have no real-money value; they can't be cashed out, sold or transferred to another player.</li>
+<li>Stardust you put into an Arena duel is won or lost by the duel's result. A duel is a contest of skill, not chance, and stardust you win is likewise for use in the game only.</li>
 <li>To keep the game balanced we may change their in-game prices, amounts and effects; we won't take back or reduce what a pack you bought gave you.</li>
 <li>Permanent purchases such as Remove Ads belong to your store account; with the same App Store or Google Play account they come back through <strong>Restore purchases</strong> in Settings.</li>
 <li>Other items are kept with your progress. Without a cloud save they can be lost if you delete the game or change phones; the cloud save arrives with version 1.0.0.</li>
@@ -1056,7 +1059,8 @@ TERMS = {
         ("account", "Account and cloud save", f'''
 <p>From version 1.0.0 the game creates an anonymous account for you and saves your progress to the cloud. If you link it to an Apple or Google account, keeping that account secure is up to you. You can delete your account in the game at any time (<a href="{u("delete", "en")}">account deletion</a>).</p>'''),
         ("fair-play", "Fair play", '''
-<p>Cheating, using tools that modify the game or play it for you, knowingly exploiting a bug, and trying to harm the game's servers are not allowed. If we see this, we may correct the items involved or turn off the cloud save. If you find a bug, telling us makes our day.</p>'''),
+<p>Cheating, using tools that modify the game or play it for you, knowingly exploiting a bug, and trying to harm the game's servers are not allowed. If we see this, we may correct the items involved or turn off the cloud save. If you find a bug, telling us makes our day.</p>
+<p>Arranged duels in the Arena (losing on purpose, or playing to pass points or stardust to someone) are not allowed; if we see them, we may correct the league points and stardust involved.</p>'''),
         ("ending", "Changes to the game and ending a game", '''
 <p>We may add, change or remove content through updates. If we decide to shut down a game that has items for sale, we will announce it on this site at least 30 days in advance.</p>'''),
         ("liability", "Liability", '''
