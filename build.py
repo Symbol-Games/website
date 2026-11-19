@@ -705,14 +705,14 @@ PRIVACY_SUMMARY = {
         "Oynamak için adını, e-postanı ya da telefon numaranı istemeyiz; oyun senin için anonim bir hesap açar.",
         "İlerlemen telefonunda ve Avrupa'daki (Belçika) bulut kaydında durur. Hesabını istediğin an oyunun içinden silebilirsin.",
         "Türkiye'de, Avrupa Ekonomik Alanı'nda, Birleşik Krallık'ta ve İsviçre'de analitik ve kişiselleştirilmiş reklam yalnızca izin verirsen çalışır.",
-        "16 yaşından küçüksen (Türkiye'de 18) izin sorulmaz; analitik ve kişiselleştirilmiş reklam kapalı kalır.",
+        "Izin yaşının altındaysan (Türkiye'de 18; AEA'da ve Birleşik Krallık'ta ülkene göre 13 ile 16 arası, örneğin Birleşik Krallık'ta 13, Fransa'da 15, Almanya'da 16; diğer ülkelerde 16) izin sorulmaz; analitik ve kişiselleştirilmiş reklam kapalı kalır.",
         "Satın almaları Apple ve Google yönetir; kart bilgilerini hiç görmeyiz. Bilgilerini para karşılığında satmayız.",
         "0.56.0 ve önceki test sürümleri hiçbir kişisel veri toplamaz; 0.62.0'dan itibaren test sürümleri de bu politikaya tabidir."]),
     "en": ("In short", [
         "We never ask for your name, email or phone number to play; the game creates an anonymous account for you.",
         "Your progress is kept on your phone and in a cloud save in Europe (Belgium). You can delete your account in the game at any time.",
         "In Türkiye, the European Economic Area, the UK and Switzerland, analytics and personalised ads run only if you allow them.",
-        "If you are under 16 (under 18 in Türkiye), you are not asked for consent; analytics and personalised ads stay off.",
+        "If you are under the age of consent (18 in Türkiye; in the EEA and the UK your country's own, between 13 and 16, for example 13 in the UK, 15 in France, 16 in Germany; 16 elsewhere), you are not asked for consent; analytics and personalised ads stay off.",
         "Apple and Google handle purchases; we never see your card details. We don't sell your information for money.",
         "Test versions 0.56.0 and earlier collect no personal data; from 0.62.0, test versions follow this policy too."]),
 }
@@ -729,7 +729,7 @@ PRIVACY = {
         ("bilgiler", "Hangi bilgileri, neden işliyoruz", f'''
 <p>Bilgiler oyun çalışırken, oyunun ve içindeki hizmet sağlayıcı kütüphanelerinin (SDK) yardımıyla otomatik olarak toplanır; bize e-posta yazarsan e-postayla. Hangi bilginin hangi ülkede hangi izinle işlendiği <a href="#hukuki-sebepler">hukuki sebepler</a> ve <a href="#izinler">izinler</a> bölümlerinde.</p>
 <h3>Yaş sorusu</h3>
-<p>Oyun doğum yılını gerektiği ilk anda sorar: bir izin sormadan önce ya da Arkadaşlar'ı veya Arena'yı ilk açtığında. Telefonunda yalnızca yaş grubun saklanır (13'ten küçük, 16'dan küçük — Türkiye'de 18'den küçük — ya da daha büyük); doğum yılın da yaş grubun da bize ya da başka birine gönderilmez. Yaş grubun, hangi izinlerin sorulacağını ve hangi özelliklerin kapalı kalacağını belirler (<a href="#cocuklar">çocuklar ve gençler</a>).</p>
+<p>Oyun doğum yılını gerektiği ilk anda sorar: bir izin sormadan önce ya da Arkadaşlar'ı veya Arena'yı ilk açtığında. Telefonunda yalnızca yaş grubun saklanır (13'ten küçük, izin yaşından küçük ya da daha büyük; izin yaşı Türkiye'de 18, AEA'da ve Birleşik Krallık'ta ülkene göre 13 ile 16 arası, diğer ülkelerde 16); doğum yılın da yaş grubun da bize ya da başka birine gönderilmez. Yaş grubun, hangi izinlerin sorulacağını ve hangi özelliklerin kapalı kalacağını belirler (<a href="#cocuklar">çocuklar ve gençler</a>).</p>
 <h3>Hesap</h3>
 <p>Oyun ilk açıldığında Google Firebase Authentication senin için anonim bir hesap açar. Bu hesabın yalnızca rastgele bir kimlik numarası vardır; Ayarlar → Bulut kaydı'nda <strong>oyuncu kimliği</strong> olarak görünür. iPhone'da Game Center'a, Android'de Google Play Oyunlar'a giriş yapmışsan oyun hesabını ona kendiliğinden bağlar; bunu yapmak için hiçbir pencere açmaz. Firebase bu durumda Game Center'ın ya da Google'ın bu oyun için verdiği oyuncu kimliğini ve sağlayıcının girişle birlikte gönderdiği temel profil bilgilerini (örneğin Google Play Oyunlar'daki oyuncu adını) alır. Apple ile Giriş bu sürümde sunulmuyor; bir test sürümünde bu yolla bağlanmış hesap çalışmaya devam eder. Bağlarken senden ad ya da e-posta izni istemeyiz. Bunları yalnızca seni tanımak ve ilerlemeni başka bir telefona taşımak için kullanırız. Firebase Authentication, hesapları kötüye kullanıma karşı korumak için IP adreslerini birkaç hafta kayıtlı tutar.</p>
 <h3>Bulut kaydı</h3>
@@ -789,7 +789,7 @@ PRIVACY = {
 <li><strong>AEA, Birleşik Krallık ve İsviçre:</strong> oyunun izin kartı analitiği ve çökme raporlarını 3. seviyeyi kazandıktan sonra sorar; Google'ın rıza mesajı reklam ortaklarını ve reklam kişiselleştirmesini ilk reklam oynamak üzereyken sorar. Reklamlar yalnız orada kabul edersen kişiselleştirilir. Google'ın mesajı gösterilemezse ya da kabul etmezsen reklamlar kişiselleştirilmez; ödül için reklam izlemeye yine devam edebilirsin.</li>
 <li><strong>ABD'nin gizlilik yasası olan eyaletleri:</strong> Google'ın eyalet mesajıyla, bilgilerinin kişiselleştirilmiş reklam için kullanılmasını (yasanın deyişiyle "satılmasını" ya da "paylaşılmasını") reddedebilirsin.</li>
 <li><strong>iOS:</strong> reklam kimliği (IDFA) yalnızca Apple'ın uygulama takibi sorusuna izin verirsen kullanılır. Kişiselleştirilmiş reklamı reddettiysen ya da yaşın küçükse bu soru hiç sorulmaz.</li>
-<li><strong>16 yaşından küçükler (Türkiye'de 18):</strong> izin sorulmaz; analitik ve kişiselleştirilmiş reklam kapalı kalır.</li>
+<li><strong>İzin yaşının altındakiler</strong> (Türkiye'de 18; AEA'da ve Birleşik Krallık'ta ülkeye göre 13–16; diğer ülkelerde 16): izin sorulmaz; analitik ve kişiselleştirilmiş reklam kapalı kalır.</li>
 </ul>
 <p>Seçimini istediğin an, her ülkede, Ayarlar → <strong>Gizlilik seçenekleri</strong>'nden değiştirebilirsin. Burada bu politikanın ve kullanım koşullarının bağlantıları ve yaşın küçük değilse analitik anahtarı bulunur; Türkiye'de kişiselleştirilmiş reklam, AEA'da, Birleşik Krallık'ta ve İsviçre'de çökme raporları ve Google'ın mesajı açılabildiğinde reklam ayarları, ABD'de "satış" ya da "paylaşım"ı reddetme de buradadır. Her ülkede telefonunun ayarlarını da kullanabilirsin: iOS'ta Ayarlar → Gizlilik ve Güvenlik → Takip'ten oyunun takip iznini kapatabilir, Android'de telefon ayarlarının reklamlar bölümünden reklam kimliğini silebilir ya da sıfırlayabilirsin. İznini geri alman, o ana kadar yapılan işlemeyi etkilemez.</p>'''),
         ("alicilar", "Kimler alır", '''
@@ -843,7 +843,7 @@ PRIVACY = {
         ("cocuklar", "Çocuklar ve gençler", f'''
 <p>Oyunlarımız 13 yaş ve üzeri içindir; 13 yaşından küçük çocuklara yönelik değildir. Oyun doğum yılını, gerektiği ilk anda (bir izin sormadan önce) sorar ve buna göre davranır; "Söylemek istemiyorum" diyen küçük sayılır:</p>
 <ul>
-<li><strong>16 yaşından küçüksen (Türkiye'de 18):</strong> izin sorulmaz; analitik ve kişiselleştirilmiş reklam kapalı kalır, iOS'ta takip sorusu gösterilmez. AEA'da, Birleşik Krallık'ta ve İsviçre'de çökme raporları da gönderilmez. Reklamlar ilgi alanlarına göre seçilmez.</li>
+<li><strong>Izin yaşının altındaysan (Türkiye'de 18; AEA'da ve Birleşik Krallık'ta ülkene göre 13 ile 16 arası, örneğin Birleşik Krallık'ta 13, Fransa'da 15, Almanya'da 16; diğer ülkelerde 16):</strong> izin sorulmaz; analitik ve kişiselleştirilmiş reklam kapalı kalır, iOS'ta takip sorusu gösterilmez. AEA'da, Birleşik Krallık'ta ve İsviçre'de çökme raporları da gönderilmez. Reklamlar ilgi alanlarına göre seçilmez.</li>
 <li><strong>13 yaşından küçüksen:</strong> bunlara ek olarak reklam ortaklarına seni çocuk olarak işlemeleri bildirilir; hesap bağlanmaz ve rozet bildirilmez (Game Center ya da Google).</li>
 </ul>
 <p>13 yaşından küçük bir çocuğun bilgilerinin bize ulaştığını düşünüyorsan {mailto(to=PRIVACY_MAIL)} adresine yaz; bilgileri sileriz.</p>'''),
@@ -863,7 +863,7 @@ PRIVACY = {
         ("information", "What information we process, and why", f'''
 <p>Information is collected automatically while the game runs, through the game and the service providers' libraries (SDKs) inside it; and by email if you write to us. Which information is processed where and on what basis is in <a href="#legal-bases">legal bases</a> and <a href="#consent">consent</a>.</p>
 <h3>Age question</h3>
-<p>The game asks for your year of birth the first time it needs it: before asking for a permission, or when you first open Friends or the Arena. Only your age group is kept on your phone (under 13, under 16 — under 18 in Türkiye — or older); neither your year of birth nor your age group is sent to us or anyone else. Your age group decides which permissions are asked and which features stay off (<a href="#children">children and teenagers</a>).</p>
+<p>The game asks for your year of birth the first time it needs it: before asking for a permission, or when you first open Friends or the Arena. Only your age group is kept on your phone (under 13, under the age of consent, or older; the age of consent is 18 in Türkiye, your country's own between 13 and 16 in the EEA and the UK, and 16 elsewhere); neither your year of birth nor your age group is sent to us or anyone else. Your age group decides which permissions are asked and which features stay off (<a href="#children">children and teenagers</a>).</p>
 <h3>Account</h3>
 <p>When the game first opens, Google Firebase Authentication creates an anonymous account for you. All it has is a random ID, shown in Settings → Cloud save as your <strong>player ID</strong>. If you're signed in to Game Center on iPhone or to Google Play Games on Android, the game links the account to it by itself, without opening any window. Firebase then receives the player ID that Game Center or Google gives for this game, and the basic profile details the provider sends with the sign-in (such as your Google Play Games gamer name). Sign in with Apple isn't offered in this version; an account linked that way in a test version keeps working. We don't ask for your name or email when you link. We use these only to recognise you and to bring your progress to another phone. Firebase Authentication keeps a log of IP addresses for a few weeks to protect accounts from abuse.</p>
 <h3>Cloud save</h3>
@@ -923,7 +923,7 @@ PRIVACY = {
 <li><strong>EEA, UK and Switzerland:</strong> the game's consent card asks about analytics and crash reports after you win level 3; Google's consent message asks about ad partners and ad personalisation the first time an ad is about to play. Ads are personalised only if you agree there. If Google's message can't be shown, or you don't agree, ads are not personalised, and you can still watch an ad for a reward.</li>
 <li><strong>US states with privacy laws:</strong> Google's state message lets you opt out of your information being used for personalised ads (a "sale" or "sharing" in those laws' words).</li>
 <li><strong>iOS:</strong> the advertising ID (IDFA) is used only if you allow app tracking when Apple's prompt asks. If you refused personalised ads, or you are under age, the prompt is never shown.</li>
-<li><strong>Under 16 (under 18 in Türkiye):</strong> no consent is asked; analytics and personalised ads stay off.</li>
+<li><strong>Under the age of consent</strong> (18 in Türkiye; 13–16 by country in the EEA and the UK; 16 elsewhere): no consent is asked; analytics and personalised ads stay off.</li>
 </ul>
 <p>You can change your choice at any time in Settings → <strong>Privacy options</strong>, in every country. It holds the links to this policy and the terms and, unless you are under age, the analytics switch; in Türkiye also personalised ads, in the EEA, the UK and Switzerland also crash reports and, when Google's message is available, ad settings, in the US also the opt-out from "sale" or "sharing". Everywhere, you can also use your phone's settings: on iOS, turn off tracking for the game in Settings → Privacy &amp; Security → Tracking; on Android, delete or reset your advertising ID in the ads section of your phone's settings. Withdrawing consent does not affect processing that took place before.</p>'''),
         ("recipients", "Who receives it", '''
@@ -977,7 +977,7 @@ PRIVACY = {
         ("children", "Children and teenagers", f'''
 <p>Our games are for ages 13 and up; they are not directed at children under 13. The game asks for your year of birth the first time it needs it (before asking for a permission) and acts on it; "I'd rather not say" counts as under age:</p>
 <ul>
-<li><strong>Under 16 (under 18 in Türkiye):</strong> no consent is asked; analytics and personalised ads stay off and the iOS tracking prompt is not shown. In the EEA, the UK and Switzerland crash reports are not sent either. Ads are not chosen by your interests.</li>
+<li><strong>If you are under the age of consent (18 in Türkiye; in the EEA and the UK your country's own, between 13 and 16, for example 13 in the UK, 15 in France, 16 in Germany; 16 elsewhere):</strong> no consent is asked; analytics and personalised ads stay off and the iOS tracking prompt is not shown. In the EEA, the UK and Switzerland crash reports are not sent either. Ads are not chosen by your interests.</li>
 <li><strong>Under 13:</strong> in addition, ad partners are told to treat you as a child, and no account is linked and no badge is reported (Game Center or Google).</li>
 </ul>
 <p>If you think a child under 13 has given us information, write to {mailto(to=PRIVACY_MAIL)} and we will delete it.</p>'''),
